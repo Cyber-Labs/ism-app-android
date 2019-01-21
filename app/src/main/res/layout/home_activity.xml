@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/splash"
+    android:orientation="vertical">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:layout_gravity="center"
+        android:src="@drawable/logo"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:orientation="vertical"
+        android:layout_marginLeft="24dp"
+        >
+        <com.github.florent37.materialtextfield.MaterialTextField
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            app:mtf_image="@drawable/ic_email_black_24dp"
+            >
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Ism Email"
+                android:imeOptions="actionDone"
+                android:inputType="textEmailAddress"
+                android:textColor="#333"
+                android:textSize="15sp" />
+
+        </com.github.florent37.materialtextfield.MaterialTextField>
+        <com.github.florent37.materialtextfield.MaterialTextField
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            app:mtf_image="@drawable/ic_vpn_key_black_24dp"
+            >
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:textColor="#333"
+                android:textSize="15sp" />
+
+        </com.github.florent37.materialtextfield.MaterialTextField>
+
+    </LinearLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_margin="6dp"
+        android:layout_gravity="center"
+        android:background="@drawable/login"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_margin="6dp"
+        android:layout_gravity="center"
+        android:background="@drawable/signup"/>
+
+
+</LinearLayout>
