@@ -56,6 +56,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_margin="6dp"
+        android:onClick="login"
         android:layout_gravity="center"
         android:background="@drawable/login"/>
     <Button
