@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OTP"
+        android:fontFamily="@font/lato"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_margin="24dp"
+        android:layout_centerHorizontal="true"
+       android:textSize="28sp"/>
+
+
+    <EditText
+        android:id="@+id/aaa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="24dp"
+        android:fontFamily="@font/lato"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:text="13133131"
+        android:inputType="text"
+        android:imeOptions="actionDone"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/aaa"
+        android:layout_alignEnd="@id/aaa"
+        android:layout_centerHorizontal="true"
+
+        android:text="Verify"
+        android:layout_alignRight="@id/aaa" />
+
+
+</RelativeLayout>
