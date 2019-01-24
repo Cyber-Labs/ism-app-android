@@ -11,90 +11,94 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/signup_coordlay">
-    <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-     <LinearLayout
-         android:layout_width="match_parent"
-         android:layout_height="match_parent"
-         android:orientation="vertical">
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="24dp"
-        android:fontFamily="@font/lato"
-        android:textStyle="bold"
-        android:text="Create User Account"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="24sp"/>
-    <android.support.design.widget.TextInputLayout
-
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:padding="24dp">
-
-        <EditText
-            android:id="@+id/signup_name"
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="Name"
-            android:inputType="text"
-            android:maxLength="1"
-            android:imeOptions="actionNext"
-            />
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-    </android.support.design.widget.TextInputLayout>
-    <android.support.design.widget.TextInputLayout
 
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:padding="24dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="24dp"
+                    android:fontFamily="@font/lato"
+                    android:textStyle="bold"
+                    android:text="Create User Account"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="24sp"/>
+                <android.support.design.widget.TextInputLayout
 
-        <EditText
-            android:id="@+id/signup_email"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="Student Email Id"
-            android:inputType="text"
-            android:maxLength="1"
-            android:imeOptions="actionNext"
-            />
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:id="@+id/signup_name_lay"
+                    android:layout_weight="1"
+                    android:padding="24dp">
 
-    </android.support.design.widget.TextInputLayout>
-    <android.support.design.widget.TextInputLayout
+                    <EditText
+                        android:id="@+id/signup_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="Name"
+                        android:inputType="text|textCapWords"
+                        android:maxLines="1"
+                        android:imeOptions="actionNext"
+                        />
 
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        app:passwordToggleEnabled="true"
-        android:padding="24dp">
+                </android.support.design.widget.TextInputLayout>
+                <android.support.design.widget.TextInputLayout
 
-        <EditText
-            android:id="@+id/signup_pass"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:maxLength="1"
-            android:imeOptions="actionDone"
-            />
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:id="@+id/signup_email_lay"
+                    android:padding="24dp">
 
-    </android.support.design.widget.TextInputLayout>
-         <Button
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:id="@+id/signup_next"
-             android:text="Next"
-             android:layout_margin="24dp"
-             android:clickable="false"/>
+                    <EditText
+                        android:id="@+id/signup_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="Student Email Id"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:imeOptions="actionNext"
+                        />
 
-     </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+                </android.support.design.widget.TextInputLayout>
+                <android.support.design.widget.TextInputLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:id="@+id/signup_pass_lay"
+                    app:passwordToggleEnabled="true"
+                    android:padding="24dp">
+
+                    <EditText
+                        android:id="@+id/signup_pass"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="Password"
+                        android:inputType="textPassword"
+                        android:maxLines="1"
+                        android:imeOptions="actionDone"
+                        />
+
+                </android.support.design.widget.TextInputLayout>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/signup_next"
+                    android:text="Next"
+                    android:layout_margin="24dp"
+                    android:background="@color/grey"
+                    android:clickable="false"/>
+
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
     </android.support.design.widget.CoordinatorLayout>
     <ProgressBar
         android:layout_width="wrap_content"
