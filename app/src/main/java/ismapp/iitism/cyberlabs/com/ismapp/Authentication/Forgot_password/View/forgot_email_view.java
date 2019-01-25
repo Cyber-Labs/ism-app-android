@@ -38,6 +38,7 @@ public class forgot_email_view extends AppCompatActivity implements View_interfa
         initialise();
 
 
+
     }
 
     private void initialise() {
@@ -88,6 +89,7 @@ public class forgot_email_view extends AppCompatActivity implements View_interfa
         }
 
     }
+
     @Override
     public void checkConnection() {
         //check internet connection
