@@ -1,5 +1,8 @@
 package ismapp.iitism.cyberlabs.com.ismapp.Authentication.ResetPassword.View;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -11,6 +14,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.regex.Matcher;
@@ -27,22 +31,30 @@ public class reset_view extends AppCompatActivity implements reset_interface {
 
     EditText ed_email,ed_password,ed_confirm_password,ed_otp;
     Button submit;
-     ProgressBar progressBar;
+    ProgressDialog progressDialog;
+    private String email,otp,password,newpassword;
+    Dialog dialog;
+
      boolean connected;
      reset_presenter_interface reset_presenter_interface;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.password_reset);
         initialised();
     }
 
     private void initialised() {
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Wait");
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setIndeterminate(true);
         ed_email = (EditText)findViewById(R.id.rs_email);
         ed_password = (EditText)findViewById(R.id.rs_ps);
         ed_confirm_password = (EditText)findViewById(R.id.rs_cps);
         ed_otp = (EditText)findViewById(R.id.rs_otp);
         submit = (Button)findViewById(R.id.rs_submit);
-        progressBar = (ProgressBar)findViewById(R.id.progress_reset);
+
         ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
         if(connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
                 connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
@@ -56,9 +68,9 @@ public class reset_view extends AppCompatActivity implements reset_interface {
     @Override
     public void showProgressbar(boolean check) {
         if(check){
-            progressBar.setVisibility(View.VISIBLE);
+          progressDialog.show();
         }else{
-            progressBar.setVisibility(View.GONE);
+           progressDialog.dismiss();
         }
 
     }
@@ -67,15 +79,34 @@ public class reset_view extends AppCompatActivity implements reset_interface {
     public void checkConnection() {
      if(connected == false){
          //dialog box;
+         dialog = new Dialog(this);
+         dialog.setContentView(R.layout.dialog_coon);
+         Button btn = (Button) dialog.findViewById(R.id.dialog_button);
+         TextView rules5 = (TextView) dialog.findViewById(R.id.rules5);
+         btn.setText("Retry");
+         rules5.setText("No internet connection.Please try again.");
+         dialog.setTitle("Connectivity Failed");
+         dialog.setCancelable(false);
+         dialog.show();
+         btn.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+
+                 reset_presenter_interface = new reset_presenter_impl(reset_view.this,new Retrofit_reset_imple());
+                 reset_presenter_interface.sendResponse(email,password, Integer.parseInt(otp));
+                 dialog.dismiss();
+             }
+         });
+
      }
     }
 
    public void proceed_info(){
 
-            String email = ed_email.getText().toString().trim();
-            String password = ed_password.getText().toString().trim();
-            String newpassword = ed_confirm_password.getText().toString().trim();
-            String otp = ed_otp.getText().toString().trim();
+             email = ed_email.getText().toString().trim();
+             password = ed_password.getText().toString().trim();
+             newpassword = ed_confirm_password.getText().toString().trim();
+             otp = ed_otp.getText().toString().trim();
             int Otp = Integer.parseInt(otp);
             if(email.isEmpty() && password.isEmpty() && newpassword.isEmpty() && otp.isEmpty()){
                 Toast.makeText(this,"All Fields Are required",Toast.LENGTH_LONG);
@@ -90,7 +121,7 @@ public class reset_view extends AppCompatActivity implements reset_interface {
         }
 
 
-    
+
 
     @Override
     public void showResponse(NewPassword newPassword) {

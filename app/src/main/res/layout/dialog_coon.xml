@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+>
+  <ScrollView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="16dp"
+        android:orientation="vertical"
+        android:paddingBottom="16dp"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:id="@+id/rules5"
+
+            />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+
+            style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+            android:id="@+id/dialog_button"
+            />
+    </LinearLayout>
+  </ScrollView>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progress_bar_dialog"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="75dp"
+        android:visibility="gone"
+        />
+</RelativeLayout>

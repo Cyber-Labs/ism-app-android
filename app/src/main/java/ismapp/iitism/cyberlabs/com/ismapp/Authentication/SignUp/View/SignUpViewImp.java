@@ -1,7 +1,9 @@
 package ismapp.iitism.cyberlabs.com.ismapp.Authentication.SignUp.View;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
@@ -59,6 +61,7 @@ public class SignUpViewImp extends AppCompatActivity implements SignUpView {
 
             }
 
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(name.getText().toString().trim().isEmpty())
@@ -85,6 +88,7 @@ public class SignUpViewImp extends AppCompatActivity implements SignUpView {
 
             }
 
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(!name.getText().toString().trim().isEmpty()&&!email.getText().toString().trim().isEmpty()&&pass.getText().toString().trim().length()>=6)
@@ -105,6 +109,7 @@ public class SignUpViewImp extends AppCompatActivity implements SignUpView {
 
             }
 
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(!name.getText().toString().trim().isEmpty()&&!email.getText().toString().trim().isEmpty()&&pass.getText().toString().trim().length()>=6)

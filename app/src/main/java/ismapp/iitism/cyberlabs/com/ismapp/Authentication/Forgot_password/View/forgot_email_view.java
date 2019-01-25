@@ -11,7 +11,9 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.regex.Matcher;
@@ -26,10 +28,13 @@ import ismapp.iitism.cyberlabs.com.ismapp.R;
 public class forgot_email_view extends AppCompatActivity implements View_interface {
      EditText ed_email;
      Button bt_send;
+     ImageView imageView;
      ProgressBar progressBar;
      Dialog dialog;
      boolean connected;
+     String email;
      Presenter_Interface presenter_interface;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,6 +47,7 @@ public class forgot_email_view extends AppCompatActivity implements View_interfa
     }
 
     private void initialise() {
+        imageView = (ImageView)findViewById(R.id.img_reset);
         ed_email = (EditText)findViewById(R.id.forgot_email);
         bt_send = (Button) findViewById(R.id.send_email);
         progressBar = (ProgressBar)findViewById(R.id.progressBar);
@@ -75,7 +81,7 @@ public class forgot_email_view extends AppCompatActivity implements View_interfa
         }
     }
     public void proceed(View v) {
-        String email = ed_email.getText().toString().trim();
+         email = ed_email.getText().toString().trim();
        if(emailInvalid(email)){
             Toast.makeText(this, "ENTER CORRECT EMAIL ID!",
                     Toast.LENGTH_LONG).show();
@@ -95,6 +101,25 @@ public class forgot_email_view extends AppCompatActivity implements View_interfa
         //check internet connection
         if(connected == false){
             //show dialog box;
+            dialog = new Dialog(this);
+            dialog.setContentView(R.layout.dialog_coon);
+            Button btn = (Button) dialog.findViewById(R.id.dialog_button);
+            TextView rules5 = (TextView) dialog.findViewById(R.id.rules5);
+            btn.setText("Retry");
+            rules5.setText("No internet connection.Please try again.");
+            dialog.setTitle("Connectivity Failed");
+            dialog.setCancelable(false);
+            dialog.show();
+            btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    presenter_interface = new presenter_imple(new Retrofit_forgot_implementaion(), forgot_email_view.this);
+                    presenter_interface.getResponse(email);
+
+                    dialog.dismiss();
+                }
+            });
         }
 
 
