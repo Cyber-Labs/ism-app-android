@@ -12,8 +12,8 @@ public class SignUpProviderImp implements SignUpProvider {
     SignUpApi signUpApi;
 
     public SignUpProviderImp() {
-        ApiClient apiClient=new ApiClient();
-        signUpApi=apiClient.getRetrofit().create(SignUpApi.class);
+
+        signUpApi= ApiClient.getRetrofit().create(SignUpApi.class);
     }
 
     @Override

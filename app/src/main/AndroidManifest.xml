@@ -29,6 +29,7 @@
         </intent-filter>
         </activity>
         <activity android:name=".Authentication.SignUp.View.SignUpViewImp" />
+        <activity android:name=".Authentication.VerifyOtp.View.VerifyOtpViewImp" />
 
         <meta-data
             android:name="preloaded_fonts"

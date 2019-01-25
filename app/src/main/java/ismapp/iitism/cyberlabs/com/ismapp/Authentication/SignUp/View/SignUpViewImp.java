@@ -5,9 +5,11 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,8 +33,7 @@ public class SignUpViewImp extends AppCompatActivity implements SignUpView {
     EditText pass;
     @BindView(R.id.signup_next)
     Button next;
-    @BindView(R.id.signup_pb)
-    ProgressBar pb;
+
     @BindView(R.id.signup_coordlay)
     CoordinatorLayout clayout;
     @BindView(R.id.signup_name_lay)
@@ -41,6 +42,7 @@ public class SignUpViewImp extends AppCompatActivity implements SignUpView {
     TextInputLayout emailLay;
     @BindView(R.id.signup_pass_lay)
     TextInputLayout passLay;
+    AlertDialog alertDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,6 +52,7 @@ public class SignUpViewImp extends AppCompatActivity implements SignUpView {
         // nameLay.setErrorEnabled(true);
         //  emailLay.setErrorEnabled(true);
         //  passLay.setErrorEnabled(true);
+        alertDialog= new AlertDialog.Builder(this).setView(LayoutInflater.from(this).inflate(R.layout.progress_bar,null)).setCancelable(false).create();
         pass.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -136,16 +139,16 @@ public class SignUpViewImp extends AppCompatActivity implements SignUpView {
 
     @Override
     public void showProgressBar(boolean show) {
-        if(show==true)
-            pb.setVisibility(View.VISIBLE);
+        if(show)
+            alertDialog.show();
         else
-            pb.setVisibility(View.GONE);
+            alertDialog.dismiss();
 
     }
 
     @Override
     public void setIntent(SignUpResponseModel signUpResponseModel) {
-        if(signUpResponseModel.getSuccess()==false)
+        if(!signUpResponseModel.getSuccess())
             Snackbar.make(clayout,signUpResponseModel.getMessage(),Snackbar.LENGTH_LONG).setAction("Ok",null)
                     .show();
         else
