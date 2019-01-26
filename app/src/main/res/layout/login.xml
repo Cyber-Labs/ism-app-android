@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/splash"
-    android:orientation="vertical">
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    android:fillViewport="true">
+
+
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="0dp"
@@ -14,7 +20,7 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="4"
+        android:layout_weight="5"
         android:orientation="vertical"
         android:layout_marginLeft="24dp"
         >
@@ -27,9 +33,11 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/login_email"
                 android:hint="Ism Email"
                 android:imeOptions="actionDone"
                 android:inputType="textEmailAddress"
+                android:focusableInTouchMode="true"
                 android:textColor="#333"
                 android:textSize="15sp" />
 
@@ -45,6 +53,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Password"
                 android:inputType="textPassword"
+                android:id="@+id/login_pass"
                 android:textColor="#333"
                 android:textSize="15sp" />
 
@@ -54,18 +63,38 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:id="@+id/login_login"
         android:layout_weight="1"
         android:layout_margin="6dp"
         android:onClick="login"
         android:layout_gravity="center"
         android:background="@drawable/login"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:id="@+id/login_forgot"
+            android:layout_weight="1"
+            android:textColor="#fff"
+            android:gravity="center"
+            android:fontFamily="@font/lato"
+            android:text="Forgot Password?"
+            />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_margin="6dp"
+        android:id="@+id/login_signup"
         android:layout_gravity="center"
         android:background="@drawable/signup"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            ></LinearLayout>
+        </LinearLayout>
 
 
-</LinearLayout>
+
+

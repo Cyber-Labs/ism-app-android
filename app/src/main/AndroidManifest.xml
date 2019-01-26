@@ -22,14 +22,20 @@
         <activity
             android:name=".HomeActivity.HomeActivity"
             android:theme="@style/AppThemeHome">
+
+        </activity>
+        <activity android:name=".Authentication.SignUp.View.SignUpViewImp" />
+        <activity android:name=".Authentication.VerifyOtp.View.VerifyOtpViewImp" />
+        <activity android:name=".Authentication.LogIn.View.LoginViewImp"
+            android:theme="@style/AppThemeHome">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         </activity>
-        <activity android:name=".Authentication.SignUp.View.SignUpViewImp" />
-        <activity android:name=".Authentication.VerifyOtp.View.VerifyOtpViewImp" />
+        <activity android:name=".Authentication.Forgot_password.View.forgot_email_view" />
+        <activity android:name=".Authentication.ResetPassword.View.reset_view" />
 
         <meta-data
             android:name="preloaded_fonts"

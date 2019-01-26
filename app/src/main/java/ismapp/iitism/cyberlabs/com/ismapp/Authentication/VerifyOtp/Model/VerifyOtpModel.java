@@ -10,6 +10,7 @@ public class VerifyOtpModel {
         this.success = success;
     }
 
+
     public String getMessage() {
         return message;
     }
@@ -18,7 +19,7 @@ public class VerifyOtpModel {
         this.message = message;
     }
 
-    public boolean isSuccess() {
+    public boolean getSuccess() {
         return success;
     }
 

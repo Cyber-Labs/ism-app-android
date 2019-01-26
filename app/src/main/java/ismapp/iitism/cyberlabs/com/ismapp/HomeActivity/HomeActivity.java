@@ -10,7 +10,7 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.verify_otp);
+      //  setContentView(R.layout.login);
 //        LinearLayout ll=findViewById(R.id.ll);
 //        ll.setOnClickListener(null);
 //        Button button=findViewById(R.id.bt);

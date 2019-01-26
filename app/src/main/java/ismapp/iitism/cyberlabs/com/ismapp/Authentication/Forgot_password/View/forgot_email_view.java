@@ -29,7 +29,7 @@ public class forgot_email_view extends AppCompatActivity implements View_interfa
      EditText ed_email;
      Button bt_send;
      ImageView imageView;
-     ProgressBar progressBar;
+    // ProgressBar progressBar;
      Dialog dialog;
      boolean connected;
      String email;
@@ -50,7 +50,7 @@ public class forgot_email_view extends AppCompatActivity implements View_interfa
         imageView = (ImageView)findViewById(R.id.img_reset);
         ed_email = (EditText)findViewById(R.id.forgot_email);
         bt_send = (Button) findViewById(R.id.send_email);
-        progressBar = (ProgressBar)findViewById(R.id.progressBar);
+      //  progressBar = (ProgressBar)findViewById(R.id.progressBar);
         dialog = new Dialog(this);
         ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
         if(connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
@@ -65,10 +65,10 @@ public class forgot_email_view extends AppCompatActivity implements View_interfa
     @Override
     public void showProgressBar(boolean check) {
         if(check == true){
-            progressBar.setVisibility(View.GONE);
+           // progressBar.setVisibility(View.GONE);
         }
          else{
-            progressBar.setVisibility(View.VISIBLE);
+           // progressBar.setVisibility(View.VISIBLE);
         }
     }
 
