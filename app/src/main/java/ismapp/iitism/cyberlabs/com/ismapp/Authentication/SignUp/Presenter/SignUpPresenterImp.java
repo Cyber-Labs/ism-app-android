@@ -4,6 +4,7 @@ import ismapp.iitism.cyberlabs.com.ismapp.Authentication.SignUp.Model.SignUpResp
 import ismapp.iitism.cyberlabs.com.ismapp.Authentication.SignUp.Provider.SignUpProvider;
 import ismapp.iitism.cyberlabs.com.ismapp.Authentication.SignUp.SignUpCallBack;
 import ismapp.iitism.cyberlabs.com.ismapp.Authentication.SignUp.View.SignUpView;
+import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
 
 public class SignUpPresenterImp implements SignUpPresenter{
     private SignUpView signUpView;
@@ -23,17 +24,24 @@ public class SignUpPresenterImp implements SignUpPresenter{
     @Override
     public void getSignUpResponse() {
         signUpView.showProgressBar(true);
-        signUpProvider.getSignUpResponse(email, name, pass, new SignUpCallBack() {
+        signUpProvider.getSignUpResponse(email, name, pass, new PresenterCallback() {
             @Override
-            public void getVerification(SignUpResponseModel signUpResponseModel) {
+            public void onSuccess(Object o) {
                 signUpView.showProgressBar(false);
+               SignUpResponseModel signUpResponseModel = (SignUpResponseModel)o;
                 if(signUpResponseModel==null)
                     signUpView.setIntent(new SignUpResponseModel(false,"Unable to Connect Server!!!"));
                 else
                     signUpView.setIntent(signUpResponseModel);
 
             }
-        });
 
-    }
+            @Override
+            public void OnFailure(String msg) {
+
+            }
+        });
+            }
+
+
 }

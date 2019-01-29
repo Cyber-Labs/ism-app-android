@@ -1,6 +1,5 @@
 package ismapp.iitism.cyberlabs.com.ismapp.Authentication.ResetPassword.View;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -13,14 +12,12 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import ismapp.iitism.cyberlabs.com.ismapp.Authentication.Forgot_password.View.View_interface;
 import ismapp.iitism.cyberlabs.com.ismapp.Authentication.ResetPassword.Model.NewPassword;
 import ismapp.iitism.cyberlabs.com.ismapp.Authentication.ResetPassword.Presenter.reset_presenter_impl;
 import ismapp.iitism.cyberlabs.com.ismapp.Authentication.ResetPassword.Presenter.reset_presenter_interface;

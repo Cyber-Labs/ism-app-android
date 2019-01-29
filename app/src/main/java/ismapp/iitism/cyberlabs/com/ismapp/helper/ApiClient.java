@@ -1,4 +1,4 @@
-package ismapp.iitism.cyberlabs.com.ismapp;
+package ismapp.iitism.cyberlabs.com.ismapp.helper;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

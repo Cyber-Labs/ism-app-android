@@ -1,9 +1,9 @@
 package ismapp.iitism.cyberlabs.com.ismapp.Authentication.LogIn.Provider;
 
-import ismapp.iitism.cyberlabs.com.ismapp.ApiClient;
+import ismapp.iitism.cyberlabs.com.ismapp.helper.ApiClient;
 import ismapp.iitism.cyberlabs.com.ismapp.Authentication.LogIn.Api.LoginApi;
-import ismapp.iitism.cyberlabs.com.ismapp.Authentication.LogIn.LoginCallBack;
 import ismapp.iitism.cyberlabs.com.ismapp.Authentication.LogIn.Model.LoginModel;
+import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -16,18 +16,20 @@ public class LoginProviderImp implements LoginProvider {
         loginApi=ApiClient.getRetrofit().create(LoginApi.class);
     }
 
+
+
     @Override
-    public void getLoginResponse(String email, String password, final LoginCallBack loginCallBack) {
+    public void getLoginResponse(String email, String password, final PresenterCallback callback) {
         call=loginApi.getResponse(email,password);
         call.enqueue(new Callback<LoginModel>() {
             @Override
             public void onResponse(Call<LoginModel> call, Response<LoginModel> response) {
-                loginCallBack.getVerification(response.body());
+                callback.onSuccess((LoginModel)response.body());
             }
 
             @Override
             public void onFailure(Call<LoginModel> call, Throwable t) {
-                loginCallBack.onFailure();
+                callback.OnFailure(t.toString());
 
 
             }

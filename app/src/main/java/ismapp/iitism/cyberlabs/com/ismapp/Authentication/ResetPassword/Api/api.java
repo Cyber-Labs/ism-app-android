@@ -7,6 +7,5 @@ import retrofit2.http.POST;
 
 public interface api {
     @POST("reset_password/")
-    Call<NewPassword> getresponse(@Field("email") String email,@Field("new_password") String password,@Field("otp") int otp);
-
+    Call<NewPassword> getresponse(@Field("email") String email, @Field("new_password") String password, @Field("otp") int otp);
 }
