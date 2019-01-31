@@ -4,5 +4,5 @@ import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
 
 public interface ClubPresenInter {
 
-    void getclubdetail(String access_token, String id);
+    void getclubdetail(String access_token, int id);
 }

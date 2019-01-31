@@ -9,5 +9,5 @@ import retrofit2.http.Header;
 
 public interface Api {
     @GET(Urls.clubdetails)
-    Call<ClubDetails> getdetails(@Header("Authorization") String Token_access_token, @Field("club_id") String id);
+    Call<ClubDetails> getdetails(@Header("Authorization") String Token_access_token, @Field("club_id") int id);
 }

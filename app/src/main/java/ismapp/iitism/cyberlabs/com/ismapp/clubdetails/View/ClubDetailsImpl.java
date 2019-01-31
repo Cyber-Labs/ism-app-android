@@ -37,7 +37,7 @@ public class ClubDetailsImpl extends Fragment implements ClubDetailInterface {
     //private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String id;
+    private int id;
     private String mParam2;
     ImageView clubImage,BrowserIcon;
     TextView ClubName,Description;
@@ -71,7 +71,7 @@ public class ClubDetailsImpl extends Fragment implements ClubDetailInterface {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            id = getArguments().getString("id");
+            id = getArguments().getInt("id");
 
         }
     }

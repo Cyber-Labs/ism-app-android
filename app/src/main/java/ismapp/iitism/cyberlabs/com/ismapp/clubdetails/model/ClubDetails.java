@@ -3,7 +3,7 @@ package ismapp.iitism.cyberlabs.com.ismapp.clubdetails.model;
 public class ClubDetails {
     String success ;
     String message ;
-    String id ;
+    int id ;
     String name ;
     String image_url ;
     String tagline ;
@@ -11,7 +11,7 @@ public class ClubDetails {
     String description;
     Boolean is_admin;
 
-    public ClubDetails(String success, String message, String id, String name, String image_url, String tagline, String fb_link, String description, Boolean is_admin) {
+    public ClubDetails(String success, String message, int id, String name, String image_url, String tagline, String fb_link, String description, Boolean is_admin) {
         this.success = success;
         this.message = message;
         this.id = id;
@@ -31,7 +31,7 @@ public class ClubDetails {
         return message;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 

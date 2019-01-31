@@ -8,7 +8,7 @@ public class ClubDetailsPresenter implements ClubPresenInter {
     ClubDetailInterface clubDetailInterface;
     ismapp.iitism.cyberlabs.com.ismapp.clubdetails.Provider.ClubDetailInterface clubDetailInterfaces;
     @Override
-    public void getclubdetail(String access_token, String id) {
+    public void getclubdetail(String access_token, int id) {
         clubDetailInterface.showProgressbar(true);
       clubDetailInterfaces.getclubdetailresponse(access_token, id, new PresenterCallback() {
           @Override

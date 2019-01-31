@@ -1,13 +1,13 @@
 package ismapp.iitism.cyberlabs.com.ismapp.Clubs.model;
 
 public class ClubsName {
-    String clubid;
+    int clubid;
     String name;
     String imageurl;
     String tagline;
     String id;
 
-    public ClubsName(String clubid, String name, String imageurl, String tagline, String id) {
+    public ClubsName(int clubid, String name, String imageurl, String tagline, String id) {
         this.clubid = clubid;
         this.name = name;
         this.imageurl = imageurl;
@@ -15,11 +15,11 @@ public class ClubsName {
         this.id = id;
     }
 
-    public String getClubid() {
+    public int getClubid() {
         return clubid;
     }
 
-    public void setClubid(String clubid) {
+    public void setClubid(int clubid) {
         this.clubid = clubid;
     }
 

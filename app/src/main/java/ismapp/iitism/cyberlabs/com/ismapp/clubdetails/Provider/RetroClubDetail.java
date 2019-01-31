@@ -10,9 +10,10 @@ import retrofit2.Response;
 
 public class RetroClubDetail implements ClubDetailInterface {
     Call<ClubDetails> call;
-    @Override
-    public void getclubdetailresponse(String access_token, String id, final PresenterCallback presenterCallback) {
 
+
+    @Override
+    public void getclubdetailresponse(String access_token, int id, final PresenterCallback presenterCallback) {
         Api api = ApiClient.getRetrofit().create(Api.class);
         call = api.getdetails(access_token,id);
         call.enqueue(new Callback<ClubDetails>() {
@@ -23,7 +24,7 @@ public class RetroClubDetail implements ClubDetailInterface {
 
             @Override
             public void onFailure(Call<ClubDetails> call, Throwable t) {
-                  presenterCallback.OnFailure(t.getMessage());
+                presenterCallback.OnFailure(t.getMessage());
             }
         });
 

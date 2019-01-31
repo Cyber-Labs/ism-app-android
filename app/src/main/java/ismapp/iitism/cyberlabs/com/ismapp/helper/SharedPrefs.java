@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 
 public class SharedPrefs {
     private static final String KEY_ACCESS_TOKEN = "access_token";
+    private static final String CLUB_ID = "club_id";
 
     private static String TAG = "Shared Preference";
     private  final String PREF_NAME = "Login";
@@ -13,11 +14,18 @@ public class SharedPrefs {
     SharedPreferences pref;
     SharedPreferences.Editor editor;
     Context _context;
+
+
     // Shared pref mode
     int PRIVATE_MODE = 0;
 
-
-
+public void setClubId(int club_id){
+    editor.putInt(CLUB_ID,club_id);
+    editor.commit();
+}
+public int getClubId(){
+    return pref.getInt(CLUB_ID,0);
+}
     public SharedPrefs(Context context) {
         this._context = context;
         pref = _context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);

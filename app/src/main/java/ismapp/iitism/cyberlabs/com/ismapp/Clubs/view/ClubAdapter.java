@@ -21,16 +21,19 @@ import ismapp.iitism.cyberlabs.com.ismapp.Clubs.model.ClubsList;
 import ismapp.iitism.cyberlabs.com.ismapp.Clubs.model.ClubsName;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
 import ismapp.iitism.cyberlabs.com.ismapp.clubdetails.View.ClubDetailsImpl;
+import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
 
 public class ClubAdapter extends RecyclerView.Adapter<ClubAdapter.clubAdapterViewHolder> {
 
     private List<ClubsName> clubsLists ;
    private Context mtcx;
    FragmentManager fragmentManager;
+   SharedPrefs sharedPrefs ;
 
     public ClubAdapter(Context mtcx, FragmentManager fragmentManager) {
         this.fragmentManager = fragmentManager;
         this.mtcx = mtcx;
+        sharedPrefs = new SharedPrefs(mtcx);
     }
     void setData(List<ClubsName> clubsNames){
         this.clubsLists = clubsNames;
@@ -54,9 +57,10 @@ public class ClubAdapter extends RecyclerView.Adapter<ClubAdapter.clubAdapterVie
             @Override public void onClick(View v) {
                 //opens and passing arguments to fragments;
                 Bundle bundle = new Bundle();
-                bundle.putString("id",clubsName.getClubid());
+                bundle.putInt("id",clubsName.getClubid());
                 ClubDetailsImpl clubDetails = new ClubDetailsImpl();
                 clubDetails.setArguments(bundle);
+                sharedPrefs.setClubId(clubsName.getClubid());
                 fragmentManager.beginTransaction().add(R.id.main_contaner,new ClubDetailsImpl()).addToBackStack(null).commit();
 
             }
