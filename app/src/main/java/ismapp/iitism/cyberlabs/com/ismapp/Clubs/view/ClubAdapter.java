@@ -1,7 +1,9 @@
 package ismapp.iitism.cyberlabs.com.ismapp.Clubs.view;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,14 +20,16 @@ import java.util.List;
 import ismapp.iitism.cyberlabs.com.ismapp.Clubs.model.ClubsList;
 import ismapp.iitism.cyberlabs.com.ismapp.Clubs.model.ClubsName;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
+import ismapp.iitism.cyberlabs.com.ismapp.clubdetails.View.ClubDetailsImpl;
 
 public class ClubAdapter extends RecyclerView.Adapter<ClubAdapter.clubAdapterViewHolder> {
 
     private List<ClubsName> clubsLists ;
    private Context mtcx;
+   FragmentManager fragmentManager;
 
-    public ClubAdapter( Context mtcx) {
-
+    public ClubAdapter(Context mtcx, FragmentManager fragmentManager) {
+        this.fragmentManager = fragmentManager;
         this.mtcx = mtcx;
     }
     void setData(List<ClubsName> clubsNames){
@@ -42,13 +46,18 @@ public class ClubAdapter extends RecyclerView.Adapter<ClubAdapter.clubAdapterVie
 
     @Override
     public void onBindViewHolder(@NonNull clubAdapterViewHolder clubAdapterViewHolder, int i) {
-       ClubsName clubsName = clubsLists.get(i);
+       final ClubsName clubsName = clubsLists.get(i);
         clubAdapterViewHolder.clubname.setText(clubsName.getName());
         clubAdapterViewHolder.clubtagline.setText(clubsName.getTagline());
         Picasso.get().load(clubsName.getImageurl()).into(clubAdapterViewHolder.clubimage);
         clubAdapterViewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 //opens and passing arguments to fragments;
+                Bundle bundle = new Bundle();
+                bundle.putString("id",clubsName.getClubid());
+                ClubDetailsImpl clubDetails = new ClubDetailsImpl();
+                clubDetails.setArguments(bundle);
+                fragmentManager.beginTransaction().add(R.id.main_contaner,new ClubDetailsImpl()).addToBackStack(null).commit();
 
             }
         }); }

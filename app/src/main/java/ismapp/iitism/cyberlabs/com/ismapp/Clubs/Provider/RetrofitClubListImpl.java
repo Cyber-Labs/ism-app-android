@@ -12,10 +12,12 @@ public class RetrofitClubListImpl implements ProviderInterface {
 
     private Call<ClubsList> clubsListCall;
 
+
+
     @Override
-    public void requestclubslist(final PresenterCallback presenterCallback) {
+    public void requestclubslist(String access_token, final PresenterCallback presenterCallback) {
         clubapi clubapi = ApiClient.getRetrofit().create(ismapp.iitism.cyberlabs.com.ismapp.Clubs.api.clubapi.class);
-        clubsListCall = clubapi.getclublist();
+        clubsListCall = clubapi.getclublist(access_token);
         clubsListCall.enqueue(new Callback<ClubsList>() {
             @Override
             public void onResponse(Call<ClubsList> call, Response<ClubsList> response) {
@@ -24,9 +26,8 @@ public class RetrofitClubListImpl implements ProviderInterface {
 
             @Override
             public void onFailure(Call<ClubsList> call, Throwable t) {
-             presenterCallback.OnFailure(t.toString());
+                presenterCallback.OnFailure(t.toString());
             }
         });
-
     }
 }

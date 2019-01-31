@@ -16,10 +16,11 @@ public class PresenterImpl implements PresenterInterface {
         this.providerInterface = providerInterface;
     }
 
+
     @Override
-    public void requestclublist() {
+    public void requestclublist(String access_token) {
         clubInterface.ShowProgressBar(true);
-        providerInterface.requestclubslist(new PresenterCallback() {
+        providerInterface.requestclubslist( access_token,new PresenterCallback() {
 
             @Override
             public void onSuccess(Object o) {

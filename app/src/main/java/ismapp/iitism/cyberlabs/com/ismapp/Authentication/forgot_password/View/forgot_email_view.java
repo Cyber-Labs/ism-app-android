@@ -2,6 +2,7 @@ package ismapp.iitism.cyberlabs.com.ismapp.Authentication.forgot_password.View;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import ismapp.iitism.cyberlabs.com.ismapp.Authentication.VerifyOtp.View.VerifyOtpViewImp;
 import ismapp.iitism.cyberlabs.com.ismapp.Authentication.forgot_password.Model.Otp_Response_Model;
 import ismapp.iitism.cyberlabs.com.ismapp.Authentication.forgot_password.Presenter.Presenter_Interface;
 import ismapp.iitism.cyberlabs.com.ismapp.Authentication.forgot_password.Presenter.presenter_imple;
@@ -75,6 +77,7 @@ public class forgot_email_view extends AppCompatActivity implements View_interfa
     public void showOtpResponse(Otp_Response_Model Otp_Response_Model) {
         if(Otp_Response_Model.isSuccess()){
             //intent to otp page
+            startActivity(new Intent(this, VerifyOtpViewImp.class));
         }else{
             Toast.makeText(forgot_email_view.this,Otp_Response_Model.getMessage().toString(),Toast.LENGTH_LONG);
         }

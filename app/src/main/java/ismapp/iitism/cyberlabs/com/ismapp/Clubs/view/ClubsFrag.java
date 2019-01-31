@@ -23,22 +23,25 @@ import ismapp.iitism.cyberlabs.com.ismapp.Clubs.presenter.PresenterInterface;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.MsgToast;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
+import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
 
 public class ClubsFrag extends Fragment implements ClubInterface {
 
     ClubAdapter clubAdapter;
     PresenterInterface presenterInterface;
     ProgressDialog progressDialog;
+    SharedPrefs sharedPrefs;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.clubs,container,false);
         RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.clubrecycler);
-        clubAdapter = new ClubAdapter(getContext());
+        clubAdapter = new ClubAdapter(getContext(),getFragmentManager());
+        sharedPrefs = new SharedPrefs(getContext());
 
         presenterInterface = new PresenterImpl(ClubsFrag.this,new RetrofitClubListImpl());
-        presenterInterface.requestclublist();
+        presenterInterface.requestclublist(sharedPrefs.getAccessToken());
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(clubAdapter);
