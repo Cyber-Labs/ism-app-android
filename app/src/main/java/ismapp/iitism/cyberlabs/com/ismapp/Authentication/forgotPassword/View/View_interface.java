@@ -1,6 +1,6 @@
-package ismapp.iitism.cyberlabs.com.ismapp.Authentication.Forgot_password.View;
+package ismapp.iitism.cyberlabs.com.ismapp.Authentication.forgotPassword.View;
 
-import ismapp.iitism.cyberlabs.com.ismapp.Authentication.Forgot_password.Model.Otp_Response_Model;
+import ismapp.iitism.cyberlabs.com.ismapp.Authentication.forgotPassword.Model.Otp_Response_Model;
 
 public interface View_interface {
     void showProgressBar(boolean check);

@@ -1,4 +1,4 @@
-package ismapp.iitism.cyberlabs.com.ismapp.Authentication.Forgot_password.View;
+package ismapp.iitism.cyberlabs.com.ismapp.Authentication.forgotPassword.View;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -20,10 +20,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import ismapp.iitism.cyberlabs.com.ismapp.Authentication.VerifyOtp.View.VerifyOtpViewImp;
-import ismapp.iitism.cyberlabs.com.ismapp.Authentication.Forgot_password.Model.Otp_Response_Model;
-import ismapp.iitism.cyberlabs.com.ismapp.Authentication.Forgot_password.Presenter.Presenter_Interface;
-import ismapp.iitism.cyberlabs.com.ismapp.Authentication.Forgot_password.Presenter.presenter_imple;
-import ismapp.iitism.cyberlabs.com.ismapp.Authentication.Forgot_password.Provider.Retrofit_forgot_implementaion;
+import ismapp.iitism.cyberlabs.com.ismapp.Authentication.forgotPassword.Model.Otp_Response_Model;
+import ismapp.iitism.cyberlabs.com.ismapp.Authentication.forgotPassword.Presenter.Presenter_Interface;
+import ismapp.iitism.cyberlabs.com.ismapp.Authentication.forgotPassword.Presenter.presenter_imple;
+import ismapp.iitism.cyberlabs.com.ismapp.Authentication.forgotPassword.Provider.Retrofit_forgot_implementaion;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
 
 public class forgot_email_view extends AppCompatActivity implements View_interface {

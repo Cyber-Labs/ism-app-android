@@ -1,4 +1,4 @@
-package ismapp.iitism.cyberlabs.com.ismapp.Authentication.Forgot_password.Provider;
+package ismapp.iitism.cyberlabs.com.ismapp.Authentication.forgotPassword.Provider;
 
 import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
 

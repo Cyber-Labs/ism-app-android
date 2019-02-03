@@ -1,8 +1,8 @@
-package ismapp.iitism.cyberlabs.com.ismapp.Authentication.Forgot_password.Presenter;
+package ismapp.iitism.cyberlabs.com.ismapp.Authentication.forgotPassword.Presenter;
 
-import ismapp.iitism.cyberlabs.com.ismapp.Authentication.Forgot_password.Model.Otp_Response_Model;
-import ismapp.iitism.cyberlabs.com.ismapp.Authentication.Forgot_password.Provider.Provider_interface;
-import ismapp.iitism.cyberlabs.com.ismapp.Authentication.Forgot_password.View.View_interface;
+import ismapp.iitism.cyberlabs.com.ismapp.Authentication.forgotPassword.Model.Otp_Response_Model;
+import ismapp.iitism.cyberlabs.com.ismapp.Authentication.forgotPassword.Provider.Provider_interface;
+import ismapp.iitism.cyberlabs.com.ismapp.Authentication.forgotPassword.View.View_interface;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
 
 public class presenter_imple implements Presenter_Interface {

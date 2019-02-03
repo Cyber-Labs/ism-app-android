@@ -1,4 +1,4 @@
-package ismapp.iitism.cyberlabs.com.ismapp.Authentication.Forgot_password.Model;
+package ismapp.iitism.cyberlabs.com.ismapp.Authentication.forgotPassword.Model;
 
 public class Otp_Response_Model  {
 
