@@ -1,4 +1,4 @@
-package ismapp.iitism.cyberlabs.com.ismapp.Authentication.forgot_password.View;
+package ismapp.iitism.cyberlabs.com.ismapp.Authentication.Forgot_password.View;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -20,10 +20,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import ismapp.iitism.cyberlabs.com.ismapp.Authentication.VerifyOtp.View.VerifyOtpViewImp;
-import ismapp.iitism.cyberlabs.com.ismapp.Authentication.forgot_password.Model.Otp_Response_Model;
-import ismapp.iitism.cyberlabs.com.ismapp.Authentication.forgot_password.Presenter.Presenter_Interface;
-import ismapp.iitism.cyberlabs.com.ismapp.Authentication.forgot_password.Presenter.presenter_imple;
-import ismapp.iitism.cyberlabs.com.ismapp.Authentication.forgot_password.Provider.Retrofit_forgot_implementaion;
+import ismapp.iitism.cyberlabs.com.ismapp.Authentication.Forgot_password.Model.Otp_Response_Model;
+import ismapp.iitism.cyberlabs.com.ismapp.Authentication.Forgot_password.Presenter.Presenter_Interface;
+import ismapp.iitism.cyberlabs.com.ismapp.Authentication.Forgot_password.Presenter.presenter_imple;
+import ismapp.iitism.cyberlabs.com.ismapp.Authentication.Forgot_password.Provider.Retrofit_forgot_implementaion;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
 
 public class forgot_email_view extends AppCompatActivity implements View_interface {
@@ -48,9 +48,9 @@ public class forgot_email_view extends AppCompatActivity implements View_interfa
     }
 
     private void initialise() {
-        imageView = (ImageView)findViewById(R.id.img_reset);
+//        imageView = (ImageView)findViewById(R.id.img_reset);
         ed_email = (EditText)findViewById(R.id.forgot_email);
-        bt_send = (Button) findViewById(R.id.send_email);
+        bt_send = (Button) findViewById(R.id.forgot_submit);
       //  progressBar = (ProgressBar)findViewById(R.id.progressBar);
         dialog = new Dialog(this);
         ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);

@@ -16,7 +16,7 @@ import com.appus.splash.Splash;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import ismapp.iitism.cyberlabs.com.ismapp.Authentication.forgot_password.View.forgot_email_view;
+import ismapp.iitism.cyberlabs.com.ismapp.Authentication.Forgot_password.View.forgot_email_view;
 import ismapp.iitism.cyberlabs.com.ismapp.Authentication.LogIn.Model.LoginModel;
 import ismapp.iitism.cyberlabs.com.ismapp.Authentication.LogIn.Presenter.LoginPresenter;
 import ismapp.iitism.cyberlabs.com.ismapp.Authentication.LogIn.Presenter.LoginPresenterImp;
