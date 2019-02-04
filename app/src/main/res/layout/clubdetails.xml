@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="5dp">
+
+
+    <RelativeLayout
+        android:id="@+id/clubcard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="6dp">
+
+        <!--<TextView-->
+            <!--android:id="@+id/club_details_name"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentTop="true"-->
+            <!--android:layout_marginStart="14dp"-->
+            <!--android:layout_marginLeft="14dp"-->
+            <!--android:layout_marginTop="6dp"-->
+            <!--android:layout_toEndOf="@+id/clubimage"-->
+            <!--android:layout_toRightOf="@+id/clubimage"-->
+            <!--android:padding="3dp"-->
+            <!--android:text="CYBERLABS"-->
+            <!--android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"-->
+            <!--android:textColor="#000000"-->
+            <!--android:textSize="14sp" />-->
+
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/club_details_image"
+        android:layout_width="match_parent"
+        android:layout_height="295dp"
+        android:layout_marginStart="19dp"
+        tools:srcCompat="@drawable/cyberlabs"
+        android:layout_marginLeft="19dp" />
+
+    <TextView
+        android:id="@+id/club_details_tagline"
+        android:layout_width="196dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
+        android:padding="1dp"
+        android:text="Technical Club"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+        android:textColor="@color/grey"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/club_details_desc"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="3dp"
+        android:padding="6dp"
+        android:text="Club Description"
+        android:textSize="14sp" />
+
+
+</LinearLayout>
