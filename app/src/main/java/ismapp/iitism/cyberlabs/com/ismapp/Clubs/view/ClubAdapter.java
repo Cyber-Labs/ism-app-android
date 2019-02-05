@@ -25,19 +25,18 @@ import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
 
 public class ClubAdapter extends RecyclerView.Adapter<ClubAdapter.clubAdapterViewHolder> {
 
-    private List<ClubsName> clubsLists ;
+    private List<ClubsName> clubsLists  = new ArrayList<>();
    private Context mtcx;
    FragmentManager fragmentManager;
    SharedPrefs sharedPrefs ;
 
-    public ClubAdapter(Context mtcx, FragmentManager fragmentManager) {
+    public ClubAdapter(Context mtcx, FragmentManager fragmentManager,List<ClubsName> clubsNames) {
         this.fragmentManager = fragmentManager;
         this.mtcx = mtcx;
         sharedPrefs = new SharedPrefs(mtcx);
-    }
-    void setData(List<ClubsName> clubsNames){
         this.clubsLists = clubsNames;
     }
+
 
     @NonNull
     @Override

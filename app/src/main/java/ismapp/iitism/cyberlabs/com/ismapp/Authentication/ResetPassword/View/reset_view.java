@@ -48,7 +48,7 @@ public class reset_view extends AppCompatActivity implements reset_interface {
         progressDialog.setIndeterminate(true);
         ed_email = (EditText)findViewById(R.id.rs_email);
         ed_password = (EditText)findViewById(R.id.rs_ps);
-        ed_confirm_password = (EditText)findViewById(R.id.rs_cps);
+        //ed_confirm_password = (EditText)findViewById(R.id.rs_cps);
         ed_otp = (EditText)findViewById(R.id.rs_otp);
         submit = (Button)findViewById(R.id.rs_submit);
 
@@ -105,12 +105,10 @@ public class reset_view extends AppCompatActivity implements reset_interface {
              newpassword = ed_confirm_password.getText().toString().trim();
              otp = ed_otp.getText().toString().trim();
             int Otp = Integer.parseInt(otp);
-            if(email.isEmpty() && password.isEmpty() && newpassword.isEmpty() && otp.isEmpty()){
+            if(email.isEmpty() && password.isEmpty()  && otp.isEmpty()){
                 Toast.makeText(this,"All Fields Are required",Toast.LENGTH_LONG);
             }
-            else if(!password.equals(newpassword)){
-                Toast.makeText(this,"Password And Confirm password should be Matched",Toast.LENGTH_LONG);
-            }
+
             else{
                 reset_presenter_interface = new reset_presenter_impl(this,new Retrofit_reset_imple());
                 reset_presenter_interface.sendResponse(email,password,Otp);

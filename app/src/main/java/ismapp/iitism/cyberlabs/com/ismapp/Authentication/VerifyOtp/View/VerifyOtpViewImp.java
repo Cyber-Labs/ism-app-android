@@ -1,9 +1,11 @@
 package ismapp.iitism.cyberlabs.com.ismapp.Authentication.VerifyOtp.View;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -29,11 +31,16 @@ public class VerifyOtpViewImp extends AppCompatActivity implements VerifiOtpView
     Button button;
     AlertDialog alertDialog;
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.verify_otp);
         ButterKnife.bind(this);
+        Intent i=getIntent();
+        email=i.getStringExtra("email");
+        Log.e("email", email );
+        emailTv.setText(email);
         final VerifyOtpPresenter verifyOtpPresenter=new VerifyOtpPresenterImp(this,new VerifyOtpProviderImp());
         emailTv.setText(email);
         alertDialog= new AlertDialog.Builder(this).setView(LayoutInflater.from(this).inflate(R.layout.progress_bar,null)).setCancelable(false).create();
@@ -64,7 +71,7 @@ public class VerifyOtpViewImp extends AppCompatActivity implements VerifiOtpView
 
     @Override
     public void setIntent(VerifyOtpModel verifyOtpModel) {
-        //Save the detials here.
+
 
     }
 }

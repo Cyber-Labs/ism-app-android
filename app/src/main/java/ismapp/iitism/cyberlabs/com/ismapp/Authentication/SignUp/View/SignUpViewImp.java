@@ -1,5 +1,6 @@
 package ismapp.iitism.cyberlabs.com.ismapp.Authentication.SignUp.View;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -24,6 +25,7 @@ import ismapp.iitism.cyberlabs.com.ismapp.Authentication.SignUp.Model.SignUpResp
 import ismapp.iitism.cyberlabs.com.ismapp.Authentication.SignUp.Presenter.SignUpPresenter;
 import ismapp.iitism.cyberlabs.com.ismapp.Authentication.SignUp.Presenter.SignUpPresenterImp;
 import ismapp.iitism.cyberlabs.com.ismapp.Authentication.SignUp.Provider.SignUpProviderImp;
+import ismapp.iitism.cyberlabs.com.ismapp.Authentication.VerifyOtp.View.VerifyOtpViewImp;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
 
 public class SignUpViewImp extends AppCompatActivity implements SignUpView {
@@ -35,6 +37,7 @@ public class SignUpViewImp extends AppCompatActivity implements SignUpView {
     EditText pass;
     @BindView(R.id.signup_next)
     Button next;
+    String e;
 
     @BindView(R.id.signup_coordlay)
     CoordinatorLayout clayout;
@@ -69,9 +72,9 @@ public class SignUpViewImp extends AppCompatActivity implements SignUpView {
                 if(email.getText().toString().trim().isEmpty())
                     emailLay.setError("Enter the Email-Id");
                 if(!name.getText().toString().trim().isEmpty()&&!email.getText().toString().trim().isEmpty()&&pass.getText().toString().length()>=6)
-                {next.setBackgroundColor(getColor(R.color.colorPrimaryDark));next.setClickable(true);}
+                {next.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));next.setClickable(true);}
                 else
-                {next.setBackgroundColor(getColor(R.color.grey));next.setClickable(false);}
+                {next.setBackgroundColor(getResources().getColor(R.color.grey));next.setClickable(false);}
 
 
 
@@ -92,9 +95,10 @@ public class SignUpViewImp extends AppCompatActivity implements SignUpView {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(!name.getText().toString().trim().isEmpty()&&!email.getText().toString().trim().isEmpty()&&pass.getText().toString().length()>=6)
-                {next.setBackgroundColor(getColor(R.color.colorPrimaryDark));next.setClickable(true);}
+                {next.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));next.setClickable(true);}
                 else
-                {next.setBackgroundColor(getColor(R.color.grey));next.setClickable(false);}
+                {
+                    next.setBackgroundColor(getResources().getColor(R.color.grey));next.setClickable(false);}
 
             }
 
@@ -113,9 +117,9 @@ public class SignUpViewImp extends AppCompatActivity implements SignUpView {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(!name.getText().toString().trim().isEmpty()&&!email.getText().toString().trim().isEmpty()&&pass.getText().toString().length()>=6)
-                {next.setBackgroundColor(getColor(R.color.colorPrimaryDark));next.setClickable(true);}
+                {next.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));next.setClickable(true);}
                 else
-                {next.setBackgroundColor(getColor(R.color.grey));next.setClickable(false);}
+                {next.setBackgroundColor(getResources().getColor(R.color.grey));next.setClickable(false);}
 
             }
 
@@ -132,6 +136,7 @@ public class SignUpViewImp extends AppCompatActivity implements SignUpView {
                         name.getText().toString().trim(),
                         pass.getText().toString());
 
+              e=email.getText().toString().trim();
                 name.setText("");
                 email.setText("");
                 pass.setText("");
@@ -158,7 +163,9 @@ public class SignUpViewImp extends AppCompatActivity implements SignUpView {
                     .show();
         else
         {
-            //Intent
+            Intent i=new Intent(this, VerifyOtpViewImp.class);
+            i.putExtra("email",e);
+            startActivity(i);
         }
 
     }

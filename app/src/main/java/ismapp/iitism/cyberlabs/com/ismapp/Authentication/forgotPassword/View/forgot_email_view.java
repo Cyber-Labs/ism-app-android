@@ -19,11 +19,13 @@ import android.widget.Toast;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import ismapp.iitism.cyberlabs.com.ismapp.Authentication.ResetPassword.View.reset_view;
 import ismapp.iitism.cyberlabs.com.ismapp.Authentication.VerifyOtp.View.VerifyOtpViewImp;
 import ismapp.iitism.cyberlabs.com.ismapp.Authentication.forgotPassword.Model.Otp_Response_Model;
 import ismapp.iitism.cyberlabs.com.ismapp.Authentication.forgotPassword.Presenter.Presenter_Interface;
 import ismapp.iitism.cyberlabs.com.ismapp.Authentication.forgotPassword.Presenter.presenter_imple;
 import ismapp.iitism.cyberlabs.com.ismapp.Authentication.forgotPassword.Provider.Retrofit_forgot_implementaion;
+import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
 
 public class forgot_email_view extends AppCompatActivity implements View_interface {
@@ -76,10 +78,10 @@ public class forgot_email_view extends AppCompatActivity implements View_interfa
     @Override
     public void showOtpResponse(Otp_Response_Model Otp_Response_Model) {
         if(Otp_Response_Model.isSuccess()){
-            //intent to otp page
-            startActivity(new Intent(this, VerifyOtpViewImp.class));
+            //intent to reset page
+            startActivity(new Intent(getBaseContext(), reset_view.class));
         }else{
-            Toast.makeText(forgot_email_view.this,Otp_Response_Model.getMessage().toString(),Toast.LENGTH_LONG);
+            Toast.makeText(forgot_email_view.this,Otp_Response_Model.getMessage().toString(),Toast.LENGTH_LONG).show();
         }
     }
     public void proceed(View v) {
@@ -89,14 +91,13 @@ public class forgot_email_view extends AppCompatActivity implements View_interfa
                     Toast.LENGTH_LONG).show();
         }
         else {
-              presenter_interface = new presenter_imple(new Retrofit_forgot_implementaion(), this);
+              presenter_interface = new presenter_imple(new Retrofit_forgot_implementaion(), forgot_email_view.this);
               presenter_interface.getResponse(email);
 
 
             hideKeyboard();
         }
-
-    }
+            }
 
     @Override
     public void checkConnection() {

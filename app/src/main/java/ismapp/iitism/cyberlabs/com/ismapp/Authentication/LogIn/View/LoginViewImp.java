@@ -86,6 +86,9 @@ public class LoginViewImp extends AppCompatActivity implements LoginView {
     @Override
     public void setIntent(LoginModel loginModel) {
         //Inent and Save Data to shared preferences
+        if(loginModel.isSuccess())
          startActivity(new Intent(LoginViewImp.this,MainActivity.class));
+       else
+           Toast.makeText(this,loginModel.getMessage(),Toast.LENGTH_SHORT).show();
     }
 }

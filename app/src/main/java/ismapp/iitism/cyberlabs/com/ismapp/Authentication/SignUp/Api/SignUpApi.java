@@ -7,7 +7,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 
 public interface SignUpApi {
-    @POST("/signup")
+    @POST("signup/")
     @FormUrlEncoded
     Call<SignUpResponseModel> getResponse(@Field("email") String email,
                                           @Field("name") String name,

@@ -7,7 +7,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 
 public interface VerifyOtpApi {
-    @POST("/verify_otp")
+    @POST("verify_otp/")
     @FormUrlEncoded
     Call<VerifyOtpModel> getResponse(@Field("email") String email,
                                      @Field("otp") int otp

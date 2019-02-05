@@ -31,6 +31,9 @@ public class PresenterImpl implements PresenterInterface {
             @Override
             public void OnFailure(String msg) {
                 clubInterface.showMessage(msg);
+                clubInterface.ShowProgressBar(false);
+
+
             }
         });
     }

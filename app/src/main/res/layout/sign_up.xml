@@ -95,7 +95,7 @@
                         android:inputType="text"
                         android:maxLines="1"
                         android:paddingLeft="20dp"
-                        android:textColor="@color/default_splash_image_color"
+                        android:textColor="@android:color/background_dark"
                         android:textSize="14sp" />
 
                 </android.support.design.widget.TextInputLayout>
@@ -123,7 +123,7 @@
                         android:maxLines="1"
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
-                        android:textColor="@color/default_splash_image_color"
+                        android:textColor="@android:color/background_dark"
                         android:textSize="14sp" />
 
                 </android.support.design.widget.TextInputLayout>
