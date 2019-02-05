@@ -24,8 +24,10 @@ import ismapp.iitism.cyberlabs.com.ismapp.Authentication.LogIn.Provider.LoginPro
 import ismapp.iitism.cyberlabs.com.ismapp.Authentication.SignUp.View.SignUpViewImp;
 import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
+import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
 
 public class LoginViewImp extends AppCompatActivity implements LoginView {
+    SharedPrefs sharedPrefs;
     @BindView(R.id.login_email)
     EditText email;
     @BindView(R.id.login_pass)
@@ -46,6 +48,7 @@ public class LoginViewImp extends AppCompatActivity implements LoginView {
         splash.setBackgroundImage(getResources().getDrawable(R.drawable.splash));
         splash.setSplashImage(getResources().getDrawable(R.drawable.logo));
        splash.perform();
+         sharedPrefs  = new SharedPrefs(this);
         alertDialog= new AlertDialog.Builder(this).setView(LayoutInflater.from(this).inflate(R.layout.progress_bar,null)).setCancelable(false).create();
         final LoginPresenter loginPresenter=new LoginPresenterImp(this,new LoginProviderImp());
         signUp.setOnClickListener(new View.OnClickListener() {
@@ -86,8 +89,12 @@ public class LoginViewImp extends AppCompatActivity implements LoginView {
     @Override
     public void setIntent(LoginModel loginModel) {
         //Inent and Save Data to shared preferences
-        if(loginModel.isSuccess())
-         startActivity(new Intent(LoginViewImp.this,MainActivity.class));
+        if(loginModel.isSuccess()){
+            sharedPrefs.setAccessToken(loginModel.getAccess_token());
+            startActivity(new Intent(LoginViewImp.this,MainActivity.class));
+
+        }
+
        else
            Toast.makeText(this,loginModel.getMessage(),Toast.LENGTH_SHORT).show();
     }

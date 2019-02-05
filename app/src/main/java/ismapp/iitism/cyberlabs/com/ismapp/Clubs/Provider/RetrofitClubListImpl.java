@@ -1,5 +1,7 @@
 package ismapp.iitism.cyberlabs.com.ismapp.Clubs.Provider;
 
+import android.util.Log;
+
 import ismapp.iitism.cyberlabs.com.ismapp.Clubs.api.clubapi;
 import ismapp.iitism.cyberlabs.com.ismapp.Clubs.model.ClubsList;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.ApiClient;
@@ -21,12 +23,15 @@ public class RetrofitClubListImpl implements ProviderInterface {
         clubsListCall.enqueue(new Callback<ClubsList>() {
             @Override
             public void onResponse(Call<ClubsList> call, Response<ClubsList> response) {
+                Log.e("TAG", "onResponse: "+response.body().getClubsNameList().size() );
                 presenterCallback.onSuccess((ClubsList)response.body());
+
             }
 
             @Override
             public void onFailure(Call<ClubsList> call, Throwable t) {
                 presenterCallback.OnFailure(t.toString());
+
             }
         });
     }

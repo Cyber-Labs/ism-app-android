@@ -6,6 +6,12 @@ import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
 
 public class ClubDetailsPresenter implements ClubPresenInter {
     ClubDetailInterface clubDetailInterface;
+
+    public ClubDetailsPresenter(ClubDetailInterface clubDetailInterface, ismapp.iitism.cyberlabs.com.ismapp.clubdetails.Provider.ClubDetailInterface clubDetailInterfaces) {
+        this.clubDetailInterface = clubDetailInterface;
+        this.clubDetailInterfaces = clubDetailInterfaces;
+    }
+
     ismapp.iitism.cyberlabs.com.ismapp.clubdetails.Provider.ClubDetailInterface clubDetailInterfaces;
     @Override
     public void getclubdetail(String access_token, int id) {

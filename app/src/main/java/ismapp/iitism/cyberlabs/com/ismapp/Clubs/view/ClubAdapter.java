@@ -25,18 +25,20 @@ import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
 
 public class ClubAdapter extends RecyclerView.Adapter<ClubAdapter.clubAdapterViewHolder> {
 
-    private List<ClubsName> clubsLists  = new ArrayList<>();
+    private List<ClubsName> clubsLists  ;
    private Context mtcx;
    FragmentManager fragmentManager;
    SharedPrefs sharedPrefs ;
 
-    public ClubAdapter(Context mtcx, FragmentManager fragmentManager,List<ClubsName> clubsNames) {
+    public ClubAdapter(Context mtcx, FragmentManager fragmentManager) {
         this.fragmentManager = fragmentManager;
         this.mtcx = mtcx;
         sharedPrefs = new SharedPrefs(mtcx);
-        this.clubsLists = clubsNames;
-    }
 
+    }
+public  void setdata(List<ClubsName> clubsNames){
+    this.clubsLists = clubsNames;
+}
 
     @NonNull
     @Override
@@ -80,7 +82,7 @@ public class ClubAdapter extends RecyclerView.Adapter<ClubAdapter.clubAdapterVie
             clubimage = (ImageView)itemView.findViewById(R.id.clubimage);
             clubname = (TextView)itemView.findViewById(R.id.clubname);
             clubtagline = (TextView)itemView.findViewById(R.id.clubtagline);
-            cardView = (CardView)itemView.findViewById(R.id.clubcard);
+            cardView = (CardView)itemView.findViewById(R.id.cardView);
 
         }
     }

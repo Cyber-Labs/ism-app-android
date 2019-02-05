@@ -3,6 +3,11 @@ package ismapp.iitism.cyberlabs.com.ismapp.Authentication.LogIn.Model;
 public class LoginModel {
     private boolean success;
     private String message;
+    private String access_token;
+
+    public String getAccess_token() {
+        return access_token;
+    }
 
     public boolean isSuccess() {
         return success;

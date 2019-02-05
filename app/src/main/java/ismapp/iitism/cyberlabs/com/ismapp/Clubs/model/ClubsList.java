@@ -5,7 +5,7 @@ import java.util.List;
 public class ClubsList {
     public  boolean success;
     public String message;
-    public List<ClubsName> clubsNameList;
+    public List<ClubsName> club_list;
 
     public boolean isSuccess() {
         return success;
@@ -16,6 +16,6 @@ public class ClubsList {
     }
 
     public List<ClubsName> getClubsNameList() {
-        return clubsNameList;
+        return club_list;
     }
 }

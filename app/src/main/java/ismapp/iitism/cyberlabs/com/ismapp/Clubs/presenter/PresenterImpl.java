@@ -1,9 +1,12 @@
 package ismapp.iitism.cyberlabs.com.ismapp.Clubs.presenter;
 
+import com.google.gson.Gson;
+
 import java.util.List;
 
 import ismapp.iitism.cyberlabs.com.ismapp.Clubs.Provider.ProviderInterface;
 import ismapp.iitism.cyberlabs.com.ismapp.Clubs.model.ClubsList;
+import ismapp.iitism.cyberlabs.com.ismapp.Clubs.model.ClubsName;
 import ismapp.iitism.cyberlabs.com.ismapp.Clubs.view.ClubInterface;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
 
@@ -25,7 +28,10 @@ public class PresenterImpl implements PresenterInterface {
             @Override
             public void onSuccess(Object o) {
                 clubInterface.ShowProgressBar(false);
-                clubInterface.getlist((List<ClubsList>) o);
+
+                ClubsList clubsList = (ClubsList) o;
+               List<ClubsName> clubsNames = clubsList.getClubsNameList();
+               clubInterface.getlist(clubsNames);
             }
 
             @Override

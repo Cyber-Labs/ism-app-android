@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,14 +37,15 @@ public class ClubsFrag extends Fragment implements ClubInterface {
     ProgressDialog progressDialog;
     SharedPrefs sharedPrefs;
     AlertDialog alertDialog;
+    RecyclerView recyclerView;
     List<ClubsName> clubsNameArrayList=  new ArrayList<ClubsName>();
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.clubs,container,false);
-        RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.clubrecycler);
-        clubAdapter = new ClubAdapter(getContext(),getFragmentManager(),clubsNameArrayList);
+        recyclerView = (RecyclerView)view.findViewById(R.id.clubrecycler);
+        clubAdapter = new ClubAdapter(getContext(),getFragmentManager());
         sharedPrefs = new SharedPrefs(getContext());
         alertDialog= new AlertDialog.Builder(getContext()).setView(LayoutInflater.from(getContext()).inflate(R.layout.progress_bar,null)).setCancelable(false).create();
 
@@ -51,8 +53,10 @@ public class ClubsFrag extends Fragment implements ClubInterface {
         presenterInterface.requestclublist(sharedPrefs.getAccessToken());
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+
         //clubAdapter.setData(clubsNameArrayList);
-        recyclerView.setAdapter(clubAdapter);
+
 
       /*  progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage("Wait");
@@ -75,23 +79,23 @@ public class ClubsFrag extends Fragment implements ClubInterface {
     }
 
     @Override
-    public void getlist(List<ClubsList> clubsLists) {
-        ClubsList clubs = (ClubsList)clubsLists;
-        if(clubs.getClubsNameList().size() == 0){
-            Toast.makeText(getContext(),"vgvg",Toast.LENGTH_LONG);
-        }else{
-            clubsNameArrayList.clear();
-           clubsNameArrayList = (List<ClubsName>) clubs;
-           clubAdapter.notifyDataSetChanged();
+    public void getlist(List<ClubsName> clubsNames) {
+         // clubsNameArrayList.clear();
+          //Log.i("hello",clubsNames.toString());
+          //clubsNameArrayList=clubsNames;
+         clubAdapter.setdata(clubsNames);
+//           clubAdapter.notifyDataSetChanged();
+
+      recyclerView.setAdapter(clubAdapter);
 
 
 
-        }
          }
 
    @Override
     public void showMessage(String message) {
        //setToast
+       Log.e("check", "onFailure: " +message );
     }
 
     @Override
