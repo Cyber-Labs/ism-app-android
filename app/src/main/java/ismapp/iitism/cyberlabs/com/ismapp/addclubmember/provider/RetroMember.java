@@ -2,7 +2,6 @@ package ismapp.iitism.cyberlabs.com.ismapp.addclubmember.provider;
 
 import ismapp.iitism.cyberlabs.com.ismapp.addclubmember.api.api;
 import ismapp.iitism.cyberlabs.com.ismapp.addclubmember.model.member;
-import ismapp.iitism.cyberlabs.com.ismapp.clubdetails.api.Api;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.ApiClient;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
 import retrofit2.Call;

@@ -4,7 +4,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -15,7 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import ismapp.iitism.cyberlabs.com.ismapp.Clubs.view.ClubsFrag;
+import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.view.ClubsFrag;
 import ismapp.iitism.cyberlabs.com.ismapp.Events.view.EventsFrag;
 import ismapp.iitism.cyberlabs.com.ismapp.Feed.view.FeedFrag;
 

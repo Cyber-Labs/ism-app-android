@@ -92,7 +92,7 @@
                         android:background="@drawable/textbg"
                         android:hint="ISM EMAIL ID"
                         android:imeOptions="actionNext"
-                        android:inputType="text"
+                        android:inputType="textEmailAddress"
                         android:maxLines="1"
                         android:paddingLeft="20dp"
                         android:textColor="@android:color/background_dark"
