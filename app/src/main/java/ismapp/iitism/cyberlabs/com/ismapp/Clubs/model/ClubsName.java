@@ -5,9 +5,9 @@ public class ClubsName {
     String name;
     String imageurl;
     String tagline;
-    String id;
+    int id;
 
-    public ClubsName(int clubid, String name, String imageurl, String tagline, String id) {
+    public ClubsName(int clubid, String name, String imageurl, String tagline, int id) {
         this.clubid = clubid;
         this.name = name;
         this.imageurl = imageurl;
@@ -47,11 +47,11 @@ public class ClubsName {
         this.tagline = tagline;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 }

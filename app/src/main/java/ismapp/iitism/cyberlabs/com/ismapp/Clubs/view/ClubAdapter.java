@@ -3,6 +3,7 @@ package ismapp.iitism.cyberlabs.com.ismapp.Clubs.view;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -19,7 +20,9 @@ import java.util.List;
 
 import ismapp.iitism.cyberlabs.com.ismapp.Clubs.model.ClubsList;
 import ismapp.iitism.cyberlabs.com.ismapp.Clubs.model.ClubsName;
+import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
+import ismapp.iitism.cyberlabs.com.ismapp.clubdetails.View.ClubDetailnMemb;
 import ismapp.iitism.cyberlabs.com.ismapp.clubdetails.View.ClubDetailsImpl;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
 
@@ -29,11 +32,13 @@ public class ClubAdapter extends RecyclerView.Adapter<ClubAdapter.clubAdapterVie
    private Context mtcx;
    FragmentManager fragmentManager;
    SharedPrefs sharedPrefs ;
+   FragmentActivity fragmentActivity;
 
-    public ClubAdapter(Context mtcx, FragmentManager fragmentManager) {
+    public ClubAdapter(Context mtcx, FragmentManager fragmentManager,FragmentActivity fragmentActivity) {
         this.fragmentManager = fragmentManager;
         this.mtcx = mtcx;
         sharedPrefs = new SharedPrefs(mtcx);
+        this.fragmentActivity=fragmentActivity;
 
     }
 public  void setdata(List<ClubsName> clubsNames){
@@ -50,22 +55,23 @@ public  void setdata(List<ClubsName> clubsNames){
 
     @Override
     public void onBindViewHolder(@NonNull clubAdapterViewHolder clubAdapterViewHolder, int i) {
-       final ClubsName clubsName = clubsLists.get(i);
+        final ClubsName clubsName = clubsLists.get(i);
         clubAdapterViewHolder.clubname.setText(clubsName.getName());
         clubAdapterViewHolder.clubtagline.setText(clubsName.getTagline());
         Picasso.get().load(clubsName.getImageurl()).into(clubAdapterViewHolder.clubimage);
-        clubAdapterViewHolder.cardView.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                //opens and passing arguments to fragments;
-                Bundle bundle = new Bundle();
-                bundle.putInt("id",clubsName.getClubid());
-                ClubDetailsImpl clubDetails = new ClubDetailsImpl();
-                clubDetails.setArguments(bundle);
-                sharedPrefs.setClubId(clubsName.getClubid());
-                fragmentManager.beginTransaction().add(R.id.main_contaner,new ClubDetailsImpl()).addToBackStack(null).commit();
-
-            }
-        }); }
+//        clubAdapterViewHolder.cardView.setOnClickListener(new View.OnClickListener() {
+//            @Override public void onClick(View v) {
+//                //opens and passing arguments to fragments;
+//                Bundle bundle = new Bundle();
+//                bundle.putInt("id",clubsName.getClubid());
+//                ClubDetailsImpl clubDetails = new ClubDetailsImpl();
+//                clubDetails.setArguments(bundle);
+//                sharedPrefs.setClubId(clubsName.getClubid());
+//               // fragmentManager.beginTransaction().add(R.id.main_contaner,new ClubDetailsImpl()).addToBackStack(null).commit();
+//                ((MainActivity)fragmentActivity).addFragment(new ClubDetailsImpl());
+//            }
+//        });
+    }
 
     @Override
     public int getItemCount() {
@@ -83,6 +89,14 @@ public  void setdata(List<ClubsName> clubsNames){
             clubname = (TextView)itemView.findViewById(R.id.clubname);
             clubtagline = (TextView)itemView.findViewById(R.id.clubtagline);
             cardView = (CardView)itemView.findViewById(R.id.cardView);
+            cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    sharedPrefs.setClubId(clubsLists.get(getAdapterPosition()).getId());
+                    sharedPrefs.setClubName(clubsLists.get(getAdapterPosition()).getName());
+                    ((MainActivity)fragmentActivity).addFragment(new ClubDetailnMemb());
+                }
+            });
 
         }
     }

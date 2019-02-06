@@ -49,6 +49,11 @@ public class LoginViewImp extends AppCompatActivity implements LoginView {
         splash.setSplashImage(getResources().getDrawable(R.drawable.logo));
        splash.perform();
          sharedPrefs  = new SharedPrefs(this);
+         if(sharedPrefs.getLogin())
+         {
+             startActivity(new Intent(LoginViewImp.this,MainActivity.class));
+             finish();
+         }
         alertDialog= new AlertDialog.Builder(this).setView(LayoutInflater.from(this).inflate(R.layout.progress_bar,null)).setCancelable(false).create();
         final LoginPresenter loginPresenter=new LoginPresenterImp(this,new LoginProviderImp());
         signUp.setOnClickListener(new View.OnClickListener() {
@@ -91,7 +96,9 @@ public class LoginViewImp extends AppCompatActivity implements LoginView {
         //Inent and Save Data to shared preferences
         if(loginModel.isSuccess()){
             sharedPrefs.setAccessToken(loginModel.getAccess_token());
+            sharedPrefs.setLogin(true);
             startActivity(new Intent(LoginViewImp.this,MainActivity.class));
+            finish();
 
         }
 

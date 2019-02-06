@@ -101,13 +101,15 @@ public class reset_view extends AppCompatActivity implements reset_interface {
    public void proceed_info(){
 
              email = ed_email.getText().toString().trim();
-             password = ed_password.getText().toString().trim();
-             newpassword = ed_confirm_password.getText().toString().trim();
+             password = ed_password.getText().toString();
+            // newpassword = ed_confirm_password.getText().toString().trim();
              otp = ed_otp.getText().toString().trim();
             int Otp = Integer.parseInt(otp);
-            if(email.isEmpty() && password.isEmpty()  && otp.isEmpty()){
+            if(email.isEmpty() || password.isEmpty() || otp.isEmpty()){
                 Toast.makeText(this,"All Fields Are required",Toast.LENGTH_LONG);
             }
+            else if(password.length()<6)
+                Toast.makeText(this,"Password Must Contain min 6 letters!!!",Toast.LENGTH_SHORT).show();
 
             else{
                 reset_presenter_interface = new reset_presenter_impl(this,new Retrofit_reset_imple());

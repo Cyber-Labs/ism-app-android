@@ -1,21 +1,29 @@
 package ismapp.iitism.cyberlabs.com.ismapp.clubdetails.View;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import ismapp.iitism.cyberlabs.com.ismapp.Clubs.model.ClubsName;
+import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
 import ismapp.iitism.cyberlabs.com.ismapp.clubdetails.Presenter.ClubDetailsPresenter;
 import ismapp.iitism.cyberlabs.com.ismapp.clubdetails.Presenter.ClubPresenInter;
@@ -41,11 +49,13 @@ public class ClubDetailsImpl extends Fragment implements ClubDetailInterface {
     private int id;
     private String mParam2;
     ImageView clubImage,BrowserIcon;
-    TextView ClubName,Description;
-    BottomNavigationView bottomNavigationView;
-    ProgressDialog progressDialog;
+    TextView ClubName,Description,Tagline;
+
+    AlertDialog alertDialog;
     ClubPresenInter clubPresenInter;
+    LinearLayout lay;
     SharedPrefs sharedPrefs;
+
 
    // private OnFragmentInteractionListener mListener;
 
@@ -71,29 +81,33 @@ public class ClubDetailsImpl extends Fragment implements ClubDetailInterface {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            id = getArguments().getInt("id");
-
-        }
+//        if (getArguments() != null) {
+//            id = getArguments().getInt("id");
+//
+//        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_club_details_impl, container, false);
+        View view = inflater.inflate(R.layout.club_description, container, false);
+
+
         clubImage = (ImageView)view.findViewById(R.id.club_image);
-        BrowserIcon = (ImageView)view.findViewById(R.id.browser_icon);
-        ClubName = (TextView)view.findViewById(R.id.clubname);
+     //   BrowserIcon = (ImageView)view.findViewById(R.id.browser_icon);
+        ClubName = (TextView)view.findViewById(R.id.club_name);
         Description = (TextView)view.findViewById(R.id.club_description);
-        bottomNavigationView = (BottomNavigationView)view.findViewById(R.id.bottom_nav);
-        progressDialog = new ProgressDialog(getContext());
-        progressDialog.setMessage("Wait");
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progressDialog.setIndeterminate(true);
+        Tagline=(TextView)view.findViewById(R.id.club_tag);
+        lay=(LinearLayout)view.findViewById(R.id.club_lay);
+
+        ((MainActivity)getActivity()).changeActionBar();
+        alertDialog= new AlertDialog.Builder(getContext()).setView(LayoutInflater.from(getContext()).inflate(R.layout.progress_bar,null)).setCancelable(false).create();
         sharedPrefs = new SharedPrefs(getContext());
+        ((MainActivity)getActivity()).addTitletoBar(sharedPrefs.getClubName());
         clubPresenInter = new ClubDetailsPresenter(this,new RetroClubDetail());
-        clubPresenInter.getclubdetail(sharedPrefs.getAccessToken(),id);
+       ;
+        clubPresenInter.getclubdetail(sharedPrefs.getAccessToken(),sharedPrefs.getClubId());
         return view;
 
     }
@@ -128,29 +142,33 @@ public class ClubDetailsImpl extends Fragment implements ClubDetailInterface {
     @Override
     public void showProgressbar(boolean show) {
         if(show){
-             progressDialog.show();
+             alertDialog.show();
         }else{
-            progressDialog.dismiss();
+            alertDialog.dismiss();
         }
     }
 
     @Override
     public void showmodel(ClubDetails clubDetails) {
-        Picasso.get().load(clubDetails.getImage_url()).into(clubImage);
+         Picasso.get().load(clubDetails.getImage_url()).into(clubImage);
+         lay.setBackgroundColor(R.color.colorPrimary);
         ClubName.setText(clubDetails.getName());
+        Tagline.setText(clubDetails.getTagline());
         Description.setText(clubDetails.getDescription());
-        BrowserIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //open url;
-            }
-        });
+
+//        BrowserIcon.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //open url;
+//            }
+//        });
     }
 
     @Override
     public void showMessage(String msg) {
         //setToast;
     }
+
 
 
 

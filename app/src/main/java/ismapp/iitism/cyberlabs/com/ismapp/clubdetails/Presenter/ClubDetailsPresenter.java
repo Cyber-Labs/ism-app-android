@@ -19,8 +19,9 @@ public class ClubDetailsPresenter implements ClubPresenInter {
       clubDetailInterfaces.getclubdetailresponse(access_token, id, new PresenterCallback() {
           @Override
           public void onSuccess(Object o) {
-              clubDetailInterface.showmodel((ClubDetails)o);
               clubDetailInterface.showProgressbar(false);
+              clubDetailInterface.showmodel((ClubDetails)o);
+
 
           }
 

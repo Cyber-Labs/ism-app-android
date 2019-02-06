@@ -1,5 +1,7 @@
 package ismapp.iitism.cyberlabs.com.ismapp.clubdetails.Provider;
 
+import android.util.Log;
+
 import ismapp.iitism.cyberlabs.com.ismapp.clubdetails.api.Api;
 import ismapp.iitism.cyberlabs.com.ismapp.clubdetails.model.ClubDetails;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.ApiClient;
@@ -19,6 +21,8 @@ public class RetroClubDetail implements ClubDetailInterface {
         call.enqueue(new Callback<ClubDetails>() {
             @Override
             public void onResponse(Call<ClubDetails> call, Response<ClubDetails> response) {
+                ClubDetails c=(ClubDetails)response.body();
+
                 presenterCallback.onSuccess((ClubDetails)response.body());
             }
 

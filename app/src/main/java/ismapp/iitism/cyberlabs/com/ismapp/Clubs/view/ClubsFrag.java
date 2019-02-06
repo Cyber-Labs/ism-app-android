@@ -25,6 +25,7 @@ import ismapp.iitism.cyberlabs.com.ismapp.Clubs.model.ClubsList;
 import ismapp.iitism.cyberlabs.com.ismapp.Clubs.model.ClubsName;
 import ismapp.iitism.cyberlabs.com.ismapp.Clubs.presenter.PresenterImpl;
 import ismapp.iitism.cyberlabs.com.ismapp.Clubs.presenter.PresenterInterface;
+import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.MsgToast;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
@@ -38,21 +39,28 @@ public class ClubsFrag extends Fragment implements ClubInterface {
     SharedPrefs sharedPrefs;
     AlertDialog alertDialog;
     RecyclerView recyclerView;
-    List<ClubsName> clubsNameArrayList=  new ArrayList<ClubsName>();
+    List<ClubsName> clubsNameArrayList;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.clubs,container,false);
+
         recyclerView = (RecyclerView)view.findViewById(R.id.clubrecycler);
-        clubAdapter = new ClubAdapter(getContext(),getFragmentManager());
+        clubAdapter = new ClubAdapter(getContext(),getFragmentManager(),getActivity());
         sharedPrefs = new SharedPrefs(getContext());
         alertDialog= new AlertDialog.Builder(getContext()).setView(LayoutInflater.from(getContext()).inflate(R.layout.progress_bar,null)).setCancelable(false).create();
-
-        presenterInterface = new PresenterImpl(ClubsFrag.this,new RetrofitClubListImpl());
-        presenterInterface.requestclublist(sharedPrefs.getAccessToken());
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        if(clubsNameArrayList==null)
+        {presenterInterface = new PresenterImpl(ClubsFrag.this,new RetrofitClubListImpl());
+        presenterInterface.requestclublist(sharedPrefs.getAccessToken());}
+        else
+        {
+            clubAdapter.setdata(clubsNameArrayList);
+            recyclerView.setAdapter(clubAdapter);
+        }
+
 
 
         //clubAdapter.setData(clubsNameArrayList);
@@ -68,11 +76,14 @@ public class ClubsFrag extends Fragment implements ClubInterface {
         return view;
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((MainActivity)getActivity()).addTitletoBar("Clubs");
+        ((MainActivity)getActivity()).addActionBar();
     }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -82,7 +93,7 @@ public class ClubsFrag extends Fragment implements ClubInterface {
     public void getlist(List<ClubsName> clubsNames) {
          // clubsNameArrayList.clear();
           //Log.i("hello",clubsNames.toString());
-          //clubsNameArrayList=clubsNames;
+          clubsNameArrayList=clubsNames;
          clubAdapter.setdata(clubsNames);
 //           clubAdapter.notifyDataSetChanged();
 
@@ -100,7 +111,7 @@ public class ClubsFrag extends Fragment implements ClubInterface {
 
     @Override
     public void ShowProgressBar(boolean showw) {
-     if(showw == true){
+     if(showw){
         // progressDialog.show();
          alertDialog.show();
      }else{
@@ -108,4 +119,7 @@ public class ClubsFrag extends Fragment implements ClubInterface {
          alertDialog.dismiss();
      }
     }
+
+
+
 }

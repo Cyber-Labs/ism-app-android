@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/club_image"
+                android:layout_height="160dp"
+                android:scaleType="fitXY"
+                android:layout_width="match_parent"
+
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/club_lay"
+                >
+                <TextView
+                    android:id="@+id/club_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/lato"
+                    android:textStyle="bold"
+                    android:textColor="#fff"
+
+                    android:paddingHorizontal="10dp"
+
+                    />
+                <TextView
+                    android:id="@+id/club_tag"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/lato"
+                    android:textColor="#fff"
+                    android:paddingHorizontal="10dp"
+
+                    />
+
+            </LinearLayout>
+            <TextView
+                android:id="@+id/club_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:fontFamily="@font/lato"
+
+                />
+
+            <!--<ImageView-->
+            <!--android:id="@+id/browser_icon"-->
+            <!--android:layout_width="69dp"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:layout_marginStart="152dp"-->
+            <!--android:layout_marginLeft="152dp"-->
+            <!--android:layout_marginTop="96dp"-->
+            <!--android:src="@drawable/ic_email_black_24dp"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/club_description" />-->
+
+
+        </LinearLayout>
+</ScrollView>
+
