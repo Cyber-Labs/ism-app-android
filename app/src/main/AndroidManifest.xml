@@ -20,13 +20,13 @@
 
         </activity>
         <activity
-            android:name=".HomeActivity.HomeActivity"
+            android:name=".homeactivity.HomeActivity"
             android:theme="@style/AppThemeHome">
         </activity>
-        <activity android:name=".authentication.SignUp.View.SignUpViewImp"
+        <activity android:name=".authentication.signup.View.SignUpViewImp"
             android:theme="@style/AppThemeHome"/>
-        <activity android:name=".authentication.VerifyOtp.View.VerifyOtpViewImp" />
-        <activity android:name=".authentication.LogIn.View.LoginViewImp"
+        <activity android:name=".authentication.verifyotp.View.VerifyOtpViewImp" />
+        <activity android:name=".authentication.login.view.LoginViewImp"
             android:theme="@style/AppThemeHome">
 
             <intent-filter>
@@ -38,7 +38,7 @@
         </activity>
         <activity android:name=".authentication.forgotpassword.view.ForgotPasswordActivity"
             android:theme="@style/AppThemeHome"/>
-        <activity android:name=".authentication.ResetPassword.View.reset_view"
+        <activity android:name=".authentication.resetpassword.view.reset_view"
             />
 
         <meta-data

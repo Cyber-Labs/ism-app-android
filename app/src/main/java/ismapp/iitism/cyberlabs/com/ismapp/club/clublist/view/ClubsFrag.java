@@ -16,7 +16,7 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.Provider.RetrofitClubListImpl;
+import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.provider.RetrofitClubListImpl;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.model.ClubDetails;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.presenter.PresenterImpl;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.presenter.PresenterInterface;

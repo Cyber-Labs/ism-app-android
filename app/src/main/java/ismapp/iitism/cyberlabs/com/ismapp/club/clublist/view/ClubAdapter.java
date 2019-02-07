@@ -19,7 +19,7 @@ import java.util.List;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.model.ClubDetails;
 import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
-import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.View.ClubDetailnMemb;
+import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.view.ClubDetailnMemb;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
 
 public class ClubAdapter extends RecyclerView.Adapter<ClubAdapter.clubAdapterViewHolder> {

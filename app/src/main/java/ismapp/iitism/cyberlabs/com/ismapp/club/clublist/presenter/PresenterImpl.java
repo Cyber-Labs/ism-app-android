@@ -2,7 +2,7 @@ package ismapp.iitism.cyberlabs.com.ismapp.club.clublist.presenter;
 
 import java.util.List;
 
-import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.Provider.ProviderInterface;
+import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.provider.ProviderInterface;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.model.ClubDetails;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.model.ClubListResponse;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.view.ClubInterface;

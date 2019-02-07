@@ -15,8 +15,8 @@ import android.view.MenuItem;
 import android.view.View;
 
 import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.view.ClubsFrag;
-import ismapp.iitism.cyberlabs.com.ismapp.Events.view.EventsFrag;
-import ismapp.iitism.cyberlabs.com.ismapp.Feed.view.FeedFrag;
+import ismapp.iitism.cyberlabs.com.ismapp.events.view.EventsFrag;
+import ismapp.iitism.cyberlabs.com.ismapp.feed.view.FeedFrag;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
