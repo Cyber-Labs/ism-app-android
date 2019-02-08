@@ -7,4 +7,14 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="cyberlabs">CYBERLABS</string>
+    <string name="technical_club">Technical Club</string>
+    <string name="todo">TODO</string>
+    <string name="verify">Verify</string>
+    <string name="cancel">Cancel</string>
+    <string name="enter_otp_recieved_via_email">Enter OTP recieved via email</string>
+    <string name="pandey_aman812_gmail_com">pandey.aman812@gmail.com</string>
+    <string name="create_your_account">Create your account</string>
+    <string name="account_verification">Account Verification</string>
+    <string name="random_otp">13133</string>
 </resources>

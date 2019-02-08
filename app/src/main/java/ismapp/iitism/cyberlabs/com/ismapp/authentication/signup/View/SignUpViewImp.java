@@ -72,7 +72,7 @@ public class SignUpViewImp extends AppCompatActivity implements SignUpView {
                 if(!name.getText().toString().trim().isEmpty()&&!email.getText().toString().trim().isEmpty()&&pass.getText().toString().length()>=6)
                 {next.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));next.setClickable(true);}
                 else
-                {next.setBackgroundColor(getResources().getColor(R.color.grey));next.setClickable(false);}
+                {next.setBackgroundColor(getResources().getColor(R.color.titleColorLight));next.setClickable(false);}
 
 
 
@@ -96,7 +96,7 @@ public class SignUpViewImp extends AppCompatActivity implements SignUpView {
                 {next.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));next.setClickable(true);}
                 else
                 {
-                    next.setBackgroundColor(getResources().getColor(R.color.grey));next.setClickable(false);}
+                    next.setBackgroundColor(getResources().getColor(R.color.titleColorLight));next.setClickable(false);}
 
             }
 
@@ -117,7 +117,7 @@ public class SignUpViewImp extends AppCompatActivity implements SignUpView {
                 if(!name.getText().toString().trim().isEmpty()&&!email.getText().toString().trim().isEmpty()&&pass.getText().toString().length()>=6)
                 {next.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));next.setClickable(true);}
                 else
-                {next.setBackgroundColor(getResources().getColor(R.color.grey));next.setClickable(false);}
+                {next.setBackgroundColor(getResources().getColor(R.color.titleColorLight));next.setClickable(false);}
 
             }
 

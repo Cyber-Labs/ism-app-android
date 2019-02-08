@@ -37,7 +37,7 @@ public class ClubsFrag extends Fragment implements ClubInterface {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_club_list_,container,false);
+        View view = inflater.inflate(R.layout.fragment_club_list,container,false);
 
         recyclerView = (RecyclerView)view.findViewById(R.id.clubrecycler);
         clubAdapter = new ClubAdapter(getContext(),getFragmentManager(),getActivity());

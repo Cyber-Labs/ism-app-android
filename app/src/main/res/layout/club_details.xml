@@ -50,7 +50,7 @@
         android:padding="1dp"
         android:text="Technical Club"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-        android:textColor="@color/grey"
+        android:textColor="@color/titleColorLight"
         android:textSize="16sp" />
 
     <TextView

@@ -140,12 +140,12 @@ public class ClubDetailsImpl extends Fragment implements ClubDetailInterface {
     }
 
     @Override
-    public void showmodel(ClubDetails clubDetails) {
-         Picasso.get().load(clubDetails.getImage_url()).into(clubImage);
+    public void showmodel(ClubDetails ClubDetails) {
+         Picasso.get().load(ClubDetails.getImage_url()).into(clubImage);
          lay.setBackgroundColor(R.color.colorPrimary);
-        ClubName.setText(clubDetails.getName());
-        Tagline.setText(clubDetails.getTagline());
-        Description.setText(clubDetails.getDescription());
+        ClubName.setText(ClubDetails.getName());
+        Tagline.setText(ClubDetails.getTagline());
+        Description.setText(ClubDetails.getDescription());
 
 //        BrowserIcon.setOnClickListener(new View.OnClickListener() {
 //            @Override

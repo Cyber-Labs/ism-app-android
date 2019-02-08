@@ -11,35 +11,32 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="5dp
-">
+        android:padding="5dp">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2" />
+            android:layout_weight="3" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_centerHorizontal="true"
             android:layout_weight="1"
             android:background="@drawable/accntverifyy"
             android:fontFamily="@font/lato"
-
             android:gravity="center"
-            android:padding="6dp"
-            android:text="Account Verification"
+            android:padding="@dimen/tv_padding"
+            android:text="@string/account_verification"
             android:textColor="@color/default_splash_image_color"
-            android:textSize="24sp" />
+            android:textSize="@dimen/title_bar_text_size" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:gravity="center_vertical"
-            android:paddingLeft="5dp"
-            android:text="Create your  account"
+            android:padding="@dimen/tv_padding"
+            android:text="@string/create_your_account"
             android:textColor="@android:color/background_dark"
             android:textSize="18sp" />
 
@@ -49,7 +46,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="pandey.aman812@gmail.com"
+            android:text="@string/pandey_aman812_gmail_com"
             android:textColor="@color/colorAccent"
             android:textSize="18sp" />
 
@@ -60,8 +57,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:gravity="center_vertical"
-            android:paddingLeft="5dp"
-            android:text="Enter OTP recieved via email" />
+            android:padding="@dimen/tv_padding"
+            android:text="@string/enter_otp_recieved_via_email" />
 
         <EditText
             android:id="@+id/verify_otp_otp"
@@ -71,15 +68,14 @@
             android:imeOptions="actionDone"
             android:inputType="number"
             android:padding="5dp"
-            android:text="13133131"
+            android:text="@string/random_otp"
             android:textSize="24sp"
             android:textStyle="bold"
             android:layout_height="0dp" />
-        <TableRow
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginRight="10dp">
+            android:layout_gravity="end">
 
             <Button
                 android:id="@+id/verify_otp_buttonnegative"
@@ -87,20 +83,22 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:layout_weight="1"
                 android:orientation="horizontal"
-                android:text="Cancel"
-                android:textColor="@color/grey" />
+                android:text="@string/cancel"
+                android:textColor="@color/titleColorLight" />
 
             <Button
                 android:id="@+id/verify_otp_button"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:text="Verify"
+                android:text="@string/verify"
                 android:textColor="@color/colorPrimaryDark" />
-        </TableRow>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
