@@ -16,10 +16,10 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.view.ClubDetailsImpl;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.model.ClubDetails;
 import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
-import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.view.ClubDetailnMemb;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
 
 public class ClubAdapter extends RecyclerView.Adapter<ClubAdapter.clubAdapterViewHolder> {
@@ -90,7 +90,7 @@ public  void setdata(List<ClubDetails> clubDetails){
                 public void onClick(View v) {
                     sharedPrefs.setClubId(clubsLists.get(getAdapterPosition()).getId());
                     sharedPrefs.setClubName(clubsLists.get(getAdapterPosition()).getName());
-                    ((MainActivity)fragmentActivity).addFragment(new ClubDetailnMemb());
+                    ((MainActivity)fragmentActivity).addFragment(new ClubDetailsImpl());
                 }
             });
 

@@ -8,4 +8,5 @@ public class Urls {
     public static final String clubdetails = "club/details/";
     public static final String addclubmember = "club/add_member";
     public static final String resetpassord = "reset_password/";
+    public static final String MEMBERS_LIST = "club/member_list/";
 }

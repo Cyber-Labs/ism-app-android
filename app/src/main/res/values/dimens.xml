@@ -14,4 +14,6 @@
     <dimen name="tagline_text_size">12sp</dimen>
     <dimen name="card_elevation">10dp</dimen>
     <dimen name="title_bar_text_size">24sp</dimen>
+    <dimen name="padding_horizontal">8dp</dimen>
+    <dimen name="padding_vertical">4dp</dimen>
 </resources>

@@ -2,6 +2,7 @@ package ismapp.iitism.cyberlabs.com.ismapp.club.clublist.presenter;
 
 import java.util.List;
 
+import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.model.Member;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.provider.ProviderInterface;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.model.ClubDetails;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.model.ClubListResponse;
@@ -41,4 +42,7 @@ public class PresenterImpl implements PresenterInterface {
             }
         });
     }
+
+
+
 }

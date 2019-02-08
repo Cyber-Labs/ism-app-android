@@ -5,9 +5,13 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -16,6 +20,7 @@ import com.squareup.picasso.Picasso;
 
 import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
+import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.model.MemberListResponse;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.presenter.ClubDetailsPresenter;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.presenter.ClubPresenInter;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.provider.RetroClubDetail;
@@ -46,7 +51,9 @@ public class ClubDetailsImpl extends Fragment implements ClubDetailInterface {
     ClubPresenInter clubPresenInter;
     LinearLayout lay;
     SharedPrefs sharedPrefs;
-
+    int i=0;
+    RecyclerView rv_show_members;
+    MembAdapter membAdapter;
 
    // private OnFragmentInteractionListener mListener;
 
@@ -82,7 +89,7 @@ public class ClubDetailsImpl extends Fragment implements ClubDetailInterface {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.club_description, container, false);
+        View view = inflater.inflate(R.layout.fragment_club_details, container, false);
 
 
         clubImage = (ImageView)view.findViewById(R.id.club_image);
@@ -91,6 +98,9 @@ public class ClubDetailsImpl extends Fragment implements ClubDetailInterface {
         Description = (TextView)view.findViewById(R.id.club_description);
         Tagline=(TextView)view.findViewById(R.id.club_tag);
         lay=(LinearLayout)view.findViewById(R.id.club_lay);
+        rv_show_members=(RecyclerView) view.findViewById(R.id.rv_show_members);
+        rv_show_members.setHasFixedSize(true);
+        rv_show_members.setLayoutManager(new LinearLayoutManager(getContext()));
 
         ((MainActivity)getActivity()).changeActionBar();
         alertDialog= new AlertDialog.Builder(getContext()).setView(LayoutInflater.from(getContext()).inflate(R.layout.progress_bar,null)).setCancelable(false).create();
@@ -99,6 +109,7 @@ public class ClubDetailsImpl extends Fragment implements ClubDetailInterface {
         clubPresenInter = new ClubDetailsPresenter(this,new RetroClubDetail());
        ;
         clubPresenInter.getclubdetail(sharedPrefs.getAccessToken(),sharedPrefs.getClubId());
+        clubPresenInter.requestmemblist(sharedPrefs.getAccessToken(),sharedPrefs.getClubId());
         return view;
 
     }
@@ -132,7 +143,9 @@ public class ClubDetailsImpl extends Fragment implements ClubDetailInterface {
 
     @Override
     public void showProgressbar(boolean show) {
-        if(show){
+        i++;
+
+        if(show|| i<3){
              alertDialog.show();
         }else{
             alertDialog.dismiss();
@@ -160,7 +173,12 @@ public class ClubDetailsImpl extends Fragment implements ClubDetailInterface {
         //setToast;
     }
 
+    @Override
+    public void showMembList(MemberListResponse memberListResponse) {
+        membAdapter=new MembAdapter(getContext(),memberListResponse.getMember_list());
+        rv_show_members.setAdapter(membAdapter);
 
+    }
 
 
     /**
