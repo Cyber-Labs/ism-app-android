@@ -67,9 +67,9 @@
             android:fontFamily="@font/lato"
             android:imeOptions="actionDone"
             android:inputType="number"
-            android:padding="5dp"
+            android:padding="@dimen/layout_padding"
             android:text="@string/random_otp"
-            android:textSize="24sp"
+            android:textSize="@dimen/title_bar_text_size"
             android:textStyle="bold"
             android:layout_height="0dp" />
         <LinearLayout
@@ -78,9 +78,9 @@
             android:layout_gravity="end">
 
             <Button
-                android:id="@+id/verify_otp_buttonnegative"
+                android:id="@+id/btn_verify_otp_negative"
                 style="@style/Widget.AppCompat.Button.Borderless.Colored"
-                android:layout_width="100dp"
+                android:layout_width="@dimen/btn_hori_width"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_weight="1"
@@ -89,9 +89,9 @@
                 android:textColor="@color/titleColorLight" />
 
             <Button
-                android:id="@+id/verify_otp_button"
+                android:id="@+id/btn_verify_otp"
                 style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="100dp"
+                android:layout_width="@dimen/btn_hori_width"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"

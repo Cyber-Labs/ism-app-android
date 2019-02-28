@@ -22,10 +22,10 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:layout_weight="2"
-            android:text="Members"
+            android:text="@string/members"
             android:fontFamily="@font/lato"
             android:textColor="#444"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <ImageView

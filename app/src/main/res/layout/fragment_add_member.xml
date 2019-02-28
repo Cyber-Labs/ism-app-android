@@ -11,18 +11,18 @@
         android:id="@+id/add_member_email_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Email"/>
+        android:hint="@string/email"/>
     <CheckBox
         android:id="@+id/is_member_admin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Admin"
+        android:text="@string/admin"
         android:onClick="submit"/>
     <Button
         android:id="@+id/add_member_sumbit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Submit"
+        android:text="@string/submit"
         android:onClick="submit"
         />
 

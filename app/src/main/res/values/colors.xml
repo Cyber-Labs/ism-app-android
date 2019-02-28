@@ -4,7 +4,7 @@
     <!--#008577 , #00574B , #D81B60-->
     <color name="colorPrimaryDark">#00675B</color>
     <color name="colorAccent">#52C7B8</color>
-    <color name="white">#787B7C</color>
+    <color name="white">#FFFFFF</color>
     <color name="titleColor">#4c4c4c</color>
     <color name="titleColorLight">#787B7C</color>
     <color name="viewBgColor">#f1f5f8</color>

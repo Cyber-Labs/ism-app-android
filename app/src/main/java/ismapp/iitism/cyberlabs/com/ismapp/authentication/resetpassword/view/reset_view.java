@@ -47,10 +47,10 @@ public class reset_view extends AppCompatActivity implements reset_interface {
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setIndeterminate(true);
         ed_email = (EditText)findViewById(R.id.rs_email);
-        ed_password = (EditText)findViewById(R.id.rs_ps);
+        ed_password = (EditText)findViewById(R.id.btn_rs_pass);
         //ed_confirm_password = (EditText)findViewById(R.id.rs_cps);
         ed_otp = (EditText)findViewById(R.id.rs_otp);
-        submit = (Button)findViewById(R.id.rs_submit);
+        submit = (Button)findViewById(R.id.btn_rs_submit);
 
         ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
         if(connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||

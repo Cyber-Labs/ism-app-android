@@ -29,9 +29,9 @@ public class VerifyOtpViewImp extends AppCompatActivity implements VerifiOtpView
     TextView emailTv;
     @BindView(R.id.verify_otp_otp)
     EditText otp;
-    @BindView(R.id.verify_otp_button)
+    @BindView(R.id.btn_verify_otp)
     Button button;
-    @BindView(R.id.verify_otp_buttonnegative)
+    @BindView(R.id.btn_verify_otp_negative)
     Button buttonnegative;
     AlertDialog alertDialog;
 

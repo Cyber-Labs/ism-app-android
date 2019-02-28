@@ -18,9 +18,9 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="@dimen/feed_item_title_ht"
                 android:layout_weight="2"
                 android:orientation="horizontal">
 
@@ -28,8 +28,6 @@
                     android:id="@+id/feed_thumbnail"
                     android:layout_width="46dp"
                     android:layout_height="match_parent"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
                     android:layout_marginStart="9dp"
                     android:layout_marginLeft="9dp"
                     android:padding="4dp"
@@ -44,87 +42,60 @@
                 <TextView
                     android:layout_width="313dp"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
                     android:layout_marginStart="23dp"
                     android:layout_marginLeft="23dp"
                     android:layout_marginEnd="5dp"
                     android:layout_marginRight="5dp"
-                    android:layout_toEndOf="@+id/feed_thumbnail"
-                    android:layout_toRightOf="@+id/feed_thumbnail"
                     android:fontFamily="@font/lato"
-                    android:text="Name"
+                    android:text="@string/feed_item_name"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:layout_width="311dp"
-                    android:layout_height="23dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginEnd="6dp"
-                    android:layout_marginRight="6dp"
-                    android:layout_marginBottom="3dp"
-                    android:layout_toEndOf="@+id/feed_thumbnail"
-                    android:layout_toRightOf="@+id/feed_thumbnail"
-                    android:paddingBottom="1dp"
-                    android:text="01/42/32 10:00 PM" />
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginLeft="@dimen/layout_margin_horizontal"
+                    android:layout_marginRight="@dimen/layout_margin_horizontal"
+                    android:layout_marginBottom="@dimen/layout_margin"
+                    android:text="@string/feed_item_date" />
                 <!--</LinearLayout>-->
-            </RelativeLayout>
+            </LinearLayout>
 
             <View
                 android:id="@+id/divider"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:layout_marginHorizontal="8dp"
-                android:background="#D3D3D3" />
+                android:background="@color/viewBgColor" />
 
             <TableRow
-                android:layout_width="402dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="right"
-                android:padding="7dp">
+                android:padding="@dimen/layout_padding">
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="236dp"
                     android:layout_height="match_parent"
-                    android:layout_gravity="right"
-                    android:paddingTop="10dp">
+                    android:paddingTop="10dp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/feed_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginStart="0dp"
-                        android:layout_marginLeft="0dp"
-                        android:layout_marginTop="0dp"
-                        android:layout_marginEnd="0dp"
-                        android:layout_marginRight="0dp"
                         android:fontFamily="@font/lato"
-                        android:padding="5dp"
-                        android:paddingHorizontal="8dp"
-                        android:text="Selected List of Candidates"
+                        android:padding="@dimen/tv_padding"
+                        android:layout_weight="1"
+                        android:text="@string/feed_item_title"
                         android:textColor="@android:color/background_dark"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/title_text_size"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/short_desc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/feed_title"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
+                        android:layout_weight="20"
                         android:layout_marginStart="0dp"
                         android:layout_marginLeft="0dp"
                         android:layout_marginTop="11dp"
@@ -132,19 +103,18 @@
                         android:layout_marginRight="0dp"
                         android:fontFamily="@font/lato"
                         android:padding="5dp"
-                        android:paddingHorizontal="8dp"
-                        android:text="This is very interesting news coming up on your channel, get ready for it. Hope you will like it. Blah, Blah"
+                        android:paddingHorizontal="@dimen/padding_horizontal"
+                        android:text="@string/feed_item_desc"
                         android:textSize="12sp"
                         android:textStyle="bold" />
-                </RelativeLayout>
+                </LinearLayout>
 
                 <ImageView
                     android:layout_width="167dp"
                     android:layout_height="160dp"
-                    android:padding="2dp"
-                    android:paddingHorizontal="8dp"
-                    android:paddingVertical="2dp"
-                    android:src="@color/colorAccent" />
+                    android:padding="@dimen/iv_padding_small"
+                    android:src="@color/colorAccent"
+                    android:contentDescription="@string/todo" />
 
                 <!--<TextView-->
                 <!--android:id="@+id/textView"-->

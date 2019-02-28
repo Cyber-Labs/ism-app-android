@@ -29,11 +29,11 @@ import ismapp.iitism.cyberlabs.com.ismapp.R;
 public class SignUpViewImp extends AppCompatActivity implements SignUpView {
     @BindView(R.id.signup_name)
     EditText name;
-    @BindView(R.id.signup_email)
+    @BindView(R.id.et_signup_email)
     EditText email;
-    @BindView(R.id.signup_pass)
+    @BindView(R.id.et_signup_pass)
     EditText pass;
-    @BindView(R.id.signup_next)
+    @BindView(R.id.btn_signup_next)
     Button next;
     String e;
 

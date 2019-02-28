@@ -32,11 +32,11 @@ public class LoginViewImp extends AppCompatActivity implements LoginView {
     EditText email;
     @BindView(R.id.login_pass)
     EditText pass;
-    @BindView(R.id.login_login)
+    @BindView(R.id.btn_login_login)
     Button login;
-    @BindView(R.id.login_signup)
+    @BindView(R.id.btn_login_signup)
     Button signUp;
-    @BindView(R.id.login_forgot)
+    @BindView(R.id.btn_login_forgot_pass)
     TextView forgot;
     AlertDialog alertDialog;
     @Override

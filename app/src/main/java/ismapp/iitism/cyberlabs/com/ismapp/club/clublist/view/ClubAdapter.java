@@ -81,10 +81,10 @@ public  void setdata(List<ClubDetails> clubDetails){
 
         public clubAdapterViewHolder(@NonNull View itemView) {
             super(itemView);
-            clubimage = (ImageView)itemView.findViewById(R.id.clubimage);
-            clubname = (TextView)itemView.findViewById(R.id.clubname);
-            clubtagline = (TextView)itemView.findViewById(R.id.clubtagline);
-            cardView = (CardView)itemView.findViewById(R.id.cardView);
+            clubimage = (ImageView)itemView.findViewById(R.id.iv_clubimage);
+            clubname = (TextView)itemView.findViewById(R.id.iv_clubname);
+            clubtagline = (TextView)itemView.findViewById(R.id.iv_clubtagline);
+            cardView = (CardView)itemView.findViewById(R.id.card_view_club);
             cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
