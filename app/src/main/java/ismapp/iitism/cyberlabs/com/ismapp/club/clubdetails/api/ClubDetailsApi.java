@@ -10,10 +10,10 @@ import retrofit2.http.Query;
 
 public interface ClubDetailsApi {
 
-    @GET(Urls.clubdetails)
+    @GET(Urls.SUB_URL_CLUB_DETAILS)
 
     Call<ClubDetails> getdetails(@Header("Authorization") String Token_access_token, @Query("club_id") int id);
-    @GET(Urls.MEMBERS_LIST)
+    @GET(Urls.SUB_URL_MEMBERS_LIST)
     Call<MemberListResponse> getMembList(@Header("Authorization") String Token_access_token, @Query("club_id") int id);
 
 }

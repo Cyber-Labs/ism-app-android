@@ -1,21 +1,21 @@
 package ismapp.iitism.cyberlabs.com.ismapp.club.clublist.view;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.provider.RetrofitClubListImpl;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.model.ClubDetails;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.presenter.PresenterImpl;
@@ -23,6 +23,7 @@ import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.presenter.PresenterInter
 import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
+import ismapp.iitism.cyberlabs.com.ismapp.helper.ViewUtils;
 
 public class ClubsFrag extends Fragment implements ClubInterface {
 
@@ -30,45 +31,34 @@ public class ClubsFrag extends Fragment implements ClubInterface {
     PresenterInterface presenterInterface;
     ProgressDialog progressDialog;
     SharedPrefs sharedPrefs;
-    AlertDialog alertDialog;
     RecyclerView recyclerView;
     List<ClubDetails> clubDetailsArrayList;
+
+    @BindView(R.id.progressBar)
+    ProgressBar progressBar;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_club_list,container,false);
+        ButterKnife.bind(this, view);
 
         recyclerView = (RecyclerView)view.findViewById(R.id.clubrecycler);
         clubAdapter = new ClubAdapter(getContext(),getFragmentManager(),getActivity());
         sharedPrefs = new SharedPrefs(getContext());
-        alertDialog= new AlertDialog.Builder(getContext()).setView(LayoutInflater.from(getContext()).inflate(R.layout.progress_bar,null)).setCancelable(false).create();
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         if(clubDetailsArrayList ==null)
         {presenterInterface = new PresenterImpl(ClubsFrag.this,new RetrofitClubListImpl());
-        presenterInterface.requestclublist(sharedPrefs.getAccessToken());}
+            presenterInterface.requestclublist(sharedPrefs.getAccessToken());}
         else
         {
-            clubAdapter.setdata(clubDetailsArrayList);
+            showProgressBar(false);
+            clubAdapter.setData(clubDetailsArrayList);
             recyclerView.setAdapter(clubAdapter);
         }
-
-
-
-        //clubAdapter.setData(clubDetailsArrayList);
-
-
-      /*  progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setMessage("Wait");
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progressDialog.setIndeterminate(true);*/
-
-
-
         return view;
     }
-
 
     @Override
     public void onResume() {
@@ -78,41 +68,23 @@ public class ClubsFrag extends Fragment implements ClubInterface {
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
+    public void getList(List<ClubDetails> clubDetails) {
+        clubDetailsArrayList = clubDetails;
+        clubAdapter.setData(clubDetails);
+        recyclerView.setAdapter(clubAdapter);
     }
 
     @Override
-    public void getlist(List<ClubDetails> clubDetails) {
-         // clubDetailsArrayList.clear();
-          //Log.i("hello",clubDetails.toString());
-          clubDetailsArrayList = clubDetails;
-         clubAdapter.setdata(clubDetails);
-//           clubAdapter.notifyDataSetChanged();
-
-      recyclerView.setAdapter(clubAdapter);
-
-
-
-         }
-
-   @Override
     public void showMessage(String message) {
-       //setToast
-       Log.e("check", "onFailure: " +message );
+        ViewUtils.showToast(getContext(), message);
     }
 
     @Override
-    public void ShowProgressBar(boolean showw) {
-     if(showw){
-        // progressDialog.show();
-         alertDialog.show();
-     }else{
-        // progressDialog.dismiss();
-         alertDialog.dismiss();
-     }
+    public void showProgressBar(boolean show) {
+        if(show){
+            progressBar.setVisibility(View.VISIBLE);
+        }else{
+            progressBar.setVisibility(View.GONE);
+        }
     }
-
-
-
 }

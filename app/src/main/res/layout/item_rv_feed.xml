@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
         android:padding="6dp"
+        android:background="@color/white"
         app:cardElevation="10dp">
 
         <LinearLayout

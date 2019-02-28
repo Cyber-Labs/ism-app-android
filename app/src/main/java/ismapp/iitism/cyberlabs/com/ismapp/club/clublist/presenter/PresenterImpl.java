@@ -2,7 +2,6 @@ package ismapp.iitism.cyberlabs.com.ismapp.club.clublist.presenter;
 
 import java.util.List;
 
-import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.model.Member;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.provider.ProviderInterface;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.model.ClubDetails;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.model.ClubListResponse;
@@ -21,22 +20,22 @@ public class PresenterImpl implements PresenterInterface {
 
     @Override
     public void requestclublist(String access_token) {
-        clubInterface.ShowProgressBar(true);
+        clubInterface.showProgressBar(true);
         providerInterface.requestclubslist( access_token,new PresenterCallback() {
 
             @Override
             public void onSuccess(Object o) {
-                clubInterface.ShowProgressBar(false);
+                clubInterface.showProgressBar(false);
 
                 ClubListResponse clubListResponse = (ClubListResponse) o;
                List<ClubDetails> clubDetails = clubListResponse.getClubsNameList();
-               clubInterface.getlist(clubDetails);
+               clubInterface.getList(clubDetails);
             }
 
             @Override
             public void OnFailure(String msg) {
                 clubInterface.showMessage(msg);
-                clubInterface.ShowProgressBar(false);
+                clubInterface.showProgressBar(false);
 
 
             }

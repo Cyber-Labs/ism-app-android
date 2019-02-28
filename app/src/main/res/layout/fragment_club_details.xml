@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".club.clubdetails.view.ClubDetailsImpl">
+    tools:context=".club.clubdetails.view.ClubDetailsFragment">
 
 
     <include layout="@layout/content_club_about" />

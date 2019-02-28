@@ -16,7 +16,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.view.ClubDetailsImpl;
+import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.view.ClubDetailsFragment;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.model.ClubDetails;
 import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
@@ -25,46 +25,36 @@ import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
 public class ClubAdapter extends RecyclerView.Adapter<ClubAdapter.clubAdapterViewHolder> {
 
     private List<ClubDetails> clubsLists  ;
-   private Context mtcx;
-   FragmentManager fragmentManager;
-   SharedPrefs sharedPrefs ;
-   FragmentActivity fragmentActivity;
+    private Context context;
+    private SharedPrefs sharedPrefs ;
+    private FragmentActivity fragmentActivity;
 
-    public ClubAdapter(Context mtcx, FragmentManager fragmentManager,FragmentActivity fragmentActivity) {
-        this.fragmentManager = fragmentManager;
-        this.mtcx = mtcx;
-        sharedPrefs = new SharedPrefs(mtcx);
+    ClubAdapter(Context context, FragmentManager fragmentManager, FragmentActivity fragmentActivity) {
+        this.context = context;
+        sharedPrefs = new SharedPrefs(context);
         this.fragmentActivity=fragmentActivity;
 
     }
-public  void setdata(List<ClubDetails> clubDetails){
-    this.clubsLists = clubDetails;
-}
+    void setData(List<ClubDetails> clubDetails){
+        this.clubsLists = clubDetails;
+    }
 
     @NonNull
     @Override
     public clubAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-      View view = LayoutInflater.from(mtcx).inflate(R.layout.item_rv_club_list,null);
-      return new clubAdapterViewHolder(view);
-
+        View view = LayoutInflater.from(context).inflate(R.layout.item_rv_club_list,null);
+        return new clubAdapterViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull clubAdapterViewHolder clubAdapterViewHolder, int i) {
         final ClubDetails clubDetails = clubsLists.get(i);
-        clubAdapterViewHolder.clubname.setText(clubDetails.getName());
-        clubAdapterViewHolder.clubtagline.setText(clubDetails.getTagline());
+        clubAdapterViewHolder.tv_clubname.setText(clubDetails.getName());
+        clubAdapterViewHolder.tv_clubtagline.setText(clubDetails.getTagline());
         Picasso.get().load(clubDetails.getImageurl()).into(clubAdapterViewHolder.clubimage);
 //        clubAdapterViewHolder.cardView.setOnClickListener(new View.OnClickListener() {
 //            @Override public void onClick(View v) {
-//                //opens and passing arguments to fragments;
-//                Bundle bundle = new Bundle();
-//                bundle.putInt("id",clubDetails.getClubid());
-//                ClubDetailsImpl clubDetails = new ClubDetailsImpl();
-//                clubDetails.setArguments(bundle);
-//                sharedPrefs.setClubId(clubDetails.getClubid());
-//               // fragmentManager.beginTransaction().add(R.id.main_contaner,new ClubDetailsImpl()).addToBackStack(null).commit();
-//                ((MainActivity)fragmentActivity).addFragment(new ClubDetailsImpl());
+//                ((MainActivity)fragmentActivity).addFragment(ClubDetailsFragment.newInstance("", ""));
 //            }
 //        });
     }
@@ -76,21 +66,21 @@ public  void setdata(List<ClubDetails> clubDetails){
 
     class clubAdapterViewHolder extends RecyclerView.ViewHolder{
         ImageView clubimage;
-        TextView clubname,clubtagline;
+        TextView tv_clubname, tv_clubtagline;
         CardView cardView;
 
         public clubAdapterViewHolder(@NonNull View itemView) {
             super(itemView);
             clubimage = (ImageView)itemView.findViewById(R.id.iv_clubimage);
-            clubname = (TextView)itemView.findViewById(R.id.iv_clubname);
-            clubtagline = (TextView)itemView.findViewById(R.id.iv_clubtagline);
+            tv_clubname = (TextView)itemView.findViewById(R.id.iv_clubname);
+            tv_clubtagline = (TextView)itemView.findViewById(R.id.iv_clubtagline);
             cardView = (CardView)itemView.findViewById(R.id.card_view_club);
             cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     sharedPrefs.setClubId(clubsLists.get(getAdapterPosition()).getId());
                     sharedPrefs.setClubName(clubsLists.get(getAdapterPosition()).getName());
-                    ((MainActivity)fragmentActivity).addFragment(new ClubDetailsImpl());
+                    ((MainActivity)fragmentActivity).addFragment(new ClubDetailsFragment());
                 }
             });
 

@@ -50,7 +50,7 @@ public class SignUpViewImp extends AppCompatActivity implements SignUpView {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sign_up);
+        setContentView(R.layout.activity_sign_up);
         ButterKnife.bind(this);
         // nameLay.setErrorEnabled(true);
         //  emailLay.setErrorEnabled(true);

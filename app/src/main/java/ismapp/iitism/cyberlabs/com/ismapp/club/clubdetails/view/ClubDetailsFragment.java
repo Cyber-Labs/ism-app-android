@@ -1,17 +1,13 @@
 package ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.view;
 
 import android.app.AlertDialog;
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -32,10 +28,10 @@ import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
  * Activities that contain this fragment must implement the
  *
  * to handle interaction events.
- * Use the {@link ClubDetailsImpl#newInstance} factory method to
+ * Use the {@link ClubDetailsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ClubDetailsImpl extends Fragment implements ClubDetailInterface {
+public class ClubDetailsFragment extends Fragment implements ClubDetailsView {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     //private static final String ARG_PARAM1 = "param1";
@@ -45,7 +41,7 @@ public class ClubDetailsImpl extends Fragment implements ClubDetailInterface {
     private int id;
     private String mParam2;
     ImageView clubImage,BrowserIcon;
-    TextView ClubName,Description,Tagline;
+    TextView tv_clubName, tv_description, tv_Tagline;
 
     AlertDialog alertDialog;
     ClubPresenInter clubPresenInter;
@@ -57,7 +53,7 @@ public class ClubDetailsImpl extends Fragment implements ClubDetailInterface {
 
    // private OnFragmentInteractionListener mListener;
 
-    public ClubDetailsImpl() {
+    public ClubDetailsFragment() {
         // Required empty public constructor
     }
 
@@ -67,11 +63,11 @@ public class ClubDetailsImpl extends Fragment implements ClubDetailInterface {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ClubDetailsImpl.
+     * @return A new instance of fragment ClubDetailsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ClubDetailsImpl newInstance(String param1, String param2) {
-        ClubDetailsImpl fragment = new ClubDetailsImpl();
+    public static ClubDetailsFragment newInstance(String param1, String param2) {
+        ClubDetailsFragment fragment = new ClubDetailsFragment();
 
         return fragment;
     }
@@ -94,11 +90,11 @@ public class ClubDetailsImpl extends Fragment implements ClubDetailInterface {
 
         clubImage = (ImageView)view.findViewById(R.id.club_image);
      //   BrowserIcon = (ImageView)view.findViewById(R.id.browser_icon);
-        ClubName = (TextView)view.findViewById(R.id.club_name);
-        Description = (TextView)view.findViewById(R.id.club_description);
-        Tagline=(TextView)view.findViewById(R.id.club_tag);
-        lay=(LinearLayout)view.findViewById(R.id.club_lay);
-        rv_show_members=(RecyclerView) view.findViewById(R.id.rv_show_members);
+        tv_clubName = (TextView)view.findViewById(R.id.club_name);
+        tv_description = (TextView)view.findViewById(R.id.club_description);
+        tv_Tagline =(TextView)view.findViewById(R.id.club_tag);
+        lay= view.findViewById(R.id.club_lay);
+        rv_show_members= view.findViewById(R.id.rv_show_members);
         rv_show_members.setHasFixedSize(true);
         rv_show_members.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -114,33 +110,6 @@ public class ClubDetailsImpl extends Fragment implements ClubDetailInterface {
 
     }
 
-
-
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-      /*  if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }*/
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    /*    if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }*/
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-
-    }
-
     @Override
     public void showProgressbar(boolean show) {
         i++;
@@ -153,12 +122,12 @@ public class ClubDetailsImpl extends Fragment implements ClubDetailInterface {
     }
 
     @Override
-    public void showmodel(ClubDetails ClubDetails) {
-         Picasso.get().load(ClubDetails.getImage_url()).into(clubImage);
+    public void showmodel(ClubDetails clubDetails) {
+         Picasso.get().load(clubDetails.getImage_url()).into(clubImage);
          lay.setBackgroundColor(R.color.colorPrimary);
-        ClubName.setText(ClubDetails.getName());
-        Tagline.setText(ClubDetails.getTagline());
-        Description.setText(ClubDetails.getDescription());
+        tv_clubName.setText(clubDetails.getName());
+        tv_Tagline.setText(clubDetails.getTagline());
+        tv_description.setText(clubDetails.getDescription());
 
 //        BrowserIcon.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -174,22 +143,10 @@ public class ClubDetailsImpl extends Fragment implements ClubDetailInterface {
     }
 
     @Override
-    public void showMembList(MemberListResponse memberListResponse) {
+    public void showMemberList(MemberListResponse memberListResponse) {
         membAdapter=new MembAdapter(getContext(),memberListResponse.getMember_list());
         rv_show_members.setAdapter(membAdapter);
 
     }
-
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
 
 }
