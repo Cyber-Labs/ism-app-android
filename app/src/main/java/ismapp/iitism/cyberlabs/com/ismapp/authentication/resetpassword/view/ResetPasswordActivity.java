@@ -18,13 +18,13 @@ import android.widget.Toast;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import ismapp.iitism.cyberlabs.com.ismapp.authentication.resetpassword.model.ResetPassword;
-import ismapp.iitism.cyberlabs.com.ismapp.authentication.resetpassword.presenter.reset_presenter_impl;
-import ismapp.iitism.cyberlabs.com.ismapp.authentication.resetpassword.presenter.reset_presenter_interface;
-import ismapp.iitism.cyberlabs.com.ismapp.authentication.resetpassword.provider.Retrofit_reset_imple;
+import ismapp.iitism.cyberlabs.com.ismapp.authentication.resetpassword.model.ResetPasswordModel;
+import ismapp.iitism.cyberlabs.com.ismapp.authentication.resetpassword.presenter.ResetPasswordPresenterImp;
+import ismapp.iitism.cyberlabs.com.ismapp.authentication.resetpassword.presenter.ResetPasswordPresenterInterface;
+import ismapp.iitism.cyberlabs.com.ismapp.authentication.resetpassword.provider.ResetPasswordProviderImp;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
 
-public class reset_view extends AppCompatActivity implements reset_interface {
+public class ResetPasswordActivity extends AppCompatActivity implements ResetPasswordActivityInterface {
 
     EditText ed_email,ed_password,ed_confirm_password,ed_otp;
     Button submit;
@@ -33,7 +33,7 @@ public class reset_view extends AppCompatActivity implements reset_interface {
     Dialog dialog;
 
      boolean connected;
-     reset_presenter_interface reset_presenter_interface;
+     ResetPasswordPresenterInterface ResetPasswordPresenterInterface;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,8 +89,8 @@ public class reset_view extends AppCompatActivity implements reset_interface {
              @Override
              public void onClick(View v) {
 
-                 reset_presenter_interface = new reset_presenter_impl(reset_view.this,new Retrofit_reset_imple());
-                 reset_presenter_interface.sendResponse(email,password, Integer.parseInt(otp));
+                 ResetPasswordPresenterInterface = new ResetPasswordPresenterImp(ResetPasswordActivity.this,new ResetPasswordProviderImp());
+                 ResetPasswordPresenterInterface.sendResponse(email,password, Integer.parseInt(otp));
                  dialog.dismiss();
              }
          });
@@ -112,8 +112,8 @@ public class reset_view extends AppCompatActivity implements reset_interface {
                 Toast.makeText(this,"Password Must Contain min 6 letters!!!",Toast.LENGTH_SHORT).show();
 
             else{
-                reset_presenter_interface = new reset_presenter_impl(this,new Retrofit_reset_imple());
-                reset_presenter_interface.sendResponse(email,password,Otp);
+                ResetPasswordPresenterInterface = new ResetPasswordPresenterImp(this,new ResetPasswordProviderImp());
+                ResetPasswordPresenterInterface.sendResponse(email,password,Otp);
             }
         }
 
@@ -121,12 +121,12 @@ public class reset_view extends AppCompatActivity implements reset_interface {
 
 
     @Override
-    public void showResponse(ResetPassword resetPassword) {
-        if(resetPassword.isSuccess()){
+    public void showResponse(ResetPasswordModel resetPasswordModel) {
+        if(resetPasswordModel.isSuccess()){
             //intent to login;
         }
         else{
-            Toast.makeText(this, resetPassword.getMessage().toString(),Toast.LENGTH_LONG);
+            Toast.makeText(this, resetPasswordModel.getMessage().toString(),Toast.LENGTH_LONG);
         }
 
     }

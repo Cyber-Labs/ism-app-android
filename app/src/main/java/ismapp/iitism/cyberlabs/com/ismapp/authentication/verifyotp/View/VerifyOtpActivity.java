@@ -16,14 +16,14 @@ import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.login.view.LoginViewImp;
-import ismapp.iitism.cyberlabs.com.ismapp.authentication.signup.View.SignUpViewImp;
+import ismapp.iitism.cyberlabs.com.ismapp.authentication.signup.View.SignUpActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.verifyotp.Model.VerifyOtpModel;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.verifyotp.Presenter.VerifyOtpPresenter;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.verifyotp.Presenter.VerifyOtpPresenterImp;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.verifyotp.Provider.VerifyOtpProviderImp;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
 
-public class VerifyOtpViewImp extends AppCompatActivity implements VerifiOtpView {
+public class VerifyOtpActivity extends AppCompatActivity implements VerifyOtpActivityInterface {
     String email;
     @BindView(R.id.verify_otp_email)
     TextView emailTv;
@@ -64,7 +64,7 @@ public class VerifyOtpViewImp extends AppCompatActivity implements VerifiOtpView
         buttonnegative.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), SignUpViewImp.class);
+                Intent i = new Intent(getApplicationContext(), SignUpActivity.class);
                 startActivity(i);
                 finish();
 

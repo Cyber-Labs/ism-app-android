@@ -1,8 +1,8 @@
-package ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotpassword.provider;
+package ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotPassword.provider;
 
 import ismapp.iitism.cyberlabs.com.ismapp.helper.ApiClient;
-import ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotpassword.api.ForgotPasswordApi;
-import ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotpassword.model.ForgotPasswordResponse;
+import ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotPassword.api.ForgotPasswordApi;
+import ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotPassword.model.ForgotPasswordResponse;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
 import retrofit2.Call;
 import retrofit2.Callback;

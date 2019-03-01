@@ -16,19 +16,19 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.provider.RetrofitClubListImpl;
+import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.provider.ClubListProviderImp;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.model.ClubDetails;
-import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.presenter.PresenterImpl;
-import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.presenter.PresenterInterface;
+import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.presenter.ClubListClubListPresenterImpl;
+import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.presenter.ClubListPresenterInterface;
 import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.ViewUtils;
 
-public class ClubsFrag extends Fragment implements ClubInterface {
+public class ClubFragment extends Fragment implements ClubFragmentInterface {
 
     ClubAdapter clubAdapter;
-    PresenterInterface presenterInterface;
+    ClubListPresenterInterface clubListPresenterInterface;
     ProgressDialog progressDialog;
     SharedPrefs sharedPrefs;
     RecyclerView recyclerView;
@@ -49,8 +49,9 @@ public class ClubsFrag extends Fragment implements ClubInterface {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         if(clubDetailsArrayList ==null)
-        {presenterInterface = new PresenterImpl(ClubsFrag.this,new RetrofitClubListImpl());
-            presenterInterface.requestclublist(sharedPrefs.getAccessToken());}
+        {
+            clubListPresenterInterface = new ClubListClubListPresenterImpl(ClubFragment.this,new ClubListProviderImp());
+            clubListPresenterInterface.requestclublist(sharedPrefs.getAccessToken());}
         else
         {
             showProgressBar(false);

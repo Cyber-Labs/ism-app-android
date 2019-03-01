@@ -1,6 +1,6 @@
 package ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.model;
 
-public class ClubDetails {
+public class ClubDetailsModel {
     String success ;
     String message ;
     int id ;

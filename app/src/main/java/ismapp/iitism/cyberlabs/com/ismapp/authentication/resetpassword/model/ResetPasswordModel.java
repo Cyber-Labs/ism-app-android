@@ -1,10 +1,10 @@
 package ismapp.iitism.cyberlabs.com.ismapp.authentication.resetpassword.model;
 
-public class ResetPassword {
+public class ResetPasswordModel {
 
     private boolean success;
     private String message;
-    public ResetPassword(boolean success, String message) {
+    public ResetPasswordModel(boolean success, String message) {
         this.success = success;
         this.message = message;
     }

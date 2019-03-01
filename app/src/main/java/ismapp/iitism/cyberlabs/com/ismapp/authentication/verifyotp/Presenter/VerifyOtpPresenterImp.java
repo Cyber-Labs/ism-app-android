@@ -2,33 +2,33 @@ package ismapp.iitism.cyberlabs.com.ismapp.authentication.verifyotp.Presenter;
 
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.verifyotp.Model.VerifyOtpModel;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.verifyotp.Provider.VerifyOtpProvider;
-import ismapp.iitism.cyberlabs.com.ismapp.authentication.verifyotp.View.VerifiOtpView;
+import ismapp.iitism.cyberlabs.com.ismapp.authentication.verifyotp.View.VerifyOtpActivityInterface;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
 
 public class VerifyOtpPresenterImp implements VerifyOtpPresenter {
 
 
-    VerifiOtpView verifiOtpView;
+    VerifyOtpActivityInterface verifyOtpActivityInterface;
     VerifyOtpProvider verifyOtpProvider;
 
-    public VerifyOtpPresenterImp(VerifiOtpView verifiOtpView, VerifyOtpProvider verifyOtpProvider) {
-        this.verifiOtpView = verifiOtpView;
+    public VerifyOtpPresenterImp(VerifyOtpActivityInterface verifyOtpActivityInterface, VerifyOtpProvider verifyOtpProvider) {
+        this.verifyOtpActivityInterface = verifyOtpActivityInterface;
         this.verifyOtpProvider = verifyOtpProvider;
     }
 
     @Override
     public void getOtpVerificationResponse(String email, int otp) {
-        verifiOtpView.showProgressBar(true);
+        verifyOtpActivityInterface.showProgressBar(true);
         verifyOtpProvider.getOtpVerificationResponse(email, otp, new PresenterCallback() {
             @Override
             public void onSuccess(Object o) {
-                verifiOtpView.showProgressBar(false);
-                verifiOtpView.setIntent((VerifyOtpModel) o);
+                verifyOtpActivityInterface.showProgressBar(false);
+                verifyOtpActivityInterface.setIntent((VerifyOtpModel) o);
             }
 
             @Override
             public void OnFailure(String msg) {
-                verifiOtpView.setIntent(new VerifyOtpModel("Unable to Connect Server!!!",false));
+                verifyOtpActivityInterface.setIntent(new VerifyOtpModel("Unable to Connect Server!!!",false));
             }
         } );
 

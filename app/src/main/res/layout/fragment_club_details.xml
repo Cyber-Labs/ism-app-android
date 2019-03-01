@@ -10,6 +10,11 @@
 
 
     <include layout="@layout/content_club_about" />
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:id="@+id/pb_club_details"/>
     <include layout="@layout/show_members" />
 
 

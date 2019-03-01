@@ -1,4 +1,4 @@
-package ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotpassword.view;
+package ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotPassword.view;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -19,11 +19,11 @@ import android.widget.Toast;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import ismapp.iitism.cyberlabs.com.ismapp.authentication.resetpassword.view.reset_view;
-import ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotpassword.model.ForgotPasswordResponse;
-import ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotpassword.presenter.ForgotPasswordPresenter;
-import ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotpassword.presenter.ForgotPasswordPresenterImpl;
-import ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotpassword.provider.RetrofitForgotPasswordProvider;
+import ismapp.iitism.cyberlabs.com.ismapp.authentication.resetpassword.view.ResetPasswordActivity;
+import ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotPassword.model.ForgotPasswordResponse;
+import ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotPassword.presenter.ForgotPasswordPresenter;
+import ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotPassword.presenter.ForgotPasswordPresenterImpl;
+import ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotPassword.provider.RetrofitForgotPasswordProvider;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
 
 public class ForgotPasswordActivity extends AppCompatActivity implements ForgotPasswordView {
@@ -77,7 +77,7 @@ public class ForgotPasswordActivity extends AppCompatActivity implements ForgotP
     public void showOtpResponse(ForgotPasswordResponse forgotPasswordResponse) {
         if(forgotPasswordResponse.isSuccess()){
             //intent to reset page
-            startActivity(new Intent(getBaseContext(), reset_view.class));
+            startActivity(new Intent(getBaseContext(), ResetPasswordActivity.class));
         }else{
             Toast.makeText(ForgotPasswordActivity.this, forgotPasswordResponse.getMessage().toString(),Toast.LENGTH_LONG).show();
         }

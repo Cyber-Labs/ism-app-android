@@ -1,4 +1,4 @@
-package ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotpassword.presenter;
+package ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotPassword.presenter;
 
 public interface ForgotPasswordPresenter {
     void getResponse(String email);
