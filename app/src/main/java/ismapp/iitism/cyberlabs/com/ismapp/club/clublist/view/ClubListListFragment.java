@@ -18,16 +18,16 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.provider.ClubListProviderImp;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.model.ClubDetails;
-import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.presenter.ClubListClubListPresenterImpl;
+import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.presenter.ClubListPresenterImpl;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.presenter.ClubListPresenterInterface;
 import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.ViewUtils;
 
-public class ClubFragment extends Fragment implements ClubFragmentInterface {
+public class ClubListListFragment extends Fragment implements ClubListFragmentInterface {
 
-    ClubAdapter clubAdapter;
+    ClubListAdapter clubListAdapter;
     ClubListPresenterInterface clubListPresenterInterface;
     ProgressDialog progressDialog;
     SharedPrefs sharedPrefs;
@@ -44,19 +44,19 @@ public class ClubFragment extends Fragment implements ClubFragmentInterface {
         ButterKnife.bind(this, view);
 
         recyclerView = (RecyclerView)view.findViewById(R.id.clubrecycler);
-        clubAdapter = new ClubAdapter(getContext(),getFragmentManager(),getActivity());
+        clubListAdapter = new ClubListAdapter(getContext(),getFragmentManager(),getActivity());
         sharedPrefs = new SharedPrefs(getContext());
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         if(clubDetailsArrayList ==null)
         {
-            clubListPresenterInterface = new ClubListClubListPresenterImpl(ClubFragment.this,new ClubListProviderImp());
+            clubListPresenterInterface = new ClubListPresenterImpl(ClubListListFragment.this,new ClubListProviderImp());
             clubListPresenterInterface.requestclublist(sharedPrefs.getAccessToken());}
         else
         {
             showProgressBar(false);
-            clubAdapter.setData(clubDetailsArrayList);
-            recyclerView.setAdapter(clubAdapter);
+            clubListAdapter.setData(clubDetailsArrayList);
+            recyclerView.setAdapter(clubListAdapter);
         }
         return view;
     }
@@ -71,8 +71,8 @@ public class ClubFragment extends Fragment implements ClubFragmentInterface {
     @Override
     public void getList(List<ClubDetails> clubDetails) {
         clubDetailsArrayList = clubDetails;
-        clubAdapter.setData(clubDetails);
-        recyclerView.setAdapter(clubAdapter);
+        clubListAdapter.setData(clubDetails);
+        recyclerView.setAdapter(clubListAdapter);
     }
 
     @Override

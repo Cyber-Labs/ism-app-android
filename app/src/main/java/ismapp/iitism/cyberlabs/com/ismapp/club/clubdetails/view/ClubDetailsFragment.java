@@ -18,11 +18,13 @@ import com.squareup.picasso.Picasso;
 
 import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
+import ismapp.iitism.cyberlabs.com.ismapp.addclubmember.view.AddMember;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.model.MemberListResponse;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.presenter.ClubDetailsPresenterImp;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.presenter.ClubDetailsPresenterInterface;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.provider.ClubDetailsProviderInterface;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.model.ClubDetailsModel;
+import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.view.ClubListListFragment;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
 
 /**
@@ -52,6 +54,7 @@ public class ClubDetailsFragment extends Fragment implements ClubDetailsFragment
     MembAdapter membAdapter;
     View bottomSheet;
     ProgressBar pb_club_details;
+    View view;
 
    // private OnFragmentInteractionListener mListener;
 
@@ -87,7 +90,7 @@ public class ClubDetailsFragment extends Fragment implements ClubDetailsFragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_club_details, container, false);
+        view = inflater.inflate(R.layout.fragment_club_details, container, false);
 
 
         clubImage = (ImageView)view.findViewById(R.id.club_image);
@@ -100,6 +103,14 @@ public class ClubDetailsFragment extends Fragment implements ClubDetailsFragment
         rv_show_members.setHasFixedSize(true);
         rv_show_members.setLayoutManager(new LinearLayoutManager(getContext()));
         pb_club_details=view.findViewById(R.id.pb_club_details);
+        view.findViewById(R.id.fab_add_member).setVisibility(View.GONE);
+        view.findViewById(R.id.fab_add_member).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity)getActivity()).addFragment(new AddMember());
+            }
+        });
+
         ((MainActivity)getActivity()).changeActionBar();
         sharedPrefs = new SharedPrefs(getContext());
         ((MainActivity)getActivity()).addTitletoBar(sharedPrefs.getClubName());
@@ -139,6 +150,9 @@ public class ClubDetailsFragment extends Fragment implements ClubDetailsFragment
         tv_clubName.setText(clubDetailsModel.getName());
         tv_Tagline.setText(clubDetailsModel.getTagline());
         tv_description.setText(clubDetailsModel.getDescription());
+        if(clubDetailsModel.getIs_admin())
+            view.findViewById(R.id.fab_add_member).setVisibility(View.VISIBLE);
+
 
 //        BrowserIcon.setOnClickListener(new View.OnClickListener() {
 //            @Override

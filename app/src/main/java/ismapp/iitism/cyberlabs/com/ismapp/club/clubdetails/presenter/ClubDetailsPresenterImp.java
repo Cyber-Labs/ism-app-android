@@ -9,17 +9,17 @@ import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
 public class ClubDetailsPresenterImp implements ClubDetailsPresenterInterface {
     ClubDetailsFragmentInterface clubDetailsFragmentInterface;
 
-    public ClubDetailsPresenterImp(ClubDetailsFragmentInterface clubDetailsFragmentInterface, ClubDetailsProviderImp clubDetailInterfaces) {
+    public ClubDetailsPresenterImp(ClubDetailsFragmentInterface clubDetailsFragmentInterface, ClubDetailsProviderImp clubDetailsProviderImp) {
         this.clubDetailsFragmentInterface = clubDetailsFragmentInterface;
-        this.clubDetailInterfaces = clubDetailInterfaces;
+        this.clubDetailsProviderImp = clubDetailsProviderImp;
     }
 
-    ClubDetailsProviderImp clubDetailInterfaces;
+    ClubDetailsProviderImp clubDetailsProviderImp;
 
     @Override
     public void getclubdetail(String access_token, int id) {
         clubDetailsFragmentInterface.showProgressbar(true);
-        clubDetailInterfaces.getclubdetailresponse(access_token, id, new PresenterCallback() {
+        clubDetailsProviderImp.getclubdetailresponse(access_token, id, new PresenterCallback() {
             @Override
             public void onSuccess(Object o) {
                 clubDetailsFragmentInterface.showProgressbar(false);
@@ -39,7 +39,7 @@ public class ClubDetailsPresenterImp implements ClubDetailsPresenterInterface {
     @Override
     public void requestmemblist(String access_token,int id) {
         clubDetailsFragmentInterface.showProgressbar(true);
-        clubDetailInterfaces.requestmemblist(access_token, id, new PresenterCallback() {
+        clubDetailsProviderImp.requestmemblist(access_token, id, new PresenterCallback() {
             @Override
             public void onSuccess(Object o) {
                 MemberListResponse memberListResponse = (MemberListResponse) o;

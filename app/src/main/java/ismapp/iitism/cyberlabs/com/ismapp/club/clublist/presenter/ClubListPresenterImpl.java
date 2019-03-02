@@ -5,37 +5,37 @@ import java.util.List;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.provider.ClubListProviderInterface;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.model.ClubDetails;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.model.ClubListResponse;
-import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.view.ClubFragmentInterface;
+import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.view.ClubListFragmentInterface;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
 
-public class ClubListClubListPresenterImpl implements ClubListPresenterInterface {
-    ClubFragmentInterface clubFragmentInterface;
+public class ClubListPresenterImpl implements ClubListPresenterInterface {
+    ClubListFragmentInterface clubListFragmentInterface;
     ClubListProviderInterface clubListProviderInterface;
 
-    public ClubListClubListPresenterImpl(ClubFragmentInterface clubFragmentInterface, ClubListProviderInterface clubListProviderInterface) {
-        this.clubFragmentInterface = clubFragmentInterface;
+    public ClubListPresenterImpl(ClubListFragmentInterface clubListFragmentInterface, ClubListProviderInterface clubListProviderInterface) {
+        this.clubListFragmentInterface = clubListFragmentInterface;
         this.clubListProviderInterface = clubListProviderInterface;
     }
 
 
     @Override
     public void requestclublist(String access_token) {
-        clubFragmentInterface.showProgressBar(true);
+        clubListFragmentInterface.showProgressBar(true);
         clubListProviderInterface.requestclubslist( access_token,new PresenterCallback() {
 
             @Override
             public void onSuccess(Object o) {
-                clubFragmentInterface.showProgressBar(false);
+                clubListFragmentInterface.showProgressBar(false);
 
                 ClubListResponse clubListResponse = (ClubListResponse) o;
                List<ClubDetails> clubDetails = clubListResponse.getClubsNameList();
-               clubFragmentInterface.getList(clubDetails);
+               clubListFragmentInterface.getList(clubDetails);
             }
 
             @Override
             public void OnFailure(String msg) {
-                clubFragmentInterface.showMessage(msg);
-                clubFragmentInterface.showProgressBar(false);
+                clubListFragmentInterface.showMessage(msg);
+                clubListFragmentInterface.showProgressBar(false);
 
 
             }
