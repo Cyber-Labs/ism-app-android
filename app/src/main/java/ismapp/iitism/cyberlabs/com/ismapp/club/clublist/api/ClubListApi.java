@@ -6,7 +6,7 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 
-public interface clubapi   {
+public interface ClubListApi {
 
 
     @GET(Urls.SUB_URL_CLUB_LIST)

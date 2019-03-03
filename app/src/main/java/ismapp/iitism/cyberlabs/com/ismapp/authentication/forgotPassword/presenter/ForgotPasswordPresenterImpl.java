@@ -1,8 +1,8 @@
-package ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotpassword.presenter;
+package ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotPassword.presenter;
 
-import ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotpassword.model.ForgotPasswordResponse;
-import ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotpassword.provider.ForgotPasswordProvider;
-import ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotpassword.view.ForgotPasswordView;
+import ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotPassword.model.ForgotPasswordResponse;
+import ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotPassword.provider.ForgotPasswordProvider;
+import ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotPassword.view.ForgotPasswordView;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
 
 public class ForgotPasswordPresenterImpl implements ForgotPasswordPresenter {

@@ -16,12 +16,12 @@ import com.appus.splash.Splash;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotpassword.view.ForgotPasswordActivity;
+import ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotPassword.view.ForgotPasswordActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.login.model.LoginModel;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.login.presenter.LoginPresenter;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.login.presenter.LoginPresenterImp;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.login.provider.LoginProviderImp;
-import ismapp.iitism.cyberlabs.com.ismapp.authentication.signup.View.SignUpViewImp;
+import ismapp.iitism.cyberlabs.com.ismapp.authentication.signup.View.SignUpActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
@@ -59,7 +59,7 @@ public class LoginViewImp extends AppCompatActivity implements LoginView {
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginViewImp.this,SignUpViewImp.class));
+                startActivity(new Intent(LoginViewImp.this, SignUpActivity.class));
             }
         });
         forgot.setOnClickListener(new View.OnClickListener() {

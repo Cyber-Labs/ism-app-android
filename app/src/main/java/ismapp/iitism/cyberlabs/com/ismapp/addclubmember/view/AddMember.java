@@ -4,6 +4,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,37 +24,32 @@ import ismapp.iitism.cyberlabs.com.ismapp.R;
 import ismapp.iitism.cyberlabs.com.ismapp.addclubmember.model.member;
 import ismapp.iitism.cyberlabs.com.ismapp.addclubmember.presenter.MemberPresenter;
 import ismapp.iitism.cyberlabs.com.ismapp.addclubmember.presenter.MemberPresenterImple;
+import ismapp.iitism.cyberlabs.com.ismapp.addclubmember.provider.RetroMember;
+import ismapp.iitism.cyberlabs.com.ismapp.addclubmember.provider.memberprointer;
+import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
 
 import static android.support.v4.content.ContextCompat.getSystemService;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link AddMember.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link AddMember#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class AddMember extends Fragment implements MemberInterface {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     ProgressDialog progressDialog;
-    EditText editText;
+    TextInputEditText editText;
     CheckBox checkBox;
     Button Submit;
     Boolean admin = false;
     MemberPresenter memberPresenter;
     SharedPrefs sharedPrefs;
+    TextInputLayout lay_add_member_email_id;
 
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
-    private OnFragmentInteractionListener mListener;
 
     public AddMember() {
         // Required empty public constructor
@@ -90,72 +87,50 @@ public class AddMember extends Fragment implements MemberInterface {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_add_member, container, false);
+        final View view = inflater.inflate(R.layout.fragment_add_member, container, false);
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Wait");
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setIndeterminate(true);
-        editText = (EditText)view.findViewById(R.id.add_member_email_id);
-        checkBox = (CheckBox)view.findViewById(R.id.is_member_admin);
-        Submit = (Button)view.findViewById(R.id.add_member_sumbit);
+        editText = view.findViewById(R.id.add_member_email_id);
+        checkBox = (CheckBox) view.findViewById(R.id.is_member_admin);
+        Submit = (Button) view.findViewById(R.id.add_member_sumbit);
         sharedPrefs = new SharedPrefs(getContext());
-        memberPresenter = new MemberPresenterImple();
-
+        memberPresenter = new MemberPresenterImple(this, new RetroMember());
+        lay_add_member_email_id = view.findViewById(R.id.lay_add_member_email_id);
+        Submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                submit();
+            }
+        });
 
         return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
 
-    public void submit(View view){
-        boolean checked = ((CheckBox) view).isChecked();
-        switch (view.getId()){
 
-            case  R.id.is_member_admin:
-                if(checked){
-                    admin = checked;
-                }else {
-                    admin = checked;
-                }
+    public void submit() {
 
-            case R.id.add_member_sumbit:
                 showProgressbar(true);
                 String email = editText.getText().toString().trim();
-                if(emailInvalid(email)){
+                if (email.isEmpty())
+                {showProgressbar(false);  lay_add_member_email_id.setError("Empty Field");}
+
+                else if (emailInvalid(email)) {
                     showProgressbar(false);
-                    //toast;
-                }
-                else{
-                    memberPresenter.getresponse(sharedPrefs.getAccessToken(),sharedPrefs.getClubId(),email,admin);
-            }
+                    lay_add_member_email_id.setError("Not Valid");
+                } else {
+                    memberPresenter.getresponse(sharedPrefs.getAccessToken(), sharedPrefs.getClubId(), email, checkBox.isChecked());
+
 
 
         }
 
 
-
-    }
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
 
     public boolean emailInvalid(String email) {
         Pattern pattern;
@@ -169,30 +144,30 @@ public class AddMember extends Fragment implements MemberInterface {
         boolean a = matcher.matches();
         return !a;
     }
+
     @Override
     public void showProgressbar(Boolean show) {
-        if(show){
+        if (show) {
             progressDialog.show();
-        }else{
+        } else {
             progressDialog.dismiss();
         }
     }
 
     @Override
     public void getResult(member member) {
-       if(member.getSuccess()){
-           showProgressbar(false);
-           //toast;
-           //return to back page;
-       }
+        if (member.getSuccess()) {
+            showProgressbar(false);
+            //toast;
+            //return to back page;
+        }
     }
 
     @Override
     public void buttonclick(Boolean click) {
-        if(click){
+        if (click) {
             Submit.setClickable(true);
-        }
-        else{
+        } else {
             Submit.setClickable(false);
         }
 
@@ -203,18 +178,4 @@ public class AddMember extends Fragment implements MemberInterface {
         //toast
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
 }

@@ -23,10 +23,10 @@ import ismapp.iitism.cyberlabs.com.ismapp.authentication.signup.Model.SignUpResp
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.signup.Presenter.SignUpPresenter;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.signup.Presenter.SignUpPresenterImp;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.signup.Provider.SignUpProviderImp;
-import ismapp.iitism.cyberlabs.com.ismapp.authentication.verifyotp.View.VerifyOtpViewImp;
+import ismapp.iitism.cyberlabs.com.ismapp.authentication.verifyotp.View.VerifyOtpActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
 
-public class SignUpViewImp extends AppCompatActivity implements SignUpView {
+public class SignUpActivity extends AppCompatActivity implements SignUpActivityInterface {
     @BindView(R.id.signup_name)
     EditText name;
     @BindView(R.id.et_signup_email)
@@ -129,7 +129,7 @@ public class SignUpViewImp extends AppCompatActivity implements SignUpView {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SignUpPresenter signUpPresenter =new SignUpPresenterImp(SignUpViewImp.this,new SignUpProviderImp(),
+                SignUpPresenter signUpPresenter =new SignUpPresenterImp(SignUpActivity.this,new SignUpProviderImp(),
                         email.getText().toString().trim(),
                         name.getText().toString().trim(),
                         pass.getText().toString());
@@ -161,7 +161,7 @@ public class SignUpViewImp extends AppCompatActivity implements SignUpView {
                     .show();
         else
         {
-            Intent i=new Intent(this, VerifyOtpViewImp.class);
+            Intent i=new Intent(this, VerifyOtpActivity.class);
             i.putExtra("email",e);
             startActivity(i);
         }

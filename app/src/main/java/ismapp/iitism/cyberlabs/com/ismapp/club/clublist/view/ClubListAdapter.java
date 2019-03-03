@@ -22,14 +22,14 @@ import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
 
-public class ClubAdapter extends RecyclerView.Adapter<ClubAdapter.clubAdapterViewHolder> {
+public class ClubListAdapter extends RecyclerView.Adapter<ClubListAdapter.clubAdapterViewHolder> {
 
     private List<ClubDetails> clubsLists  ;
     private Context context;
     private SharedPrefs sharedPrefs ;
     private FragmentActivity fragmentActivity;
 
-    ClubAdapter(Context context, FragmentManager fragmentManager, FragmentActivity fragmentActivity) {
+    ClubListAdapter(Context context, FragmentManager fragmentManager, FragmentActivity fragmentActivity) {
         this.context = context;
         sharedPrefs = new SharedPrefs(context);
         this.fragmentActivity=fragmentActivity;

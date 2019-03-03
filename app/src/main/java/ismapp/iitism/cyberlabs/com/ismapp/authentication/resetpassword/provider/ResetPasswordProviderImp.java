@@ -2,13 +2,13 @@ package ismapp.iitism.cyberlabs.com.ismapp.authentication.resetpassword.provider
 
 import ismapp.iitism.cyberlabs.com.ismapp.helper.ApiClient;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.resetpassword.api.ResetPasswordApi;
-import ismapp.iitism.cyberlabs.com.ismapp.authentication.resetpassword.model.ResetPassword;
+import ismapp.iitism.cyberlabs.com.ismapp.authentication.resetpassword.model.ResetPasswordModel;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Retrofit_reset_imple implements Retrofit_reset_interface {
-   private retrofit2.Call<ResetPassword> call;
+public class ResetPasswordProviderImp implements ResetPasswordProviderInterface {
+   private retrofit2.Call<ResetPasswordModel> call;
 
 
 
@@ -19,7 +19,7 @@ public class Retrofit_reset_imple implements Retrofit_reset_interface {
   call.enqueue(new Callback() {
    @Override
    public void onResponse(retrofit2.Call call, Response response) {
-    callback.onSuccess((ResetPassword)response.body());
+    callback.onSuccess((ResetPasswordModel)response.body());
    }
 
    @Override

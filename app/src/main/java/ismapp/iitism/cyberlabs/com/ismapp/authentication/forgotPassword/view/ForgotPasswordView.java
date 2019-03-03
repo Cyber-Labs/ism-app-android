@@ -1,6 +1,6 @@
-package ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotpassword.view;
+package ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotPassword.view;
 
-import ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotpassword.model.ForgotPasswordResponse;
+import ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotPassword.model.ForgotPasswordResponse;
 
 public interface ForgotPasswordView {
     void showProgressBar(boolean check);

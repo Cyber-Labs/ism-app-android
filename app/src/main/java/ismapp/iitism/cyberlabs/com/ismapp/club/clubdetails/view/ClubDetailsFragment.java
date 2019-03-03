@@ -1,26 +1,30 @@
 package ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.view;
 
-import android.app.AlertDialog;
 import android.os.Bundle;
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
 import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
+import ismapp.iitism.cyberlabs.com.ismapp.addclubmember.view.AddMember;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.model.MemberListResponse;
-import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.presenter.ClubDetailsPresenter;
-import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.presenter.ClubPresenInter;
-import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.provider.RetroClubDetail;
-import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.model.ClubDetails;
+import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.presenter.ClubDetailsPresenterImp;
+import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.presenter.ClubDetailsPresenterInterface;
+import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.provider.ClubDetailsProviderInterface;
+import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.model.ClubDetailsModel;
+import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.view.ClubListListFragment;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
 
 /**
@@ -31,7 +35,7 @@ import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
  * Use the {@link ClubDetailsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ClubDetailsFragment extends Fragment implements ClubDetailsView {
+public class ClubDetailsFragment extends Fragment implements ClubDetailsFragmentInterface {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     //private static final String ARG_PARAM1 = "param1";
@@ -42,14 +46,15 @@ public class ClubDetailsFragment extends Fragment implements ClubDetailsView {
     private String mParam2;
     ImageView clubImage,BrowserIcon;
     TextView tv_clubName, tv_description, tv_Tagline;
-
-    AlertDialog alertDialog;
-    ClubPresenInter clubPresenInter;
+    ClubDetailsPresenterInterface clubDetailsPresenterInterface;
     LinearLayout lay;
     SharedPrefs sharedPrefs;
     int i=0;
     RecyclerView rv_show_members;
     MembAdapter membAdapter;
+    View bottomSheet;
+    ProgressBar pb_club_details;
+    View view;
 
    // private OnFragmentInteractionListener mListener;
 
@@ -85,7 +90,7 @@ public class ClubDetailsFragment extends Fragment implements ClubDetailsView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_club_details, container, false);
+        view = inflater.inflate(R.layout.fragment_club_details, container, false);
 
 
         clubImage = (ImageView)view.findViewById(R.id.club_image);
@@ -97,15 +102,32 @@ public class ClubDetailsFragment extends Fragment implements ClubDetailsView {
         rv_show_members= view.findViewById(R.id.rv_show_members);
         rv_show_members.setHasFixedSize(true);
         rv_show_members.setLayoutManager(new LinearLayoutManager(getContext()));
+        pb_club_details=view.findViewById(R.id.pb_club_details);
+        view.findViewById(R.id.fab_add_member).setVisibility(View.GONE);
+        view.findViewById(R.id.fab_add_member).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity)getActivity()).addFragment(new AddMember());
+            }
+        });
 
         ((MainActivity)getActivity()).changeActionBar();
-        alertDialog= new AlertDialog.Builder(getContext()).setView(LayoutInflater.from(getContext()).inflate(R.layout.progress_bar,null)).setCancelable(false).create();
         sharedPrefs = new SharedPrefs(getContext());
         ((MainActivity)getActivity()).addTitletoBar(sharedPrefs.getClubName());
-        clubPresenInter = new ClubDetailsPresenter(this,new RetroClubDetail());
+        clubDetailsPresenterInterface = new ClubDetailsPresenterImp(this,new ClubDetailsProviderInterface());
        ;
-        clubPresenInter.getclubdetail(sharedPrefs.getAccessToken(),sharedPrefs.getClubId());
-        clubPresenInter.requestmemblist(sharedPrefs.getAccessToken(),sharedPrefs.getClubId());
+        clubDetailsPresenterInterface.getclubdetail(sharedPrefs.getAccessToken(),sharedPrefs.getClubId());
+        clubDetailsPresenterInterface.requestmemblist(sharedPrefs.getAccessToken(),sharedPrefs.getClubId());
+
+        bottomSheet =view.findViewById(R.id.bottom_sheet_members);
+        final BottomSheetBehavior behavior = BottomSheetBehavior.from(bottomSheet);
+        bottomSheet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("amanan", "onClick: ");
+               behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+            }
+        });
         return view;
 
     }
@@ -115,19 +137,22 @@ public class ClubDetailsFragment extends Fragment implements ClubDetailsView {
         i++;
 
         if(show|| i<3){
-             alertDialog.show();
+             pb_club_details.setVisibility(View.VISIBLE);
         }else{
-            alertDialog.dismiss();
+            pb_club_details.setVisibility(View.GONE);
         }
     }
 
     @Override
-    public void showmodel(ClubDetails clubDetails) {
-         Picasso.get().load(clubDetails.getImage_url()).into(clubImage);
+    public void showmodel(ClubDetailsModel clubDetailsModel) {
+         Picasso.get().load(clubDetailsModel.getImage_url()).into(clubImage);
          lay.setBackgroundColor(R.color.colorPrimary);
-        tv_clubName.setText(clubDetails.getName());
-        tv_Tagline.setText(clubDetails.getTagline());
-        tv_description.setText(clubDetails.getDescription());
+        tv_clubName.setText(clubDetailsModel.getName());
+        tv_Tagline.setText(clubDetailsModel.getTagline());
+        tv_description.setText(clubDetailsModel.getDescription());
+        if(clubDetailsModel.getIs_admin())
+            view.findViewById(R.id.fab_add_member).setVisibility(View.VISIBLE);
+
 
 //        BrowserIcon.setOnClickListener(new View.OnClickListener() {
 //            @Override

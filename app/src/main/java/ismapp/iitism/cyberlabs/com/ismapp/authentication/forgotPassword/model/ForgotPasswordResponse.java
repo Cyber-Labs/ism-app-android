@@ -1,4 +1,4 @@
-package ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotpassword.model;
+package ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotPassword.model;
 
 public class ForgotPasswordResponse {
 

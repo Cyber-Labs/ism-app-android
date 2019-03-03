@@ -4,12 +4,14 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="nav_header_vertical_spacing">8dp</dimen>
     <dimen name="nav_header_height">176dp</dimen>
-    <dimen name="card_height">120dp</dimen>
+    <dimen name="card_height">100dp</dimen>
     <dimen name="layout_margin_horizontal">5dp</dimen>
     <dimen name="layout_padding_horizontal">5dp</dimen>
     <dimen name="tv_padding">2dp</dimen>
     <dimen name="layout_margin">5dp</dimen>
     <dimen name="layout_padding">5dp</dimen>
+    <dimen name="head_size">32sp</dimen>
+    <dimen name="edit_text">20sp</dimen>
     <dimen name="title_text_size">14sp</dimen>
     <dimen name="tagline_text_size">12sp</dimen>
     <dimen name="card_elevation">10dp</dimen>

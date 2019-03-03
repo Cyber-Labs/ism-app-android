@@ -1,6 +1,6 @@
 package ismapp.iitism.cyberlabs.com.ismapp.club.clublist.presenter;
 
-public interface PresenterInterface {
+public interface ClubListPresenterInterface {
     void requestclublist( String access_token);
 
 
