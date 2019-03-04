@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:fontFamily="@font/lato"
-        android:text="Add Member"
+        android:text="@string/add_member"
         android:textSize="@dimen/head_size"
         android:textStyle="bold"
         android:gravity="center"/>
@@ -20,7 +20,6 @@
         android:layout_height="0dp"
         android:layout_weight="15"
         android:layout_margin="@dimen/layout_margin"
-        android:paddingHorizontal="@dimen/layout_padding_horizontal"
         android:orientation="vertical">
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -32,9 +31,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/add_member_email_id"
-                android:hint="Enter the Email-Id of member"
+                android:hint="@string/hint_add_member"
                 android:textSize="@dimen/edit_text"
-                android:text="aman pandey"
+                android:text="@string/name_add_member"
                 android:imeOptions="actionDone"
                 android:maxLines="1"
                 android:fontFamily="@font/lato"/>

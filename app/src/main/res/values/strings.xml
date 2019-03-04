@@ -41,4 +41,12 @@
     <string name="feed_item_desc">This is very interesting news coming up on your channel, get ready for it. Hope you will like it. Blah, Blah</string>
     <string name="feed_name">Feed Name</string>
     <string name="feed_item_name">Name</string>
+    <string name="event_name">Android Workshop</string>
+    <string name="event_venue">SAC 112</string>
+    <string name="event_start_date">6 pm 12 Mar 2019</string>
+    <string name="event_end_date">6 pm 15 Mar 2019</string>
+    <string name="add_member">Add Member</string>
+    <string name="hint_add_member">Enter the Email-Id of member</string>
+    <string name="name_add_member">amanpandey@gmail.com</string>
+    <string name="event_description">Description</string>
 </resources>
