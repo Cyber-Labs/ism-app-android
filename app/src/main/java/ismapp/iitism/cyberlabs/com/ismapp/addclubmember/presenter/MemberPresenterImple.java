@@ -1,30 +1,30 @@
 package ismapp.iitism.cyberlabs.com.ismapp.addclubmember.presenter;
 
-import ismapp.iitism.cyberlabs.com.ismapp.addclubmember.model.member;
-import ismapp.iitism.cyberlabs.com.ismapp.addclubmember.provider.MemberProviderImplementation;
+import ismapp.iitism.cyberlabs.com.ismapp.addclubmember.model.Member;
+import ismapp.iitism.cyberlabs.com.ismapp.addclubmember.provider.RetroMember;
 import ismapp.iitism.cyberlabs.com.ismapp.addclubmember.view.MemberInterface;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
 
 public class MemberPresenterImple implements MemberPresenter {
-  private   MemberInterface memberInterface;
-    private MemberProviderImplementation memberProviderImplementation;
+    MemberInterface memberInterface;
+    RetroMember retroMember;
 
-    public MemberPresenterImple(MemberInterface memberInterface, MemberProviderImplementation memberProviderImplementation) {
+    public MemberPresenterImple(MemberInterface memberInterface, RetroMember retroMember) {
         this.memberInterface = memberInterface;
-        this.memberProviderImplementation = memberProviderImplementation;
+        this.retroMember = retroMember;
     }
 
     @Override
-    public void getMemberResponse(String token, int clubid, String emailid, Boolean isadmin) {
-        memberProviderImplementation.getMemberResponse(token, clubid, emailid, isadmin, new PresenterCallback() {
+    public void getresponse(String token, int clubid, String emailid, Boolean isadmin) {
+        retroMember.getresponse(token, clubid, emailid, isadmin, new PresenterCallback() {
             @Override
             public void onSuccess(Object o) {
-                memberInterface.getResult((member)o);
+                memberInterface.getResult((Member)o);
             }
 
             @Override
             public void OnFailure(String msg) {
-                 memberInterface.showMessage(msg);
+                 memberInterface.showmessage(msg);
             }
         });
     }

@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,6 +26,7 @@ import ismapp.iitism.cyberlabs.com.ismapp.authentication.signup.Presenter.SignUp
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.signup.Provider.SignUpProviderImp;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.verifyotp.View.VerifyOtpActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
+import ismapp.iitism.cyberlabs.com.ismapp.helper.ViewUtils;
 
 public class SignUpActivity extends AppCompatActivity implements SignUpActivityInterface {
     @BindView(R.id.signup_name)
@@ -56,90 +58,27 @@ public class SignUpActivity extends AppCompatActivity implements SignUpActivityI
         //  emailLay.setErrorEnabled(true);
         //  passLay.setErrorEnabled(true);
         alertDialog= new AlertDialog.Builder(this).setView(LayoutInflater.from(this).inflate(R.layout.progress_bar,null)).setCancelable(false).create();
-        pass.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            }
-
-            @RequiresApi(api = Build.VERSION_CODES.M)
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(name.getText().toString().trim().isEmpty())
-                    nameLay.setError("Enter the Name");
-                if(email.getText().toString().trim().isEmpty())
-                    emailLay.setError("Enter the Email-Id");
-                if(!name.getText().toString().trim().isEmpty()&&!email.getText().toString().trim().isEmpty()&&pass.getText().toString().length()>=6)
-                {next.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));next.setClickable(true);}
-                else
-                {next.setBackgroundColor(getResources().getColor(R.color.titleColorLight));next.setClickable(false);}
-
-
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-        name.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @RequiresApi(api = Build.VERSION_CODES.M)
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(!name.getText().toString().trim().isEmpty()&&!email.getText().toString().trim().isEmpty()&&pass.getText().toString().length()>=6)
-                {next.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));next.setClickable(true);}
-                else
-                {
-                    next.setBackgroundColor(getResources().getColor(R.color.titleColorLight));next.setClickable(false);}
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-        email.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @RequiresApi(api = Build.VERSION_CODES.M)
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(!name.getText().toString().trim().isEmpty()&&!email.getText().toString().trim().isEmpty()&&pass.getText().toString().length()>=6)
-                {next.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));next.setClickable(true);}
-                else
-                {next.setBackgroundColor(getResources().getColor(R.color.titleColorLight));next.setClickable(false);}
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SignUpPresenter signUpPresenter =new SignUpPresenterImp(SignUpActivity.this,new SignUpProviderImp(),
-                        email.getText().toString().trim(),
-                        name.getText().toString().trim(),
-                        pass.getText().toString());
+                if (email.getText().toString().trim().isEmpty() || pass.getText().toString().trim().isEmpty() || name.getText().toString().trim().isEmpty()) {
+                    ViewUtils.showToast(getApplicationContext(), "All Fields Are required");
+                } else if (pass.getText().toString().trim().length() < 6) {
+                    ViewUtils.showToast(getApplicationContext(), "Password Must Contain min 6 letters!!!");
+                } else {
+                    SignUpPresenter signUpPresenter = new SignUpPresenterImp(SignUpActivity.this, new SignUpProviderImp(),
+                            email.getText().toString().trim(),
+                            name.getText().toString().trim(),
+                            pass.getText().toString());
 
-              e=email.getText().toString().trim();
-                name.setText("");
-                email.setText("");
-                pass.setText("");
-                signUpPresenter.getSignUpResponse();
 
+                    name.setText("");
+                    email.setText("");
+                    pass.setText("");
+                    signUpPresenter.getSignUpResponse();
+
+                }
             }
         });
 

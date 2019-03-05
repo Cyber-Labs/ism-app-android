@@ -1,4 +1,4 @@
-package ismapp.iitism.cyberlabs.com.ismapp.Events;
+package ismapp.iitism.cyberlabs.com.ismapp.events;
 
 public class ghnta {
 }
