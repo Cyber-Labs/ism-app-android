@@ -50,8 +50,8 @@ public class ClubListAdapter extends RecyclerView.Adapter<ClubListAdapter.clubAd
     public void onBindViewHolder(@NonNull clubAdapterViewHolder clubAdapterViewHolder, int i) {
         final ClubDetails clubDetails = clubsLists.get(i);
         clubAdapterViewHolder.tv_clubname.setText(clubDetails.getName());
-        clubAdapterViewHolder.tv_clubtagline.setText(clubDetails.getTagline());
-        Picasso.get().load(clubDetails.getImageurl()).into(clubAdapterViewHolder.clubimage);
+        clubAdapterViewHolder.tv_clubtagline.setText(clubDetails.get_tag_line());
+        Picasso.get().load(clubDetails.getImage_url()).into(clubAdapterViewHolder.clubimage);
 //        clubAdapterViewHolder.cardView.setOnClickListener(new View.OnClickListener() {
 //            @Override public void onClick(View v) {
 //                ((MainActivity)fragmentActivity).addFragment(ClubDetailsFragment.newInstance("", ""));
@@ -71,15 +71,16 @@ public class ClubListAdapter extends RecyclerView.Adapter<ClubListAdapter.clubAd
 
         public clubAdapterViewHolder(@NonNull View itemView) {
             super(itemView);
-            clubimage = (ImageView)itemView.findViewById(R.id.iv_clubimage);
-            tv_clubname = (TextView)itemView.findViewById(R.id.iv_clubname);
-            tv_clubtagline = (TextView)itemView.findViewById(R.id.iv_clubtagline);
+            clubimage = itemView.findViewById(R.id.iv_clubimage);
+            tv_clubname = itemView.findViewById(R.id.iv_clubname);
+            tv_clubtagline = itemView.findViewById(R.id.iv_clubtagline);
             cardView = (CardView)itemView.findViewById(R.id.card_view_club);
             cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     sharedPrefs.setClubId(clubsLists.get(getAdapterPosition()).getId());
                     sharedPrefs.setClubName(clubsLists.get(getAdapterPosition()).getName());
+                    sharedPrefs.setIsAdmin(clubsLists.get(getAdapterPosition()).isIs_admin());
                     ((MainActivity)fragmentActivity).addFragment(new ClubDetailsFragment());
                 }
             });

@@ -1,8 +1,6 @@
 package ismapp.iitism.cyberlabs.com.ismapp.addclubmember.view;
 
 import android.app.ProgressDialog;
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
@@ -10,13 +8,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.Switch;
 
-import java.lang.reflect.Member;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -24,12 +18,9 @@ import ismapp.iitism.cyberlabs.com.ismapp.R;
 import ismapp.iitism.cyberlabs.com.ismapp.addclubmember.model.member;
 import ismapp.iitism.cyberlabs.com.ismapp.addclubmember.presenter.MemberPresenter;
 import ismapp.iitism.cyberlabs.com.ismapp.addclubmember.presenter.MemberPresenterImple;
-import ismapp.iitism.cyberlabs.com.ismapp.addclubmember.provider.RetroMember;
-import ismapp.iitism.cyberlabs.com.ismapp.addclubmember.provider.memberprointer;
-import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
+import ismapp.iitism.cyberlabs.com.ismapp.addclubmember.provider.MemberProviderImplementation;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
-
-import static android.support.v4.content.ContextCompat.getSystemService;
+import ismapp.iitism.cyberlabs.com.ismapp.helper.ViewUtils;
 
 
 public class AddMember extends Fragment implements MemberInterface {
@@ -96,7 +87,7 @@ public class AddMember extends Fragment implements MemberInterface {
         checkBox = (CheckBox) view.findViewById(R.id.is_member_admin);
         Submit = (Button) view.findViewById(R.id.add_member_sumbit);
         sharedPrefs = new SharedPrefs(getContext());
-        memberPresenter = new MemberPresenterImple(this, new RetroMember());
+        memberPresenter = new MemberPresenterImple(this, new MemberProviderImplementation());
         lay_add_member_email_id = view.findViewById(R.id.lay_add_member_email_id);
         Submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,13 +107,14 @@ public class AddMember extends Fragment implements MemberInterface {
                 showProgressbar(true);
                 String email = editText.getText().toString().trim();
                 if (email.isEmpty())
-                {showProgressbar(false);  lay_add_member_email_id.setError("Empty Field");}
+                {showProgressbar(false);
+                lay_add_member_email_id.setError("Empty Field");}
 
                 else if (emailInvalid(email)) {
                     showProgressbar(false);
                     lay_add_member_email_id.setError("Not Valid");
                 } else {
-                    memberPresenter.getresponse(sharedPrefs.getAccessToken(), sharedPrefs.getClubId(), email, checkBox.isChecked());
+                    memberPresenter.getMemberResponse(sharedPrefs.getAccessToken(), sharedPrefs.getClubId(), email, checkBox.isChecked());
 
 
 
@@ -160,11 +152,12 @@ public class AddMember extends Fragment implements MemberInterface {
             showProgressbar(false);
             //toast;
             //return to back page;
+            ViewUtils.showToast(getContext(),member.getMessage());
         }
     }
 
     @Override
-    public void buttonclick(Boolean click) {
+    public void buttonClick(Boolean click) {
         if (click) {
             Submit.setClickable(true);
         } else {
@@ -174,7 +167,7 @@ public class AddMember extends Fragment implements MemberInterface {
     }
 
     @Override
-    public void showmessage(String msg) {
+    public void showMessage(String msg) {
         //toast
     }
 

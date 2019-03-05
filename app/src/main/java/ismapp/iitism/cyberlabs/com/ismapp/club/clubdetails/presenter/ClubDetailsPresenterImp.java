@@ -7,14 +7,14 @@ import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.model.ClubDetailsMode
 import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
 
 public class ClubDetailsPresenterImp implements ClubDetailsPresenterInterface {
-    ClubDetailsFragmentInterface clubDetailsFragmentInterface;
+    private ClubDetailsFragmentInterface clubDetailsFragmentInterface;
 
     public ClubDetailsPresenterImp(ClubDetailsFragmentInterface clubDetailsFragmentInterface, ClubDetailsProviderImp clubDetailsProviderImp) {
         this.clubDetailsFragmentInterface = clubDetailsFragmentInterface;
         this.clubDetailsProviderImp = clubDetailsProviderImp;
     }
 
-    ClubDetailsProviderImp clubDetailsProviderImp;
+    private ClubDetailsProviderImp clubDetailsProviderImp;
 
     @Override
     public void getclubdetail(String access_token, int id) {
@@ -37,7 +37,7 @@ public class ClubDetailsPresenterImp implements ClubDetailsPresenterInterface {
     }
 
     @Override
-    public void requestmemblist(String access_token,int id) {
+    public void requestMemberList(String access_token, int id) {
         clubDetailsFragmentInterface.showProgressbar(true);
         clubDetailsProviderImp.requestmemblist(access_token, id, new PresenterCallback() {
             @Override
