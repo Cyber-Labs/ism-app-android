@@ -1,35 +1,27 @@
 package ismapp.iitism.cyberlabs.com.ismapp.addclubmember.view;
 
 import android.app.ProgressDialog;
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.Switch;
 
-import java.lang.reflect.Member;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import butterknife.OnTextChanged;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
-import ismapp.iitism.cyberlabs.com.ismapp.addclubmember.model.member;
+import ismapp.iitism.cyberlabs.com.ismapp.addclubmember.model.Member;
 import ismapp.iitism.cyberlabs.com.ismapp.addclubmember.presenter.MemberPresenter;
 import ismapp.iitism.cyberlabs.com.ismapp.addclubmember.presenter.MemberPresenterImple;
 import ismapp.iitism.cyberlabs.com.ismapp.addclubmember.provider.RetroMember;
-import ismapp.iitism.cyberlabs.com.ismapp.addclubmember.provider.memberprointer;
-import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
-
-import static android.support.v4.content.ContextCompat.getSystemService;
 
 
 public class AddMember extends Fragment implements MemberInterface {
@@ -107,13 +99,17 @@ public class AddMember extends Fragment implements MemberInterface {
 
         return view;
     }
-
+    @OnTextChanged(R.id.add_member_email_id)
+    public void changedTextOnEditPhone() {
+        lay_add_member_email_id.setError(null);
+    }
     // TODO: Rename method, update argument and hook method into UI event
 
 
     public void submit() {
 
                 showProgressbar(true);
+
                 String email = editText.getText().toString().trim();
                 if (email.isEmpty())
                 {showProgressbar(false);  lay_add_member_email_id.setError("Empty Field");}
@@ -123,6 +119,7 @@ public class AddMember extends Fragment implements MemberInterface {
                     lay_add_member_email_id.setError("Not Valid");
                 } else {
                     memberPresenter.getresponse(sharedPrefs.getAccessToken(), sharedPrefs.getClubId(), email, checkBox.isChecked());
+
 
 
 
@@ -155,13 +152,14 @@ public class AddMember extends Fragment implements MemberInterface {
     }
 
     @Override
-    public void getResult(member member) {
-        if (member.getSuccess()) {
+    public void getResult(Member member) {
+        Log.e("hello", "getResult: " + member.toString() );
+        if(member.getSuccess()){
             showProgressbar(false);
-            //toast;
-            //return to back page;
+
         }
     }
+
 
     @Override
     public void buttonclick(Boolean click) {

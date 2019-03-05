@@ -1,8 +1,7 @@
 package ismapp.iitism.cyberlabs.com.ismapp.addclubmember.presenter;
 
-import ismapp.iitism.cyberlabs.com.ismapp.addclubmember.model.member;
+import ismapp.iitism.cyberlabs.com.ismapp.addclubmember.model.Member;
 import ismapp.iitism.cyberlabs.com.ismapp.addclubmember.provider.RetroMember;
-import ismapp.iitism.cyberlabs.com.ismapp.addclubmember.provider.memberprointer;
 import ismapp.iitism.cyberlabs.com.ismapp.addclubmember.view.MemberInterface;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
 
@@ -20,7 +19,7 @@ public class MemberPresenterImple implements MemberPresenter {
         retroMember.getresponse(token, clubid, emailid, isadmin, new PresenterCallback() {
             @Override
             public void onSuccess(Object o) {
-                memberInterface.getResult((member)o);
+                memberInterface.getResult((Member)o);
             }
 
             @Override
