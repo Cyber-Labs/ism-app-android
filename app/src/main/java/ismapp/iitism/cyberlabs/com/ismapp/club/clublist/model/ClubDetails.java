@@ -1,57 +1,43 @@
 package ismapp.iitism.cyberlabs.com.ismapp.club.clublist.model;
 
 public class ClubDetails {
-    int clubid;
-    String name;
-    String imageurl;
-    String tagline;
-    int id;
+   private int club_id;
+   private String name;
+   private String image_url;
+    private String _tag_line;
+    private int id;
+    private  boolean is_admin;
 
-    public ClubDetails(int clubid, String name, String imageurl, String tagline, int id) {
-        this.clubid = clubid;
+    public ClubDetails(int club_id, String name, String image_url, String _tag_line, int id, boolean is_admin) {
+        this.club_id = club_id;
         this.name = name;
-        this.imageurl = imageurl;
-        this.tagline = tagline;
+        this.image_url = image_url;
+        this._tag_line = _tag_line;
         this.id = id;
+        this.is_admin = is_admin;
     }
 
-    public int getClubid() {
-        return clubid;
-    }
-
-    public void setClubid(int clubid) {
-        this.clubid = clubid;
+    public int getClub_id() {
+        return club_id;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getImage_url() {
+        return image_url;
     }
 
-    public String getImageurl() {
-        return imageurl;
-    }
-
-    public void setImageurl(String imageurl) {
-        this.imageurl = imageurl;
-    }
-
-    public String getTagline() {
-        return tagline;
-    }
-
-    public void setTagline(String tagline) {
-        this.tagline = tagline;
+    public String get_tag_line() {
+        return _tag_line;
     }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public boolean isIs_admin() {
+        return is_admin;
     }
 }

@@ -19,12 +19,11 @@ import com.squareup.picasso.Picasso;
 import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
 import ismapp.iitism.cyberlabs.com.ismapp.addclubmember.view.AddMember;
+import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.model.ClubDetailsModel;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.model.MemberListResponse;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.presenter.ClubDetailsPresenterImp;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.presenter.ClubDetailsPresenterInterface;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.provider.ClubDetailsProviderInterface;
-import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.model.ClubDetailsModel;
-import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.view.ClubListListFragment;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
 
 /**
@@ -93,11 +92,11 @@ public class ClubDetailsFragment extends Fragment implements ClubDetailsFragment
         view = inflater.inflate(R.layout.fragment_club_details, container, false);
 
 
-        clubImage = (ImageView)view.findViewById(R.id.club_image);
-     //   BrowserIcon = (ImageView)view.findViewById(R.id.browser_icon);
-        tv_clubName = (TextView)view.findViewById(R.id.club_name);
-        tv_description = (TextView)view.findViewById(R.id.club_description);
-        tv_Tagline =(TextView)view.findViewById(R.id.club_tag);
+        clubImage = view.findViewById(R.id.club_image);
+        /* BrowserIcon = (ImageView)view.findViewById(R.id.browser_icon); */
+        tv_clubName = view.findViewById(R.id.club_name);
+        tv_description = view.findViewById(R.id.club_description);
+        tv_Tagline = view.findViewById(R.id.club_tag);
         lay= view.findViewById(R.id.club_lay);
         rv_show_members= view.findViewById(R.id.rv_show_members);
         rv_show_members.setHasFixedSize(true);
@@ -117,7 +116,7 @@ public class ClubDetailsFragment extends Fragment implements ClubDetailsFragment
         clubDetailsPresenterInterface = new ClubDetailsPresenterImp(this,new ClubDetailsProviderInterface());
        ;
         clubDetailsPresenterInterface.getclubdetail(sharedPrefs.getAccessToken(),sharedPrefs.getClubId());
-        clubDetailsPresenterInterface.requestmemblist(sharedPrefs.getAccessToken(),sharedPrefs.getClubId());
+        clubDetailsPresenterInterface.requestMemberList(sharedPrefs.getAccessToken(),sharedPrefs.getClubId());
 
         bottomSheet =view.findViewById(R.id.bottom_sheet_members);
         final BottomSheetBehavior behavior = BottomSheetBehavior.from(bottomSheet);
@@ -145,8 +144,8 @@ public class ClubDetailsFragment extends Fragment implements ClubDetailsFragment
 
     @Override
     public void showmodel(ClubDetailsModel clubDetailsModel) {
-         Picasso.get().load(clubDetailsModel.getImage_url()).into(clubImage);
-         lay.setBackgroundColor(R.color.colorPrimary);
+        Picasso.get().load(clubDetailsModel.getImage_url()).into(clubImage);
+         lay.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         tv_clubName.setText(clubDetailsModel.getName());
         tv_Tagline.setText(clubDetailsModel.getTagline());
         tv_description.setText(clubDetailsModel.getDescription());
