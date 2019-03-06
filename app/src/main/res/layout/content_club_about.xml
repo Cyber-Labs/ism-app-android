@@ -54,7 +54,7 @@
                     android:id="@+id/fab_add_member"
                     android:layout_height="match_parent"
                     android:visibility="visible"
-                    android:src="@drawable/add_member"
+                    android:src="@drawable/setting"
                     android:paddingHorizontal="@dimen/layout_padding_horizontal"/>
 
 

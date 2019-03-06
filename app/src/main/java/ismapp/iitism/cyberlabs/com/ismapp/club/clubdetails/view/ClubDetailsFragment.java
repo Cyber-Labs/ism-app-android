@@ -19,6 +19,7 @@ import com.squareup.picasso.Picasso;
 import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
 import ismapp.iitism.cyberlabs.com.ismapp.addclubmember.view.AddMember;
+import ismapp.iitism.cyberlabs.com.ismapp.adminsettings.view.AdminSettingsFragment;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.model.ClubDetailsModel;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.model.MemberListResponse;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.presenter.ClubDetailsPresenterImp;
@@ -106,7 +107,7 @@ public class ClubDetailsFragment extends Fragment implements ClubDetailsFragment
         view.findViewById(R.id.fab_add_member).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity)getActivity()).addFragment(new AddMember());
+                ((MainActivity)getActivity()).addFragment(new AdminSettingsFragment());
             }
         });
 

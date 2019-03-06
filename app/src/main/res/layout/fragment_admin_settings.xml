@@ -5,6 +5,16 @@
 
     <ImageButton
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ibtn_admin_man_members"
+        android:scaleType="centerCrop"
+        android:padding="@dimen/iv_padding_small"
+        android:adjustViewBounds="true"
+        android:src="@drawable/manmembers"
+        android:layout_weight="1"/>
+
+    <ImageButton
+        android:layout_width="match_parent"
         android:id="@+id/ibtn_admin_man_events"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -21,14 +31,6 @@
         android:padding="@dimen/iv_padding_small"
         android:src="@drawable/manfeed"
         android:layout_weight="1"/>
-    <ImageButton
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/ibtn_admin_man_members"
-        android:scaleType="centerCrop"
-        android:padding="@dimen/iv_padding_small"
-        android:adjustViewBounds="true"
-        android:src="@drawable/manmembers"
-        android:layout_weight="1"/>
+
 
 </LinearLayout>
