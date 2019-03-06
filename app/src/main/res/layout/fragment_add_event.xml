@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/layout_margin">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:id="@+id/iv_add_event_pic"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:padding="@dimen/iv_padding"
+        android:src="@drawable/rectangle"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:padding="@dimen/tv_padding"
+        android:id="@+id/tv_add_event_title"
+        android:hint="@string/event_title"
+        android:layout_weight="1"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:padding="@dimen/tv_padding"
+        android:id="@+id/tv_add_event_venue"
+        android:hint="@string/event_venue"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_weight="0.2"
+        android:layout_height="wrap_content"
+        android:text="@string/enter_event_start_date" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:id="@+id/add_event_start_date"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/tv_padding"
+        android:ems="10"
+        android:layout_weight="0.6"
+        android:inputType="date" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_weight="0.2"
+        android:layout_height="wrap_content"
+        android:text="@string/enter_event_start_date" />
+
+    <EditText
+        android:id="@+id/add_event_end_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/tv_padding"
+        android:ems="10"
+        android:layout_weight="0.6"
+        android:inputType="date" />
+
+    <EditText
+        android:id="@+id/tv_add_event_short_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/tv_padding"
+        android:layout_weight="5"
+        android:ems="10"
+        android:gravity="start"
+        android:hint="@string/event_short_desc"
+        android:inputType="textMultiLine" />
+
+</LinearLayout>

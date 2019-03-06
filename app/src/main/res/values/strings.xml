@@ -49,4 +49,9 @@
     <string name="hint_add_member">Enter the Email-Id of member</string>
     <string name="name_add_member">amanpandey@gmail.com</string>
     <string name="event_description">Description</string>
+    <string name="add_event">Add Event</string>
+    <string name="event_title">Event Title</string>
+    <string name="event_short_desc">Enter Short Description</string>
+    <string name="enter_event_start_date">Enter Event Start Date</string>
+    <string name="enter_event_start_date">Enter Event Start Date</string>
 </resources>
