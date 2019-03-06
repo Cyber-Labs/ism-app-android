@@ -118,7 +118,7 @@ public class AddMember extends Fragment implements MemberInterface {
                     showProgressbar(false);
                     lay_add_member_email_id.setError("Not Valid");
                 } else {
-                    memberPresenter.getresponse(sharedPrefs.getAccessToken(), sharedPrefs.getClubId(), email, checkBox.isChecked());
+                    memberPresenter.getMemberResponse(sharedPrefs.getAccessToken(), sharedPrefs.getClubId(), email, checkBox.isChecked());
 
 
 
