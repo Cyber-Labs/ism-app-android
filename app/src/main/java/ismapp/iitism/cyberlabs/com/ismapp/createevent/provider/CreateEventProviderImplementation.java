@@ -12,7 +12,7 @@ import retrofit2.Response;
 public class CreateEventProviderImplementation implements CreateEventProviderInterface {
      Call<CreateEventApi> createEventApiCall;
     @Override
-    public void getCreateEventResponse(String access_token, String club_id, String title, String short_description, String description, String venue, String event_start_date, String event_end_date, MultipartBody.Part image, final PresenterCallback presenterCallback) {
+    public void getCreateEventResponse(String access_token, int club_id, String title, String short_description, String description, String venue, String event_start_date, String event_end_date, MultipartBody.Part image, final PresenterCallback presenterCallback) {
       CreateEventApi createEventApi = ApiClient.getRetrofit().create(CreateEventApi.class);
 
        createEventApiCall = createEventApi.getcreateventresponse(access_token,club_id,title,short_description,description,venue,event_start_date,event_end_date,image);

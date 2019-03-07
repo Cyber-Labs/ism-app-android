@@ -22,6 +22,11 @@ import java.io.File;
 
 import ismapp.iitism.cyberlabs.com.ismapp.R;
 import ismapp.iitism.cyberlabs.com.ismapp.createevent.model.CreateEventModel;
+import ismapp.iitism.cyberlabs.com.ismapp.createevent.presenter.CreateEventPresenterImplementation;
+import ismapp.iitism.cyberlabs.com.ismapp.createevent.presenter.CreateEventPresenterInterface;
+import ismapp.iitism.cyberlabs.com.ismapp.createevent.provider.CreateEventProviderImplementation;
+import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
+import ismapp.iitism.cyberlabs.com.ismapp.helper.ViewUtils;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -45,6 +50,7 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
     private Button submit;
     public static final int PICK_IMAGE = 1;
     private MultipartBody.Part image;
+    CreateEventPresenterInterface createEventPresenterInterface;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -95,6 +101,7 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
         startStartDate = (EditText)view.findViewById(R.id.add_event_start_date);
         startEndDate = (EditText)view.findViewById(R.id.add_event_end_date);
         submit = (Button)view.findViewById(R.id.create_event_submit);
+        createEventPresenterInterface = new CreateEventPresenterImplementation(this,new CreateEventProviderImplementation());
         selectimage();
 
         return   view;
@@ -159,9 +166,12 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void showResponse(CreateEventModel createEventModel) {
-      //response;
+      if(createEventModel.getSuccess()){
+          ViewUtils.showToast(getContext(),createEventModel.getMessage());
+      }
     }
 
     @Override
@@ -178,13 +188,21 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
 
     @Override
     public void getUserResponse() {
-        String Title = title.getText().toString();
-        String Description = description.getText().toString();
-        String ShortDescription = shortDescription.getText().toString();
-        String StartDate = startStartDate.getText().toString();
-        String EndDate = startEndDate.getText().toString();
-        String Venue = venue.getText().toString();
-
+        final String Title = title.getText().toString();
+        final String Description = description.getText().toString();
+        final String ShortDescription = shortDescription.getText().toString();
+        final String StartDate = startStartDate.getText().toString();
+        final String EndDate = startEndDate.getText().toString();
+        final String Venue = venue.getText().toString();
+        showButtonClickable(true);
+        submit.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public void onClick(View v) {
+                SharedPrefs sharedPrefs = new SharedPrefs(getContext());
+                createEventPresenterInterface.getCreateEventRequest(sharedPrefs.getAccessToken(),sharedPrefs.getClubId(),Title,ShortDescription,Description,Venue,StartDate,EndDate,image);
+            }
+        });
 
     }
 
