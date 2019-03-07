@@ -52,6 +52,7 @@
     <string name="add_event">Add Event</string>
     <string name="event_title">Event Title</string>
     <string name="event_short_desc">Enter Short Description</string>
+    <string name="event_desc">Enter Short Description</string>
     <string name="enter_event_start_date">Enter Event Start Date</string>
-    <string name="enter_event_start_date">Enter Event Start Date</string>
+    <string name="enter_event_end_date">Enter Event End Date</string>
 </resources>
