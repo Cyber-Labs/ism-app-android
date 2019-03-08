@@ -15,11 +15,14 @@ import butterknife.ButterKnife;
 import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
 import ismapp.iitism.cyberlabs.com.ismapp.addclubmember.view.AddMember;
+import ismapp.iitism.cyberlabs.com.ismapp.createevent.view.CreateEvent;
 
 public class AdminSettingsFragment extends Fragment {
 
     @BindView(R.id.ibtn_admin_man_members)
     ImageButton ibtn_admin_man_members;
+    @BindView(R.id.ibtn_admin_man_events)
+    ImageButton ibtn_admin_man_events;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -29,6 +32,12 @@ public class AdminSettingsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 ((MainActivity)getActivity()).addFragment(new AddMember());
+            }
+        });
+        ibtn_admin_man_events.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity)getActivity()).addFragment(new CreateEvent());
             }
         });
         return view;

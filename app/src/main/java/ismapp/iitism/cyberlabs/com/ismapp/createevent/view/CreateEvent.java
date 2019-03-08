@@ -1,6 +1,7 @@
 package ismapp.iitism.cyberlabs.com.ismapp.createevent.view;
 
-import android.app.Fragment;
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -10,15 +11,20 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.RequiresApi;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.TimePicker;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.util.Calendar;
 
 import ismapp.iitism.cyberlabs.com.ismapp.R;
 import ismapp.iitism.cyberlabs.com.ismapp.createevent.model.CreateEventModel;
@@ -44,12 +50,19 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
     private EditText description;
     private EditText shortDescription;
     private EditText Description;
-    private EditText startEndDate;
-    private EditText startStartDate;
+    private TextView EndDate;
+    private TextView StartDate;
+    private TextView EndTime;
+    private TextView StartTime;
     private EditText venue;
     private Button submit;
+    private Calendar calendar;
     public static final int PICK_IMAGE = 1;
     private MultipartBody.Part image;
+    ImageView iv_start_day;
+    ImageView iv_start_time;
+    ImageView iv_end_day;
+    ImageView iv_end_time;
     CreateEventPresenterInterface createEventPresenterInterface;
 
     // TODO: Rename and change types of parameters
@@ -98,14 +111,55 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
         description = (EditText)view.findViewById(R.id.tv_add_event_desc);
         shortDescription = (EditText)view.findViewById(R.id.tv_add_event_short_desc);
         venue = (EditText)view.findViewById(R.id.tv_add_event_venue);
-        startStartDate = (EditText)view.findViewById(R.id.add_event_start_date);
-        startEndDate = (EditText)view.findViewById(R.id.add_event_end_date);
+        StartDate = view.findViewById(R.id.add_event_start_date);
+        EndDate = view.findViewById(R.id.add_event_end_date);
+        StartTime=view.findViewById(R.id.add_event_start_time);
+        EndTime=view.findViewById(R.id.add_event_end_time);
         submit = (Button)view.findViewById(R.id.create_event_submit);
+        iv_start_day=view.findViewById(R.id.iv_start_day);
+        iv_start_time=view.findViewById(R.id.iv_start_time);
+        iv_end_day=view.findViewById(R.id.iv_end_day);
+        iv_end_time=view.findViewById(R.id.iv_end_time);
+        calendar= Calendar.getInstance();
         createEventPresenterInterface = new CreateEventPresenterImplementation(this,new CreateEventProviderImplementation());
         selectimage();
+        iv_start_day.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectAddEventDate();
+            }
+        });
+        iv_start_time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectAddEventTime();
+            }
+        });
 
         return   view;
 
+    }
+
+    private void selectAddEventDate() {
+        DatePickerDialog datePickerDialog=new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) { StartDate.setText(String.format("%d/%d/%d", year, month+1, dayOfMonth));
+
+            }
+        },Calendar.YEAR,Calendar.MONTH+1,Calendar.DAY_OF_MONTH);
+        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
+        datePickerDialog.show();
+    }
+    private void selectAddEventTime()
+    {
+        TimePickerDialog timePickerDialog=new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+              StartTime.setText(hourOfDay+":"+minute);
+            }
+        },Calendar.HOUR_OF_DAY,Calendar.MINUTE,false);
+
+        timePickerDialog.show();
     }
 
     private void selectimage() {
@@ -191,18 +245,18 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
         final String Title = title.getText().toString();
         final String Description = description.getText().toString();
         final String ShortDescription = shortDescription.getText().toString();
-        final String StartDate = startStartDate.getText().toString();
-        final String EndDate = startEndDate.getText().toString();
+//        final String StartDate = Startate.getText().toString();
+//        final String EndDate =EndDate.getText().toString();
         final String Venue = venue.getText().toString();
         showButtonClickable(true);
-        submit.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.M)
-            @Override
-            public void onClick(View v) {
-                SharedPrefs sharedPrefs = new SharedPrefs(getContext());
-                createEventPresenterInterface.getCreateEventRequest(sharedPrefs.getAccessToken(),sharedPrefs.getClubId(),Title,ShortDescription,Description,Venue,StartDate,EndDate,image);
-            }
-        });
+//        submit.setOnClickListener(new View.OnClickListener() {
+//            @RequiresApi(api = Build.VERSION_CODES.M)
+//            @Override
+//            public void onClick(View v) {
+//                SharedPrefs sharedPrefs = new SharedPrefs(getContext());
+//                createEventPresenterInterface.getCreateEventRequest(sharedPrefs.getAccessToken(),sharedPrefs.getClubId(),Title,ShortDescription,Description,Venue,StartDate,EndDate,image);
+//            }
+//        });
 
     }
 

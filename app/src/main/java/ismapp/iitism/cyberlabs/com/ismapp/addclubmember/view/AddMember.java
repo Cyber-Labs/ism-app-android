@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -36,6 +37,8 @@ public class AddMember extends Fragment implements MemberInterface {
     Boolean admin = false;
     MemberPresenter memberPresenter;
     SharedPrefs sharedPrefs;
+
+
     TextInputLayout lay_add_member_email_id;
 
 
@@ -87,6 +90,7 @@ public class AddMember extends Fragment implements MemberInterface {
         editText = view.findViewById(R.id.add_member_email_id);
         checkBox = (CheckBox) view.findViewById(R.id.is_member_admin);
         Submit = (Button) view.findViewById(R.id.add_member_sumbit);
+
         sharedPrefs = new SharedPrefs(getContext());
         memberPresenter = new MemberPresenterImple(this, new RetroMember());
         lay_add_member_email_id = view.findViewById(R.id.lay_add_member_email_id);

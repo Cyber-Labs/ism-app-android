@@ -23,7 +23,7 @@ public class ClubListProviderImp implements ClubListProviderInterface {
         clubsListCall.enqueue(new Callback<ClubListResponse>() {
             @Override
             public void onResponse(Call<ClubListResponse> call, Response<ClubListResponse> response) {
-                Log.e("TAG", "onResponse: "+response.body().getClubsNameList().size() );
+               // Log.e("TAG", "onResponse: "+response.body().getClubsNameList().size() );
                 presenterCallback.onSuccess((ClubListResponse)response.body());
 
             }
