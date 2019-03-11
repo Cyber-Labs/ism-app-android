@@ -1,7 +1,7 @@
 package ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.presenter;
 
 import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.model.MemberListResponse;
-import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.provider.ClubDetailsProviderImp;
+import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.provider.ClubDetailsProvider;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.view.ClubDetailsFragmentInterface;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.model.ClubDetailsModel;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
@@ -9,17 +9,17 @@ import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
 public class ClubDetailsPresenterImp implements ClubDetailsPresenterInterface {
     private ClubDetailsFragmentInterface clubDetailsFragmentInterface;
 
-    public ClubDetailsPresenterImp(ClubDetailsFragmentInterface clubDetailsFragmentInterface, ClubDetailsProviderImp clubDetailsProviderImp) {
+    public ClubDetailsPresenterImp(ClubDetailsFragmentInterface clubDetailsFragmentInterface, ClubDetailsProvider clubDetailsProvider) {
         this.clubDetailsFragmentInterface = clubDetailsFragmentInterface;
-        this.clubDetailsProviderImp = clubDetailsProviderImp;
+        this.clubDetailsProvider = clubDetailsProvider;
     }
 
-    private ClubDetailsProviderImp clubDetailsProviderImp;
+    private ClubDetailsProvider clubDetailsProvider;
 
     @Override
     public void getclubdetail(String access_token, int id) {
         clubDetailsFragmentInterface.showProgressbar(true);
-        clubDetailsProviderImp.getclubdetailresponse(access_token, id, new PresenterCallback() {
+        clubDetailsProvider.getClubDetails(access_token, id, new PresenterCallback() {
             @Override
             public void onSuccess(Object o) {
                 clubDetailsFragmentInterface.showProgressbar(false);
@@ -39,7 +39,7 @@ public class ClubDetailsPresenterImp implements ClubDetailsPresenterInterface {
     @Override
     public void requestMemberList(String access_token, int id) {
         clubDetailsFragmentInterface.showProgressbar(true);
-        clubDetailsProviderImp.requestmemblist(access_token, id, new PresenterCallback() {
+        clubDetailsProvider.requestMemberList(access_token, id, new PresenterCallback() {
             @Override
             public void onSuccess(Object o) {
                 MemberListResponse memberListResponse = (MemberListResponse) o;
