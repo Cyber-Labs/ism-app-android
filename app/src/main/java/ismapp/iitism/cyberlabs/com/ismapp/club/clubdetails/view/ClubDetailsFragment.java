@@ -18,13 +18,12 @@ import com.squareup.picasso.Picasso;
 
 import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
-import ismapp.iitism.cyberlabs.com.ismapp.addclubmember.view.AddMember;
 import ismapp.iitism.cyberlabs.com.ismapp.adminsettings.view.AdminSettingsFragment;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.model.ClubDetailsModel;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.model.MemberListResponse;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.presenter.ClubDetailsPresenterImp;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.presenter.ClubDetailsPresenterInterface;
-import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.provider.ClubDetailsProviderInterface;
+import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.provider.RetrofitClubDetailsProvider;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
 
 /**
@@ -114,7 +113,7 @@ public class ClubDetailsFragment extends Fragment implements ClubDetailsFragment
         ((MainActivity)getActivity()).changeActionBar();
         sharedPrefs = new SharedPrefs(getContext());
         ((MainActivity)getActivity()).addTitletoBar(sharedPrefs.getClubName());
-        clubDetailsPresenterInterface = new ClubDetailsPresenterImp(this,new ClubDetailsProviderInterface());
+        clubDetailsPresenterInterface = new ClubDetailsPresenterImp(this,new RetrofitClubDetailsProvider());
        ;
         clubDetailsPresenterInterface.getclubdetail(sharedPrefs.getAccessToken(),sharedPrefs.getClubId());
         clubDetailsPresenterInterface.requestMemberList(sharedPrefs.getAccessToken(),sharedPrefs.getClubId());
