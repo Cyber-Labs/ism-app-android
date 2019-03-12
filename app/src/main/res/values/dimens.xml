@@ -14,7 +14,7 @@
     <dimen name="edit_text">20sp</dimen>
     <dimen name="title_text_size">14sp</dimen>
     <dimen name="tagline_text_size">12sp</dimen>
-    <dimen name="card_elevation">10dp</dimen>
+    <dimen name="card_elevation">5dp</dimen>
     <dimen name="title_bar_text_size">24sp</dimen>
     <dimen name="padding_horizontal">8dp</dimen>
     <dimen name="padding_vertical">4dp</dimen>
@@ -30,4 +30,5 @@
     <dimen name="btn_hori_width">100dp</dimen>
     <dimen name="title_12sp">12sp</dimen>
     <dimen name="card_view_padding">10dp</dimen>
+    <dimen name="text_size_20sp">20sp</dimen>
 </resources>
