@@ -1,5 +1,7 @@
 package ismapp.iitism.cyberlabs.com.ismapp.events.eventlist.provider;
 
+import android.util.Log;
+
 import ismapp.iitism.cyberlabs.com.ismapp.events.eventlist.EventListResponse;
 import ismapp.iitism.cyberlabs.com.ismapp.events.eventlist.api.EventListApi;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.ApiClient;
@@ -18,6 +20,7 @@ public class EventListProviderImp implements EventListProviderInterface {
         eventListResponseCall.enqueue(new Callback<EventListResponse>() {
             @Override
             public void onResponse(Call<EventListResponse> call, Response<EventListResponse> response) {
+
                 presenterCallback.onSuccess((EventListResponse)response.body());
             }
 
