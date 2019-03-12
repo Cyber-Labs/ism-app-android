@@ -1,5 +1,6 @@
 package ismapp.iitism.cyberlabs.com.ismapp.createevent.view;
 
+import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
@@ -22,6 +23,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.single.PermissionListener;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.Calendar;
@@ -32,6 +40,7 @@ import ismapp.iitism.cyberlabs.com.ismapp.createevent.presenter.CreateEventPrese
 import ismapp.iitism.cyberlabs.com.ismapp.createevent.presenter.CreateEventPresenterInterface;
 import ismapp.iitism.cyberlabs.com.ismapp.createevent.provider.CreateEventProviderImplementation;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
+import ismapp.iitism.cyberlabs.com.ismapp.helper.UriUtils;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.ViewUtils;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -121,6 +130,24 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
         iv_end_day=view.findViewById(R.id.iv_end_day);
         iv_end_time=view.findViewById(R.id.iv_end_time);
         calendar= Calendar.getInstance();
+
+        Dexter.withActivity(getActivity()).withPermission(Manifest.permission.READ_EXTERNAL_STORAGE).withListener(new PermissionListener() {
+            @Override
+            public void onPermissionGranted(PermissionGrantedResponse response) {
+
+            }
+
+            @Override
+            public void onPermissionDenied(PermissionDeniedResponse response) {
+
+            }
+
+            @Override
+            public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
+
+            }
+        }).check();
+
         createEventPresenterInterface = new CreateEventPresenterImplementation(this,new CreateEventProviderImplementation());
         selectimage();
         iv_start_day.setOnClickListener(new View.OnClickListener() {
@@ -135,7 +162,15 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
                 selectAddEventTime();
             }
         });
+        showButtonClickable(true);
+        submit.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public void onClick(View v) {
+                getUserResponse();
 
+            }
+        });
         return   view;
 
     }
@@ -178,23 +213,23 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         if (requestCode == PICK_IMAGE  && resultCode == RESULT_OK) {
-            Bitmap photo = (Bitmap) data.getExtras().get("data");
-            selectImage.setImageBitmap(photo);
+           // Bitmap photo = (Bitmap) data.getExtras().get("data");
+            selectImage.setImageURI(data.getData());
 
 
 
             // CALL THIS METHOD TO GET THE URI FROM THE BITMAP
-            Uri tempUri = getImageUri(getContext(), photo);
+           // Uri tempUri = getImageUri(getContext(), photo);
 
             // CALL THIS METHOD TO GET THE ACTUAL PATH
-            File finalFile = new File(getRealPathFromURI(tempUri));
+            File finalFile = new File(UriUtils.uriToFilePathConverter(getContext(),data.getData()));
            // File file = new File("/storage/emulated/0/Download/Corrections 6.jpg");
             RequestBody requestFile =
                     RequestBody.create(MediaType.parse("multipart/form-data"), finalFile);
 
 // MultipartBody.Part is used to send also the actual file name
              image =
-                    MultipartBody.Part.createFormData("image", finalFile.getName(), requestFile);
+                    MultipartBody.Part.createFormData("event_pic", finalFile.getName(), requestFile);
 
 
 
@@ -245,18 +280,12 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
         final String Title = title.getText().toString();
         final String Description = description.getText().toString();
         final String ShortDescription = shortDescription.getText().toString();
-//        final String StartDate = Startate.getText().toString();
-//        final String EndDate =EndDate.getText().toString();
+        final String StartDate = this.StartDate.getText().toString();
+       final String EndDate =this.EndDate.getText().toString();
         final String Venue = venue.getText().toString();
-        showButtonClickable(true);
-//        submit.setOnClickListener(new View.OnClickListener() {
-//            @RequiresApi(api = Build.VERSION_CODES.M)
-//            @Override
-//            public void onClick(View v) {
-//                SharedPrefs sharedPrefs = new SharedPrefs(getContext());
-//                createEventPresenterInterface.getCreateEventRequest(sharedPrefs.getAccessToken(),sharedPrefs.getClubId(),Title,ShortDescription,Description,Venue,StartDate,EndDate,image);
-//            }
-//        });
+        SharedPrefs sharedPrefs = new SharedPrefs(getContext());
+        createEventPresenterInterface.getCreateEventRequest(sharedPrefs.getAccessToken(),sharedPrefs.getClubId(),Title,ShortDescription,Description,Venue,StartDate,EndDate,image);
+
 
     }
 
