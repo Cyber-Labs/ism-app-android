@@ -58,7 +58,7 @@ public class MembAdapter  extends RecyclerView.Adapter<MembAdapter.MyViewHolder>
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_memb=(TextView)itemView.findViewById(R.id.tv_memb);
-            im_isadmin=(ImageView)itemView.findViewById(R.id.im_isadmin);
+            im_isadmin=(ImageView)itemView.findViewById(R.id.iv_isadmin);
         }
     }
 }
