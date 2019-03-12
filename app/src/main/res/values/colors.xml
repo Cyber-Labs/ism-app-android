@@ -8,4 +8,5 @@
     <color name="titleColor">#4c4c4c</color>
     <color name="titleColorLight">#787B7C</color>
     <color name="viewBgColor">#f1f5f8</color>
+    <color name="title_dark">#080808</color>
 </resources>

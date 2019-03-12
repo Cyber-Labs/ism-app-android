@@ -2,24 +2,21 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="40dp"
+    android:padding="@dimen/layout_padding"
     android:orientation="horizontal">
     <TextView
         android:layout_width="0dp"
         android:layout_weight="7"
         android:layout_height="match_parent"
         android:id="@+id/tv_memb"
-        android:paddingHorizontal="@dimen/padding_horizontal"
-        android:paddingVertical="@dimen/padding_vertical"
-        android:textSize="20sp"
-
+        android:text="@string/member_name"
+        android:textSize="@dimen/title_text_size"
         android:fontFamily="@font/lato"/>
     <ImageView
         android:layout_width="0dp"
         android:layout_weight="1"
-        android:id="@+id/im_isadmin"
+        android:id="@+id/iv_isadmin"
         android:visibility="gone"
-        android:paddingHorizontal="@dimen/padding_horizontal"
         android:layout_height="match_parent"
         android:src="@drawable/is_admin"/>
-
 </LinearLayout>

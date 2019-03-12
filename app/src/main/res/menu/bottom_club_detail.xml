@@ -4,10 +4,10 @@
    android:id="@+id/desc_club"
    android:icon="@drawable/feed"
     android:iconTint="@color/colorPrimaryDark"
-   android:title="About"/>
+   android:title="@string/about_club"/>
     <item
         android:id="@+id/memb_club"
         android:icon="@drawable/club"
         android:iconTint="@color/colorPrimaryDark"
-        android:title="Members"/>
+        android:title="@string/members"/>
 </menu>

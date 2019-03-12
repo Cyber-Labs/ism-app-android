@@ -137,7 +137,7 @@
                     android:layout_marginLeft="@dimen/margin_hori"
                     android:layout_marginRight="@dimen/margin_hori"
                     android:layout_marginBottom="24dp"
-                    android:background="@drawable/btnlogin"
+                    android:background="@drawable/btn_bg_color"
                     android:clickable="false"
                     android:text="@string/sign_up"
                     android:textColor="@color/default_splash_image_color" />
@@ -149,7 +149,7 @@
                     android:layout_marginLeft="@dimen/margin_hori"
                     android:layout_marginRight="@dimen/margin_hori"
                     android:layout_marginBottom="24dp"
-                    android:background="@drawable/btnlogin"
+                    android:background="@drawable/btn_bg_color"
                     android:clickable="false"
                     android:text="@string/sign_in"
                     android:textColor="@color/default_splash_image_color" />

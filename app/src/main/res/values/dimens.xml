@@ -29,4 +29,5 @@
     <dimen name="title_head">16sp</dimen>
     <dimen name="btn_hori_width">100dp</dimen>
     <dimen name="title_12sp">12sp</dimen>
+    <dimen name="card_view_padding">10dp</dimen>
 </resources>
