@@ -7,7 +7,6 @@ import java.util.List;
 public class EventListResponse {
     private String message;
     private boolean success;
-    @SerializedName("club_list")
     private List<EventListModel> event_list;
 
     public EventListResponse(String message, boolean success, List<EventListModel> event_list) {

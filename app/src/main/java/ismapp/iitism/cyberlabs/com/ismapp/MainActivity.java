@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.feed) {
+
             setFragment(new FeedFrag()); addActionBar(); addTitletoBar("Feeds");
         } else if (id == R.id.clubs) {
             setFragment(new ClubListListFragment());addActionBar(); addTitletoBar("Clubs");

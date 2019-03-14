@@ -37,18 +37,17 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
     @NonNull
     @Override
     public EventListViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_rv_club_list, null);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_rv_eventlist, viewGroup,false);
         return new EventListViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull EventListViewHolder eventListViewHolder, int i) {
         final EventListModel eventListModel = eventListModels.get(i);
-        eventListViewHolder.tv_clubname.setText(eventListModel.getClub_name());
-        eventListViewHolder.tv_clubtagline.setText(eventListModel.getShort_desc());
-        eventListViewHolder.tv_venue.setText("Venue-"+eventListModel.getVenue());
-        eventListViewHolder.tv_date.setText(eventListModel.getEvent_start_date());
-       // Picasso.get().load(clubDetails.getImage_url()).into(clubAdapterViewHolder.clubimage);
+        eventListViewHolder.tv_title.setText(eventListModel.getTitle());
+        eventListViewHolder.tv_venue.setText(eventListModel.getEvent_start_date()+" | "+eventListModel.getEvent_end_date()+" | "+eventListModel.getVenue());
+
+        Picasso.get().load(eventListModel.getEvent_pic_url()).into(eventListViewHolder.clubimage);
 
     }
 
@@ -59,30 +58,17 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
 
     class EventListViewHolder extends RecyclerView.ViewHolder {
         ImageView clubimage;
-        TextView tv_clubname, tv_clubtagline,tv_venue,tv_date;
-        CardView cardView;
-        LinearLayout linearLayout;
+        TextView tv_title, tv_venue;
+
 
         public EventListViewHolder(@NonNull View itemView) {
             super(itemView);
-            clubimage = itemView.findViewById(R.id.iv_clubimage);
-            tv_clubname = itemView.findViewById(R.id.iv_clubname);
-            tv_clubtagline = itemView.findViewById(R.id.iv_clubtagline);
-            tv_date = itemView.findViewById(R.id.tv_eventlist_date);
-            tv_venue = itemView.findViewById(R.id.tv_eventlist_date);
-            cardView = (CardView) itemView.findViewById(R.id.card_view_club);
-            linearLayout = itemView.findViewById(R.id.lay_eventlist_venue_and_date);
-            linearLayout.setVisibility(View.VISIBLE);
+            clubimage = itemView.findViewById(R.id.item_eventlist_img);
+            tv_title = itemView.findViewById(R.id.item_eventlist_title);
+            tv_venue = itemView.findViewById(R.id.item_eventlist_venue);
 
-            cardView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-//                    sharedPrefs.setClubId(clubsLists.get(getAdapterPosition()).getId());
-//                    sharedPrefs.setClubName(clubsLists.get(getAdapterPosition()).getName());
-//                    sharedPrefs.setIsAdmin(clubsLists.get(getAdapterPosition()).isIs_admin());
-//                    ((MainActivity)fragmentActivity).addFragment(new ClubDetailsFragment());
-                }
-            });
+
+
 
         }
     }
