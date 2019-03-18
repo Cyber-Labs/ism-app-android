@@ -29,7 +29,7 @@ public class ClubListAdapter extends RecyclerView.Adapter<ClubListAdapter.clubAd
     private SharedPrefs sharedPrefs ;
     private FragmentActivity fragmentActivity;
 
-    ClubListAdapter(Context context, FragmentManager fragmentManager, FragmentActivity fragmentActivity) {
+    public ClubListAdapter(Context context, FragmentManager fragmentManager, FragmentActivity fragmentActivity) {
         this.context = context;
         sharedPrefs = new SharedPrefs(context);
         this.fragmentActivity=fragmentActivity;
@@ -80,7 +80,6 @@ public class ClubListAdapter extends RecyclerView.Adapter<ClubListAdapter.clubAd
                 public void onClick(View v) {
                     sharedPrefs.setClubId(clubsLists.get(getAdapterPosition()).getId());
                     sharedPrefs.setClubName(clubsLists.get(getAdapterPosition()).getName());
-                    sharedPrefs.setIsAdmin(clubsLists.get(getAdapterPosition()).isIs_admin());
                     ((MainActivity)fragmentActivity).addFragment(new ClubDetailsFragment());
                 }
             });

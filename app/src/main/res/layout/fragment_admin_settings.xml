@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/viewBgColor"
+    android:layout_margin="@dimen/layout_margin">
 
     <ImageButton
         android:layout_width="match_parent"
@@ -10,6 +12,7 @@
         android:scaleType="centerCrop"
         android:padding="@dimen/iv_padding_small"
         android:adjustViewBounds="true"
+        android:background="@drawable/btn_ripple"
         android:src="@drawable/manmembers"
         android:layout_weight="1"/>
 
@@ -19,15 +22,19 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:scaleType="centerCrop"
+        android:cropToPadding="true"
         android:padding="@dimen/iv_padding_small"
         android:adjustViewBounds="true"
+        android:background="@drawable/btn_ripple"
         android:src="@drawable/manevents" />
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/ibtn_admin_man_feed"
         android:scaleType="centerCrop"
+        android:cropToPadding="true"
         android:adjustViewBounds="true"
+        android:background="@drawable/btn_ripple"
         android:padding="@dimen/iv_padding_small"
         android:src="@drawable/manfeed"
         android:layout_weight="1"/>

@@ -21,6 +21,10 @@ public class SharedPrefs {
 
     // Shared pref mode
    private int PRIVATE_MODE = 0;
+   public void clear(){
+       editor.clear().commit();
+   }
+
     public void setLogin(boolean login)
     {
         editor.putBoolean(IS_LOGIN,login);

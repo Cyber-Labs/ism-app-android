@@ -16,6 +16,10 @@
             android:id="@+id/clubs"
             android:icon="@drawable/club"
             android:title="Clubs" />
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/logout"
+            android:title="Logout" />
         <!--<item-->
             <!--android:id="@+id/nav_manage"-->
             <!--android:icon="@drawable/ic_menu_manage"-->

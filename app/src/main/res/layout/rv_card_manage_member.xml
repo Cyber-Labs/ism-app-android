@@ -8,15 +8,22 @@
         android:orientation="horizontal">
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tazril"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:padding="@dimen/tv_padding"
+            android:layout_weight="6"
+            android:fontFamily="@font/lato"
+            android:text="@string/member_name"
+            android:textSize="@dimen/title_text_size"
             android:id="@+id/member_name"/>
+
         <ImageView
             android:id="@+id/member_delete"
-            android:layout_marginLeft="4dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/btnlogin"/>
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:src="@drawable/remove_member"
+            android:contentDescription="@string/todo" />
     </LinearLayout>
 
 </android.support.v7.widget.CardView>

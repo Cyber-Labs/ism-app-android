@@ -9,4 +9,5 @@ public class Urls {
     public static final String SUB_URL_MEMBERS_LIST = "club/member_list/";
     public static final String SUB_URL_REMOVE_MEMBER = "club/remove_member/";
     public static final String SUB_URL_CREATE_EVENT = "event/create_event/";
+    public static final String SUB_URL_EVENT_LIST = "event/list/";
 }

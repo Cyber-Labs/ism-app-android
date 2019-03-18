@@ -19,7 +19,7 @@ public class ClubListPresenterImpl implements ClubListPresenterInterface {
 
 
     @Override
-    public void requestclublist(String access_token) {
+    public void requestClubList(String access_token) {
         clubListFragmentInterface.showProgressBar(true);
         clubListProviderInterface.requestclubslist( access_token,new PresenterCallback() {
 
