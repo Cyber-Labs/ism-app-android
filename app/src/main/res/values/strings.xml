@@ -57,4 +57,5 @@
     <string name="enter_event_end_date">Enter Event End Date</string>
     <string name="member_name">Tazril</string>
     <string name="about_club">About</string>
+    <string name="Description">description</string>
 </resources>

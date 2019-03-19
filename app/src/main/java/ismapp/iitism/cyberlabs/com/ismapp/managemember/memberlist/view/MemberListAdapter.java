@@ -81,8 +81,7 @@ public class MemberListAdapter extends RecyclerView.Adapter<MemberListAdapter.me
                                                         manageMemberFragment.showProgressBar(false);
                                                         ViewUtils.showToast(context,removeMember.getMessage());
                                                     }else{
-                                                        manageMemberFragment.showProgressBar(false);
-                                                    }
+                                                        manageMemberFragment.showProgressBar(false); }
                                              }
                                          }
             );

@@ -111,13 +111,16 @@ public class ManageMemberFragment extends android.support.v4.app.Fragment implem
     public void showProgressBar(boolean show) {
        if(show){
            progressDialog.show();
+       }else{
+           progressDialog.dismiss();
        }
     }
 
 
     @Override
     public void getMemberList(MemberListResponse memberListResponse) {
-        MemberListAdapter memberListAdapter = new MemberListAdapter(memberListResponse.member_list, context,this);
+
+        MemberListAdapter memberListAdapter = new MemberListAdapter(memberListResponse.getMember_list(), context,this);
 
     }
 
