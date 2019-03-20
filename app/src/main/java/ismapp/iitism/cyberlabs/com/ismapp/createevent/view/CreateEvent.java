@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -39,6 +40,7 @@ import ismapp.iitism.cyberlabs.com.ismapp.createevent.model.CreateEventModel;
 import ismapp.iitism.cyberlabs.com.ismapp.createevent.presenter.CreateEventPresenterImplementation;
 import ismapp.iitism.cyberlabs.com.ismapp.createevent.presenter.CreateEventPresenterInterface;
 import ismapp.iitism.cyberlabs.com.ismapp.createevent.provider.CreateEventProviderImplementation;
+import ismapp.iitism.cyberlabs.com.ismapp.helper.MsgToast;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.UriUtils;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.ViewUtils;
@@ -57,8 +59,7 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
     private ImageView selectImage;
     private EditText title;
     private EditText description;
-    private EditText shortDescription;
-    private EditText Description;
+
     private TextView EndDate;
     private TextView StartDate;
     private TextView EndTime;
@@ -66,6 +67,7 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
     private EditText venue;
     private Button submit;
     private Calendar calendar;
+    ProgressBar pb_add_event;
     public static final int PICK_IMAGE = 1;
     private MultipartBody.Part image;
     ImageView iv_start_day;
@@ -118,7 +120,6 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
         selectImage = (ImageView)view.findViewById(R.id.iv_add_event_pic);
         title = (EditText) view.findViewById(R.id.tv_add_event_title);
         description = (EditText)view.findViewById(R.id.tv_add_event_desc);
-        shortDescription = (EditText)view.findViewById(R.id.tv_add_event_short_desc);
         venue = (EditText)view.findViewById(R.id.tv_add_event_venue);
         StartDate = view.findViewById(R.id.add_event_start_date);
         EndDate = view.findViewById(R.id.add_event_end_date);
@@ -130,6 +131,7 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
         iv_end_day=view.findViewById(R.id.iv_end_day);
         iv_end_time=view.findViewById(R.id.iv_end_time);
         calendar= Calendar.getInstance();
+        pb_add_event=view.findViewById(R.id.pb_add_event);
 
         Dexter.withActivity(getActivity()).withPermission(Manifest.permission.READ_EXTERNAL_STORAGE).withListener(new PermissionListener() {
             @Override
@@ -153,13 +155,25 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
         iv_start_day.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectAddEventDate();
+                selectAddEventDate(1);
+            }
+        });
+        iv_end_day.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectAddEventDate(2);
             }
         });
         iv_start_time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectAddEventTime();
+                selectAddEventTime(1);
+            }
+        });
+        iv_end_time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectAddEventTime(2);
             }
         });
         showButtonClickable(true);
@@ -167,7 +181,10 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View v) {
-                getUserResponse();
+              if(selectImage.getDrawable()==null || title.getText().toString().trim().isEmpty() || StartDate.getText().toString().trim().isEmpty()|| description.getText().toString().trim().isEmpty() )
+                  ViewUtils.showToast(getContext(),"Enter all required fields");
+              else
+                  getUserResponse();
 
             }
         });
@@ -175,22 +192,27 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
 
     }
 
-    private void selectAddEventDate() {
+    private void selectAddEventDate(int i) {
         DatePickerDialog datePickerDialog=new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
             @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) { StartDate.setText(String.format("%d/%d/%d", year, month+1, dayOfMonth));
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                if(i==1){StartDate.setText(String.format("%d/%d/%d", year, month+1, dayOfMonth));}
+                        else
+                         {EndDate.setText(String.format("%d/%d/%d", year, month+1, dayOfMonth));};
 
             }
         },Calendar.YEAR,Calendar.MONTH+1,Calendar.DAY_OF_MONTH);
         datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
         datePickerDialog.show();
     }
-    private void selectAddEventTime()
+    private void selectAddEventTime(int i)
     {
         TimePickerDialog timePickerDialog=new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-              StartTime.setText(hourOfDay+":"+minute);
+             if(i==1){ StartTime.setText(hourOfDay+":"+minute);}
+                   else
+                        EndTime.setText(hourOfDay+":"+minute);
             }
         },Calendar.HOUR_OF_DAY,Calendar.MINUTE,false);
 
@@ -252,6 +274,10 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
 
     @Override
     public void showProgressBar(Boolean show) {
+        if(show)
+            pb_add_event.setVisibility(View.VISIBLE);
+         else
+             pb_add_event.setVisibility(View.GONE);
 
     }
 
@@ -272,19 +298,18 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
 
     @Override
     public void showMessage(String message) {
-
+      ViewUtils.showToast(getContext(),message);
     }
 
     @Override
     public void getUserResponse() {
         final String Title = title.getText().toString();
         final String Description = description.getText().toString();
-        final String ShortDescription = shortDescription.getText().toString();
         final String StartDate = this.StartDate.getText().toString();
        final String EndDate =this.EndDate.getText().toString();
         final String Venue = venue.getText().toString();
         SharedPrefs sharedPrefs = new SharedPrefs(getContext());
-        createEventPresenterInterface.getCreateEventRequest(sharedPrefs.getAccessToken(),sharedPrefs.getClubId(),Title,ShortDescription,Description,Venue,StartDate,EndDate,image);
+        createEventPresenterInterface.getCreateEventRequest(sharedPrefs.getAccessToken(),sharedPrefs.getClubId(),Title,Description,Venue,StartDate,EndDate,image);
 
 
     }
