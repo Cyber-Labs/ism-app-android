@@ -5,7 +5,6 @@ import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,6 +54,7 @@ public class ClubDetailsFragment extends Fragment implements ClubDetailsFragment
     ProgressBar pb_club_details;
     View view;
     int club_id;
+    private boolean club_admin;
 
    // private OnFragmentInteractionListener mListener;
 
@@ -110,6 +110,8 @@ public class ClubDetailsFragment extends Fragment implements ClubDetailsFragment
                 AdminSettingsFragment adminSettingsFragment=new AdminSettingsFragment();
                 Bundle bundle=new Bundle();
                 bundle.putInt("club_id",club_id);
+                bundle.putBoolean("club_admin",club_admin);
+
                 adminSettingsFragment.setArguments(bundle);
                 ((MainActivity)getActivity()).addFragment(adminSettingsFragment);
             }
@@ -156,7 +158,8 @@ public class ClubDetailsFragment extends Fragment implements ClubDetailsFragment
         tv_description.setText(clubDetailsModel.getDescription());
         if(clubDetailsModel.getIs_admin())
         {view.findViewById(R.id.fab_add_member).setVisibility(View.VISIBLE);
-        club_id=clubDetailsModel.getId();}
+        club_id=clubDetailsModel.getId();
+        club_admin = clubDetailsModel.getIs_admin();}
 
 
 

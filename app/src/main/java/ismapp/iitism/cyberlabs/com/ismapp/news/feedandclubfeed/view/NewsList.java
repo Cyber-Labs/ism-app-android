@@ -1,4 +1,4 @@
-package ismapp.iitism.cyberlabs.com.ismapp.news.newslist.view;
+package ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.view;
 
 
 import android.app.Fragment;
@@ -18,11 +18,11 @@ import java.util.ArrayList;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.ViewUtils;
-import ismapp.iitism.cyberlabs.com.ismapp.news.newslist.model.News;
-import ismapp.iitism.cyberlabs.com.ismapp.news.newslist.model.NewsListModel;
-import ismapp.iitism.cyberlabs.com.ismapp.news.newslist.presenter.NewsListPresenterImplementation;
-import ismapp.iitism.cyberlabs.com.ismapp.news.newslist.presenter.NewsListPresenterInterface;
-import ismapp.iitism.cyberlabs.com.ismapp.news.newslist.provider.NewsListProviderImplementation;
+import ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.model.News;
+import ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.model.NewsListModel;
+import ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.presenter.NewsListPresenterImplementation;
+import ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.presenter.NewsListPresenterInterface;
+import ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.provider.NewsListProviderImplementation;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,19 +30,22 @@ import ismapp.iitism.cyberlabs.com.ismapp.news.newslist.provider.NewsListProvide
 @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
 public class NewsList extends android.support.v4.app.Fragment implements NewsListInterface {
     private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
     private ProgressDialog progressDialog;
     private RecyclerView recyclerView;
     private ArrayList<News> newsArrayList;
     private NewsListPresenterInterface newsListPresenterInterface;
     private int club_id = 0;
+    private boolean club_admin = false;
     public NewsList() {
         // Required empty public constructor
     }
 
-    public static NewsList newInstance(int param1) {
+    public static NewsList newInstance(int param1 ,boolean param2) {
         NewsList fragment = new NewsList();
         Bundle args = new Bundle();
         args.putInt(ARG_PARAM1, param1);
+        args.putBoolean(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -52,6 +55,7 @@ public class NewsList extends android.support.v4.app.Fragment implements NewsLis
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             club_id = getArguments().getInt(ARG_PARAM1);
+            club_admin = getArguments().getBoolean(ARG_PARAM2);
 
         }
     }
@@ -97,7 +101,7 @@ public class NewsList extends android.support.v4.app.Fragment implements NewsLis
 
     @Override
     public void getResponseNewsList(NewsListModel newsListModel) {
-        NewsListAdapter newsListAdapter = new NewsListAdapter(getContext(),this);
+        NewsListAdapter newsListAdapter = new NewsListAdapter(getContext(),this,club_admin);
         newsArrayList = newsListModel.getNews_list();
         newsListAdapter.setData(newsArrayList);
         recyclerView.setAdapter(newsListAdapter);

@@ -14,6 +14,7 @@ import com.squareup.picasso.Picasso;
 
 import ismapp.iitism.cyberlabs.com.ismapp.R;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.ViewUtils;
+import ismapp.iitism.cyberlabs.com.ismapp.news.newsdetails.model.DeleteNewsResponseModel;
 import ismapp.iitism.cyberlabs.com.ismapp.news.newsdetails.model.NewsDetailsModel;
 
 /**
@@ -25,12 +26,14 @@ public class NewsDetailsImplementation extends android.support.v4.app.Fragment i
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
     private TextView clubName;
     private TextView Description;
     private TextView createdDate;
     private TextView createdTime;
     private ImageView clubPic;
     private ProgressDialog progressDialog;
+    private boolean is_admin;
 
 
     // TODO: Rename and change types of parameters
@@ -44,10 +47,11 @@ public class NewsDetailsImplementation extends android.support.v4.app.Fragment i
 
 
 
-    public static NewsDetailsImplementation newInstance(int param1) {
+    public static NewsDetailsImplementation newInstance(int param1,boolean param2) {
         NewsDetailsImplementation fragment = new NewsDetailsImplementation();
         Bundle args = new Bundle();
         args.putInt(ARG_PARAM1, param1);
+        args.putBoolean(ARG_PARAM2,param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -57,6 +61,7 @@ public class NewsDetailsImplementation extends android.support.v4.app.Fragment i
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             newsId = getArguments().getInt(ARG_PARAM1);
+            is_admin = getArguments().getBoolean(ARG_PARAM2);
 
         }
     }
@@ -75,6 +80,10 @@ public class NewsDetailsImplementation extends android.support.v4.app.Fragment i
         progressDialog.setMessage("Wait");
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setIndeterminate(true);
+        if(is_admin){
+        //show settings button;
+        //call delete api;
+        }
         return view;
     }
 
@@ -106,5 +115,10 @@ public class NewsDetailsImplementation extends android.support.v4.app.Fragment i
     @Override
     public void showMessage(String message) {
         ViewUtils.showToast(getContext(),message);
+    }
+
+    @Override
+    public void getDeleteResponse(DeleteNewsResponseModel deleteNewsResponseModel) {
+
     }
 }

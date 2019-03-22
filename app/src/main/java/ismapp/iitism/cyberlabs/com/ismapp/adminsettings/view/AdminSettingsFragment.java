@@ -15,7 +15,7 @@ import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
 import ismapp.iitism.cyberlabs.com.ismapp.events.admin_eventlist.View.AdminEventListFragment;
 import ismapp.iitism.cyberlabs.com.ismapp.managemember.memberlist.view.ManageMemberFragment;
-import ismapp.iitism.cyberlabs.com.ismapp.news.newslist.view.NewsList;
+import ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.view.NewsList;
 
 
 public class AdminSettingsFragment extends Fragment {
@@ -28,6 +28,7 @@ public class AdminSettingsFragment extends Fragment {
     ImageButton ibtn_admin_man_feed;
     Bundle bundle;
     int club_id;
+    private boolean club_admin;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,6 +44,7 @@ public class AdminSettingsFragment extends Fragment {
 
         bundle=getArguments();
         club_id=bundle.getInt("club_id");
+        club_admin = bundle.getBoolean("club_admin");
 
         ibtn_admin_man_members.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,10 +1,10 @@
-package ismapp.iitism.cyberlabs.com.ismapp.news.newslist.provider;
+package ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.provider;
 
 import ismapp.iitism.cyberlabs.com.ismapp.helper.ApiClient;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
 import ismapp.iitism.cyberlabs.com.ismapp.news.clubnews.api.ClubNewsApi;
-import ismapp.iitism.cyberlabs.com.ismapp.news.newslist.api.NewsListApi;
-import ismapp.iitism.cyberlabs.com.ismapp.news.newslist.model.NewsListModel;
+import ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.api.NewsListApi;
+import ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.model.NewsListModel;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

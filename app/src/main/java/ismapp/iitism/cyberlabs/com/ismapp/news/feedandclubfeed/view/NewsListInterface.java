@@ -1,6 +1,6 @@
-package ismapp.iitism.cyberlabs.com.ismapp.news.newslist.view;
+package ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.view;
 
-import ismapp.iitism.cyberlabs.com.ismapp.news.newslist.model.NewsListModel;
+import ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.model.NewsListModel;
 
 public interface NewsListInterface {
     void showProgressBar(boolean show);

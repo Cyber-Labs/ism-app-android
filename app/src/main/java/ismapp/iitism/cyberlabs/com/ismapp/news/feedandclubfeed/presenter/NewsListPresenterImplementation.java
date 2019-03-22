@@ -1,9 +1,9 @@
-package ismapp.iitism.cyberlabs.com.ismapp.news.newslist.presenter;
+package ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.presenter;
 
 import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
-import ismapp.iitism.cyberlabs.com.ismapp.news.newslist.model.NewsListModel;
-import ismapp.iitism.cyberlabs.com.ismapp.news.newslist.provider.NewsListProviderImplementation;
-import ismapp.iitism.cyberlabs.com.ismapp.news.newslist.view.NewsListInterface;
+import ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.model.NewsListModel;
+import ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.provider.NewsListProviderImplementation;
+import ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.view.NewsListInterface;
 
 public class NewsListPresenterImplementation implements NewsListPresenterInterface {
    private NewsListInterface newsListInterface;

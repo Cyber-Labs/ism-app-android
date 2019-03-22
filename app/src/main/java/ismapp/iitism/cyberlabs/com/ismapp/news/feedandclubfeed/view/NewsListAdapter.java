@@ -1,4 +1,4 @@
-package ismapp.iitism.cyberlabs.com.ismapp.news.newslist.view;
+package ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.view;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -18,16 +18,18 @@ import java.util.List;
 import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
 import ismapp.iitism.cyberlabs.com.ismapp.news.newsdetails.view.NewsDetailsImplementation;
-import ismapp.iitism.cyberlabs.com.ismapp.news.newslist.model.News;
+import ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.model.News;
 
 public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsListViewHolder> {
     List<News> newsList;
     Context context;
     Fragment fragment;
+    boolean is_admin;
 
-    public NewsListAdapter(Context context, Fragment fragment) {
+    public NewsListAdapter(Context context, Fragment fragment,boolean is_admin) {
         this.context = context;
         this.fragment = fragment;
+        this.is_admin = is_admin;
     }
 
     void setData(List<News> newsList){
@@ -51,7 +53,7 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsLi
             @Override
             public void onClick(View v) {
                 News news = newsList.get(i);
-                ((MainActivity)fragment.getActivity()).addFragment( NewsDetailsImplementation.newInstance(news.getNews_id()));
+                ((MainActivity)fragment.getActivity()).addFragment( NewsDetailsImplementation.newInstance(news.getNews_id(),is_admin));
             }
         });
 

@@ -1,4 +1,4 @@
-package ismapp.iitism.cyberlabs.com.ismapp.news.newslist.provider;
+package ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.provider;
 
 import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
 

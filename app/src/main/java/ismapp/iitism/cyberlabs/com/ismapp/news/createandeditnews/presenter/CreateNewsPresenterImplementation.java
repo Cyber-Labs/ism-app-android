@@ -1,9 +1,9 @@
-package ismapp.iitism.cyberlabs.com.ismapp.news.createnews.presenter;
+package ismapp.iitism.cyberlabs.com.ismapp.news.createandeditnews.presenter;
 
 import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
-import ismapp.iitism.cyberlabs.com.ismapp.news.createnews.model.CreateNewsResponseModel;
-import ismapp.iitism.cyberlabs.com.ismapp.news.createnews.provider.CreateNewsProviderImplementation;
-import ismapp.iitism.cyberlabs.com.ismapp.news.createnews.view.CreateNews;
+import ismapp.iitism.cyberlabs.com.ismapp.news.createandeditnews.model.CreateNewsResponseModel;
+import ismapp.iitism.cyberlabs.com.ismapp.news.createandeditnews.provider.CreateNewsProviderImplementation;
+import ismapp.iitism.cyberlabs.com.ismapp.news.createandeditnews.view.CreateNews;
 import okhttp3.MultipartBody;
 
 public class CreateNewsPresenterImplementation implements CreateNewsPresenterInterface {

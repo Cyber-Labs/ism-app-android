@@ -1,12 +1,12 @@
-package ismapp.iitism.cyberlabs.com.ismapp.news.createnews.provider;
+package ismapp.iitism.cyberlabs.com.ismapp.news.createandeditnews.provider;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import ismapp.iitism.cyberlabs.com.ismapp.helper.ApiClient;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
-import ismapp.iitism.cyberlabs.com.ismapp.news.createnews.api.CreateNewsApi;
-import ismapp.iitism.cyberlabs.com.ismapp.news.createnews.model.CreateNewsResponseModel;
+import ismapp.iitism.cyberlabs.com.ismapp.news.createandeditnews.api.CreateNewsApi;
+import ismapp.iitism.cyberlabs.com.ismapp.news.createandeditnews.model.CreateNewsResponseModel;
 import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.Callback;

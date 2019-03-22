@@ -1,4 +1,4 @@
-package ismapp.iitism.cyberlabs.com.ismapp.news.newslist.model;
+package ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.model;
 
 import java.util.ArrayList;
 

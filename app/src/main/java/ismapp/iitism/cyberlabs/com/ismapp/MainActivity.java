@@ -19,11 +19,9 @@ import android.view.View;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.login.view.LoginViewImp;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.view.ClubListListFragment;
 import ismapp.iitism.cyberlabs.com.ismapp.events.eventlist.view.EventListFragment;
-
-import ismapp.iitism.cyberlabs.com.ismapp.events.view.EventsFrag;
-
 import ismapp.iitism.cyberlabs.com.ismapp.feed.view.FeedFrag;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
+import ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.view.NewsList;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -95,7 +93,7 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.feed) {
 
-            setFragment(new FeedFrag()); addActionBar(); addTitletoBar("Feeds");
+            setFragment(new NewsList()); addActionBar(); addTitletoBar("Feeds");
         } else if (id == R.id.clubs) {
             setFragment(new ClubListListFragment());addActionBar(); addTitletoBar("Clubs");
         } else if (id == R.id.events) {

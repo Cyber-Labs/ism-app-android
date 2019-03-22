@@ -1,4 +1,4 @@
-package ismapp.iitism.cyberlabs.com.ismapp.news.createnews.presenter;
+package ismapp.iitism.cyberlabs.com.ismapp.news.createandeditnews.presenter;
 
 import okhttp3.MultipartBody;
 

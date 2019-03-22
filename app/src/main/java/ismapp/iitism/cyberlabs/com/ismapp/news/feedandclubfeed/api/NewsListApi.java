@@ -1,7 +1,7 @@
-package ismapp.iitism.cyberlabs.com.ismapp.news.newslist.api;
+package ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.api;
 
 import ismapp.iitism.cyberlabs.com.ismapp.helper.Urls;
-import ismapp.iitism.cyberlabs.com.ismapp.news.newslist.model.NewsListModel;
+import ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.model.NewsListModel;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.Header;

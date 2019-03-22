@@ -18,5 +18,6 @@ public class Urls {
     public static final String SUB_URL_NEWS_LIST = "news/list/";
     public static final String SUB_URL_NEWS_DETAILS = " news/details/";
     public static final String SUB_URL_EDIT_NEWS = "news/edit_news/";
+    public static final String SUB_URL_DELETE_NEWS = "news/delete/";
 
 }

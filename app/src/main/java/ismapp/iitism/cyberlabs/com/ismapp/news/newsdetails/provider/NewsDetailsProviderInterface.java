@@ -4,4 +4,6 @@ import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
 
 public interface NewsDetailsProviderInterface {
     void getNewsResponse(String accessToken, int newsId, PresenterCallback presenterCallback);
+    void getDeleteNewsResponse(String accessToken, int newsId, PresenterCallback presenterCallback);
+
 }

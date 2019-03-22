@@ -1,4 +1,4 @@
-package ismapp.iitism.cyberlabs.com.ismapp.news.createnews.view;
+package ismapp.iitism.cyberlabs.com.ismapp.news.createandeditnews.view;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -18,11 +18,11 @@ import ismapp.iitism.cyberlabs.com.ismapp.R;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.UriUtils;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.ViewUtils;
-import ismapp.iitism.cyberlabs.com.ismapp.news.createnews.model.CreateNewsResponseModel;
-import ismapp.iitism.cyberlabs.com.ismapp.news.createnews.presenter.CreateNewsPresenterImplementation;
-import ismapp.iitism.cyberlabs.com.ismapp.news.createnews.presenter.CreateNewsPresenterInterface;
-import ismapp.iitism.cyberlabs.com.ismapp.news.createnews.provider.CreateNewsProviderImplementation;
-import ismapp.iitism.cyberlabs.com.ismapp.news.newslist.view.NewsList;
+import ismapp.iitism.cyberlabs.com.ismapp.news.createandeditnews.model.CreateNewsResponseModel;
+import ismapp.iitism.cyberlabs.com.ismapp.news.createandeditnews.presenter.CreateNewsPresenterImplementation;
+import ismapp.iitism.cyberlabs.com.ismapp.news.createandeditnews.presenter.CreateNewsPresenterInterface;
+import ismapp.iitism.cyberlabs.com.ismapp.news.createandeditnews.provider.CreateNewsProviderImplementation;
+import ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.view.NewsList;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;

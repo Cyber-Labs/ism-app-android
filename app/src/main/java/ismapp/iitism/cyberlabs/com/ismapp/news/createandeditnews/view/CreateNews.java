@@ -1,6 +1,6 @@
-package ismapp.iitism.cyberlabs.com.ismapp.news.createnews.view;
+package ismapp.iitism.cyberlabs.com.ismapp.news.createandeditnews.view;
 
-import ismapp.iitism.cyberlabs.com.ismapp.news.createnews.model.CreateNewsResponseModel;
+import ismapp.iitism.cyberlabs.com.ismapp.news.createandeditnews.model.CreateNewsResponseModel;
 
 public interface CreateNews {
     void showProgressBar(boolean show);
