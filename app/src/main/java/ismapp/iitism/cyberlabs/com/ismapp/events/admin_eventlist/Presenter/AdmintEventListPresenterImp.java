@@ -1,5 +1,7 @@
 package ismapp.iitism.cyberlabs.com.ismapp.events.admin_eventlist.Presenter;
 
+import android.util.Log;
+
 import ismapp.iitism.cyberlabs.com.ismapp.events.admin_eventlist.DeleteEventResponse;
 import ismapp.iitism.cyberlabs.com.ismapp.events.admin_eventlist.Provider.AdmintEventListProviderInterface;
 import ismapp.iitism.cyberlabs.com.ismapp.events.admin_eventlist.View.AdminEventListFragmentInterface;
@@ -41,8 +43,10 @@ public class AdmintEventListPresenterImp  implements AdmintEventListPresenterInt
               @Override
               public void onSuccess(Object o) {
                   adminEventListFragmentInterface.showProgressBar(false);
-                  adminEventListFragmentInterface.showMessage(((DeleteEventResponse)o).getMessage());
-              }
+                  DeleteEventResponse deleteEventResponse=(DeleteEventResponse)o;
+
+                  adminEventListFragmentInterface.showMessage(deleteEventResponse.getMessage());
+            }
 
               @Override
               public void OnFailure(String msg) {

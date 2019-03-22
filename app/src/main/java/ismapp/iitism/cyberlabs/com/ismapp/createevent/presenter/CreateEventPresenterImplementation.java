@@ -23,7 +23,7 @@ public class CreateEventPresenterImplementation implements CreateEventPresenterI
             @Override
             public void onSuccess(Object o) {
                 createEventFragmentInterface.showProgressBar(false);
-                createEventFragmentInterface.showResponse((CreateEventModel)o);
+                createEventFragmentInterface.showMessage(((CreateEventModel)o).getMessage());
             }
 
             @Override

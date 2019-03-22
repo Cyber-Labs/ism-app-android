@@ -1,19 +1,20 @@
 package ismapp.iitism.cyberlabs.com.ismapp.events.admin_eventlist;
 
 public class DeleteEventResponse {
-    String success;
-    String message;
+    private boolean success;
+    private String message;
 
-    public DeleteEventResponse(String success, String message) {
+    public DeleteEventResponse(boolean success, String message) {
         this.success = success;
         this.message = message;
     }
 
-    public String getSuccess() {
+
+    public boolean isSuccess() {
         return success;
     }
 
-    public void setSuccess(String success) {
+    public void setSuccess(boolean success) {
         this.success = success;
     }
 

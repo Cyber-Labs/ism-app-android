@@ -201,7 +201,7 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
             @Override
             public void onClick(View v) {
 
-                getUserResponse();
+
 
               if(selectImage.getDrawable()==null || title.getText().toString().trim().isEmpty() || StartDate.getText().toString().trim().isEmpty()|| description.getText().toString().trim().isEmpty() )
                   ViewUtils.showToast(getContext(),"Enter all required fields");
@@ -306,7 +306,7 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
     public void showResponse(CreateEventModel createEventModel) {
       if(createEventModel.getSuccess()){
           ViewUtils.showToast(getContext(),createEventModel.getMessage());
-          ((MainActivity)getActivity()).onBackPressed();
+          //((MainActivity)getActivity()).onBackPressed();
       }
     }
 
@@ -319,9 +319,7 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
 
     @Override
     public void showMessage(String message) {
-        if(event_id==0)
-        ViewUtils.showToast(getContext(),"Event Created");
-        else   ViewUtils.showToast(getContext(),"Event Updated");
+       ViewUtils.showToast(getContext(),message);
         ((MainActivity)getActivity()).onBackPressed();
 
     }
@@ -331,7 +329,7 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
         final String Title = title.getText().toString();
         final String Description = description.getText().toString();
 
-        final String ShortDescription = shortDescription.getText().toString();
+
 
         final String StartDate = this.StartDate.getText().toString();
        final String EndDate =this.EndDate.getText().toString();

@@ -17,7 +17,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CreateEventProviderImplementation implements CreateEventProviderInterface {
-     Call<CreateEventApi> createEventApiCall;
+     Call<CreateEventModel> createEventApiCall;
     @Override
     public void getCreateEventResponse(String access_token, int club_id, String title,  String description, String venue, String event_start_date, String event_end_date, MultipartBody.Part image, final PresenterCallback presenterCallback,int event_id) {
       CreateEventApi createEventApi = ApiClient.getRetrofit().create(CreateEventApi.class);
@@ -25,7 +25,7 @@ public class CreateEventProviderImplementation implements CreateEventProviderInt
         token.put("Authorization", access_token);
 
 
-       createEventApiCall = createEventApi.getcreateventresponse(token,club_id,title,short_description,description,venue,event_start_date,event_end_date,image);
+       createEventApiCall = createEventApi.getcreateventresponse(token,club_id,title,"",description,venue,event_start_date,event_end_date,image);
 
         String StartDate = "";
         for(int i=0;i<event_start_date.length();i++)
@@ -55,15 +55,14 @@ public class CreateEventProviderImplementation implements CreateEventProviderInt
             else
              createEventApiCall = createEventApi.getediteventresponse(token,event_id,club_id,title,"",description,venue,StartDate,EndDate,image);
 
-       createEventApiCall.enqueue(new Callback<CreateEventApi>() {
+       createEventApiCall.enqueue(new Callback<CreateEventModel>() {
            @Override
-           public void onResponse(Call<CreateEventApi> call, Response<CreateEventApi> response) {
-
+           public void onResponse(Call<CreateEventModel> call, Response<CreateEventModel> response) {
                presenterCallback.onSuccess((CreateEventModel)response.body());
            }
 
            @Override
-           public void onFailure(Call<CreateEventApi> call, Throwable t) {
+           public void onFailure(Call<CreateEventModel> call, Throwable t) {
                presenterCallback.OnFailure(t.getMessage());
            }
        });

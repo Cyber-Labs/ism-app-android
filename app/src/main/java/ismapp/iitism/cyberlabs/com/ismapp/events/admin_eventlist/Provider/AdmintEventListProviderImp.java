@@ -1,6 +1,7 @@
 package ismapp.iitism.cyberlabs.com.ismapp.events.admin_eventlist.Provider;
 
 import android.support.v7.widget.CardView;
+import android.util.Log;
 
 import ismapp.iitism.cyberlabs.com.ismapp.events.admin_eventlist.DeleteEventResponse;
 import ismapp.iitism.cyberlabs.com.ismapp.events.admin_eventlist.api.api;
@@ -44,7 +45,9 @@ public class AdmintEventListProviderImp implements AdmintEventListProviderInterf
         deleteEventResponseCall.enqueue(new Callback<DeleteEventResponse>() {
             @Override
             public void onResponse(Call<DeleteEventResponse> call, Response<DeleteEventResponse> response) {
-                presenterCallback.onSuccess((DeleteEventResponse)response.body());
+               presenterCallback.onSuccess((DeleteEventResponse)response.body());
+
+
             }
 
             @Override

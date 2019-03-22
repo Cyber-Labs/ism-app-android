@@ -128,11 +128,9 @@ public class AdminEventListAdapter extends RecyclerView.Adapter<AdminEventListAd
                                     public void onClick(DialogInterface dialog, int which) {
                                      AdmintEventListPresenterInterface admintEventListPresenterInterface = new AdmintEventListPresenterImp(adminEventListFragmentInterface,new AdmintEventListProviderImp(),-1,eventListModels.get(getAdapterPosition()).getId());
                                      admintEventListPresenterInterface.reqEventList(sharedPrefs.getAccessToken());
-                                     AdminEventListFragment adminEventListFragment=new AdminEventListFragment();
-                                     Bundle args=new Bundle();
-                                     args.putInt("club_id",club_id);
-                                     adminEventListFragment.setArguments(args);
-                                        ((MainActivity)fragmentActivity).addFragment(adminEventListFragment);
+                                      eventListModels.remove(getAdapterPosition());
+                                      notifyDataSetChanged();
+
                                     }
                                 })
                                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

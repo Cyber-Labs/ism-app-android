@@ -17,7 +17,7 @@ import static ismapp.iitism.cyberlabs.com.ismapp.helper.Urls.SUB_URL_EVENT_LIST;
 public interface api {
     @GET(SUB_URL_CLUB_EVENT_LIST)
     Call<EventListResponse> getEventList(@Header("Authorization") String Token_access_token,@Query("club_id") int club_id);
-    @FormUrlEncoded
+
     @GET(SUB_URL_DELETE_EVENT)
     Call<DeleteEventResponse> deleteEvent(@Header("Authorization") String access_token, @Query("event_id") int event_id);
 }
