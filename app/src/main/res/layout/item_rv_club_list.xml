@@ -5,9 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/black">
-
+    android:background="@color/viewBgColor">
     <android.support.v7.widget.CardView
+        android:layout_margin="@dimen/margin_hori"
         android:id="@+id/card_view_club"
         android:layout_width="match_parent"
         android:layout_height="@dimen/card_height"
@@ -25,17 +25,16 @@
             android:padding="@dimen/layout_padding">
 
             <LinearLayout
-                android:layout_weight="2"
+                android:layout_weight="3"
                 android:layout_width="0dp"
                 android:layout_height="match_parent">
-            <ImageView
-                android:id="@+id/iv_clubimage"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="@dimen/layout_margin"
-                android:padding="4dp"
-                tools:srcCompat="@drawable/cyberlabs"
-                android:contentDescription="@string/todo" />
+                <ImageView
+                    android:id="@+id/iv_clubimage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/layout_padding"
+                    tools:srcCompat="@drawable/cyberlabs"
+                    android:contentDescription="@string/todo" />
             </LinearLayout>
             <LinearLayout
                 android:layout_weight="7"
@@ -48,23 +47,62 @@
 
                 <TextView
                     android:id="@+id/iv_clubname"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:background="@drawable/text_capsule"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.5"
+                    android:textStyle="bold"
                     android:padding="@dimen/tv_padding"
                     android:text="@string/cyberlabs"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                    android:textColor="@color/titleColor"
+                    android:textColor="@color/white"
+                    android:gravity="center_vertical"
                     android:textSize="@dimen/title_text_size" />
 
                 <TextView
                     android:id="@+id/iv_clubtagline"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/tv_padding"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:padding="2dp"
                     android:text="@string/technical_club"
+                    android:gravity="center_vertical"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                    android:textColor="@color/titleColorLight"
+                    android:textColor="@color/titleColor"
                     android:textSize="@dimen/tagline_text_size" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:id="@+id/lay_eventlist_venue_and_date"
+                    android:layout_weight="1"
+                    android:visibility="gone"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:id="@+id/tv_eventlist_venue"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/lato"
+                        android:paddingHorizontal="@dimen/layout_padding_horizontal"
+                        android:text="Venue - Sac !01"
+                        android:maxLines="1"
+                        android:gravity="bottom"
+                        android:layout_height="match_parent" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:id="@+id/tv_eventlist_date"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/lato"
+                        android:paddingHorizontal="@dimen/layout_padding_horizontal"
+                        android:text="10/20/222 10:00 A"
+                        android:gravity="bottom"
+                        android:layout_height="match_parent" />
+
+                </LinearLayout>
+
             </LinearLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>

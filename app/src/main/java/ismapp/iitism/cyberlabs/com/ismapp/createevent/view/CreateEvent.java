@@ -1,5 +1,6 @@
 package ismapp.iitism.cyberlabs.com.ismapp.createevent.view;
 
+import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
@@ -19,8 +20,16 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.TimePicker;
+
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.single.PermissionListener;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -31,6 +40,10 @@ import ismapp.iitism.cyberlabs.com.ismapp.createevent.model.CreateEventModel;
 import ismapp.iitism.cyberlabs.com.ismapp.createevent.presenter.CreateEventPresenterImplementation;
 import ismapp.iitism.cyberlabs.com.ismapp.createevent.presenter.CreateEventPresenterInterface;
 import ismapp.iitism.cyberlabs.com.ismapp.createevent.provider.CreateEventProviderImplementation;
+import ismapp.iitism.cyberlabs.com.ismapp.helper.MsgToast;
+import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
+import ismapp.iitism.cyberlabs.com.ismapp.helper.UriUtils;
+
 import ismapp.iitism.cyberlabs.com.ismapp.helper.ViewUtils;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -47,8 +60,7 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
     private ImageView selectImage;
     private EditText title;
     private EditText description;
-    private EditText shortDescription;
-    private EditText Description;
+
     private TextView EndDate;
     private TextView StartDate;
     private TextView EndTime;
@@ -56,6 +68,7 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
     private EditText venue;
     private Button submit;
     private Calendar calendar;
+    ProgressBar pb_add_event;
     public static final int PICK_IMAGE = 1;
     private MultipartBody.Part image;
     ImageView iv_start_day;
@@ -108,7 +121,6 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
         selectImage = (ImageView)view.findViewById(R.id.iv_add_event_pic);
         title = (EditText) view.findViewById(R.id.tv_add_event_title);
         description = (EditText)view.findViewById(R.id.tv_add_event_desc);
-        shortDescription = (EditText)view.findViewById(R.id.tv_add_event_short_desc);
         venue = (EditText)view.findViewById(R.id.tv_add_event_venue);
         StartDate = view.findViewById(R.id.add_event_start_date);
         EndDate = view.findViewById(R.id.add_event_end_date);
@@ -120,41 +132,88 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
         iv_end_day=view.findViewById(R.id.iv_end_day);
         iv_end_time=view.findViewById(R.id.iv_end_time);
         calendar= Calendar.getInstance();
+        pb_add_event=view.findViewById(R.id.pb_add_event);
+
+        Dexter.withActivity(getActivity()).withPermission(Manifest.permission.READ_EXTERNAL_STORAGE).withListener(new PermissionListener() {
+            @Override
+            public void onPermissionGranted(PermissionGrantedResponse response) {
+
+            }
+
+            @Override
+            public void onPermissionDenied(PermissionDeniedResponse response) {
+
+            }
+
+            @Override
+            public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
+
+            }
+        }).check();
+
         createEventPresenterInterface = new CreateEventPresenterImplementation(this,new CreateEventProviderImplementation());
         selectImage();
         iv_start_day.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectAddEventDate();
+                selectAddEventDate(1);
+            }
+        });
+        iv_end_day.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectAddEventDate(2);
             }
         });
         iv_start_time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectAddEventTime();
+                selectAddEventTime(1);
             }
         });
+        iv_end_time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectAddEventTime(2);
+            }
+        });
+        showButtonClickable(true);
+        submit.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public void onClick(View v) {
+              if(selectImage.getDrawable()==null || title.getText().toString().trim().isEmpty() || StartDate.getText().toString().trim().isEmpty()|| description.getText().toString().trim().isEmpty() )
+                  ViewUtils.showToast(getContext(),"Enter all required fields");
+              else
+                  getUserResponse();
 
+            }
+        });
         return   view;
 
     }
 
-    private void selectAddEventDate() {
+    private void selectAddEventDate(int i) {
         DatePickerDialog datePickerDialog=new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
             @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) { StartDate.setText(String.format("%d/%d/%d", year, month+1, dayOfMonth));
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                if(i==1){StartDate.setText(String.format("%d/%d/%d", year, month+1, dayOfMonth));}
+                        else
+                         {EndDate.setText(String.format("%d/%d/%d", year, month+1, dayOfMonth));};
 
             }
         },Calendar.YEAR,Calendar.MONTH+1,Calendar.DAY_OF_MONTH);
         datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
         datePickerDialog.show();
     }
-    private void selectAddEventTime()
+    private void selectAddEventTime(int i)
     {
         TimePickerDialog timePickerDialog=new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-              StartTime.setText(hourOfDay+":"+minute);
+             if(i==1){ StartTime.setText(hourOfDay+":"+minute);}
+                   else
+                        EndTime.setText(hourOfDay+":"+minute);
             }
         },Calendar.HOUR_OF_DAY,Calendar.MINUTE,false);
 
@@ -177,23 +236,23 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         if (requestCode == PICK_IMAGE  && resultCode == RESULT_OK) {
-            Bitmap photo = (Bitmap) data.getExtras().get("data");
-            selectImage.setImageBitmap(photo);
+           // Bitmap photo = (Bitmap) data.getExtras().get("data");
+            selectImage.setImageURI(data.getData());
 
 
 
             // CALL THIS METHOD TO GET THE URI FROM THE BITMAP
-            Uri tempUri = getImageUri(getContext(), photo);
+           // Uri tempUri = getImageUri(getContext(), photo);
 
             // CALL THIS METHOD TO GET THE ACTUAL PATH
-            File finalFile = new File(getRealPathFromURI(tempUri));
+            File finalFile = new File(UriUtils.uriToFilePathConverter(getContext(),data.getData()));
            // File file = new File("/storage/emulated/0/Download/Corrections 6.jpg");
             RequestBody requestFile =
                     RequestBody.create(MediaType.parse("multipart/form-data"), finalFile);
 
 // MultipartBody.Part is used to send also the actual file name
              image =
-                    MultipartBody.Part.createFormData("image", finalFile.getName(), requestFile);
+                    MultipartBody.Part.createFormData("event_pic", finalFile.getName(), requestFile);
 
 
 
@@ -216,6 +275,10 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
 
     @Override
     public void showProgressBar(Boolean show) {
+        if(show)
+            pb_add_event.setVisibility(View.VISIBLE);
+         else
+             pb_add_event.setVisibility(View.GONE);
 
     }
 
@@ -236,26 +299,19 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
 
     @Override
     public void showMessage(String message) {
-
+      ViewUtils.showToast(getContext(),message);
     }
 
     @Override
     public void getUserResponse() {
         final String Title = title.getText().toString();
         final String Description = description.getText().toString();
-        final String ShortDescription = shortDescription.getText().toString();
-//        final String StartDate = Startate.getText().toString();
-//        final String EndDate =EndDate.getText().toString();
+        final String StartDate = this.StartDate.getText().toString();
+       final String EndDate =this.EndDate.getText().toString();
         final String Venue = venue.getText().toString();
-        showButtonClickable(true);
-//        submit.setOnClickListener(new View.OnClickListener() {
-//            @RequiresApi(api = Build.VERSION_CODES.M)
-//            @Override
-//            public void onClick(View v) {
-//                SharedPrefs sharedPrefs = new SharedPrefs(getContext());
-//                createEventPresenterInterface.getCreateEventRequest(sharedPrefs.getAccessToken(),sharedPrefs.getClubId(),Title,ShortDescription,Description,Venue,StartDate,EndDate,image);
-//            }
-//        });
+        SharedPrefs sharedPrefs = new SharedPrefs(getContext());
+        createEventPresenterInterface.getCreateEventRequest(sharedPrefs.getAccessToken(),sharedPrefs.getClubId(),Title,Description,Venue,StartDate,EndDate,image);
+
 
     }
 

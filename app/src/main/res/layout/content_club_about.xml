@@ -26,12 +26,14 @@
                     android:layout_width="0dp"
                     android:layout_weight="5"
                     android:layout_height="match_parent"
+                    android:layout_margin="@dimen/iv_padding_small"
                     android:orientation="vertical">
                     <TextView
                         android:id="@+id/club_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="20sp"
+                        android:textSize="@dimen/text_size_20sp"
+                        android:padding="@dimen/tv_padding"
                         android:fontFamily="@font/lato"
                         android:textStyle="bold"
                         android:textColor="#fff"
@@ -41,7 +43,8 @@
                         android:id="@+id/club_tag"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="14sp"
+                        android:padding="@dimen/tv_padding"
+                        android:textSize="@dimen/title_text_size"
                         android:fontFamily="@font/lato"
                         android:textColor="#fff"
 
@@ -54,8 +57,9 @@
                     android:id="@+id/fab_add_member"
                     android:layout_height="match_parent"
                     android:visibility="visible"
-                    android:src="@drawable/setting"
-                    android:paddingHorizontal="@dimen/layout_padding_horizontal"/>
+                    android:src="@drawable/fb_icon_png_480760"
+
+                   />
 
 
             </LinearLayout>
@@ -63,9 +67,10 @@
                 android:id="@+id/club_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="20dp"
+                android:padding="@dimen/layout_padding"
                 android:textStyle="bold"
-                android:textSize="16sp"
+                android:textSize="@dimen/title_head"
+                android:layout_marginTop="@dimen/margin_hori"
                 android:fontFamily="@font/lato"
 
                 />

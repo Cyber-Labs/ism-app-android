@@ -5,7 +5,7 @@
     android:id="@+id/signup_coordlay"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+    android:background="@drawable/bgcolor"
     android:padding="5dp">
 
     <android.support.v4.widget.NestedScrollView
@@ -24,7 +24,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="2"
                 android:contentDescription="@string/todo"
-                android:padding="20dp"
+                android:padding="@dimen/card_view_padding"
                 android:src="@drawable/logo" />
 
             <LinearLayout
@@ -137,10 +137,10 @@
                     android:layout_marginLeft="@dimen/margin_hori"
                     android:layout_marginRight="@dimen/margin_hori"
                     android:layout_marginBottom="24dp"
-                    android:background="@drawable/btnlogin"
+                    android:background="@drawable/btn_bg_color"
                     android:clickable="false"
                     android:text="@string/sign_up"
-                    android:textColor="@color/default_splash_image_color" />
+                    android:textColor="@color/white" />
 
                 <Button
                     android:id="@+id/signup_signin"
@@ -149,10 +149,10 @@
                     android:layout_marginLeft="@dimen/margin_hori"
                     android:layout_marginRight="@dimen/margin_hori"
                     android:layout_marginBottom="24dp"
-                    android:background="@drawable/btnlogin"
+                    android:background="@drawable/btn_bg_color"
                     android:clickable="false"
                     android:text="@string/sign_in"
-                    android:textColor="@color/default_splash_image_color" />
+                    android:textColor="@color/white" />
             </LinearLayout>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>

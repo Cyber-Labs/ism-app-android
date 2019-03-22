@@ -29,7 +29,7 @@ public class ClubListAdapter extends RecyclerView.Adapter<ClubListAdapter.clubAd
     private SharedPrefs sharedPrefs ;
     private FragmentActivity fragmentActivity;
 
-    ClubListAdapter(Context context, FragmentManager fragmentManager, FragmentActivity fragmentActivity) {
+    public ClubListAdapter(Context context, FragmentManager fragmentManager, FragmentActivity fragmentActivity) {
         this.context = context;
         sharedPrefs = new SharedPrefs(context);
         this.fragmentActivity=fragmentActivity;

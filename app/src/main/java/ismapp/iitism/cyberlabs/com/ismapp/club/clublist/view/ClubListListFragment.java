@@ -51,7 +51,7 @@ public class ClubListListFragment extends Fragment implements ClubListFragmentIn
         if(clubDetailsArrayList ==null)
         {
             clubListPresenterInterface = new ClubListPresenterImpl(ClubListListFragment.this,new ClubListProviderImp());
-            clubListPresenterInterface.requestclublist(sharedPrefs.getAccessToken());}
+            clubListPresenterInterface.requestClubList(sharedPrefs.getAccessToken());}
         else
         {
             showProgressBar(false);

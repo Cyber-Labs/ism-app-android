@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.view.ClubListListFragment;
+import ismapp.iitism.cyberlabs.com.ismapp.events.eventlist.view.EventListFragment;
 import ismapp.iitism.cyberlabs.com.ismapp.events.view.EventsFrag;
 import ismapp.iitism.cyberlabs.com.ismapp.feed.view.FeedFrag;
 
@@ -84,11 +85,12 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.feed) {
+
             setFragment(new FeedFrag()); addActionBar(); addTitletoBar("Feeds");
         } else if (id == R.id.clubs) {
             setFragment(new ClubListListFragment());addActionBar(); addTitletoBar("Clubs");
         } else if (id == R.id.events) {
-            setFragment(new EventsFrag());addActionBar(); addTitletoBar("Events");
+            setFragment(new EventListFragment());addActionBar(); addTitletoBar("Events");
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

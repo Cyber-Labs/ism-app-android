@@ -9,13 +9,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ClubDetailsProviderInterface implements ClubDetailsProviderImp {
+public class RetrofitClubDetailsProvider implements ClubDetailsProvider {
     Call<ClubDetailsModel> call;
     Call<MemberListResponse> memberListResponseCall;
 
 
     @Override
-    public void getclubdetailresponse(String access_token, int id, final PresenterCallback presenterCallback) {
+    public void getClubDetails(String access_token, int id, final PresenterCallback presenterCallback) {
         ClubDetailsApi clubDetailsApi = ApiClient.getRetrofit().create(ClubDetailsApi.class);
         call = clubDetailsApi.getdetails(access_token,id);
         call.enqueue(new Callback<ClubDetailsModel>() {
@@ -34,7 +34,7 @@ public class ClubDetailsProviderInterface implements ClubDetailsProviderImp {
     }
 
     @Override
-    public void requestmemblist(String access_token, int id, final PresenterCallback presenterCallback) {
+    public void requestMemberList(String access_token, int id, final PresenterCallback presenterCallback) {
         ClubDetailsApi clubDetailsApi = ApiClient.getRetrofit().create(ClubDetailsApi.class);
         memberListResponseCall = clubDetailsApi.getMembList(access_token,id);
         memberListResponseCall.enqueue(new Callback<MemberListResponse>() {
