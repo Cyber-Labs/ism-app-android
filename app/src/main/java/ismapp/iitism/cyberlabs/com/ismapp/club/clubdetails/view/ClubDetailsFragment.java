@@ -54,6 +54,7 @@ public class ClubDetailsFragment extends Fragment implements ClubDetailsFragment
     View bottomSheet;
     ProgressBar pb_club_details;
     View view;
+    int club_id;
 
    // private OnFragmentInteractionListener mListener;
 
@@ -106,7 +107,11 @@ public class ClubDetailsFragment extends Fragment implements ClubDetailsFragment
         view.findViewById(R.id.fab_add_member).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity)getActivity()).addFragment(new AdminSettingsFragment());
+                AdminSettingsFragment adminSettingsFragment=new AdminSettingsFragment();
+                Bundle bundle=new Bundle();
+                bundle.putInt("club_id",club_id);
+                adminSettingsFragment.setArguments(bundle);
+                ((MainActivity)getActivity()).addFragment(adminSettingsFragment);
             }
         });
 
@@ -123,7 +128,7 @@ public class ClubDetailsFragment extends Fragment implements ClubDetailsFragment
         bottomSheet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("amanan", "onClick: ");
+
                behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
             }
         });
@@ -150,7 +155,9 @@ public class ClubDetailsFragment extends Fragment implements ClubDetailsFragment
         tv_Tagline.setText(clubDetailsModel.getTagline());
         tv_description.setText(clubDetailsModel.getDescription());
         if(clubDetailsModel.getIs_admin())
-            view.findViewById(R.id.fab_add_member).setVisibility(View.VISIBLE);
+        {view.findViewById(R.id.fab_add_member).setVisibility(View.VISIBLE);
+        club_id=clubDetailsModel.getId();}
+
 
 
 //        BrowserIcon.setOnClickListener(new View.OnClickListener() {

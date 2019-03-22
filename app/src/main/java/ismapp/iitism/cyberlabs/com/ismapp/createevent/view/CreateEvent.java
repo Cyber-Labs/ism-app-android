@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,11 +31,13 @@ import com.karumi.dexter.listener.PermissionDeniedResponse;
 import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
+import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.Calendar;
 
+import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
 import ismapp.iitism.cyberlabs.com.ismapp.createevent.model.CreateEventModel;
 import ismapp.iitism.cyberlabs.com.ismapp.createevent.presenter.CreateEventPresenterImplementation;
@@ -79,12 +82,13 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
     ImageView iv_start_time;
     ImageView iv_end_day;
     ImageView iv_end_time;
+    int event_id;
     CreateEventPresenterInterface createEventPresenterInterface;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+   Bundle bundle;
 
     public CreateEvent() {
         // Required empty public constructor
@@ -111,11 +115,11 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+       if(getArguments()!=null){ bundle=getArguments(); event_id=bundle.getInt("event_id",0);}
+       else event_id=0;
+
         }
-    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -148,7 +152,7 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
 
             @Override
             public void onPermissionDenied(PermissionDeniedResponse response) {
-
+                ((MainActivity)getActivity()).onBackPressed();
             }
 
             @Override
@@ -156,7 +160,15 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
 
             }
         }).check();
-
+        if(event_id!=0)
+        {
+            Picasso.get().load(bundle.getString("event_pic")).into(selectImage);
+            title.setText(bundle.getString("event_title"));
+            description.setText(bundle.getString("event_desc"));
+            StartDate.setText(bundle.getString("event_startdate"));
+            EndDate.setText(bundle.getString("event_enddate"));
+            venue.setText(bundle.getString("event_venue"));
+        }
         createEventPresenterInterface = new CreateEventPresenterImplementation(this,new CreateEventProviderImplementation());
         selectimage();
         iv_start_day.setOnClickListener(new View.OnClickListener() {
@@ -251,16 +263,13 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
 
 
 
-            // CALL THIS METHOD TO GET THE URI FROM THE BITMAP
-           // Uri tempUri = getImageUri(getContext(), photo);
 
-            // CALL THIS METHOD TO GET THE ACTUAL PATH
             File finalFile = new File(UriUtils.uriToFilePathConverter(getContext(),data.getData()));
-           // File file = new File("/storage/emulated/0/Download/Corrections 6.jpg");
+
             RequestBody requestFile =
                     RequestBody.create(MediaType.parse("multipart/form-data"), finalFile);
 
-// MultipartBody.Part is used to send also the actual file name
+
              image =
                     MultipartBody.Part.createFormData("event_pic", finalFile.getName(), requestFile);
 
@@ -297,6 +306,7 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
     public void showResponse(CreateEventModel createEventModel) {
       if(createEventModel.getSuccess()){
           ViewUtils.showToast(getContext(),createEventModel.getMessage());
+          ((MainActivity)getActivity()).onBackPressed();
       }
     }
 
@@ -309,7 +319,11 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
 
     @Override
     public void showMessage(String message) {
-      ViewUtils.showToast(getContext(),message);
+        if(event_id==0)
+        ViewUtils.showToast(getContext(),"Event Created");
+        else   ViewUtils.showToast(getContext(),"Event Updated");
+        ((MainActivity)getActivity()).onBackPressed();
+
     }
 
     @Override
@@ -324,9 +338,9 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
         final String Venue = venue.getText().toString();
         SharedPrefs sharedPrefs = new SharedPrefs(getContext());
 
-        createEventPresenterInterface.getCreateEventRequest(sharedPrefs.getAccessToken(),sharedPrefs.getClubId(),Title,ShortDescription,Description,Venue,StartDate,EndDate,image);
 
-        createEventPresenterInterface.getCreateEventRequest(sharedPrefs.getAccessToken(),sharedPrefs.getClubId(),Title,Description,Venue,StartDate,EndDate,image);
+        createEventPresenterInterface.getCreateEventRequest(sharedPrefs.getAccessToken(),sharedPrefs.getClubId(),Title,Description,Venue,StartDate,EndDate,image,event_id);
+
 
 
 

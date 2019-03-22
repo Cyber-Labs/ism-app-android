@@ -7,6 +7,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -57,7 +58,10 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            int count=getSupportFragmentManager().getBackStackEntryCount();
+            if(count==0){
+            super.onBackPressed();}
+            else getSupportFragmentManager().popBackStack();
         }
     }
 
@@ -124,6 +128,15 @@ public class MainActivity extends AppCompatActivity
                     .commit();
 
     }
+    public void addFragmentWithSharedElement(Fragment fragment,View view) {
+        if (fragment != null)
+            getSupportFragmentManager().beginTransaction()
+                    .addToBackStack(null)
+                    .replace(R.id.main_contaner, fragment).addSharedElement(view, ViewCompat.getTransitionName(view))
+                    .commit();
+
+    }
+
 
     public void addActionBar()
     {   toggle.setDrawerIndicatorEnabled(true);

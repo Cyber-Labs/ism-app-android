@@ -1,7 +1,9 @@
 package ismapp.iitism.cyberlabs.com.ismapp.events.eventlist.view;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -18,6 +20,7 @@ import java.util.List;
 
 import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
+import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.view.ClubDetailsFragment;
 import ismapp.iitism.cyberlabs.com.ismapp.events.eventlist.EventListModel;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
 
@@ -66,7 +69,22 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
             clubimage = itemView.findViewById(R.id.item_eventlist_img);
             tv_title = itemView.findViewById(R.id.item_eventlist_title);
             tv_venue = itemView.findViewById(R.id.item_eventlist_venue);
-
+              itemView.setOnClickListener(new View.OnClickListener() {
+                  @Override
+                  public void onClick(View v) {
+                          SingleEventDetailFragment fragment=new SingleEventDetailFragment();
+                          Bundle args=new Bundle();
+                          args.putString("title",eventListModels.get(getAdapterPosition()).getTitle());
+                          args.putString("description",eventListModels.get(getAdapterPosition()).getDescription());
+                          args.putString("club_name",eventListModels.get(getAdapterPosition()).getClub_name());
+                          args.putString("start_date",eventListModels.get(getAdapterPosition()).getEvent_start_date());
+                          args.putString("end_date",eventListModels.get(getAdapterPosition()).getEvent_end_date());
+                          args.putString("pic_url",eventListModels.get(getAdapterPosition()).getEvent_pic_url());
+                          args.putString("venue",eventListModels.get(getAdapterPosition()).getVenue());
+                          fragment.setArguments(args);
+                      ((MainActivity)fragmentActivity).addFragment(fragment);
+                  }
+              });
 
 
 

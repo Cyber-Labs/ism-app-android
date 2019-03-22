@@ -23,5 +23,17 @@ public interface CreateEventApi {
                                                       @Part("event_start_date") String event_start_date,
                                                        @Part("event_end_date") String event_end_date,
                                                         @Part MultipartBody.Part image);
+    @Multipart
+    @POST(Urls.SUB_URL_EDIT_EVENT)
+    Call<CreateEventApi> getediteventresponse(@HeaderMap Map<String, String> token,
+                                               @Part("event_id") int event_id,
+                                               @Part("club_id") int clubid,
+                                               @Part("title") String title,
+                                              @Part("short_desc")  String short_description,
+                                               @Part("description" )String description,
+                                               @Part("venue" ) String venue,
+                                               @Part("event_start_date") String event_start_date,
+                                               @Part("event_end_date") String event_end_date,
+                                               @Part MultipartBody.Part image);
 
 }
