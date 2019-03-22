@@ -8,14 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
-import ismapp.iitism.cyberlabs.com.ismapp.addclubmember.view.AddMember;
 import ismapp.iitism.cyberlabs.com.ismapp.createevent.view.CreateEvent;
+import ismapp.iitism.cyberlabs.com.ismapp.managemember.memberlist.view.ManageMemberFragment;
 
 public class AdminSettingsFragment extends Fragment {
 
@@ -28,10 +27,11 @@ public class AdminSettingsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_admin_settings, container, false);
         ButterKnife.bind(this,view);
+        ManageMemberFragment fragment = new ManageMemberFragment();
         ibtn_admin_man_members.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainActivity)getActivity()).addFragment(new AddMember());
+                ((MainActivity)getActivity()).addFragment(new ManageMemberFragment());
             }
         });
         ibtn_admin_man_events.setOnClickListener(new View.OnClickListener() {

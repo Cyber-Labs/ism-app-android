@@ -43,6 +43,7 @@ import ismapp.iitism.cyberlabs.com.ismapp.createevent.provider.CreateEventProvid
 import ismapp.iitism.cyberlabs.com.ismapp.helper.MsgToast;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.UriUtils;
+
 import ismapp.iitism.cyberlabs.com.ismapp.helper.ViewUtils;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -151,7 +152,7 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
         }).check();
 
         createEventPresenterInterface = new CreateEventPresenterImplementation(this,new CreateEventProviderImplementation());
-        selectimage();
+        selectImage();
         iv_start_day.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -219,7 +220,7 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
         timePickerDialog.show();
     }
 
-    private void selectimage() {
+    private void selectImage() {
         selectImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
