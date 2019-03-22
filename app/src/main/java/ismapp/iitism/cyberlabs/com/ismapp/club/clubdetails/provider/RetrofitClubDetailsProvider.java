@@ -1,5 +1,7 @@
 package ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.provider;
 
+import android.util.Log;
+
 import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.api.ClubDetailsApi;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.model.ClubDetailsModel;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.model.MemberListResponse;
@@ -42,6 +44,7 @@ public class RetrofitClubDetailsProvider implements ClubDetailsProvider {
             public void onResponse(Call<MemberListResponse> call, Response<MemberListResponse> response) {
                 MemberListResponse c=(MemberListResponse) response.body();
                 presenterCallback.onSuccess((MemberListResponse)response.body());
+                Log.e("sujal", "onResponse: "+response.body().toString() );
             }
 
             @Override

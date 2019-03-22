@@ -1,5 +1,7 @@
 package ismapp.iitism.cyberlabs.com.ismapp.managemember.memberlist.provider;
 
+import android.util.Log;
+
 import ismapp.iitism.cyberlabs.com.ismapp.helper.ApiClient;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
 import ismapp.iitism.cyberlabs.com.ismapp.managemember.memberlist.api.ManageMemberListApi;
@@ -22,6 +24,8 @@ public class ManageMemberListProvider implements ManageMemberProviderInterface {
             @Override
             public void onResponse(Call<MemberListResponse> call, Response<MemberListResponse> response) {
                 presenterCallback.onSuccess((MemberListResponse)response.body());
+                Log.e("periul", "onResponse: "+ response.body().toString());
+
             }
 
             @Override

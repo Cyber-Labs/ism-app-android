@@ -59,4 +59,6 @@
 
     <string name="member_name">Tazril</string>
     <string name="about_club">About</string>
+    <string name="Description">description</string>
+    <string name="Submit">submit</string>
 </resources>
