@@ -2,6 +2,7 @@ package ismapp.iitism.cyberlabs.com.ismapp.managemember.memberlist.view;
 
 import android.app.Fragment;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -30,17 +31,19 @@ import ismapp.iitism.cyberlabs.com.ismapp.managemember.memberlist.provider.Manag
  * Use the {@link ManageMemberFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ManageMemberFragment extends Fragment implements ManageMemberViewInterface {
+public class ManageMemberFragment extends android.support.v4.app.Fragment implements ManageMemberViewInterface {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
     RecyclerView recyclerView;
     ProgressDialog progressDialog;
     ManageMemberPresenterInterface manageMemberPresenterInterface;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
+    private Context context;
     private String mParam2;
 
 
@@ -81,6 +84,7 @@ public class ManageMemberFragment extends Fragment implements ManageMemberViewIn
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_manage_member, container, false);
+        context = getContext();
         FloatingActionButton addmember = (FloatingActionButton)view.findViewById(R.id.fab);
         addmember.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,20 +111,23 @@ public class ManageMemberFragment extends Fragment implements ManageMemberViewIn
     public void showProgressBar(boolean show) {
        if(show){
            progressDialog.show();
+       }else{
+           progressDialog.dismiss();
        }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
+
     @Override
     public void getMemberList(MemberListResponse memberListResponse) {
-        MemberListAdapter memberListAdapter = new MemberListAdapter(memberListResponse.member_list, getContext(),this);
+
+        MemberListAdapter memberListAdapter = new MemberListAdapter(memberListResponse.getMember_list(), context,this);
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
+
     @Override
     public void getRemoveMemberResponse(RemoveMember removeMember) {
-           MemberListAdapter memberListAdapter = new MemberListAdapter(getContext(),this,removeMember);
+           MemberListAdapter memberListAdapter = new MemberListAdapter(context,this,removeMember);
     }
 
 

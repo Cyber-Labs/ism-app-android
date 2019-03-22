@@ -9,7 +9,7 @@ import retrofit2.http.Header;
 import retrofit2.http.Query;
 
 public interface ManageMemberListApi {
-    @GET(Urls.SUB_URL_CLUB_LIST)
+    @GET(Urls.SUB_URL_MEMBERS_LIST)
     Call<MemberListResponse> getMemberListResponse(@Header("Authorization") String Token_access_token, @Query("club_id") int id);
     @GET(Urls.SUB_URL_REMOVE_MEMBER)
     Call<RemoveMember> getRemoveMemberResponse(@Header("Authorization") String Token_access_token, @Query("club_id") int id,@Query("email_id") String email_id);

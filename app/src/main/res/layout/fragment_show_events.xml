@@ -50,11 +50,18 @@
                 android:background="#fff"
                 android:layout_height="wrap_content"
                 app:mcv_showOtherDates="all"
+
                 app:mcv_selectionColor="@color/colorPrimary"
                 app:mcv_headerTextAppearance="@style/MatCalendarHeader"
                 app:mcv_weekDayTextAppearance="@style/MatCalendarDate"
 
                 android:padding="5dp"
+
+
+                android:background="#fff"
+
+                app:mcv_selectionColor="#00F"
+
                 />
 
 

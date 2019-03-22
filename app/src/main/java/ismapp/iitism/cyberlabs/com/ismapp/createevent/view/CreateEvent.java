@@ -43,9 +43,14 @@ import ismapp.iitism.cyberlabs.com.ismapp.createevent.model.CreateEventModel;
 import ismapp.iitism.cyberlabs.com.ismapp.createevent.presenter.CreateEventPresenterImplementation;
 import ismapp.iitism.cyberlabs.com.ismapp.createevent.presenter.CreateEventPresenterInterface;
 import ismapp.iitism.cyberlabs.com.ismapp.createevent.provider.CreateEventProviderImplementation;
+
+import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
+import ismapp.iitism.cyberlabs.com.ismapp.helper.UriUtils;
+
 import ismapp.iitism.cyberlabs.com.ismapp.helper.MsgToast;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.UriUtils;
+
 import ismapp.iitism.cyberlabs.com.ismapp.helper.ViewUtils;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -135,7 +140,9 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
         iv_end_day=view.findViewById(R.id.iv_end_day);
         iv_end_time=view.findViewById(R.id.iv_end_time);
         calendar= Calendar.getInstance();
+
         pb_add_event=view.findViewById(R.id.pb_add_event);
+
 
         Dexter.withActivity(getActivity()).withPermission(Manifest.permission.READ_EXTERNAL_STORAGE).withListener(new PermissionListener() {
             @Override
@@ -193,10 +200,14 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View v) {
+
+                getUserResponse();
+
               if(selectImage.getDrawable()==null || title.getText().toString().trim().isEmpty() || StartDate.getText().toString().trim().isEmpty()|| description.getText().toString().trim().isEmpty() )
                   ViewUtils.showToast(getContext(),"Enter all required fields");
               else
                   getUserResponse();
+
 
             }
         });
@@ -319,12 +330,18 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
     public void getUserResponse() {
         final String Title = title.getText().toString();
         final String Description = description.getText().toString();
+
+        final String ShortDescription = shortDescription.getText().toString();
+
         final String StartDate = this.StartDate.getText().toString();
        final String EndDate =this.EndDate.getText().toString();
         final String Venue = venue.getText().toString();
         SharedPrefs sharedPrefs = new SharedPrefs(getContext());
 
+
         createEventPresenterInterface.getCreateEventRequest(sharedPrefs.getAccessToken(),sharedPrefs.getClubId(),Title,Description,Venue,StartDate,EndDate,image,event_id);
+
+
 
 
     }

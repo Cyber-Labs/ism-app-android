@@ -1,5 +1,6 @@
 package ismapp.iitism.cyberlabs.com.ismapp;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -15,10 +16,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import ismapp.iitism.cyberlabs.com.ismapp.authentication.login.view.LoginViewImp;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.view.ClubListListFragment;
 import ismapp.iitism.cyberlabs.com.ismapp.events.eventlist.view.EventListFragment;
+
 import ismapp.iitism.cyberlabs.com.ismapp.events.view.EventsFrag;
+
 import ismapp.iitism.cyberlabs.com.ismapp.feed.view.FeedFrag;
+import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -95,6 +100,12 @@ public class MainActivity extends AppCompatActivity
             setFragment(new ClubListListFragment());addActionBar(); addTitletoBar("Clubs");
         } else if (id == R.id.events) {
             setFragment(new EventListFragment());addActionBar(); addTitletoBar("Events");
+        }
+        else if(id == R.id.logout){
+            SharedPrefs sharedPrefs = new SharedPrefs(getApplicationContext());
+            sharedPrefs.clear();
+            startActivity(new Intent(getApplicationContext(), LoginViewImp.class));
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

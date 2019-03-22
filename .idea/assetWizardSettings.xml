@@ -160,7 +160,9 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
+
                                       <entry key="url" value="jar:file:/home/aman/Documents/android-studio/plugins/android/lib/android.jar!/images/material_design_icons/content/ic_add_circle_outline_black_24dp.xml" />
+
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -170,8 +172,10 @@
                         </option>
                         <option name="values">
                           <map>
+
                             <entry key="outputName" value="add" />
                             <entry key="sourceFile" value="$APPLICATION_HOME_DIR$/bin/C:\Users\TAZ" />
+
                           </map>
                         </option>
                       </PersistentState>

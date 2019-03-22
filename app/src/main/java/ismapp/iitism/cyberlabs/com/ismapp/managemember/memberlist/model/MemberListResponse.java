@@ -21,6 +21,15 @@ import java.util.List;
         public List<Member> getMember_list() {
             return member_list;
         }
+
+        @Override
+        public String toString() {
+            return "MemberListResponse{" +
+                    "success=" + success +
+                    ", message='" + message + '\'' +
+                    ", member_list=" + member_list +
+                    '}';
+        }
     }
 
 

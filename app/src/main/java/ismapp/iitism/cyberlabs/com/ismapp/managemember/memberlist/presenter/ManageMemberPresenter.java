@@ -1,12 +1,13 @@
 package ismapp.iitism.cyberlabs.com.ismapp.managemember.memberlist.presenter;
 
 import android.content.Context;
+import android.util.Log;
 
 import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.ViewUtils;
-import ismapp.iitism.cyberlabs.com.ismapp.managemember.memberlist.provider.ManageMemberListProvider;
 import ismapp.iitism.cyberlabs.com.ismapp.managemember.memberlist.model.MemberListResponse;
 import ismapp.iitism.cyberlabs.com.ismapp.managemember.memberlist.model.RemoveMember;
+import ismapp.iitism.cyberlabs.com.ismapp.managemember.memberlist.provider.ManageMemberListProvider;
 import ismapp.iitism.cyberlabs.com.ismapp.managemember.memberlist.view.ManageMemberViewInterface;
 
 public class ManageMemberPresenter implements ManageMemberPresenterInterface {
@@ -26,6 +27,8 @@ public class ManageMemberPresenter implements ManageMemberPresenterInterface {
         memberListProvider.requestMemberList(access_token, club_id, new PresenterCallback() {
             @Override
             public void onSuccess(Object o) {
+               MemberListResponse memberListResponse = ((MemberListResponse)o);
+                Log.e("perul", "onSuccess: " + memberListResponse.toString() );
                 manageMemberViewInterface.getMemberList((MemberListResponse)o);
                 manageMemberViewInterface.showProgressBar(false);
             }
