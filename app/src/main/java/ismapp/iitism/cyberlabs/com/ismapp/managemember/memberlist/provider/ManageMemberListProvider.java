@@ -21,7 +21,7 @@ public class ManageMemberListProvider implements ManageMemberProviderInterface {
         memberListResponseCall.enqueue(new Callback<MemberListResponse>() {
             @Override
             public void onResponse(Call<MemberListResponse> call, Response<MemberListResponse> response) {
-                presenterCallback.onSuccess((ManageMemberListApi)response.body());
+                presenterCallback.onSuccess((MemberListResponse)response.body());
             }
 
             @Override

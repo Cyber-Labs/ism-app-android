@@ -23,6 +23,10 @@ public class CreateEventProviderImplementation implements CreateEventProviderInt
       CreateEventApi createEventApi = ApiClient.getRetrofit().create(CreateEventApi.class);
         Map<String, String> token = new HashMap<>();
         token.put("Authorization", access_token);
+
+
+       createEventApiCall = createEventApi.getcreateventresponse(token,club_id,title,short_description,description,venue,event_start_date,event_end_date,image);
+
         String StartDate = "";
         for(int i=0;i<event_start_date.length();i++)
         {
@@ -46,6 +50,7 @@ public class CreateEventProviderImplementation implements CreateEventProviderInt
              }
         Log.e("aman", "getCreateEventResponse: "+StartDate+EndDate );
        createEventApiCall = createEventApi.getcreateventresponse(token,club_id,title,"",description,venue,StartDate,EndDate,image);
+
        createEventApiCall.enqueue(new Callback<CreateEventApi>() {
            @Override
            public void onResponse(Call<CreateEventApi> call, Response<CreateEventApi> response) {
