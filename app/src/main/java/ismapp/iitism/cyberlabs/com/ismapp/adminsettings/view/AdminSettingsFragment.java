@@ -13,12 +13,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
-import ismapp.iitism.cyberlabs.com.ismapp.createevent.view.CreateEvent;
-
 import ismapp.iitism.cyberlabs.com.ismapp.events.admin_eventlist.View.AdminEventListFragment;
-import ismapp.iitism.cyberlabs.com.ismapp.events.admin_eventlist.View.AdminEventListFragment_ViewBinding;
-
 import ismapp.iitism.cyberlabs.com.ismapp.managemember.memberlist.view.ManageMemberFragment;
+import ismapp.iitism.cyberlabs.com.ismapp.news.newslist.view.NewsList;
 
 
 public class AdminSettingsFragment extends Fragment {
@@ -27,6 +24,8 @@ public class AdminSettingsFragment extends Fragment {
     ImageButton ibtn_admin_man_members;
     @BindView(R.id.ibtn_admin_man_events)
     ImageButton ibtn_admin_man_events;
+    @BindView(R.id.ibtn_admin_man_feed)
+    ImageButton ibtn_admin_man_feed;
     Bundle bundle;
     int club_id;
 
@@ -61,6 +60,15 @@ public class AdminSettingsFragment extends Fragment {
                 ((MainActivity)getActivity()).addFragment(adminEventListFragment);
             }
         });
+        ibtn_admin_man_feed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                ((MainActivity)getActivity()).addFragment(NewsList.newInstance(club_id));
+
+            }
+        });
+
         return view;
     }
 }

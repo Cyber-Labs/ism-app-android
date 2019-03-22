@@ -8,6 +8,12 @@ import ismapp.iitism.cyberlabs.com.ismapp.news.newsdetails.view.NewsDetailsInter
 public class NewsDetailsPresenterImplementation implements NewsDetailsPresenterInterface {
     NewsDetailsInterface newsDetailsInterface;
     NewsDetailsProviderImplementation newsDetailsProviderImplementation;
+
+    public NewsDetailsPresenterImplementation(NewsDetailsInterface newsDetailsInterface, NewsDetailsProviderImplementation newsDetailsProviderImplementation) {
+        this.newsDetailsInterface = newsDetailsInterface;
+        this.newsDetailsProviderImplementation = newsDetailsProviderImplementation;
+    }
+
     public void getNewsDetails(String accessToken, int newsId) {
         newsDetailsInterface.showProgressBar(true);
         newsDetailsProviderImplementation.getNewsResponse(accessToken, newsId, new PresenterCallback() {

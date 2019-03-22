@@ -13,7 +13,11 @@ import retrofit2.http.Part;
 public interface CreateNewsApi {
     @POST(Urls.SUB_URL_CREATE_NEWS)
     Call<CreateNewsResponseModel> getCreateNewsResponse(@HeaderMap Map<String, String> token,
-                                                        @Part("club_id") int clubid,
+                                                        @Part("club_id") int clubId,
                                                         @Part("description") String description,
                                                         @Part MultipartBody.Part image);
+    Call<CreateNewsResponseModel> getEditNewsResponse(@HeaderMap Map<String, String> token,@Part("news_id") int newsId,
+                                                      @Part("club_id") int clubId,
+                                                      @Part("description") String description,
+                                                      @Part MultipartBody.Part image);
 }

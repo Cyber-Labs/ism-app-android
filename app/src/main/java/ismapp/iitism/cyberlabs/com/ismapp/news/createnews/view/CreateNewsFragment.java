@@ -1,11 +1,10 @@
 package ismapp.iitism.cyberlabs.com.ismapp.news.createnews.view;
 
-import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +22,7 @@ import ismapp.iitism.cyberlabs.com.ismapp.news.createnews.model.CreateNewsRespon
 import ismapp.iitism.cyberlabs.com.ismapp.news.createnews.presenter.CreateNewsPresenterImplementation;
 import ismapp.iitism.cyberlabs.com.ismapp.news.createnews.presenter.CreateNewsPresenterInterface;
 import ismapp.iitism.cyberlabs.com.ismapp.news.createnews.provider.CreateNewsProviderImplementation;
+import ismapp.iitism.cyberlabs.com.ismapp.news.newslist.view.NewsList;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -31,13 +31,14 @@ import static android.app.Activity.RESULT_OK;
 
 
 public class CreateNewsFragment extends Fragment implements CreateNews {
-
+    private static final String ARG_PARAM1 = "param1";
     private  ProgressDialog progressDialog;
     private CreateNewsPresenterInterface createNewsPresenterInterface;
     private EditText createNewsDescription;
     private ImageView createNewsImage;
     private Button createNewsButton;
     public static final int PICK_IMAGE = 1;
+    private int news_id = 0;
     private MultipartBody.Part image;
 
     public CreateNewsFragment() {
@@ -45,7 +46,22 @@ public class CreateNewsFragment extends Fragment implements CreateNews {
     }
 
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
+    public static NewsList newInstance(int param1) {
+        NewsList fragment = new NewsList();
+        Bundle args = new Bundle();
+        args.putInt(ARG_PARAM1, param1);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            news_id = getArguments().getInt(ARG_PARAM1);
+
+        }
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -62,7 +78,7 @@ public class CreateNewsFragment extends Fragment implements CreateNews {
         return view;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
+
     private void getResponseFromUser() {
         String description = createNewsDescription.getText().toString();
         createNewsImage.setOnClickListener(new View.OnClickListener() {
@@ -76,15 +92,37 @@ public class CreateNewsFragment extends Fragment implements CreateNews {
             }
         });
         SharedPrefs sharedPrefs = new SharedPrefs(getContext());
-        if(!description.isEmpty()){
-            buttonClickable(true);
-            createNewsPresenterInterface.getCreateNewsResponsePresenter(sharedPrefs.getAccessToken(),sharedPrefs.getClubId(),description,image);
+        if(news_id!=0){
+            if(!description.isEmpty()){
+                buttonClickable(true);
+                createNewsButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        createNewsPresenterInterface.getEditNewsResponsePresenter(sharedPrefs.getAccessToken(),news_id,sharedPrefs.getClubId(),description,image);
+
+                    }
+                });
+
+            }
+
+        }else{
+            if(!description.isEmpty()){
+                buttonClickable(true);
+                createNewsButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        createNewsPresenterInterface.getCreateNewsResponsePresenter(sharedPrefs.getAccessToken(),sharedPrefs.getClubId(),description,image);
+                    }
+                });
+
+            }
+            else{
+                ViewUtils.showToast(getContext(),"Description is Required");
+            }
         }
-      else{
-          ViewUtils.showToast(getContext(),"Description is Required");
-        }
+
     }
-    @RequiresApi(api = Build.VERSION_CODES.M)
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
@@ -122,13 +160,11 @@ public class CreateNewsFragment extends Fragment implements CreateNews {
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
+
     @Override
     public void showMessage(String message) {
         ViewUtils.showToast(getContext(),message);
     }
-
-    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void getCreateNews(CreateNewsResponseModel createNewsResponseModel) {
     if(!createNewsResponseModel.isSuccess()){
@@ -140,6 +176,8 @@ public class CreateNewsFragment extends Fragment implements CreateNews {
     public void buttonClickable(boolean show) {
         if(show){
            createNewsButton.setEnabled(true);
+        }else{
+            createNewsButton.setEnabled(false);
         }
     }
 

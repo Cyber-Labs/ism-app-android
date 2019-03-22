@@ -32,4 +32,20 @@ public class CreateNewsPresenterImplementation implements CreateNewsPresenterInt
             }
         });
     }
+
+    @Override
+    public void getEditNewsResponsePresenter(String accessToken, int newsId, int clubid, String description, MultipartBody.Part image) {
+
+        createNewsProviderImplementation.getEditNewsResponse(accessToken, newsId, clubid, description, image, new PresenterCallback() {
+            @Override
+            public void onSuccess(Object o) {
+                createNews.getCreateNews((CreateNewsResponseModel)o);
+            }
+
+            @Override
+            public void OnFailure(String msg) {
+                createNews.showMessage(msg);
+            }
+        });
+    }
 }

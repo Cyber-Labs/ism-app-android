@@ -32,4 +32,26 @@ public class CreateNewsProviderImplementation implements CreateNewsProviderInter
             }
         });
     }
+    Call<CreateNewsResponseModel> editNewsApiCall;
+
+    @Override
+    public void getEditNewsResponse(String accessToken, int newsId, int clubId, String description, MultipartBody.Part image, PresenterCallback presenterCallback) {
+        CreateNewsApi editNewsApi = ApiClient.getRetrofit().create(CreateNewsApi.class);
+        Map<String, String> token = new HashMap<>();
+        token.put("Authorization", accessToken);
+        editNewsApiCall = editNewsApi.getEditNewsResponse(token,newsId,clubId,description,image);
+        editNewsApiCall.enqueue(new Callback<CreateNewsResponseModel>() {
+            @Override
+            public void onResponse(Call<CreateNewsResponseModel> call, Response<CreateNewsResponseModel> response) {
+                presenterCallback.onSuccess((CreateNewsResponseModel)response.body());
+            }
+
+            @Override
+            public void onFailure(Call<CreateNewsResponseModel> call, Throwable t) {
+                presenterCallback.OnFailure(t.getMessage().toString());
+            }
+        });
+
+
+    }
 }

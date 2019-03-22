@@ -30,4 +30,22 @@ public class NewsListPresenterImplementation implements NewsListPresenterInterfa
             }
         });
     }
+
+    @Override
+    public void getClubNewsListResponse(String accessToken, int clubId) {
+        newsListInterface.showProgressBar(true);
+        newsListProviderImplementation.clubNewsListResponse(accessToken, clubId, new PresenterCallback() {
+            @Override
+            public void onSuccess(Object o) {
+                newsListInterface.showProgressBar(false);
+                newsListInterface.getResponseNewsList((NewsListModel)o);
+
+            }
+
+            @Override
+            public void OnFailure(String msg) {
+                newsListInterface.showMessage(msg);
+            }
+        });
+    }
 }
