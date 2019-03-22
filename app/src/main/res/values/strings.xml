@@ -54,7 +54,9 @@
     <string name="event_short_desc">Enter Short Description</string>
     <string name="event_desc">Enter Description</string>
     <string name="enter_event_start_date">Enter Event Start Date</string>
-    <string name="enter_event_end_date">Enter Event End Date</string>
+
+    <string name="enter_event_end_date">Enter Event End Date (optional)</string>
+
     <string name="member_name">Tazril</string>
     <string name="about_club">About</string>
 </resources>
