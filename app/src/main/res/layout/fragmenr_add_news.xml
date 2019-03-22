@@ -8,7 +8,7 @@
         android:layout_height="match_parent">
     </LinearLayout>
     <ImageView
-        android:id="@+id/iv_add_news_pic"
+        android:id="@+id/create_news_pic"
         android:layout_width="match_parent"
         android:layout_height="180dp"
         android:layout_gravity="center"
@@ -21,5 +21,11 @@
         android:layout_height="match_parent"
         android:padding="5dp"
         android:hint="@string/Description"/>
+    <Button
+        android:id="@+id/create_news_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Submit"
+        android:enabled="false"/>
 
 </ScrollView>
