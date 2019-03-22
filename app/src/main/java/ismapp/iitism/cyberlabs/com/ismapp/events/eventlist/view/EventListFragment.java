@@ -51,7 +51,7 @@ public class EventListFragment extends Fragment implements EventListFragmentInte
     EventListPresenterInterface eventListPresenterInterface;
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
-    @BindView(R.id.calendarView)
+    @BindView(R.id.CalendarView)
     MaterialCalendarView materialCalendarView;
     List<CalendarDay> calendarDayList;
     CalendarDay calendarDay;
