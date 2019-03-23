@@ -54,7 +54,13 @@
     <string name="event_short_desc">Enter Short Description</string>
     <string name="event_desc">Enter Description</string>
     <string name="enter_event_start_date">Enter Event Start Date</string>
+
     <string name="enter_event_end_date">Enter Event End Date (optional)</string>
+
     <string name="member_name">Tazril</string>
     <string name="about_club">About</string>
+    <string name="Description">description</string>
+    <string name="Submit">submit</string>
+    <string name="long_lorem_ipsum">Duis tellus metus, elementum a lectus id, aliquet interdum mauris. Nam bibendum efficitur sollicitudin. Proin eleifend libero velit, nec fringilla dolor finibus quis. nMorbi eu libero pellentesque, rutrum metus quis, blandit est. Fusce bibendum accumsan nisi vulputate feugiat. In fermentum laoreet euismod. Praesent sem nisl, facilisis eget odio at, rhoncus scelerisque ipsum. Nulla orci dui, dignissim a risus ut, lobortis porttitor velit.         \\n\\nNulla id lectus metus. Maecenas a lorem in odio auctor facilisis non vitae nunc. Sed malesuada volutpat</string>
+    <string name="title_activity_test2">Test2Activity</string>
 </resources>

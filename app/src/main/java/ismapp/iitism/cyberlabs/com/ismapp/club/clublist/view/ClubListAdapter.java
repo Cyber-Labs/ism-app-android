@@ -50,7 +50,7 @@ public class ClubListAdapter extends RecyclerView.Adapter<ClubListAdapter.clubAd
     public void onBindViewHolder(@NonNull clubAdapterViewHolder clubAdapterViewHolder, int i) {
         final ClubDetails clubDetails = clubsLists.get(i);
         clubAdapterViewHolder.tv_clubname.setText(clubDetails.getName());
-        clubAdapterViewHolder.tv_clubtagline.setText(clubDetails.get_tag_line());
+        clubAdapterViewHolder.tv_clubtagline.setText(clubDetails.gettagline());
         Picasso.get().load(clubDetails.getImage_url()).error(R.drawable.cyberlabs).into(clubAdapterViewHolder.clubimage);
 //        clubAdapterViewHolder.cardView.setOnClickListener(new View.OnClickListener() {
 //            @Override public void onClick(View v) {
@@ -80,7 +80,6 @@ public class ClubListAdapter extends RecyclerView.Adapter<ClubListAdapter.clubAd
                 public void onClick(View v) {
                     sharedPrefs.setClubId(clubsLists.get(getAdapterPosition()).getId());
                     sharedPrefs.setClubName(clubsLists.get(getAdapterPosition()).getName());
-                    sharedPrefs.setIsAdmin(clubsLists.get(getAdapterPosition()).isIs_admin());
                     ((MainActivity)fragmentActivity).addFragment(new ClubDetailsFragment());
                 }
             });

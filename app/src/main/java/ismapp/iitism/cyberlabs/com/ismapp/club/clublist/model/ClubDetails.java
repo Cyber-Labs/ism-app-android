@@ -29,7 +29,7 @@ public class ClubDetails {
         return image_url;
     }
 
-    public String get_tag_line() {
+    public String gettagline() {
         return tagline;
     }
 

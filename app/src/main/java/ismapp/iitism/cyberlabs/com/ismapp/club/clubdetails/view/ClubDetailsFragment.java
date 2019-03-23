@@ -7,8 +7,6 @@ import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -61,6 +59,9 @@ public class ClubDetailsFragment extends Fragment implements ClubDetailsFragment
     ProgressBar pb_club_details;
     View view;
     String fb_link;
+    int club_id;
+    private boolean club_admin;
+    private Menu menu;
 
    // private OnFragmentInteractionListener mListener;
 
@@ -109,13 +110,7 @@ public class ClubDetailsFragment extends Fragment implements ClubDetailsFragment
         rv_show_members.setHasFixedSize(true);
         rv_show_members.setLayoutManager(new LinearLayoutManager(getContext()));
         pb_club_details=view.findViewById(R.id.pb_club_details);
-        view.findViewById(R.id.fab_add_member).setVisibility(View.GONE);
-//        view.findViewById(R.id.fab_add_member).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                ((MainActivity)getActivity()).addFragment(new AdminSettingsFragment());
-//            }
-//        });
+        view.findViewById(R.id.fab_fb_link).setVisibility(View.GONE);
 
         ((MainActivity)getActivity()).changeActionBar();
         sharedPrefs = new SharedPrefs(getContext());
@@ -130,7 +125,7 @@ public class ClubDetailsFragment extends Fragment implements ClubDetailsFragment
         bottomSheet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("amanan", "onClick: ");
+
                behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
             }
         });
@@ -138,13 +133,26 @@ public class ClubDetailsFragment extends Fragment implements ClubDetailsFragment
 
     }
 
-
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.main,menu);
+        this.menu = menu;
+        MenuItem item = menu.findItem(R.id.action_settings);
+        item.setVisible(false);
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
-//                Log.i("h","yo");
-                ((MainActivity) getActivity()).addFragment(new AdminSettingsFragment());
+
+                    AdminSettingsFragment adminSettingsFragment=new AdminSettingsFragment();
+                    Bundle bundle=new Bundle();
+                    bundle.putInt("club_id",club_id);
+                    bundle.putBoolean("club_admin",club_admin);
+
+                    adminSettingsFragment.setArguments(bundle);
+                    ((MainActivity)getActivity()).addFragment(adminSettingsFragment);
+
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -170,8 +178,8 @@ public class ClubDetailsFragment extends Fragment implements ClubDetailsFragment
         tv_Tagline.setText(clubDetailsModel.getTagline());
         tv_description.setText(clubDetailsModel.getDescription());
         fb_link = clubDetailsModel.getFb_link();
-        view.findViewById(R.id.fab_add_member).setVisibility(View.VISIBLE);
-        view.findViewById(R.id.fab_add_member).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.fab_fb_link).setVisibility(View.VISIBLE);
+        view.findViewById(R.id.fab_fb_link).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Uri uri = Uri.parse(fb_link); // missing 'http://' will cause crashed
@@ -181,6 +189,16 @@ public class ClubDetailsFragment extends Fragment implements ClubDetailsFragment
         });
 //        if(clubDetailsModel.getIs_admin())
 //            view.findViewById(R.id.fab_add_member).setVisibility(View.VISIBLE);
+        if(clubDetailsModel.getIs_admin())
+        {
+//      view.findViewById(R.id.fab_add_member).setVisibility(View.VISIBLE);
+        club_id=clubDetailsModel.getId();
+        club_admin = clubDetailsModel.getIs_admin();
+        MenuItem item = menu.findItem(R.id.action_settings);
+        item.setVisible(true);
+        }
+
+
 
 
 //        BrowserIcon.setOnClickListener(new View.OnClickListener() {
