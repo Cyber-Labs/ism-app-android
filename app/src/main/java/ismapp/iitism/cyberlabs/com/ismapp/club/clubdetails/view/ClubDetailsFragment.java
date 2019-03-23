@@ -1,12 +1,18 @@
 package ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.view;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -54,6 +60,7 @@ public class ClubDetailsFragment extends Fragment implements ClubDetailsFragment
     View bottomSheet;
     ProgressBar pb_club_details;
     View view;
+    String fb_link;
 
    // private OnFragmentInteractionListener mListener;
 
@@ -90,7 +97,7 @@ public class ClubDetailsFragment extends Fragment implements ClubDetailsFragment
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_club_details, container, false);
-
+        setHasOptionsMenu(true);
 
         clubImage = view.findViewById(R.id.club_image);
         /* BrowserIcon = (ImageView)view.findViewById(R.id.browser_icon); */
@@ -103,12 +110,12 @@ public class ClubDetailsFragment extends Fragment implements ClubDetailsFragment
         rv_show_members.setLayoutManager(new LinearLayoutManager(getContext()));
         pb_club_details=view.findViewById(R.id.pb_club_details);
         view.findViewById(R.id.fab_add_member).setVisibility(View.GONE);
-        view.findViewById(R.id.fab_add_member).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((MainActivity)getActivity()).addFragment(new AdminSettingsFragment());
-            }
-        });
+//        view.findViewById(R.id.fab_add_member).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ((MainActivity)getActivity()).addFragment(new AdminSettingsFragment());
+//            }
+//        });
 
         ((MainActivity)getActivity()).changeActionBar();
         sharedPrefs = new SharedPrefs(getContext());
@@ -131,6 +138,19 @@ public class ClubDetailsFragment extends Fragment implements ClubDetailsFragment
 
     }
 
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+//                Log.i("h","yo");
+                ((MainActivity) getActivity()).addFragment(new AdminSettingsFragment());
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     @Override
     public void showProgressbar(boolean show) {
         i++;
@@ -144,13 +164,23 @@ public class ClubDetailsFragment extends Fragment implements ClubDetailsFragment
 
     @Override
     public void showmodel(ClubDetailsModel clubDetailsModel) {
-        Picasso.get().load(clubDetailsModel.getImage_url()).into(clubImage);
+        Picasso.get().load(clubDetailsModel.getImage_url()).error(R.drawable.cyberlabs).into(clubImage);
          lay.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         tv_clubName.setText(clubDetailsModel.getName());
         tv_Tagline.setText(clubDetailsModel.getTagline());
         tv_description.setText(clubDetailsModel.getDescription());
-        if(clubDetailsModel.getIs_admin())
-            view.findViewById(R.id.fab_add_member).setVisibility(View.VISIBLE);
+        fb_link = clubDetailsModel.getFb_link();
+        view.findViewById(R.id.fab_add_member).setVisibility(View.VISIBLE);
+        view.findViewById(R.id.fab_add_member).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse(fb_link); // missing 'http://' will cause crashed
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
+//        if(clubDetailsModel.getIs_admin())
+//            view.findViewById(R.id.fab_add_member).setVisibility(View.VISIBLE);
 
 
 //        BrowserIcon.setOnClickListener(new View.OnClickListener() {
@@ -165,6 +195,8 @@ public class ClubDetailsFragment extends Fragment implements ClubDetailsFragment
     public void showMessage(String msg) {
         //setToast;
     }
+
+
 
     @Override
     public void showMemberList(MemberListResponse memberListResponse) {

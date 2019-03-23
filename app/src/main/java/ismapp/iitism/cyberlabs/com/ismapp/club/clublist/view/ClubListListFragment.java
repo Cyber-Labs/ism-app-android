@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
@@ -42,7 +43,6 @@ public class ClubListListFragment extends Fragment implements ClubListFragmentIn
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_club_list,container,false);
         ButterKnife.bind(this, view);
-
         recyclerView = (RecyclerView)view.findViewById(R.id.clubrecycler);
         clubListAdapter = new ClubListAdapter(getContext(),getFragmentManager(),getActivity());
         sharedPrefs = new SharedPrefs(getContext());
@@ -60,7 +60,6 @@ public class ClubListListFragment extends Fragment implements ClubListFragmentIn
         }
         return view;
     }
-
     @Override
     public void onResume() {
         super.onResume();

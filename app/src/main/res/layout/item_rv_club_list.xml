@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:background="@color/viewBgColor">
     <android.support.v7.widget.CardView
-        android:layout_margin="@dimen/margin_hori"
+        android:layout_margin="@dimen/layout_margin"
         android:id="@+id/card_view_club"
         android:layout_width="match_parent"
         android:layout_height="@dimen/card_height"
@@ -46,11 +46,12 @@
                 android:padding="@dimen/layout_padding">
 
                 <TextView
-                    android:id="@+id/iv_clubname"
+                    android:id="@+id/tv_clubname"
                     android:layout_width="match_parent"
                     android:background="@drawable/text_capsule"
                     android:layout_height="0dp"
                     android:layout_weight="1.5"
+                    android:textAllCaps="true"
                     android:textStyle="bold"
                     android:padding="@dimen/tv_padding"
                     android:text="@string/cyberlabs"
@@ -60,7 +61,7 @@
                     android:textSize="@dimen/title_text_size" />
 
                 <TextView
-                    android:id="@+id/iv_clubtagline"
+                    android:id="@+id/tv_clubtagline"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="3"

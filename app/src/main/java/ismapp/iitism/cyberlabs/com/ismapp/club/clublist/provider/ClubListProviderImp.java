@@ -18,8 +18,8 @@ public class ClubListProviderImp implements ClubListProviderInterface {
 
     @Override
     public void requestclubslist(String access_token, final PresenterCallback presenterCallback) {
-        ClubListApi ClubListApi = ApiClient.getRetrofit().create(ClubListApi.class);
-        clubsListCall = ClubListApi.getclublist(access_token);
+        ClubListApi clubListApi = ApiClient.getRetrofit().create(ClubListApi.class);
+        clubsListCall = clubListApi.getclublist(access_token);
         clubsListCall.enqueue(new Callback<ClubListResponse>() {
             @Override
             public void onResponse(Call<ClubListResponse> call, Response<ClubListResponse> response) {

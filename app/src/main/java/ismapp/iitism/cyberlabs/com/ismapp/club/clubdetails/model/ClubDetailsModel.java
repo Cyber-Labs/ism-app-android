@@ -1,15 +1,15 @@
 package ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.model;
 
 public class ClubDetailsModel {
-    String success ;
-    String message ;
-    int id ;
-    String name ;
-    String image_url ;
-    String tagline ;
-    String fb_link;
-    String description;
-    Boolean is_admin;
+    private String success ;
+    private String message ;
+    private int id ;
+    private String name ;
+    private String image_url ;
+    private String tagline ;
+    private String description;
+    private String fb_link;
+    private Boolean is_admin;
 
     public String getSuccess() {
         return success;
