@@ -3,9 +3,9 @@ package ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.model;
 import java.util.List;
 
 public class MemberListResponse {
-    public  boolean success;
-    public String message;
-    public List<Member> member_list;
+    private boolean success;
+    private String message;
+    private List<Member> member_list;
 
     public boolean isSuccess() {
         return success;

@@ -3,7 +3,7 @@ package ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotPassword.model;
 public class ForgotPasswordResponse {
 
 
-    private boolean success;
+    private final boolean success;
 
     public ForgotPasswordResponse(boolean success, String message) {
         this.success = success;
@@ -18,7 +18,7 @@ public class ForgotPasswordResponse {
         return message;
     }
 
-    private String message;
+    private final String message;
 
 
 }

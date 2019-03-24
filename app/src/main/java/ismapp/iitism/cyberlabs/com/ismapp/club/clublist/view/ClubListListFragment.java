@@ -8,12 +8,12 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,12 +28,12 @@ import ismapp.iitism.cyberlabs.com.ismapp.helper.ViewUtils;
 
 public class ClubListListFragment extends Fragment implements ClubListFragmentInterface {
 
-    ClubListAdapter clubListAdapter;
-    ClubListPresenterInterface clubListPresenterInterface;
+    private ClubListAdapter clubListAdapter;
+    private ClubListPresenterInterface clubListPresenterInterface;
     ProgressDialog progressDialog;
-    SharedPrefs sharedPrefs;
-    RecyclerView recyclerView;
-    List<ClubDetails> clubDetailsArrayList;
+    private SharedPrefs sharedPrefs;
+    private RecyclerView recyclerView;
+    private List<ClubDetails> clubDetailsArrayList;
 
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
@@ -63,7 +63,7 @@ public class ClubListListFragment extends Fragment implements ClubListFragmentIn
     @Override
     public void onResume() {
         super.onResume();
-        ((MainActivity)getActivity()).addTitletoBar("Clubs");
+        ((MainActivity) Objects.requireNonNull(getActivity())).addTitletoBar("Clubs");
         ((MainActivity)getActivity()).addActionBar();
     }
 

@@ -9,7 +9,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginProviderImp implements LoginProvider {
-    private LoginApi loginApi;
+    private final LoginApi loginApi;
     private Call<LoginModel> call;
 
     public LoginProviderImp() {
@@ -24,7 +24,7 @@ public class LoginProviderImp implements LoginProvider {
         call.enqueue(new Callback<LoginModel>() {
             @Override
             public void onResponse(Call<LoginModel> call, Response<LoginModel> response) {
-                callback.onSuccess((LoginModel)response.body());
+                callback.onSuccess(response.body());
             }
 
             @Override

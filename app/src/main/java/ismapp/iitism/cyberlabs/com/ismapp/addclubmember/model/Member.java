@@ -1,8 +1,8 @@
 package ismapp.iitism.cyberlabs.com.ismapp.addclubmember.model;
 
 public class Member {
-    public Boolean success;
-    public String message;
+    private final Boolean success;
+    private final String message;
 
     public Member(Boolean success, String message) {
         this.success = success;

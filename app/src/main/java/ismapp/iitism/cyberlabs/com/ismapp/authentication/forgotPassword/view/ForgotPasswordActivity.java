@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -27,14 +28,14 @@ import ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotPassword.provider
 import ismapp.iitism.cyberlabs.com.ismapp.R;
 
 public class ForgotPasswordActivity extends AppCompatActivity implements ForgotPasswordView {
-     EditText et_email;
-     Button bt_send;
+     private EditText et_email;
+     private Button bt_send;
      ImageView imageView;
     // ProgressBar progressBar;
-     Dialog dialog;
-     boolean connected;
-     String email;
-     ForgotPasswordPresenter forgotPasswordPresenter_;
+    private Dialog dialog;
+     private boolean connected;
+     private String email;
+     private ForgotPasswordPresenter forgotPasswordPresenter_;
 
 
     @Override
@@ -54,7 +55,7 @@ public class ForgotPasswordActivity extends AppCompatActivity implements ForgotP
       //  progressBar = (ProgressBar)findViewById(R.id.progressBar);
         dialog = new Dialog(this);
         ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-        if(connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+        if(Objects.requireNonNull(connectivityManager).getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
                 connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
             //we are connected to a network
             connected = true;
@@ -79,7 +80,7 @@ public class ForgotPasswordActivity extends AppCompatActivity implements ForgotP
             //intent to reset page
             startActivity(new Intent(getBaseContext(), ResetPasswordActivity.class));
         }else{
-            Toast.makeText(ForgotPasswordActivity.this, forgotPasswordResponse.getMessage().toString(),Toast.LENGTH_LONG).show();
+            Toast.makeText(ForgotPasswordActivity.this, forgotPasswordResponse.getMessage(),Toast.LENGTH_LONG).show();
         }
     }
     public void proceed(View v) {
@@ -111,15 +112,12 @@ public class ForgotPasswordActivity extends AppCompatActivity implements ForgotP
             dialog.setTitle("Connectivity Failed");
             dialog.setCancelable(false);
             dialog.show();
-            btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+            btn.setOnClickListener(v -> {
 
-                    forgotPasswordPresenter_ = new ForgotPasswordPresenterImpl(new RetrofitForgotPasswordProvider(), ForgotPasswordActivity.this);
-                    forgotPasswordPresenter_.getResponse(email);
+                forgotPasswordPresenter_ = new ForgotPasswordPresenterImpl(new RetrofitForgotPasswordProvider(), ForgotPasswordActivity.this);
+                forgotPasswordPresenter_.getResponse(email);
 
-                    dialog.dismiss();
-                }
+                dialog.dismiss();
             });
         }
 
@@ -134,10 +132,10 @@ public class ForgotPasswordActivity extends AppCompatActivity implements ForgotP
         View view = this.getCurrentFocus();
         if (view != null) {
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            Objects.requireNonNull(imm).hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
-    public boolean emailInvalid(String email) {
+    private boolean emailInvalid(String email) {
         Pattern pattern;
         Matcher matcher;
 

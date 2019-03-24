@@ -27,7 +27,7 @@ import ismapp.iitism.cyberlabs.com.ismapp.R;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
 
 public class LoginViewImp extends AppCompatActivity implements LoginView {
-    SharedPrefs sharedPrefs;
+    private SharedPrefs sharedPrefs;
     @BindView(R.id.login_email)
     EditText email;
     @BindView(R.id.login_pass)
@@ -38,7 +38,7 @@ public class LoginViewImp extends AppCompatActivity implements LoginView {
     Button signUp;
     @BindView(R.id.btn_login_forgot_pass)
     TextView forgot;
-    AlertDialog alertDialog;
+    private AlertDialog alertDialog;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,30 +56,17 @@ public class LoginViewImp extends AppCompatActivity implements LoginView {
          }
         alertDialog= new AlertDialog.Builder(this).setView(LayoutInflater.from(this).inflate(R.layout.progress_bar,null)).setCancelable(false).create();
         final LoginPresenter loginPresenter=new LoginPresenterImp(this,new LoginProviderImp());
-        signUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(LoginViewImp.this, SignUpActivity.class));
-            }
-        });
-        forgot.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(LoginViewImp.this, ForgotPasswordActivity.class));
-            }
-        });
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String e=email.getText().toString().trim();
-                String p=pass.getText().toString();
+        signUp.setOnClickListener(v -> startActivity(new Intent(LoginViewImp.this, SignUpActivity.class)));
+        forgot.setOnClickListener(v -> startActivity(new Intent(LoginViewImp.this, ForgotPasswordActivity.class)));
+        login.setOnClickListener(v -> {
+            String e=email.getText().toString().trim();
+            String p=pass.getText().toString();
 
-                if(e.isEmpty()||p.isEmpty())
+            if(e.isEmpty()||p.isEmpty())
 
-                    Toast.makeText(getBaseContext(),"Enter the inputs",Toast.LENGTH_LONG).show();
-                 else
-                     loginPresenter.getLoginResponse(e,p);
-            }
+                Toast.makeText(getBaseContext(),"Enter the inputs",Toast.LENGTH_LONG).show();
+             else
+                 loginPresenter.getLoginResponse(e,p);
         });
     }
 

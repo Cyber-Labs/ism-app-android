@@ -1,7 +1,5 @@
 package ismapp.iitism.cyberlabs.com.ismapp.events.eventlist;
 
-import com.google.gson.annotations.SerializedName;
-
 import java.util.List;
 
 public class EventListResponse {

@@ -11,7 +11,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class VerifyOtpProviderImp implements VerifyOtpProvider{
-   private VerifyOtpApi verifyOtpApi;
+   private final VerifyOtpApi verifyOtpApi;
    private Call<VerifyOtpModel> call;
 
     public VerifyOtpProviderImp()

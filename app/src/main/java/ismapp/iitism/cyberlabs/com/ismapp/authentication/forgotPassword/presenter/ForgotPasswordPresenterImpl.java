@@ -6,8 +6,8 @@ import ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotPassword.view.For
 import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
 
 public class ForgotPasswordPresenterImpl implements ForgotPasswordPresenter {
-private ForgotPasswordProvider forgotPasswordProvider_;
-private ForgotPasswordView forgotPasswordView_;
+private final ForgotPasswordProvider forgotPasswordProvider_;
+private final ForgotPasswordView forgotPasswordView_;
 
     public ForgotPasswordPresenterImpl(ForgotPasswordProvider forgotPasswordProvider_, ForgotPasswordView forgotPasswordView_) {
         this.forgotPasswordProvider_ = forgotPasswordProvider_;

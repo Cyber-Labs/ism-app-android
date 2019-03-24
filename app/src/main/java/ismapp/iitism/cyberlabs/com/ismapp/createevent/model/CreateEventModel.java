@@ -1,8 +1,8 @@
 package ismapp.iitism.cyberlabs.com.ismapp.createevent.model;
 
 public class CreateEventModel {
-    private String message;
-    private Boolean success;
+    private final String message;
+    private final Boolean success;
 
     public CreateEventModel(String message, Boolean success) {
         this.message = message;

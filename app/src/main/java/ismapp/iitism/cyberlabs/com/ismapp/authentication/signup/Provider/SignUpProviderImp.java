@@ -9,7 +9,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SignUpProviderImp implements SignUpProvider {
-    SignUpApi signUpApi;
+    private final SignUpApi signUpApi;
 
     public SignUpProviderImp() {
 

@@ -31,6 +31,7 @@
         android:gravity="clip_horizontal"
         android:paddingLeft="10dp"
         android:text="UserName"
+        android:id="@+id/tv_nav_name"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@color/default_splash_image_color"
         android:textSize="20sp" />

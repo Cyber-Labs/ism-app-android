@@ -6,8 +6,8 @@ import ismapp.iitism.cyberlabs.com.ismapp.events.eventlist.view.EventListFragmen
 import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
 
 public class EventListPresenterImp implements EventListPresenterInterface {
-    EventListFragmentInterface eventListFragmentInterface;
-    EventListProviderInterface eventListProviderInterface;
+    private final EventListFragmentInterface eventListFragmentInterface;
+    private final EventListProviderInterface eventListProviderInterface;
 
     public EventListPresenterImp(EventListFragmentInterface eventListFragmentInterface, EventListProviderInterface eventListProviderInterface) {
         this.eventListFragmentInterface = eventListFragmentInterface;

@@ -1,8 +1,8 @@
 package ismapp.iitism.cyberlabs.com.ismapp.managemember.memberlist.model;
 
 public class RemoveMember {
-    private boolean success;
-    private String message;
+    private final boolean success;
+    private final String message;
 
     public RemoveMember(boolean success, String message) {
         this.success = success;

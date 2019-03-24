@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+>
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/layout_padding"
+        android:elevation="2dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+       android:layout_height="50dp"
+        android:orientation="horizontal">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/iv_event_fd_clubimg"
+            />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:padding="@dimen/layout_padding"
+                android:layout_weight="5"
+                android:textStyle="bold"
+                android:id="@+id/tv_event_fd_club"
+                android:fontFamily="@font/lato"
+                android:textSize="@dimen/title_bar_text_size"/>
+       <ImageView
+           android:layout_width="0dp"
+           android:layout_weight="0.5"
+           android:visibility="gone"
+           android:id="@+id/iv_event_fd_menu"
+           android:layout_height="match_parent"
+           android:src="@drawable/menu_drawable"/>
+
+
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:fontFamily="@font/lato"
+        android:textStyle="bold"
+        android:id="@+id/tv_event_fd_title"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:padding="@dimen/layout_padding"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:fontFamily="@font/lato"
+        android:id="@+id/tv_event_fd_desc"
+        android:padding="@dimen/layout_padding"/>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:transitionName="profile"
+        android:padding="@dimen/layout_padding"
+        android:scaleType="fitXY"
+        android:id="@+id/iv_event_fd_img"/>
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal">
+           <TextView
+               android:layout_width="0dp"
+               android:layout_weight="1"
+               android:padding="@dimen/layout_padding"
+               android:layout_height="match_parent"
+               android:textSize="14sp"
+               android:id="@+id/tv_event_fd_venue"
+               android:textStyle="bold"
+               android:fontFamily="@font/lato"
+               />
+           <LinearLayout
+               android:layout_width="0dp"
+               android:layout_weight="1"
+               android:orientation="vertical"
+               android:layout_height="match_parent">
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="0dp"
+                   android:id="@+id/tv_event_fd_start_date"
+                   android:fontFamily="@font/lato"
+                   android:layout_weight="1"/>
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="0dp"
+                   android:id="@+id/tv_event_fd_end_date"
+                   android:fontFamily="@font/lato"
+
+                   android:layout_weight="1"/>
+           </LinearLayout>
+
+       </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

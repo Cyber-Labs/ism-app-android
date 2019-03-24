@@ -6,8 +6,8 @@ import ismapp.iitism.cyberlabs.com.ismapp.authentication.resetpassword.view.Rese
 import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
 
 public class ResetPasswordPresenterImp implements ResetPasswordPresenterInterface {
-    ResetPasswordActivityInterface ResetPasswordActivityInterface;
-    ResetPasswordProviderInterface resetPasswordProviderInterface;
+    private final ResetPasswordActivityInterface ResetPasswordActivityInterface;
+    private final ResetPasswordProviderInterface resetPasswordProviderInterface;
 
     public ResetPasswordPresenterImp(ResetPasswordActivityInterface ResetPasswordActivityInterface, ResetPasswordProviderInterface resetPasswordProviderInterface) {
         this.ResetPasswordActivityInterface = ResetPasswordActivityInterface;

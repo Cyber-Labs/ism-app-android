@@ -1,7 +1,5 @@
 package ismapp.iitism.cyberlabs.com.ismapp.events.eventlist.provider;
 
-import android.util.Log;
-
 import ismapp.iitism.cyberlabs.com.ismapp.events.eventlist.EventListResponse;
 import ismapp.iitism.cyberlabs.com.ismapp.events.eventlist.api.EventListApi;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.ApiClient;
@@ -12,7 +10,7 @@ import retrofit2.Response;
 
 public class EventListProviderImp implements EventListProviderInterface {
 
-    Call<EventListResponse> eventListResponseCall;
+    private Call<EventListResponse> eventListResponseCall;
     @Override
     public void requestEventList(String access_token, final PresenterCallback presenterCallback) {
         EventListApi eventListApi= ApiClient.getRetrofit().create(EventListApi.class);

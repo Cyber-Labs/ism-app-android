@@ -3,8 +3,8 @@
     package="ismapp.iitism.cyberlabs.com.ismapp">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -12,45 +12,44 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-
-        >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
-        </activity>
 
+        </activity>
         <activity
             android:name=".homeactivity.HomeActivity"
-            android:theme="@style/AppThemeHome"
-            android:screenOrientation="portrait">
-        </activity>
-
-        <activity android:name=".authentication.signup.View.SignUpActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppThemeHome"/>
+            android:theme="@style/AppThemeHome">
 
-        <activity android:name=".authentication.verifyotp.View.VerifyOtpActivity"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name=".authentication.login.view.LoginViewImp"
+        </activity>
+        <activity
+            android:name=".authentication.signup.View.SignUpActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeHome" />
+        <activity
+            android:name=".authentication.verifyotp.View.VerifyOtpActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".authentication.login.view.LoginViewImp"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeHome">
             <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".authentication.forgotPassword.view.ForgotPasswordActivity"
+        <activity
+            android:name=".authentication.forgotPassword.view.ForgotPasswordActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppThemeHome"/>
-
-        <activity android:name=".authentication.resetpassword.view.ResetPasswordActivity"
-            android:screenOrientation="portrait"
-            />
+            android:theme="@style/AppThemeHome" />
+        <activity
+            android:name=".authentication.resetpassword.view.ResetPasswordActivity"
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="preloaded_fonts"

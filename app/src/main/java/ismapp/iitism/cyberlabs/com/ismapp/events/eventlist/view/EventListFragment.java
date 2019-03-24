@@ -2,38 +2,29 @@ package ismapp.iitism.cyberlabs.com.ismapp.events.eventlist.view;
 
 import android.app.ProgressDialog;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
-
 import com.prolificinteractive.materialcalendarview.CalendarDay;
-import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
-import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
-import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.presenter.ClubListPresenterImpl;
-import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.view.ClubListAdapter;
 import ismapp.iitism.cyberlabs.com.ismapp.events.eventlist.EventListModel;
 import ismapp.iitism.cyberlabs.com.ismapp.events.eventlist.Events;
 import ismapp.iitism.cyberlabs.com.ismapp.events.eventlist.presenter.EventListPresenterImp;
@@ -44,17 +35,17 @@ import ismapp.iitism.cyberlabs.com.ismapp.helper.ViewUtils;
 
 public class EventListFragment extends Fragment implements EventListFragmentInterface {
     ProgressDialog progressDialog;
-    SharedPrefs sharedPrefs;
-    RecyclerView recyclerView;
-    List<EventListModel> eventListModels;
-    EventListAdapter eventListAdapter;
-    EventListPresenterInterface eventListPresenterInterface;
+    private SharedPrefs sharedPrefs;
+    private RecyclerView recyclerView;
+    private List<EventListModel> eventListModels;
+    private EventListAdapter eventListAdapter;
+    private EventListPresenterInterface eventListPresenterInterface;
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
-    @BindView(R.id.calendarView)
+    @BindView(R.id.CalendarView)
     MaterialCalendarView materialCalendarView;
     List<CalendarDay> calendarDayList;
-    CalendarDay calendarDay;
+    private CalendarDay calendarDay;
 
     /*CLUBLIST LAYOUT AND ITEM LAYOUT HAS BEEN REUSED*/
     @Nullable
@@ -87,7 +78,7 @@ public class EventListFragment extends Fragment implements EventListFragmentInte
     @Override
     public void onResume() {
         super.onResume();
-        ((MainActivity)getActivity()).addTitletoBar("Events");
+        ((MainActivity) Objects.requireNonNull(getActivity())).addTitletoBar("Events");
         ((MainActivity)getActivity()).addActionBar();
     }
 
@@ -102,11 +93,8 @@ public class EventListFragment extends Fragment implements EventListFragmentInte
            int m= Integer.parseInt(e.getEvent_start_date().substring(5,7));
            int d= Integer.parseInt(e.getEvent_start_date().substring(8,10));
            materialCalendarView.addDecorator(new Events(Color.rgb(128,0,128), Collections.singleton(CalendarDay.from(y, m, d))));
-           materialCalendarView.setOnDateChangedListener(new OnDateSelectedListener() {
-               @Override
-               public void onDateSelected(@NonNull MaterialCalendarView materialCalendarView, @NonNull CalendarDay calendarDay, boolean b) {
+           materialCalendarView.setOnDateChangedListener((materialCalendarView, calendarDay, b) -> {
 
-               }
            });
        }
 

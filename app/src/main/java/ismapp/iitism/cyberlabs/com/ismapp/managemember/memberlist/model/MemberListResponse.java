@@ -6,9 +6,9 @@ import java.util.List;
 
 
     public class MemberListResponse {
-        public  boolean success;
-        public String message;
-        public List<Member> member_list;
+        private boolean success;
+        private String message;
+        private List<Member> member_list;
 
         public boolean isSuccess() {
             return success;
@@ -20,6 +20,15 @@ import java.util.List;
 
         public List<Member> getMember_list() {
             return member_list;
+        }
+
+        @Override
+        public String toString() {
+            return "MemberListResponse{" +
+                    "success=" + success +
+                    ", message='" + message + '\'' +
+                    ", member_list=" + member_list +
+                    '}';
         }
     }
 

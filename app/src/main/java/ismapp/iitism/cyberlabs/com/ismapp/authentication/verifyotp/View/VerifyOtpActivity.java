@@ -24,7 +24,7 @@ import ismapp.iitism.cyberlabs.com.ismapp.authentication.verifyotp.Provider.Veri
 import ismapp.iitism.cyberlabs.com.ismapp.R;
 
 public class VerifyOtpActivity extends AppCompatActivity implements VerifyOtpActivityInterface {
-    String email;
+    private String email;
     @BindView(R.id.verify_otp_email)
     TextView emailTv;
     @BindView(R.id.verify_otp_otp)
@@ -33,7 +33,7 @@ public class VerifyOtpActivity extends AppCompatActivity implements VerifyOtpAct
     Button button;
     @BindView(R.id.btn_verify_otp_negative)
     Button buttonnegative;
-    AlertDialog alertDialog;
+    private AlertDialog alertDialog;
 
 
     @Override
@@ -48,27 +48,21 @@ public class VerifyOtpActivity extends AppCompatActivity implements VerifyOtpAct
         final VerifyOtpPresenter verifyOtpPresenter=new VerifyOtpPresenterImp(this,new VerifyOtpProviderImp());
         emailTv.setText(email);
         alertDialog= new AlertDialog.Builder(this).setView(LayoutInflater.from(this).inflate(R.layout.progress_bar,null)).setCancelable(false).create();
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(otp.getText().toString().isEmpty())
-                    Toast.makeText(getApplicationContext(),"Enter the Otp",Toast.LENGTH_LONG).show();
-                else
-                {
-                 verifyOtpPresenter.getOtpVerificationResponse(email,Integer.parseInt(otp.getText().toString().trim()));
-
-                }
+        button.setOnClickListener(v -> {
+            if(otp.getText().toString().isEmpty())
+                Toast.makeText(getApplicationContext(),"Enter the Otp",Toast.LENGTH_LONG).show();
+            else
+            {
+             verifyOtpPresenter.getOtpVerificationResponse(email,Integer.parseInt(otp.getText().toString().trim()));
 
             }
+
         });
-        buttonnegative.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), SignUpActivity.class);
-                startActivity(i);
-                finish();
+        buttonnegative.setOnClickListener(view -> {
+            Intent i1 = new Intent(getApplicationContext(), SignUpActivity.class);
+            startActivity(i1);
+            finish();
 
-            }
         });
 
     }

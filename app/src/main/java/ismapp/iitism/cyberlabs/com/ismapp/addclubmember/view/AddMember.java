@@ -11,8 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.ImageView;
 
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -30,16 +30,16 @@ public class AddMember extends Fragment implements MemberInterface {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    ProgressDialog progressDialog;
-    TextInputEditText editText;
-    CheckBox checkBox;
-    Button Submit;
+    private ProgressDialog progressDialog;
+    private TextInputEditText editText;
+    private CheckBox checkBox;
+    private Button Submit;
     Boolean admin = false;
-    MemberPresenter memberPresenter;
-    SharedPrefs sharedPrefs;
+    private MemberPresenter memberPresenter;
+    private SharedPrefs sharedPrefs;
 
 
-    TextInputLayout lay_add_member_email_id;
+    private TextInputLayout lay_add_member_email_id;
 
 
     // TODO: Rename and change types of parameters
@@ -94,12 +94,7 @@ public class AddMember extends Fragment implements MemberInterface {
         sharedPrefs = new SharedPrefs(getContext());
         memberPresenter = new MemberPresenterImple(this, new RetroMember());
         lay_add_member_email_id = view.findViewById(R.id.lay_add_member_email_id);
-        Submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                submit();
-            }
-        });
+        Submit.setOnClickListener(v -> submit());
 
         return view;
     }
@@ -110,11 +105,11 @@ public class AddMember extends Fragment implements MemberInterface {
     // TODO: Rename method, update argument and hook method into UI event
 
 
-    public void submit() {
+    private void submit() {
 
                 showProgressbar(true);
 
-                String email = editText.getText().toString().trim();
+                String email = Objects.requireNonNull(editText.getText()).toString().trim();
                 if (email.isEmpty())
                 {showProgressbar(false);  lay_add_member_email_id.setError("Empty Field");}
 
@@ -133,7 +128,7 @@ public class AddMember extends Fragment implements MemberInterface {
     }
 
 
-    public boolean emailInvalid(String email) {
+    private boolean emailInvalid(String email) {
         Pattern pattern;
         Matcher matcher;
 

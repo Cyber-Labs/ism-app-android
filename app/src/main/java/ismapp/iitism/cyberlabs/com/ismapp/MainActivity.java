@@ -1,5 +1,6 @@
 package ismapp.iitism.cyberlabs.com.ismapp;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -10,58 +11,66 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
+import java.util.Objects;
+
+import ismapp.iitism.cyberlabs.com.ismapp.about.AboutFragment;
+import ismapp.iitism.cyberlabs.com.ismapp.authentication.login.view.LoginViewImp;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.view.ClubListListFragment;
 import ismapp.iitism.cyberlabs.com.ismapp.events.eventlist.view.EventListFragment;
-import ismapp.iitism.cyberlabs.com.ismapp.events.view.EventsFrag;
 import ismapp.iitism.cyberlabs.com.ismapp.feed.view.FeedFrag;
+import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
+import ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.view.NewsList;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    Drawable drawable;
-    DrawerLayout drawer;
-    ActionBarDrawerToggle toggle;
-    Toolbar toolbar;
+    private Drawable drawable;
+    private DrawerLayout drawer;
+    private ActionBarDrawerToggle toggle;
+    private Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.back, this.getTheme());
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.main_contaner, new FeedFrag())
                 .commit();
-        getSupportActionBar().setTitle("Feeds");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Feeds");
 
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer = findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         addActionBar();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        //Debug
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            int count=getSupportFragmentManager().getBackStackEntryCount();
+            if(count==0){
+            super.onBackPressed();}
+            else getSupportFragmentManager().popBackStack();
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.main, menu);
+//        return true;
+//    }
 
 
 
@@ -73,19 +82,31 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.feed) {
 
-            setFragment(new FeedFrag()); addActionBar(); addTitletoBar("Feeds");
+            setFragment(new NewsList()); addActionBar(); addTitletoBar("Feeds");
         } else if (id == R.id.clubs) {
             setFragment(new ClubListListFragment());addActionBar(); addTitletoBar("Clubs");
         } else if (id == R.id.events) {
             setFragment(new EventListFragment());addActionBar(); addTitletoBar("Events");
         }
+        else if (id == R.id.shared_cal) {
+            setFragment(new EventListFragment());addActionBar(); addTitletoBar("Shared Calendar");
+        }
+        else if (id == R.id.nav_about) {
+            setFragment(new AboutFragment()); addActionBar(); addTitletoBar("About");
+        }
+        else if(id == R.id.nav_logout){
+            SharedPrefs sharedPrefs = new SharedPrefs(getApplicationContext());
+            sharedPrefs.clear();
+            startActivity(new Intent(getApplicationContext(), LoginViewImp.class));
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        }
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
-    public void setFragment(Fragment fragment) {
+    private void setFragment(Fragment fragment) {
         if (fragment != null)
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.main_contaner, fragment)
@@ -101,6 +122,7 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+
     public void addActionBar()
     {   toggle.setDrawerIndicatorEnabled(true);
         drawer.addDrawerListener(toggle);
@@ -109,7 +131,7 @@ public class MainActivity extends AppCompatActivity
     }
     public void addTitletoBar(String title)
     {
-        getSupportActionBar().setTitle(title);
+        Objects.requireNonNull(getSupportActionBar()).setTitle(title);
     }
     public void changeActionBar()
     {
@@ -117,12 +139,7 @@ public class MainActivity extends AppCompatActivity
         toggle.setHomeAsUpIndicator(drawable);
         drawer.removeDrawerListener(toggle);
         drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-        toggle.setToolbarNavigationClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               onBackPressed();
-            }
-        });
+        toggle.setToolbarNavigationClickListener(v -> onBackPressed());
 
     }
 

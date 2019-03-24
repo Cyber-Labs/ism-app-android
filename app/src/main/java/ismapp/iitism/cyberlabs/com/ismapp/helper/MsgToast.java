@@ -5,7 +5,7 @@ import android.app.Application;
 import android.content.Context;
 import android.widget.Toast;
 
-public class MsgToast extends Toast {
+class MsgToast extends Toast {
     public MsgToast(Context context, String message) {
         super(context);
         this.message = message;
@@ -18,8 +18,8 @@ public class MsgToast extends Toast {
      * @param context The context to use.  Usually your {@link Application}
      *                or {@link Activity} object.
      */
-    String message;
-    Context mtcx;
+    private String message;
+    private Context mtcx;
     public MsgToast(Context context) {
         super(context);
     }
