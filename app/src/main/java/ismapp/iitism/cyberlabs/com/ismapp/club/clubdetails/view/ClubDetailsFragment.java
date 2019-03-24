@@ -20,6 +20,8 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.Objects;
+
 import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
 import ismapp.iitism.cyberlabs.com.ismapp.adminsettings.view.AdminSettingsFragment;
@@ -47,19 +49,22 @@ public class ClubDetailsFragment extends Fragment implements ClubDetailsFragment
     // TODO: Rename and change types of parameters
     private int id;
     private String mParam2;
-    ImageView clubImage,BrowserIcon;
-    TextView tv_clubName, tv_description, tv_Tagline;
-    ClubDetailsPresenterInterface clubDetailsPresenterInterface;
-    LinearLayout lay;
-    SharedPrefs sharedPrefs;
-    int i=0;
-    RecyclerView rv_show_members;
-    MembAdapter membAdapter;
-    View bottomSheet;
-    ProgressBar pb_club_details;
-    View view;
-    String fb_link;
-    int club_id;
+    private ImageView clubImage;
+    ImageView BrowserIcon;
+    private TextView tv_clubName;
+    private TextView tv_description;
+    private TextView tv_Tagline;
+    private ClubDetailsPresenterInterface clubDetailsPresenterInterface;
+    private LinearLayout lay;
+    private SharedPrefs sharedPrefs;
+    private int i=0;
+    private RecyclerView rv_show_members;
+    private MembAdapter membAdapter;
+    private View bottomSheet;
+    private ProgressBar pb_club_details;
+    private View view;
+    private String fb_link;
+    private int club_id;
     private boolean club_admin;
     private Menu menu;
 
@@ -112,7 +117,7 @@ public class ClubDetailsFragment extends Fragment implements ClubDetailsFragment
         pb_club_details=view.findViewById(R.id.pb_club_details);
         view.findViewById(R.id.fab_fb_link).setVisibility(View.GONE);
 
-        ((MainActivity)getActivity()).changeActionBar();
+        ((MainActivity) Objects.requireNonNull(getActivity())).changeActionBar();
         sharedPrefs = new SharedPrefs(getContext());
         ((MainActivity)getActivity()).addTitletoBar(sharedPrefs.getClubName());
         clubDetailsPresenterInterface = new ClubDetailsPresenterImp(this,new RetrofitClubDetailsProvider());
@@ -122,13 +127,7 @@ public class ClubDetailsFragment extends Fragment implements ClubDetailsFragment
 
         bottomSheet =view.findViewById(R.id.bottom_sheet_members);
         final BottomSheetBehavior behavior = BottomSheetBehavior.from(bottomSheet);
-        bottomSheet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-               behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-            }
-        });
+        bottomSheet.setOnClickListener(v -> behavior.setState(BottomSheetBehavior.STATE_EXPANDED));
         return view;
 
     }
@@ -151,7 +150,7 @@ public class ClubDetailsFragment extends Fragment implements ClubDetailsFragment
                     bundle.putBoolean("club_admin",club_admin);
 
                     adminSettingsFragment.setArguments(bundle);
-                    ((MainActivity)getActivity()).addFragment(adminSettingsFragment);
+                    ((MainActivity) Objects.requireNonNull(getActivity())).addFragment(adminSettingsFragment);
 
                 return true;
             default:
@@ -179,13 +178,10 @@ public class ClubDetailsFragment extends Fragment implements ClubDetailsFragment
         tv_description.setText(clubDetailsModel.getDescription());
         fb_link = clubDetailsModel.getFb_link();
         view.findViewById(R.id.fab_fb_link).setVisibility(View.VISIBLE);
-        view.findViewById(R.id.fab_fb_link).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Uri uri = Uri.parse(fb_link); // missing 'http://' will cause crashed
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
-            }
+        view.findViewById(R.id.fab_fb_link).setOnClickListener(v -> {
+            Uri uri = Uri.parse(fb_link); // missing 'http://' will cause crashed
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
         });
 //        if(clubDetailsModel.getIs_admin())
 //            view.findViewById(R.id.fab_add_member).setVisibility(View.VISIBLE);

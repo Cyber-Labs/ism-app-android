@@ -6,8 +6,8 @@ import ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.provider.NewsList
 import ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.view.NewsListInterface;
 
 public class NewsListPresenterImplementation implements NewsListPresenterInterface {
-   private NewsListInterface newsListInterface;
-   private NewsListProviderImplementation newsListProviderImplementation;
+   private final NewsListInterface newsListInterface;
+   private final NewsListProviderImplementation newsListProviderImplementation;
 
     public NewsListPresenterImplementation(NewsListInterface newsListInterface, NewsListProviderImplementation newsListProviderImplementation) {
         this.newsListInterface = newsListInterface;

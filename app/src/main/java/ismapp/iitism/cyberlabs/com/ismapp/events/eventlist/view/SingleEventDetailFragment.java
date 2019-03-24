@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +20,7 @@ public class SingleEventDetailFragment extends Fragment {
     @BindView(R.id.iv_event_fd_clubimg)
     ImageView ClubImg;
     @BindView(R.id.iv_event_fd_img)
-    ImageView EventImage; String sEventImage;
+    ImageView EventImage; private String sEventImage;
     @BindView(R.id.tv_event_fd_club)
     TextView ClubName;
     @BindView(R.id.tv_event_fd_desc)
@@ -34,7 +33,7 @@ public class SingleEventDetailFragment extends Fragment {
     TextView StartDate;
     @BindView(R.id.tv_event_fd_end_date)
     TextView EndDate;
-    Bundle bundle;
+    private Bundle bundle;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

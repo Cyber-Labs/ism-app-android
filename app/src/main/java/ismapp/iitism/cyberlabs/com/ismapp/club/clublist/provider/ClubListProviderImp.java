@@ -1,7 +1,5 @@
 package ismapp.iitism.cyberlabs.com.ismapp.club.clublist.provider;
 
-import android.util.Log;
-
 import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.api.ClubListApi;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.model.ClubListResponse;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.ApiClient;
@@ -24,7 +22,7 @@ public class ClubListProviderImp implements ClubListProviderInterface {
             @Override
             public void onResponse(Call<ClubListResponse> call, Response<ClubListResponse> response) {
                // Log.e("TAG", "onResponse: "+response.body().getClubsNameList().size() );
-                presenterCallback.onSuccess((ClubListResponse)response.body());
+                presenterCallback.onSuccess(response.body());
 
             }
 

@@ -8,15 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import ismapp.iitism.cyberlabs.com.ismapp.R;
 
 import java.util.List;
 
+import ismapp.iitism.cyberlabs.com.ismapp.R;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.model.Member;
 
 public class MembAdapter  extends RecyclerView.Adapter<MembAdapter.MyViewHolder>{
-    private List<Member> memberList  ;
-    private Context mtcx;
+    private final List<Member> memberList  ;
+    private final Context mtcx;
 
 
 
@@ -53,12 +53,12 @@ public class MembAdapter  extends RecyclerView.Adapter<MembAdapter.MyViewHolder>
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView tv_memb;
-        ImageView im_isadmin;
-        public MyViewHolder(@NonNull View itemView) {
+        final TextView tv_memb;
+        final ImageView im_isadmin;
+        MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            tv_memb=(TextView)itemView.findViewById(R.id.tv_memb);
-            im_isadmin=(ImageView)itemView.findViewById(R.id.iv_isadmin);
+            tv_memb= itemView.findViewById(R.id.tv_memb);
+            im_isadmin= itemView.findViewById(R.id.iv_isadmin);
         }
     }
 }

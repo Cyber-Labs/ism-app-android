@@ -13,7 +13,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CreateNewsProviderImplementation implements CreateNewsProviderInterface {
-    Call<CreateNewsResponseModel> createNewsApiCall;
+    private Call<CreateNewsResponseModel> createNewsApiCall;
     @Override
     public void getCreateNewsResponse(String access_token,int clubid, String description, MultipartBody.Part image, PresenterCallback presenterCallback) {
         CreateNewsApi createNewsApi = ApiClient.getRetrofit().create(CreateNewsApi.class);
@@ -28,11 +28,11 @@ public class CreateNewsProviderImplementation implements CreateNewsProviderInter
 
             @Override
             public void onFailure(Call<CreateNewsResponseModel> call, Throwable t) {
-                 presenterCallback.OnFailure(t.getMessage().toString());
+                 presenterCallback.OnFailure(t.getMessage());
             }
         });
     }
-    Call<CreateNewsResponseModel> editNewsApiCall;
+    private Call<CreateNewsResponseModel> editNewsApiCall;
 
     @Override
     public void getEditNewsResponse(String accessToken, int newsId, int clubId, String description, MultipartBody.Part image, PresenterCallback presenterCallback) {
@@ -48,7 +48,7 @@ public class CreateNewsProviderImplementation implements CreateNewsProviderInter
 
             @Override
             public void onFailure(Call<CreateNewsResponseModel> call, Throwable t) {
-                presenterCallback.OnFailure(t.getMessage().toString());
+                presenterCallback.OnFailure(t.getMessage());
             }
         });
 

@@ -11,9 +11,9 @@ import ismapp.iitism.cyberlabs.com.ismapp.managemember.memberlist.provider.Manag
 import ismapp.iitism.cyberlabs.com.ismapp.managemember.memberlist.view.ManageMemberViewInterface;
 
 public class ManageMemberPresenter implements ManageMemberPresenterInterface {
-  private ManageMemberViewInterface manageMemberViewInterface;
-   private ManageMemberListProvider memberListProvider;
-   private Context context;
+  private final ManageMemberViewInterface manageMemberViewInterface;
+   private final ManageMemberListProvider memberListProvider;
+   private final Context context;
 
     public ManageMemberPresenter(Context context ,ManageMemberViewInterface manageMemberViewInterface, ManageMemberListProvider memberListProvider) {
         this.manageMemberViewInterface = manageMemberViewInterface;

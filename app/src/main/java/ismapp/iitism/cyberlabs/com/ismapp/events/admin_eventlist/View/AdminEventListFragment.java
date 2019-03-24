@@ -6,11 +6,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
@@ -33,12 +31,12 @@ public class AdminEventListFragment extends Fragment implements AdminEventListFr
     ProgressBar progressBar;
     @BindView(R.id.rv_admin_eventlistst)
     RecyclerView recyclerView;
-    AdmintEventListPresenterInterface admintEventListPresenterInterface;
-    List<EventListModel> eventListModels;
-    SharedPrefs sharedPrefs;
-    AdminEventListAdapter adminEventListAdapter;
-    Bundle bundle;
-    int club_id;
+    private AdmintEventListPresenterInterface admintEventListPresenterInterface;
+    private List<EventListModel> eventListModels;
+    private SharedPrefs sharedPrefs;
+    private AdminEventListAdapter adminEventListAdapter;
+    private Bundle bundle;
+    private int club_id;
     @BindView(R.id.iv_add_event)
     ImageView  addEvent;
 
@@ -61,12 +59,7 @@ public class AdminEventListFragment extends Fragment implements AdminEventListFr
                 club_id=bundle.getInt("club_id");
             admintEventListPresenterInterface = new AdmintEventListPresenterImp(AdminEventListFragment.this,new AdmintEventListProviderImp(),club_id,-1);
             admintEventListPresenterInterface.reqEventList(sharedPrefs.getAccessToken());
-            addEvent.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ((MainActivity)getActivity()).addFragment(new CreateEvent());
-                }
-            });
+            addEvent.setOnClickListener(v -> ((MainActivity)getActivity()).addFragment(new CreateEvent()));
 
         return view;
     }

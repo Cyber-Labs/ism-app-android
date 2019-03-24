@@ -2,6 +2,8 @@ package ismapp.iitism.cyberlabs.com.ismapp.managemember.memberlist.provider;
 
 import android.util.Log;
 
+import java.util.Objects;
+
 import ismapp.iitism.cyberlabs.com.ismapp.helper.ApiClient;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
 import ismapp.iitism.cyberlabs.com.ismapp.managemember.memberlist.api.ManageMemberListApi;
@@ -24,13 +26,13 @@ public class ManageMemberListProvider implements ManageMemberProviderInterface {
             @Override
             public void onResponse(Call<MemberListResponse> call, Response<MemberListResponse> response) {
                 presenterCallback.onSuccess((MemberListResponse)response.body());
-                Log.e("periul", "onResponse: "+ response.body().toString());
+                Log.e("periul", "onResponse: "+ Objects.requireNonNull(response.body()).toString());
 
             }
 
             @Override
             public void onFailure(Call<MemberListResponse> call, Throwable t) {
-                    presenterCallback.OnFailure(t.getMessage().toString());
+                    presenterCallback.OnFailure(t.getMessage());
             }
         });
     }
@@ -47,7 +49,7 @@ public class ManageMemberListProvider implements ManageMemberProviderInterface {
 
             @Override
             public void onFailure(Call<RemoveMember> call, Throwable t) {
-                 presenterCallback.OnFailure(t.getMessage().toString());
+                 presenterCallback.OnFailure(t.getMessage());
             }
         });
     }

@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import java.io.File;
+import java.util.Objects;
 
 import ismapp.iitism.cyberlabs.com.ismapp.R;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
@@ -37,7 +38,7 @@ public class CreateNewsFragment extends Fragment implements CreateNews {
     private EditText createNewsDescription;
     private ImageView createNewsImage;
     private Button createNewsButton;
-    public static final int PICK_IMAGE = 1;
+    private static final int PICK_IMAGE = 1;
     private int news_id = 0;
     private MultipartBody.Part image;
 
@@ -65,7 +66,7 @@ public class CreateNewsFragment extends Fragment implements CreateNews {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.fragmenr_add_news, container, false);
+        View view =  inflater.inflate(R.layout.fragment_add_news, container, false);
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Wait");
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -81,39 +82,25 @@ public class CreateNewsFragment extends Fragment implements CreateNews {
 
     private void getResponseFromUser() {
         String description = createNewsDescription.getText().toString();
-        createNewsImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+        createNewsImage.setOnClickListener(v -> {
+            Intent intent = new Intent();
+            intent.setType("image/*");
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
 
-            }
         });
         SharedPrefs sharedPrefs = new SharedPrefs(getContext());
         if(news_id!=0){
             if(!description.isEmpty()){
                 buttonClickable(true);
-                createNewsButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        createNewsPresenterInterface.getEditNewsResponsePresenter(sharedPrefs.getAccessToken(),news_id,sharedPrefs.getClubId(),description,image);
-
-                    }
-                });
+                createNewsButton.setOnClickListener(v -> createNewsPresenterInterface.getEditNewsResponsePresenter(sharedPrefs.getAccessToken(),news_id,sharedPrefs.getClubId(),description,image));
 
             }
 
         }else{
             if(!description.isEmpty()){
                 buttonClickable(true);
-                createNewsButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        createNewsPresenterInterface.getCreateNewsResponsePresenter(sharedPrefs.getAccessToken(),sharedPrefs.getClubId(),description,image);
-                    }
-                });
+                createNewsButton.setOnClickListener(v -> createNewsPresenterInterface.getCreateNewsResponsePresenter(sharedPrefs.getAccessToken(),sharedPrefs.getClubId(),description,image));
 
             }
             else{
@@ -136,7 +123,7 @@ public class CreateNewsFragment extends Fragment implements CreateNews {
             // Uri tempUri = getImageUri(getContext(), photo);
 
             // CALL THIS METHOD TO GET THE ACTUAL PATH
-            File finalFile = new File(UriUtils.uriToFilePathConverter(getContext(),data.getData()));
+            File finalFile = new File(Objects.requireNonNull(UriUtils.uriToFilePathConverter(getContext(), data.getData())));
             // File file = new File("/storage/emulated/0/Download/Corrections 6.jpg");
             RequestBody requestFile =
                     RequestBody.create(MediaType.parse("multipart/form-data"), finalFile);

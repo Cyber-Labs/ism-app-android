@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
+import java.util.Objects;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
@@ -26,8 +28,8 @@ public class AdminSettingsFragment extends Fragment {
     ImageButton ibtn_admin_man_events;
     @BindView(R.id.ibtn_admin_man_feed)
     ImageButton ibtn_admin_man_feed;
-    Bundle bundle;
-    int club_id;
+    private Bundle bundle;
+    private int club_id;
     private boolean club_admin;
 
     @Override
@@ -43,33 +45,18 @@ public class AdminSettingsFragment extends Fragment {
         ButterKnife.bind(this,view);
 
         bundle=getArguments();
-        club_id=bundle.getInt("club_id");
+        club_id= Objects.requireNonNull(bundle).getInt("club_id");
         club_admin = bundle.getBoolean("club_admin");
 
-        ibtn_admin_man_members.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ((MainActivity)getActivity()).addFragment(new ManageMemberFragment());
-            }
+        ibtn_admin_man_members.setOnClickListener(view1 -> ((MainActivity)getActivity()).addFragment(new ManageMemberFragment()));
+        ibtn_admin_man_events.setOnClickListener(v -> {
+            Bundle b=new Bundle();
+            b.putInt("club_id",club_id);
+            AdminEventListFragment adminEventListFragment=new AdminEventListFragment();
+            adminEventListFragment.setArguments(b);
+            ((MainActivity)getActivity()).addFragment(adminEventListFragment);
         });
-        ibtn_admin_man_events.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Bundle b=new Bundle();
-                b.putInt("club_id",club_id);
-                AdminEventListFragment adminEventListFragment=new AdminEventListFragment();
-                adminEventListFragment.setArguments(b);
-                ((MainActivity)getActivity()).addFragment(adminEventListFragment);
-            }
-        });
-        ibtn_admin_man_feed.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                ((MainActivity)getActivity()).addFragment(NewsList.newInstance(club_id,club_admin));
-
-            }
-        });
+        ibtn_admin_man_feed.setOnClickListener(v -> ((MainActivity)getActivity()).addFragment(NewsList.newInstance(club_id,club_admin)));
 
         return view;
     }

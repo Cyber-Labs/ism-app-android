@@ -2,6 +2,8 @@ package ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.provider;
 
 import android.util.Log;
 
+import java.util.Objects;
+
 import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.api.ClubDetailsApi;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.model.ClubDetailsModel;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.model.MemberListResponse;
@@ -12,8 +14,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class RetrofitClubDetailsProvider implements ClubDetailsProvider {
-    Call<ClubDetailsModel> call;
-    Call<MemberListResponse> memberListResponseCall;
+    private Call<ClubDetailsModel> call;
+    private Call<MemberListResponse> memberListResponseCall;
 
 
     @Override
@@ -23,8 +25,8 @@ public class RetrofitClubDetailsProvider implements ClubDetailsProvider {
         call.enqueue(new Callback<ClubDetailsModel>() {
             @Override
             public void onResponse(Call<ClubDetailsModel> call, Response<ClubDetailsModel> response) {
-                ClubDetailsModel c=(ClubDetailsModel)response.body();
-                presenterCallback.onSuccess((ClubDetailsModel)response.body());
+                ClubDetailsModel c= response.body();
+                presenterCallback.onSuccess(response.body());
             }
 
             @Override
@@ -43,8 +45,8 @@ public class RetrofitClubDetailsProvider implements ClubDetailsProvider {
             @Override
             public void onResponse(Call<MemberListResponse> call, Response<MemberListResponse> response) {
                 MemberListResponse c=(MemberListResponse) response.body();
-                presenterCallback.onSuccess((MemberListResponse)response.body());
-                Log.e("sujal", "onResponse: "+response.body().toString() );
+                presenterCallback.onSuccess(response.body());
+                Log.e("sujal", "onResponse: "+ Objects.requireNonNull(response.body()).toString() );
             }
 
             @Override

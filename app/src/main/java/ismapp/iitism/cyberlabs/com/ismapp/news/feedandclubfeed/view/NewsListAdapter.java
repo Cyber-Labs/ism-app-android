@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+import java.util.Objects;
 
 import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
@@ -21,12 +22,12 @@ import ismapp.iitism.cyberlabs.com.ismapp.news.newsdetails.view.NewsDetailsImple
 import ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.model.News;
 
 public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsListViewHolder> {
-    List<News> newsList;
-    Context context;
-    Fragment fragment;
-    boolean is_admin;
+    private List<News> newsList;
+    private final Context context;
+    private final Fragment fragment;
+    private final boolean is_admin;
 
-    public NewsListAdapter(Context context, Fragment fragment,boolean is_admin) {
+    NewsListAdapter(Context context, Fragment fragment, boolean is_admin) {
         this.context = context;
         this.fragment = fragment;
         this.is_admin = is_admin;
@@ -49,12 +50,9 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsLi
         newsListViewHolder.tv_newsList_shortDescription.setText(news.getDescription());
         newsListViewHolder.tv_newsList_date_time.setText(news.getCreated_date());
         newsListViewHolder.tv_newsList_clubName.setText(news.getClub_name());
-        newsListViewHolder.NewsCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                News news = newsList.get(i);
-                ((MainActivity)fragment.getActivity()).addFragment( NewsDetailsImplementation.newInstance(news.getNews_id(),is_admin));
-            }
+        newsListViewHolder.NewsCard.setOnClickListener(v -> {
+            News news1 = newsList.get(i);
+            ((MainActivity) Objects.requireNonNull(fragment.getActivity())).addFragment( NewsDetailsImplementation.newInstance(news1.getNews_id(),is_admin));
         });
 
 
@@ -66,16 +64,18 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsLi
     }
 
     class NewsListViewHolder extends RecyclerView.ViewHolder{
-      TextView tv_newsList_clubName,tv_newsList_date_time,tv_newsList_shortDescription;
-      ImageView iv_newsListImage;
-      CardView NewsCard;
-       public NewsListViewHolder(@NonNull View itemView) {
+      final TextView tv_newsList_clubName;
+        final TextView tv_newsList_date_time;
+        final TextView tv_newsList_shortDescription;
+      final ImageView iv_newsListImage;
+      final CardView NewsCard;
+       NewsListViewHolder(@NonNull View itemView) {
            super(itemView);
-           tv_newsList_clubName = (TextView)itemView.findViewById(R.id.tv_newsList_club_name);
-           tv_newsList_date_time = (TextView)itemView.findViewById(R.id.newsList_date);
-           tv_newsList_shortDescription = (TextView)itemView.findViewById(R.id.tv_news_list_short_desc);
-           iv_newsListImage = (ImageView)itemView.findViewById(R.id.newsList_image);
-           NewsCard = (CardView)itemView.findViewById(R.id.card_view_news);
+           tv_newsList_clubName = itemView.findViewById(R.id.tv_newsList_club_name);
+           tv_newsList_date_time = itemView.findViewById(R.id.newsList_date);
+           tv_newsList_shortDescription = itemView.findViewById(R.id.tv_news_list_short_desc);
+           iv_newsListImage = itemView.findViewById(R.id.newsList_image);
+           NewsCard = itemView.findViewById(R.id.card_view_news);
 
        }
    }

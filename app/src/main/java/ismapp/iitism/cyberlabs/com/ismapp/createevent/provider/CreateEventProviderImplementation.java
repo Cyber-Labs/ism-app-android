@@ -9,15 +9,13 @@ import ismapp.iitism.cyberlabs.com.ismapp.createevent.api.CreateEventApi;
 import ismapp.iitism.cyberlabs.com.ismapp.createevent.model.CreateEventModel;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.ApiClient;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
-import okhttp3.MediaType;
 import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CreateEventProviderImplementation implements CreateEventProviderInterface {
-     Call<CreateEventModel> createEventApiCall;
+     private Call<CreateEventModel> createEventApiCall;
     @Override
     public void getCreateEventResponse(String access_token, int club_id, String title,  String description, String venue, String event_start_date, String event_end_date, MultipartBody.Part image, final PresenterCallback presenterCallback,int event_id) {
       CreateEventApi createEventApi = ApiClient.getRetrofit().create(CreateEventApi.class);

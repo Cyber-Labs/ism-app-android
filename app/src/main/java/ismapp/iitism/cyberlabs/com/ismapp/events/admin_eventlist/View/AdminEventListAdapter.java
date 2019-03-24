@@ -2,13 +2,11 @@ package ismapp.iitism.cyberlabs.com.ismapp.events.admin_eventlist.View;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -19,7 +17,6 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import butterknife.BindView;
 import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
 import ismapp.iitism.cyberlabs.com.ismapp.createevent.view.CreateEvent;
@@ -30,12 +27,12 @@ import ismapp.iitism.cyberlabs.com.ismapp.events.eventlist.EventListModel;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
 
 public class AdminEventListAdapter extends RecyclerView.Adapter<AdminEventListAdapter.AdminEventListHolder> {
-   List<EventListModel> eventListModels;
-   Context context;
-   SharedPrefs sharedPrefs;
-   AdminEventListFragmentInterface adminEventListFragmentInterface;
-    FragmentActivity fragmentActivity;
-    int club_id;
+   private final List<EventListModel> eventListModels;
+   private final Context context;
+   private final SharedPrefs sharedPrefs;
+   private final AdminEventListFragmentInterface adminEventListFragmentInterface;
+    private final FragmentActivity fragmentActivity;
+    private final int club_id;
 
     public AdminEventListAdapter(List<EventListModel> eventListModels, Context context, FragmentActivity fragmentActivity,AdminEventListFragmentInterface adminEventListFragmentInterface,int club_id) {
         this.eventListModels = eventListModels;
@@ -73,21 +70,21 @@ public class AdminEventListAdapter extends RecyclerView.Adapter<AdminEventListAd
 
     class AdminEventListHolder extends RecyclerView.ViewHolder{
 
-        ImageView ClubImg;
+        final ImageView ClubImg;
 
-        ImageView EventImage;
+        final ImageView EventImage;
 
-        TextView ClubName;
+        final TextView ClubName;
 
-        TextView Description;
+        final TextView Description;
 
-        TextView EventTitle;
-        ImageView menu;
-        TextView Venue;
-        TextView StartDate;
-        TextView EndDate;
+        final TextView EventTitle;
+        final ImageView menu;
+        final TextView Venue;
+        final TextView StartDate;
+        final TextView EndDate;
         Bundle bundle;
-        public AdminEventListHolder(@NonNull View itemView) {
+        AdminEventListHolder(@NonNull View itemView) {
             super(itemView);
             ClubImg=itemView.findViewById(R.id.iv_event_fd_clubimg);
             EventImage=itemView.findViewById(R.id.iv_event_fd_img);
@@ -101,58 +98,44 @@ public class AdminEventListAdapter extends RecyclerView.Adapter<AdminEventListAd
             menu.setVisibility(View.VISIBLE);
             PopupMenu popupMenu=new PopupMenu(fragmentActivity,menu);
             popupMenu.getMenuInflater().inflate(R.menu.event_menu,popupMenu.getMenu());
-            popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                @Override
-                public boolean onMenuItemClick(MenuItem item) {
-                    if(item.getItemId()==R.id.event_edit)
-                    {   Bundle bundle=new Bundle();
-                        bundle.putString("event_pic",eventListModels.get(getAdapterPosition()).getEvent_pic_url());
-                        bundle.putString("event_title",eventListModels.get(getAdapterPosition()).getTitle());
-                        bundle.putString("event_desc",eventListModels.get(getAdapterPosition()).getDescription());
-                        bundle.putString("event_startdate",eventListModels.get(getAdapterPosition()).getEvent_start_date());
-                        bundle.putString("event_enddate",eventListModels.get(getAdapterPosition()).getEvent_end_date());
-                        bundle.putString("event_venue",eventListModels.get(getAdapterPosition()).getVenue());
-                        bundle.putInt("event_id",eventListModels.get(getAdapterPosition()).getId());
+            popupMenu.setOnMenuItemClickListener(item -> {
+                if(item.getItemId()==R.id.event_edit)
+                {   Bundle bundle=new Bundle();
+                    bundle.putString("event_pic",eventListModels.get(getAdapterPosition()).getEvent_pic_url());
+                    bundle.putString("event_title",eventListModels.get(getAdapterPosition()).getTitle());
+                    bundle.putString("event_desc",eventListModels.get(getAdapterPosition()).getDescription());
+                    bundle.putString("event_startdate",eventListModels.get(getAdapterPosition()).getEvent_start_date());
+                    bundle.putString("event_enddate",eventListModels.get(getAdapterPosition()).getEvent_end_date());
+                    bundle.putString("event_venue",eventListModels.get(getAdapterPosition()).getVenue());
+                    bundle.putInt("event_id",eventListModels.get(getAdapterPosition()).getId());
 
-                        CreateEvent createEvent=new CreateEvent();
-                        createEvent.setArguments(bundle);
-                        ((MainActivity)fragmentActivity).addFragment(createEvent);
-                    }
-                    else
-                    {
-                         AlertDialog alertDialog = new AlertDialog.Builder(context)
-                                .setTitle("Are you sure you want to remove this Event?")
-                                .setCancelable(false)
-                                .setPositiveButton("Remove", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                     AdmintEventListPresenterInterface admintEventListPresenterInterface = new AdmintEventListPresenterImp(adminEventListFragmentInterface,new AdmintEventListProviderImp(),-1,eventListModels.get(getAdapterPosition()).getId());
-                                     admintEventListPresenterInterface.reqEventList(sharedPrefs.getAccessToken());
-                                      eventListModels.remove(getAdapterPosition());
-                                      notifyDataSetChanged();
-
-                                    }
-                                })
-                                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-
-
-                                    }
-                                })
-
-                                .create();
-                        alertDialog.show();
-                    }
-                    return true;
+                    CreateEvent createEvent=new CreateEvent();
+                    createEvent.setArguments(bundle);
+                    ((MainActivity)fragmentActivity).addFragment(createEvent);
                 }
-            });
-            menu.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    popupMenu.show();
+                else
+                {
+                     AlertDialog alertDialog = new AlertDialog.Builder(context)
+                            .setTitle("Are you sure you want to remove this Event?")
+                            .setCancelable(false)
+                            .setPositiveButton("Remove", (dialog, which) -> {
+                                AdmintEventListPresenterInterface admintEventListPresenterInterface = new AdmintEventListPresenterImp(adminEventListFragmentInterface, new AdmintEventListProviderImp(), -1, eventListModels.get(getAdapterPosition()).getId());
+                                admintEventListPresenterInterface.reqEventList(sharedPrefs.getAccessToken());
+                                eventListModels.remove(getAdapterPosition());
+                                notifyDataSetChanged();
+
+                            })
+                            .setNegativeButton("Cancel", (dialog, which) -> {
+
+
+                            })
+
+                            .create();
+                    alertDialog.show();
                 }
+                return true;
             });
+            menu.setOnClickListener(v -> popupMenu.show());
         }
     }
 }

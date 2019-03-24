@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -26,14 +27,17 @@ import ismapp.iitism.cyberlabs.com.ismapp.R;
 
 public class ResetPasswordActivity extends AppCompatActivity implements ResetPasswordActivityInterface {
 
-    EditText ed_email,ed_password,ed_confirm_password,ed_otp;
-    Button submit;
-    ProgressDialog progressDialog;
+    private EditText ed_email;
+    private EditText ed_password;
+    EditText ed_confirm_password;
+    private EditText ed_otp;
+    private Button submit;
+    private ProgressDialog progressDialog;
     private String email,otp,password,newpassword;
-    Dialog dialog;
+    private Dialog dialog;
 
-     boolean connected;
-     ResetPasswordPresenterInterface ResetPasswordPresenterInterface;
+     private boolean connected;
+     private ResetPasswordPresenterInterface ResetPasswordPresenterInterface;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +57,7 @@ public class ResetPasswordActivity extends AppCompatActivity implements ResetPas
         submit = (Button)findViewById(R.id.btn_rs_submit);
 
         ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-        if(connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+        if(Objects.requireNonNull(connectivityManager).getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
                 connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
             //we are connected to a network
             connected = true;
@@ -85,14 +89,11 @@ public class ResetPasswordActivity extends AppCompatActivity implements ResetPas
          dialog.setTitle("Connectivity Failed");
          dialog.setCancelable(false);
          dialog.show();
-         btn.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View v) {
+         btn.setOnClickListener(v -> {
 
-                 ResetPasswordPresenterInterface = new ResetPasswordPresenterImp(ResetPasswordActivity.this,new ResetPasswordProviderImp());
-                 ResetPasswordPresenterInterface.sendResponse(email,password, Integer.parseInt(otp));
-                 dialog.dismiss();
-             }
+             ResetPasswordPresenterInterface = new ResetPasswordPresenterImp(ResetPasswordActivity.this,new ResetPasswordProviderImp());
+             ResetPasswordPresenterInterface.sendResponse(email,password, Integer.parseInt(otp));
+             dialog.dismiss();
          });
 
      }
@@ -126,7 +127,7 @@ public class ResetPasswordActivity extends AppCompatActivity implements ResetPas
             //intent to login;
         }
         else{
-            Toast.makeText(this, resetPasswordModel.getMessage().toString(),Toast.LENGTH_LONG);
+            Toast.makeText(this, resetPasswordModel.getMessage(),Toast.LENGTH_LONG);
         }
 
     }
@@ -145,7 +146,7 @@ public class ResetPasswordActivity extends AppCompatActivity implements ResetPas
         View view = this.getCurrentFocus();
         if (view != null) {
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            Objects.requireNonNull(imm).hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
     public boolean emailInvalid(String email) {

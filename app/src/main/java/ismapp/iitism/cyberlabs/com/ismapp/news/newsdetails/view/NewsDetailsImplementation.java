@@ -15,9 +15,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
-import ismapp.iitism.cyberlabs.com.ismapp.adminsettings.view.AdminSettingsFragment;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.ViewUtils;
 import ismapp.iitism.cyberlabs.com.ismapp.news.newsdetails.model.DeleteNewsResponseModel;
 import ismapp.iitism.cyberlabs.com.ismapp.news.newsdetails.model.NewsDetailsModel;
@@ -42,11 +40,6 @@ public class NewsDetailsImplementation extends android.support.v4.app.Fragment i
     private MenuItem item;
 
 
-    // TODO: Rename and change types of parameters
-    private int newsId;
-
-
-
     public NewsDetailsImplementation() {
         // Required empty public constructor
     }
@@ -66,7 +59,8 @@ public class NewsDetailsImplementation extends android.support.v4.app.Fragment i
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            newsId = getArguments().getInt(ARG_PARAM1);
+            // TODO: Rename and change types of parameters
+            int newsId = getArguments().getInt(ARG_PARAM1);
             is_admin = getArguments().getBoolean(ARG_PARAM2);
 
         }

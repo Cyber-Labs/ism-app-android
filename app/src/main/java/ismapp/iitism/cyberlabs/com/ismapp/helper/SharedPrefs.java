@@ -14,13 +14,13 @@ public class SharedPrefs {
 
 
     // Shared Preferences
-   private SharedPreferences pref;
-   private SharedPreferences.Editor editor;
-  private   Context _context;
+   private final SharedPreferences pref;
+   private final SharedPreferences.Editor editor;
+  private final Context _context;
 
 
     // Shared pref mode
-   private int PRIVATE_MODE = 0;
+   private final int PRIVATE_MODE = 0;
    public void clear(){
        editor.clear().commit();
    }

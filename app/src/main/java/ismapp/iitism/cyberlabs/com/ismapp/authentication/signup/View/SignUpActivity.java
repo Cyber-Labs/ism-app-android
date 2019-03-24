@@ -1,22 +1,17 @@
 package ismapp.iitism.cyberlabs.com.ismapp.authentication.signup.View;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,7 +32,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpActivityI
     EditText pass;
     @BindView(R.id.btn_signup_next)
     Button next;
-    String e;
+    private String e;
 
     @BindView(R.id.signup_coordlay)
     CoordinatorLayout clayout;
@@ -47,7 +42,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpActivityI
     TextInputLayout emailLay;
     @BindView(R.id.signup_pass_lay)
     TextInputLayout passLay;
-    AlertDialog alertDialog;
+    private AlertDialog alertDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,26 +54,23 @@ public class SignUpActivity extends AppCompatActivity implements SignUpActivityI
         //  passLay.setErrorEnabled(true);
         alertDialog= new AlertDialog.Builder(this).setView(LayoutInflater.from(this).inflate(R.layout.progress_bar,null)).setCancelable(false).create();
 
-        next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (email.getText().toString().trim().isEmpty() || pass.getText().toString().trim().isEmpty() || name.getText().toString().trim().isEmpty()) {
-                    ViewUtils.showToast(getApplicationContext(), "All Fields Are required");
-                } else if (pass.getText().toString().trim().length() < 6) {
-                    ViewUtils.showToast(getApplicationContext(), "Password Must Contain min 6 letters!!!");
-                } else {
-                    SignUpPresenter signUpPresenter = new SignUpPresenterImp(SignUpActivity.this, new SignUpProviderImp(),
-                            email.getText().toString().trim(),
-                            name.getText().toString().trim(),
-                            pass.getText().toString());
+        next.setOnClickListener(v -> {
+            if (email.getText().toString().trim().isEmpty() || pass.getText().toString().trim().isEmpty() || name.getText().toString().trim().isEmpty()) {
+                ViewUtils.showToast(getApplicationContext(), "All Fields Are required");
+            } else if (pass.getText().toString().trim().length() < 6) {
+                ViewUtils.showToast(getApplicationContext(), "Password Must Contain min 6 letters!!!");
+            } else {
+                SignUpPresenter signUpPresenter = new SignUpPresenterImp(SignUpActivity.this, new SignUpProviderImp(),
+                        email.getText().toString().trim(),
+                        name.getText().toString().trim(),
+                        pass.getText().toString());
 
 
-                    name.setText("");
-                    email.setText("");
-                    pass.setText("");
-                    signUpPresenter.getSignUpResponse();
+                name.setText("");
+                email.setText("");
+                pass.setText("");
+                signUpPresenter.getSignUpResponse();
 
-                }
             }
         });
 

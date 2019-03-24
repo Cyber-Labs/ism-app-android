@@ -9,8 +9,8 @@ import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.view.ClubListFragmentInt
 import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
 
 public class ClubListPresenterImpl implements ClubListPresenterInterface {
-    ClubListFragmentInterface clubListFragmentInterface;
-    ClubListProviderInterface clubListProviderInterface;
+    private final ClubListFragmentInterface clubListFragmentInterface;
+    private final ClubListProviderInterface clubListProviderInterface;
 
     public ClubListPresenterImpl(ClubListFragmentInterface clubListFragmentInterface, ClubListProviderInterface clubListProviderInterface) {
         this.clubListFragmentInterface = clubListFragmentInterface;

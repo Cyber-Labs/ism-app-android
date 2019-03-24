@@ -9,7 +9,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class NewsListProviderImplementation implements NewsListProviderInterface {
-    Call<NewsListModel> newsListApiCall;
+    private Call<NewsListModel> newsListApiCall;
     @Override
     public void newsListResponse(String accessToken, PresenterCallback presenterCallback) {
         ClubNewsApi clubNewsApi = ApiClient.getRetrofit().create(ClubNewsApi.class);
@@ -22,11 +22,11 @@ public class NewsListProviderImplementation implements NewsListProviderInterface
 
             @Override
             public void onFailure(Call<NewsListModel> call, Throwable t) {
-             presenterCallback.OnFailure(t.getMessage().toString());
+             presenterCallback.OnFailure(t.getMessage());
             }
         });
     }
-    Call<NewsListModel> clubNewsListModelCall;
+    private Call<NewsListModel> clubNewsListModelCall;
     @Override
     public void clubNewsListResponse(String accessToken, int clubId, PresenterCallback presenterCallback) {
         ClubNewsApi clubNewsApi = ApiClient.getRetrofit().create(ClubNewsApi.class);
@@ -39,7 +39,7 @@ public class NewsListProviderImplementation implements NewsListProviderInterface
 
             @Override
             public void onFailure(Call<NewsListModel> call, Throwable t) {
-                presenterCallback.OnFailure(t.getMessage().toString());
+                presenterCallback.OnFailure(t.getMessage());
             }
         });
     }

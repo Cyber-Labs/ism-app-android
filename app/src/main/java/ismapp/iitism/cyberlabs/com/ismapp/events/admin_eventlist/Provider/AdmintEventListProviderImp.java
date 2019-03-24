@@ -1,12 +1,8 @@
 package ismapp.iitism.cyberlabs.com.ismapp.events.admin_eventlist.Provider;
 
-import android.support.v7.widget.CardView;
-import android.util.Log;
-
 import ismapp.iitism.cyberlabs.com.ismapp.events.admin_eventlist.DeleteEventResponse;
 import ismapp.iitism.cyberlabs.com.ismapp.events.admin_eventlist.api.api;
 import ismapp.iitism.cyberlabs.com.ismapp.events.eventlist.EventListResponse;
-import ismapp.iitism.cyberlabs.com.ismapp.events.eventlist.api.EventListApi;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.ApiClient;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
 import retrofit2.Call;
@@ -14,8 +10,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class AdmintEventListProviderImp implements AdmintEventListProviderInterface {
-    Call<EventListResponse> eventListResponseCall;
-    Call<DeleteEventResponse> deleteEventResponseCall;
+    private Call<EventListResponse> eventListResponseCall;
+    private Call<DeleteEventResponse> deleteEventResponseCall;
 
 
     @Override
@@ -26,7 +22,7 @@ public class AdmintEventListProviderImp implements AdmintEventListProviderInterf
             @Override
             public void onResponse(Call<EventListResponse> call, Response<EventListResponse> response) {
 
-                presenterCallback.onSuccess((EventListResponse)response.body());
+                presenterCallback.onSuccess(response.body());
             }
 
             @Override
@@ -45,7 +41,7 @@ public class AdmintEventListProviderImp implements AdmintEventListProviderInterf
         deleteEventResponseCall.enqueue(new Callback<DeleteEventResponse>() {
             @Override
             public void onResponse(Call<DeleteEventResponse> call, Response<DeleteEventResponse> response) {
-               presenterCallback.onSuccess((DeleteEventResponse)response.body());
+               presenterCallback.onSuccess(response.body());
 
 
             }

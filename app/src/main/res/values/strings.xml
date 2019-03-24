@@ -11,7 +11,7 @@
     <string name="todo">TODO</string>
     <string name="verify">Verify</string>
     <string name="cancel">Cancel</string>
-    <string name="enter_otp_recieved_via_email">Enter OTP recieved via email</string>
+    <string name="enter_otp_recieved_via_email">Enter OTP received via email</string>
     <string name="pandey_aman812_gmail_com">pandey.aman812@gmail.com</string>
     <string name="create_your_account">Create your account</string>
     <string name="account_verification">Account Verification</string>
@@ -63,4 +63,21 @@
     <string name="Submit">submit</string>
     <string name="long_lorem_ipsum">Duis tellus metus, elementum a lectus id, aliquet interdum mauris. Nam bibendum efficitur sollicitudin. Proin eleifend libero velit, nec fringilla dolor finibus quis. nMorbi eu libero pellentesque, rutrum metus quis, blandit est. Fusce bibendum accumsan nisi vulputate feugiat. In fermentum laoreet euismod. Praesent sem nisl, facilisis eget odio at, rhoncus scelerisque ipsum. Nulla orci dui, dignissim a risus ut, lobortis porttitor velit.         \\n\\nNulla id lectus metus. Maecenas a lorem in odio auctor facilisis non vitae nunc. Sed malesuada volutpat</string>
     <string name="title_activity_test2">Test2Activity</string>
+    <string name="posted_on">Posted On</string>
+    <string name="time">6 pm</string>
+    <string name="date">22 Mar 2019</string>
+    <string name="description">Description</string>
+    <string name="our_team">Our Team</string>
+    <string name="aman_pandey">Aman Pandey</string>
+    <string name="core_developer">Core Developer</string>
+    <string name="perul_jain">Perul Jain</string>
+    <string name="tazril_ali">Tazril Ali</string>
+    <string name="gaurav_pandey">Gaurav Pandey</string>
+    <string name="backend_developer">Backend Developer</string>
+    <string name="ujjawal_aggarwal">Ujjawal Aggarwal</string>
+    <string name="mentor">Mentor</string>
+    <string name="mission">Mission</string>
+    <string name="feedback">Feedback</string>
+    <string name="give_your_valueable_feedback_at">Give your valuable feedback at</string>
+    <string name="https_cyberlabs_netlify_com">https://cyberlabs.netlify.com</string>
 </resources>

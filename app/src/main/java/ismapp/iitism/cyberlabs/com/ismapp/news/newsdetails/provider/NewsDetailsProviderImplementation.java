@@ -10,7 +10,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class NewsDetailsProviderImplementation implements NewsDetailsProviderInterface{
-    Call<NewsDetailsModel>newsDetailsModelCall;
+    private Call<NewsDetailsModel>newsDetailsModelCall;
     @Override
     public void getNewsResponse(String accessToken, int newsId, PresenterCallback presenterCallback) {
         NewsDetailsApi newsDetailsApi = ApiClient.getRetrofit().create(NewsDetailsApi.class);
@@ -23,11 +23,11 @@ public class NewsDetailsProviderImplementation implements NewsDetailsProviderInt
 
             @Override
             public void onFailure(Call<NewsDetailsModel> call, Throwable t) {
-             presenterCallback.OnFailure(t.getMessage().toString());
+             presenterCallback.OnFailure(t.getMessage());
             }
         });
     }
-  Call<DeleteNewsResponseModel>deleteNewsResponseModelCall;
+  private Call<DeleteNewsResponseModel>deleteNewsResponseModelCall;
     @Override
     public void getDeleteNewsResponse(String accessToken, int newsId, PresenterCallback presenterCallback) {
         NewsDetailsApi newsDetailsApi = ApiClient.getRetrofit().create(NewsDetailsApi.class);
@@ -40,7 +40,7 @@ public class NewsDetailsProviderImplementation implements NewsDetailsProviderInt
 
             @Override
             public void onFailure(Call<DeleteNewsResponseModel> call, Throwable t) {
-             presenterCallback.OnFailure(t.getMessage().toString());
+             presenterCallback.OnFailure(t.getMessage());
             }
         });
     }

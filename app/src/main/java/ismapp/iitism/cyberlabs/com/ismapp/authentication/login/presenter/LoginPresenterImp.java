@@ -6,8 +6,8 @@ import ismapp.iitism.cyberlabs.com.ismapp.authentication.login.view.LoginView;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
 
 public class LoginPresenterImp implements LoginPresenter {
-  private   LoginView loginView;
-   private LoginProvider loginProvider;
+  private final LoginView loginView;
+   private final LoginProvider loginProvider;
 
     public LoginPresenterImp(LoginView loginView, LoginProvider loginProvider) {
         this.loginView = loginView;

@@ -2,6 +2,8 @@ package ismapp.iitism.cyberlabs.com.ismapp.addclubmember.provider;
 
 import android.util.Log;
 
+import java.util.Objects;
+
 import ismapp.iitism.cyberlabs.com.ismapp.addclubmember.api.addclubmemberapi;
 import ismapp.iitism.cyberlabs.com.ismapp.addclubmember.model.Member;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.ApiClient;
@@ -11,7 +13,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class RetroMember implements MemberProvider {
-    Call<Member> call;
+    private Call<Member> call;
 
     @Override
     public void getMemberResponse(String token, int clubid, String emailid, Boolean isadmin, final PresenterCallback presenterCallback) {
@@ -20,7 +22,7 @@ public class RetroMember implements MemberProvider {
         call.enqueue(new Callback<Member>() {
             @Override
             public void onResponse(Call<Member> call, Response<Member> response) {
-                Log.d("hello", ((Member)response.body()).toString());
+                Log.d("hello", ((Member) Objects.requireNonNull(response.body())).toString());
 
                 presenterCallback.onSuccess((Member)response.body());
             }

@@ -7,8 +7,8 @@ import ismapp.iitism.cyberlabs.com.ismapp.news.createandeditnews.view.CreateNews
 import okhttp3.MultipartBody;
 
 public class CreateNewsPresenterImplementation implements CreateNewsPresenterInterface {
-   private CreateNews createNews;
-  private CreateNewsProviderImplementation createNewsProviderImplementation;
+   private final CreateNews createNews;
+  private final CreateNewsProviderImplementation createNewsProviderImplementation;
 
 
     public CreateNewsPresenterImplementation(CreateNews createNews, CreateNewsProviderImplementation createNewsProviderImplementation) {

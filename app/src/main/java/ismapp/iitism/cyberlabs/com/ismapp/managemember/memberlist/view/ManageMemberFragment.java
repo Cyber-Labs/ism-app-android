@@ -37,8 +37,8 @@ public class ManageMemberFragment extends android.support.v4.app.Fragment implem
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    RecyclerView recyclerView;
-    ProgressDialog progressDialog;
+    private RecyclerView recyclerView;
+    private ProgressDialog progressDialog;
     ManageMemberPresenterInterface manageMemberPresenterInterface;
 
     // TODO: Rename and change types of parameters
@@ -86,12 +86,7 @@ public class ManageMemberFragment extends android.support.v4.app.Fragment implem
         View view =  inflater.inflate(R.layout.fragment_manage_member, container, false);
         context = getContext();
         FloatingActionButton addmember = (FloatingActionButton)view.findViewById(R.id.fab);
-        addmember.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((MainActivity)getActivity()).addFragment(new AddMember());
-            }
-        });
+        addmember.setOnClickListener(v -> ((MainActivity)getActivity()).addFragment(new AddMember()));
         SharedPrefs sharedPrefs = new SharedPrefs(getContext());
          recyclerView = (RecyclerView)view.findViewById(R.id.rv_member_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

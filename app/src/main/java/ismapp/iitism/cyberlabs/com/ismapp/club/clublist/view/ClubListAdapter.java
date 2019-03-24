@@ -25,11 +25,11 @@ import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
 public class ClubListAdapter extends RecyclerView.Adapter<ClubListAdapter.clubAdapterViewHolder> {
 
     private List<ClubDetails> clubsLists  ;
-    private Context context;
-    private SharedPrefs sharedPrefs ;
-    private FragmentActivity fragmentActivity;
+    private final Context context;
+    private final SharedPrefs sharedPrefs ;
+    private final FragmentActivity fragmentActivity;
 
-    public ClubListAdapter(Context context, FragmentManager fragmentManager, FragmentActivity fragmentActivity) {
+    ClubListAdapter(Context context, FragmentManager fragmentManager, FragmentActivity fragmentActivity) {
         this.context = context;
         sharedPrefs = new SharedPrefs(context);
         this.fragmentActivity=fragmentActivity;
@@ -65,23 +65,21 @@ public class ClubListAdapter extends RecyclerView.Adapter<ClubListAdapter.clubAd
     }
 
     class clubAdapterViewHolder extends RecyclerView.ViewHolder{
-        ImageView clubimage;
-        TextView tv_clubname, tv_clubtagline;
-        CardView cardView;
+        final ImageView clubimage;
+        final TextView tv_clubname;
+        final TextView tv_clubtagline;
+        final CardView cardView;
 
-        public clubAdapterViewHolder(@NonNull View itemView) {
+        clubAdapterViewHolder(@NonNull View itemView) {
             super(itemView);
             clubimage = itemView.findViewById(R.id.iv_clubimage);
             tv_clubname = itemView.findViewById(R.id.tv_clubname);
             tv_clubtagline = itemView.findViewById(R.id.tv_clubtagline);
-            cardView = (CardView)itemView.findViewById(R.id.card_view_club);
-            cardView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    sharedPrefs.setClubId(clubsLists.get(getAdapterPosition()).getId());
-                    sharedPrefs.setClubName(clubsLists.get(getAdapterPosition()).getName());
-                    ((MainActivity)fragmentActivity).addFragment(new ClubDetailsFragment());
-                }
+            cardView = itemView.findViewById(R.id.card_view_club);
+            cardView.setOnClickListener(v -> {
+                sharedPrefs.setClubId(clubsLists.get(getAdapterPosition()).getId());
+                sharedPrefs.setClubName(clubsLists.get(getAdapterPosition()).getName());
+                ((MainActivity)fragmentActivity).addFragment(new ClubDetailsFragment());
             });
 
         }

@@ -1,12 +1,12 @@
 package ismapp.iitism.cyberlabs.com.ismapp.club.clublist.model;
 
 public class ClubDetails {
-    private int club_id;
-    private String name;
-    private String image_url;
-    private String tagline;
-    private int id;
-    private  boolean is_admin;
+    private final int club_id;
+    private final String name;
+    private final String image_url;
+    private final String tagline;
+    private final int id;
+    private final boolean is_admin;
 
     public ClubDetails(int club_id, String name, String image_url, String tagline, int id, boolean is_admin) {
         this.club_id = club_id;

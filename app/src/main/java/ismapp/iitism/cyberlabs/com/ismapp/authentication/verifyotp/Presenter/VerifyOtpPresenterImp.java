@@ -8,8 +8,8 @@ import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
 public class VerifyOtpPresenterImp implements VerifyOtpPresenter {
 
 
-    VerifyOtpActivityInterface verifyOtpActivityInterface;
-    VerifyOtpProvider verifyOtpProvider;
+    private final VerifyOtpActivityInterface verifyOtpActivityInterface;
+    private final VerifyOtpProvider verifyOtpProvider;
 
     public VerifyOtpPresenterImp(VerifyOtpActivityInterface verifyOtpActivityInterface, VerifyOtpProvider verifyOtpProvider) {
         this.verifyOtpActivityInterface = verifyOtpActivityInterface;

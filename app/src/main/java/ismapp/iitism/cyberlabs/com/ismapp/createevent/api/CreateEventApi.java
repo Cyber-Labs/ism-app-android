@@ -6,8 +6,6 @@ import ismapp.iitism.cyberlabs.com.ismapp.createevent.model.CreateEventModel;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.Urls;
 import okhttp3.MultipartBody;
 import retrofit2.Call;
-import retrofit2.http.Field;
-import retrofit2.http.Header;
 import retrofit2.http.HeaderMap;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;

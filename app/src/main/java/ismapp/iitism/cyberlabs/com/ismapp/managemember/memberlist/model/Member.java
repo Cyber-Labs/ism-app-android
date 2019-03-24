@@ -1,9 +1,9 @@
 package ismapp.iitism.cyberlabs.com.ismapp.managemember.memberlist.model;
 
 public class Member {
-    private String name;
-    private boolean is_admin;
-    private String email;
+    private final String name;
+    private final boolean is_admin;
+    private final String email;
 
     public Member(String name, boolean is_admin, String email) {
         this.name = name;

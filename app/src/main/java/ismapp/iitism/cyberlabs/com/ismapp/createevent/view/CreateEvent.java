@@ -13,7 +13,6 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +35,7 @@ import com.squareup.picasso.Picasso;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.Calendar;
+import java.util.Objects;
 
 import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
@@ -44,10 +44,6 @@ import ismapp.iitism.cyberlabs.com.ismapp.createevent.presenter.CreateEventPrese
 import ismapp.iitism.cyberlabs.com.ismapp.createevent.presenter.CreateEventPresenterInterface;
 import ismapp.iitism.cyberlabs.com.ismapp.createevent.provider.CreateEventProviderImplementation;
 
-import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
-import ismapp.iitism.cyberlabs.com.ismapp.helper.UriUtils;
-
-import ismapp.iitism.cyberlabs.com.ismapp.helper.MsgToast;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.UriUtils;
 
@@ -75,20 +71,20 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
     private EditText venue;
     private Button submit;
     private Calendar calendar;
-    ProgressBar pb_add_event;
-    public static final int PICK_IMAGE = 1;
+    private ProgressBar pb_add_event;
+    private static final int PICK_IMAGE = 1;
     private MultipartBody.Part image;
-    ImageView iv_start_day;
-    ImageView iv_start_time;
-    ImageView iv_end_day;
-    ImageView iv_end_time;
-    int event_id;
-    CreateEventPresenterInterface createEventPresenterInterface;
+    private ImageView iv_start_day;
+    private ImageView iv_start_time;
+    private ImageView iv_end_day;
+    private ImageView iv_end_time;
+    private int event_id;
+    private CreateEventPresenterInterface createEventPresenterInterface;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-   Bundle bundle;
+   private Bundle bundle;
 
     public CreateEvent() {
         // Required empty public constructor
@@ -152,7 +148,7 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
 
             @Override
             public void onPermissionDenied(PermissionDeniedResponse response) {
-                ((MainActivity)getActivity()).onBackPressed();
+                ((MainActivity) Objects.requireNonNull(getActivity())).onBackPressed();
             }
 
             @Override
@@ -171,86 +167,53 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
         }
         createEventPresenterInterface = new CreateEventPresenterImplementation(this,new CreateEventProviderImplementation());
         selectimage();
-        iv_start_day.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectAddEventDate(1);
-            }
-        });
-        iv_end_day.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectAddEventDate(2);
-            }
-        });
-        iv_start_time.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectAddEventTime(1);
-            }
-        });
-        iv_end_time.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectAddEventTime(2);
-            }
-        });
+        iv_start_day.setOnClickListener(v -> selectAddEventDate(1));
+        iv_end_day.setOnClickListener(v -> selectAddEventDate(2));
+        iv_start_time.setOnClickListener(v -> selectAddEventTime(1));
+        iv_end_time.setOnClickListener(v -> selectAddEventTime(2));
         showButtonClickable(true);
-        submit.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.M)
-            @Override
-            public void onClick(View v) {
+        submit.setOnClickListener(v -> {
 
 
 
-              if(selectImage.getDrawable()==null || title.getText().toString().trim().isEmpty() || StartDate.getText().toString().trim().isEmpty()|| description.getText().toString().trim().isEmpty() )
-                  ViewUtils.showToast(getContext(),"Enter all required fields");
-              else
-                  getUserResponse();
+          if(selectImage.getDrawable()==null || title.getText().toString().trim().isEmpty() || StartDate.getText().toString().trim().isEmpty()|| description.getText().toString().trim().isEmpty() )
+              ViewUtils.showToast(getContext(),"Enter all required fields");
+          else
+              getUserResponse();
 
 
-            }
         });
         return   view;
 
     }
 
     private void selectAddEventDate(int i) {
-        DatePickerDialog datePickerDialog=new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                if(i==1){StartDate.setText(String.format("%d/%d/%d", year, month+1, dayOfMonth));}
-                        else
-                         {EndDate.setText(String.format("%d/%d/%d", year, month+1, dayOfMonth));};
+        DatePickerDialog datePickerDialog=new DatePickerDialog(Objects.requireNonNull(getActivity()), (view, year, month, dayOfMonth) -> {
+            if(i==1){StartDate.setText(String.format("%d/%d/%d", year, month+1, dayOfMonth));}
+                    else
+                     {EndDate.setText(String.format("%d/%d/%d", year, month+1, dayOfMonth));};
 
-            }
         },Calendar.YEAR,Calendar.MONTH+1,Calendar.DAY_OF_MONTH);
         datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
         datePickerDialog.show();
     }
     private void selectAddEventTime(int i)
     {
-        TimePickerDialog timePickerDialog=new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-             if(i==1){ StartTime.setText(hourOfDay+":"+minute);}
-                   else
-                        EndTime.setText(hourOfDay+":"+minute);
-            }
+        TimePickerDialog timePickerDialog=new TimePickerDialog(getActivity(), (view, hourOfDay, minute) -> {
+         if(i==1){ StartTime.setText(hourOfDay+":"+minute);}
+               else
+                    EndTime.setText(hourOfDay+":"+minute);
         },Calendar.HOUR_OF_DAY,Calendar.MINUTE,false);
 
         timePickerDialog.show();
     }
 
     private void selectimage() {
-        selectImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
-            }
+        selectImage.setOnClickListener(v -> {
+            Intent intent = new Intent();
+            intent.setType("image/*");
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
         });
     }
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -264,7 +227,7 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
 
 
 
-            File finalFile = new File(UriUtils.uriToFilePathConverter(getContext(),data.getData()));
+            File finalFile = new File(Objects.requireNonNull(UriUtils.uriToFilePathConverter(getContext(), data.getData())));
 
             RequestBody requestFile =
                     RequestBody.create(MediaType.parse("multipart/form-data"), finalFile);
@@ -285,8 +248,8 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
     }
 
     public String getRealPathFromURI(Uri uri) {
-        Cursor cursor = getActivity().getContentResolver().query(uri, null, null, null, null);
-        cursor.moveToFirst();
+        Cursor cursor = Objects.requireNonNull(getActivity()).getContentResolver().query(uri, null, null, null, null);
+        Objects.requireNonNull(cursor).moveToFirst();
         int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
         return cursor.getString(idx);
     }
@@ -320,7 +283,7 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
     @Override
     public void showMessage(String message) {
        ViewUtils.showToast(getContext(),message);
-        ((MainActivity)getActivity()).onBackPressed();
+        ((MainActivity) Objects.requireNonNull(getActivity())).onBackPressed();
 
     }
 

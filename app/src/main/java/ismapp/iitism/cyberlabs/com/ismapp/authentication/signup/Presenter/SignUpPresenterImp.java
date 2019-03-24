@@ -6,11 +6,11 @@ import ismapp.iitism.cyberlabs.com.ismapp.authentication.signup.View.SignUpActiv
 import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
 
 public class SignUpPresenterImp implements SignUpPresenter{
-    private SignUpActivityInterface signUpActivityInterface;
-    private SignUpProvider signUpProvider;
-    private String email;
-    private String name;
-    private String pass;
+    private final SignUpActivityInterface signUpActivityInterface;
+    private final SignUpProvider signUpProvider;
+    private final String email;
+    private final String name;
+    private final String pass;
 
     public SignUpPresenterImp(SignUpActivityInterface signUpActivityInterface, SignUpProvider signUpProvider, String email, String name, String pass) {
         this.signUpActivityInterface = signUpActivityInterface;

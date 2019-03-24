@@ -6,8 +6,8 @@ import ismapp.iitism.cyberlabs.com.ismapp.addclubmember.view.MemberInterface;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
 
 public class MemberPresenterImple implements MemberPresenter {
-    MemberInterface memberInterface;
-    RetroMember retroMember;
+    private final MemberInterface memberInterface;
+    private final RetroMember retroMember;
 
     public MemberPresenterImple(MemberInterface memberInterface, RetroMember retroMember) {
         this.memberInterface = memberInterface;

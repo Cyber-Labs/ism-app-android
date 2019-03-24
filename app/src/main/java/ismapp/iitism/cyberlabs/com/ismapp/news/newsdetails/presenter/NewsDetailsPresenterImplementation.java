@@ -7,8 +7,8 @@ import ismapp.iitism.cyberlabs.com.ismapp.news.newsdetails.provider.NewsDetailsP
 import ismapp.iitism.cyberlabs.com.ismapp.news.newsdetails.view.NewsDetailsInterface;
 
 public class NewsDetailsPresenterImplementation implements NewsDetailsPresenterInterface {
-    NewsDetailsInterface newsDetailsInterface;
-    NewsDetailsProviderImplementation newsDetailsProviderImplementation;
+    private final NewsDetailsInterface newsDetailsInterface;
+    private final NewsDetailsProviderImplementation newsDetailsProviderImplementation;
 
     public NewsDetailsPresenterImplementation(NewsDetailsInterface newsDetailsInterface, NewsDetailsProviderImplementation newsDetailsProviderImplementation) {
         this.newsDetailsInterface = newsDetailsInterface;

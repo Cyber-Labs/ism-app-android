@@ -7,8 +7,8 @@ import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
 import okhttp3.MultipartBody;
 
 public class CreateEventPresenterImplementation implements CreateEventPresenterInterface {
-    CreateEventFragmentInterface createEventFragmentInterface;
-    CreateEventProviderImplementation createEventProviderImplementation;
+    private final CreateEventFragmentInterface createEventFragmentInterface;
+    private final CreateEventProviderImplementation createEventProviderImplementation;
 
     public CreateEventPresenterImplementation(CreateEventFragmentInterface createEventFragmentInterface, CreateEventProviderImplementation createEventProviderImplementation) {
         this.createEventFragmentInterface = createEventFragmentInterface;

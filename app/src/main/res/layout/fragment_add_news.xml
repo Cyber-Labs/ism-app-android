@@ -3,10 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </LinearLayout>
+
     <ImageView
         android:id="@+id/create_news_pic"
         android:layout_width="match_parent"
@@ -15,10 +12,11 @@
         android:scaleType="fitXY"
         android:onClick="getImages"
         android:src="@drawable/rectangle" />
+
     <EditText
         android:id="@+id/create_news_description"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:padding="5dp"
         android:hint="@string/Description"/>
     <Button
