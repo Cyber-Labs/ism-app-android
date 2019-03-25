@@ -1,5 +1,7 @@
 package ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.provider;
 
+import android.util.Log;
+
 import ismapp.iitism.cyberlabs.com.ismapp.helper.ApiClient;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
 import ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.api.ClubNewsApi;
@@ -17,7 +19,8 @@ public class NewsListProviderImplementation implements NewsListProviderInterface
         newsListApiCall.enqueue(new Callback<NewsListModel>() {
             @Override
             public void onResponse(Call<NewsListModel> call, Response<NewsListModel> response) {
-                presenterCallback.onSuccess((NewsListModel)response.body());
+               presenterCallback.onSuccess((NewsListModel)response.body());
+                //Log.e("aman", "onResponse: "+ response );
             }
 
             @Override

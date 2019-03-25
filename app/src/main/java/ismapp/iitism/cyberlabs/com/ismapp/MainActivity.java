@@ -37,15 +37,15 @@ public class MainActivity extends AppCompatActivity
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.back, this.getTheme());
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.main_contaner, new FeedFrag())
-                .commit();
-        Objects.requireNonNull(getSupportActionBar()).setTitle("Feeds");
+//        getSupportFragmentManager().beginTransaction()
+//                .add(R.id.main_contaner, new FeedFrag())
+//                .commit();
+//        Objects.requireNonNull(getSupportActionBar()).setTitle("Feeds");
 
         drawer = findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        addActionBar();
+        setFragment(new NewsList(),true); addActionBar(); addTitletoBar("Feeds");
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -60,7 +60,9 @@ public class MainActivity extends AppCompatActivity
         } else {
             int count=getSupportFragmentManager().getBackStackEntryCount();
             if(count==0){
-            super.onBackPressed();}
+                if(getSupportFragmentManager().findFragmentByTag("Base")==null)
+                { setFragment(new NewsList(),true); addActionBar(); addTitletoBar("Feeds");}
+           else super.onBackPressed();}
             else getSupportFragmentManager().popBackStack();
         }
     }
@@ -82,17 +84,17 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.feed) {
 
-            setFragment(new NewsList()); addActionBar(); addTitletoBar("Feeds");
+            setFragment(new NewsList(),true); addActionBar(); addTitletoBar("Feeds");
         } else if (id == R.id.clubs) {
-            setFragment(new ClubListListFragment());addActionBar(); addTitletoBar("Clubs");
+            setFragment(new ClubListListFragment(),false);addActionBar(); addTitletoBar("Clubs");
         } else if (id == R.id.events) {
-            setFragment(new EventListFragment());addActionBar(); addTitletoBar("Events");
+            setFragment(new EventListFragment(),false);addActionBar(); addTitletoBar("Events");
         }
         else if (id == R.id.shared_cal) {
-            setFragment(new EventListFragment());addActionBar(); addTitletoBar("Shared Calendar");
+            setFragment(new EventListFragment(),false);addActionBar(); addTitletoBar("Shared Calendar");
         }
         else if (id == R.id.nav_about) {
-            setFragment(new AboutFragment()); addActionBar(); addTitletoBar("About");
+            setFragment(new AboutFragment(),false); addActionBar(); addTitletoBar("About");
         }
         else if(id == R.id.nav_logout){
             SharedPrefs sharedPrefs = new SharedPrefs(getApplicationContext());
@@ -106,11 +108,17 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    private void setFragment(Fragment fragment) {
+    private void setFragment(Fragment fragment,boolean base) {
+        String tag;
         if (fragment != null)
+        {  if(base)
+               tag="Base";
+                       else
+                           tag="Not Base";
+
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.main_contaner, fragment)
-                    .commit();
+                    .replace(R.id.main_contaner, fragment,tag)
+                    .commit();}
     }
 
     public void addFragment(Fragment fragment) {
