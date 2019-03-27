@@ -1,5 +1,7 @@
 package ismapp.iitism.cyberlabs.com.ismapp.news.createandeditnews.provider;
 
+import android.util.Log;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,6 +42,7 @@ public class CreateNewsProviderImplementation implements CreateNewsProviderInter
         Map<String, String> token = new HashMap<>();
         token.put("Authorization", accessToken);
         editNewsApiCall = editNewsApi.getEditNewsResponse(token,newsId,clubId,description,image);
+
         editNewsApiCall.enqueue(new Callback<CreateNewsResponseModel>() {
             @Override
             public void onResponse(Call<CreateNewsResponseModel> call, Response<CreateNewsResponseModel> response) {

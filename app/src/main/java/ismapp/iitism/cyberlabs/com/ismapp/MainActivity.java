@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
     private Toolbar toolbar;
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,10 +46,12 @@ public class MainActivity extends AppCompatActivity
         drawer = findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        setFragment(new NewsList(),true); addActionBar(); addTitletoBar("Feeds");
+       setFragment(new NewsList(),true); addActionBar(); addTitletoBar("Feeds");
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setCheckedItem(R.id.feed);
+
         //Debug
     }
 
@@ -61,7 +64,9 @@ public class MainActivity extends AppCompatActivity
             int count=getSupportFragmentManager().getBackStackEntryCount();
             if(count==0){
                 if(getSupportFragmentManager().findFragmentByTag("Base")==null)
-                { setFragment(new NewsList(),true); addActionBar(); addTitletoBar("Feeds");}
+                { setFragment(new NewsList(),true); addActionBar(); addTitletoBar("Feeds");
+                  navigationView.setCheckedItem(R.id.feed);
+                }
            else super.onBackPressed();}
             else getSupportFragmentManager().popBackStack();
         }

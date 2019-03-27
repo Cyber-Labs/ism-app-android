@@ -47,8 +47,8 @@ public class CreateNewsFragment extends Fragment implements CreateNews {
     }
 
 
-    public static NewsList newInstance(int param1) {
-        NewsList fragment = new NewsList();
+    public static CreateNewsFragment newInstance(int param1) {
+        CreateNewsFragment fragment = new CreateNewsFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_PARAM1, param1);
         fragment.setArguments(args);
@@ -75,13 +75,13 @@ public class CreateNewsFragment extends Fragment implements CreateNews {
         createNewsImage = (ImageView)view.findViewById(R.id.create_news_pic);
         createNewsDescription = (EditText)view.findViewById(R.id.create_news_description);
         createNewsButton = (Button)view.findViewById(R.id.create_news_button);
-        getResponseFromUser();
-        return view;
-    }
-
-
-    private void getResponseFromUser() {
-        String description = createNewsDescription.getText().toString();
+        createNewsButton.setEnabled(true);
+        createNewsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getResponseFromUser();
+            }
+        });
         createNewsImage.setOnClickListener(v -> {
             Intent intent = new Intent();
             intent.setType("image/*");
@@ -89,6 +89,15 @@ public class CreateNewsFragment extends Fragment implements CreateNews {
             startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
 
         });
+
+        return view;
+    }
+
+
+    private void getResponseFromUser() {
+        String description = createNewsDescription.getText().toString().trim();
+        if(description.isEmpty() || createNewsImage.getDrawable()==null)
+        { ViewUtils.showToast(getContext(),"All Fields are Required"); return;}
         SharedPrefs sharedPrefs = new SharedPrefs(getContext());
         if(news_id!=0){
             if(!description.isEmpty()){
@@ -98,14 +107,12 @@ public class CreateNewsFragment extends Fragment implements CreateNews {
             }
 
         }else{
-            if(!description.isEmpty()){
-                buttonClickable(true);
-                createNewsButton.setOnClickListener(v -> createNewsPresenterInterface.getCreateNewsResponsePresenter(sharedPrefs.getAccessToken(),sharedPrefs.getClubId(),description,image));
 
-            }
-            else{
-                ViewUtils.showToast(getContext(),"Description is Required");
-            }
+
+                createNewsPresenterInterface.getCreateNewsResponsePresenter(sharedPrefs.getAccessToken(),sharedPrefs.getClubId(),description,image);
+
+
+
         }
 
     }
@@ -119,19 +126,15 @@ public class CreateNewsFragment extends Fragment implements CreateNews {
 
 
 
-            // CALL THIS METHOD TO GET THE URI FROM THE BITMAP
-            // Uri tempUri = getImageUri(getContext(), photo);
 
-            // CALL THIS METHOD TO GET THE ACTUAL PATH
             File finalFile = new File(Objects.requireNonNull(UriUtils.uriToFilePathConverter(getContext(), data.getData())));
-            // File file = new File("/storage/emulated/0/Download/Corrections 6.jpg");
+
             RequestBody requestFile =
                     RequestBody.create(MediaType.parse("multipart/form-data"), finalFile);
 
-// MultipartBody.Part is used to send also the actual file name
-            image =
-                    MultipartBody.Part.createFormData("event_pic", finalFile.getName(), requestFile);
 
+            image =
+                    MultipartBody.Part.createFormData("news_pic", finalFile.getName(), requestFile);
 
 
         }

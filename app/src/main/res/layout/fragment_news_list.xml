@@ -13,4 +13,21 @@
 
     </android.support.v7.widget.RecyclerView>
 
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/add"
+        android:id="@+id/iv_add_news"
+        android:visibility="gone"
+        android:layout_gravity="end|bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"/>
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:id="@+id/pb_admin_newslist"
+        android:layout_gravity="center"
+        android:visibility="gone"/>
+
 </FrameLayout>

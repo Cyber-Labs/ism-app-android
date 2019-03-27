@@ -291,9 +291,6 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
     public void getUserResponse() {
         final String Title = title.getText().toString();
         final String Description = description.getText().toString();
-
-
-
         final String StartDate = this.StartDate.getText().toString();
        final String EndDate =this.EndDate.getText().toString();
         final String Venue = venue.getText().toString();

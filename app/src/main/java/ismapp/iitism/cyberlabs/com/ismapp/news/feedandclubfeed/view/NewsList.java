@@ -12,12 +12,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 
+import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.ViewUtils;
+import ismapp.iitism.cyberlabs.com.ismapp.news.createandeditnews.view.CreateNews;
+import ismapp.iitism.cyberlabs.com.ismapp.news.createandeditnews.view.CreateNewsFragment;
 import ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.model.News;
 import ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.model.NewsListModel;
 import ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.presenter.NewsListPresenterImplementation;
@@ -36,6 +40,7 @@ public class NewsList extends android.support.v4.app.Fragment implements NewsLis
     private ArrayList<News> newsArrayList;
     private NewsListPresenterInterface newsListPresenterInterface;
     private int club_id = 0;
+    private ImageView iv_add_news;
     private boolean club_admin = false;
     public NewsList() {
         // Required empty public constructor
@@ -65,6 +70,15 @@ public class NewsList extends android.support.v4.app.Fragment implements NewsLis
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_news_list, container, false);
+        iv_add_news=view.findViewById(R.id.iv_add_news);
+        if(club_admin)
+            iv_add_news.setVisibility(View.VISIBLE);
+            iv_add_news.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ((MainActivity)getActivity()).addFragment(CreateNewsFragment.newInstance(0));
+                }
+            });
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Wait");
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -101,7 +115,7 @@ public class NewsList extends android.support.v4.app.Fragment implements NewsLis
 
     @Override
     public void getResponseNewsList(NewsListModel newsListModel) {
-        NewsListAdapter newsListAdapter = new NewsListAdapter(getContext(),this,club_admin);
+        NewsListAdapter newsListAdapter = new NewsListAdapter(getContext(),getActivity(),club_admin);
         newsArrayList = newsListModel.getNews_list();
         newsListAdapter.setData(newsArrayList);
         recyclerView.setAdapter(newsListAdapter);
