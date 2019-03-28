@@ -1,13 +1,13 @@
 package ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.view;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,14 +16,13 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import java.util.List;
-import java.util.Objects;
 
 import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
 import ismapp.iitism.cyberlabs.com.ismapp.news.createandeditnews.view.CreateNewsFragment;
-import ismapp.iitism.cyberlabs.com.ismapp.news.newsdetails.view.NewsDetailsImplementation;
 import ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.model.News;
 
 public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsListViewHolder> {
@@ -31,6 +30,7 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsLi
     private final Context context;
     private final FragmentActivity fragmentActivity;
     private final boolean is_admin;
+    private final static int maxHeight = 450;
 
     NewsListAdapter(Context context, FragmentActivity fragmentActivity, boolean is_admin) {
         this.context = context;
@@ -51,10 +51,35 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsLi
     @Override
     public void onBindViewHolder(@NonNull NewsListViewHolder newsListViewHolder, int i) {
         News news = newsList.get(i);
-        Picasso.get().load(news.getNews_pic_url()).into(newsListViewHolder.iv_newsListImage);
+
+        Picasso.get().load(news.getNews_pic_url()).into(new Target() {
+            @Override
+            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+
+                float targetWidth = newsListViewHolder.iv_newsListImage.getWidth();
+                float ratio = (float) bitmap.getHeight()/(float) bitmap.getWidth();
+                float heightFloat = ((float) targetWidth) * ratio;
+                final android.view.ViewGroup.MarginLayoutParams layoutParams =
+                        (ViewGroup.MarginLayoutParams) newsListViewHolder.iv_newsListImage.getLayoutParams();
+                layoutParams.height = (int) heightFloat;
+                newsListViewHolder.iv_newsListImage.setLayoutParams(layoutParams);
+                newsListViewHolder.iv_newsListImage.setImageBitmap(bitmap);
+            }
+
+            @Override
+            public void onBitmapFailed(Exception e, Drawable errorDrawable) {
+            }
+
+            @Override
+            public void onPrepareLoad(Drawable placeHolderDrawable) {
+
+            }
+        });
         newsListViewHolder.tv_newsList_shortDescription.setText(news.getDescription());
         newsListViewHolder.tv_newsList_date_time.setText(news.getCreated_date());
         newsListViewHolder.tv_newsList_clubName.setText(news.getClub_name());
+//        if ( newsListViewHolder.iv_newsListImage.getHeight() > maxHeight)
+//            newsListViewHolder.iv_newsListImage.getLayoutParams().height = maxHeight;
     }
 
     @Override

@@ -2,6 +2,8 @@ package ismapp.iitism.cyberlabs.com.ismapp.club.clubdetails.view;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,9 +43,8 @@ public class MembAdapter  extends RecyclerView.Adapter<MembAdapter.MyViewHolder>
         final Member member = memberList.get(i);
         myViewHolder.tv_memb.setText(member.getName());
         if(member.isIs_admin())
-          myViewHolder.im_isadmin.setVisibility(View.VISIBLE);
-        else
-            myViewHolder.im_isadmin.setVisibility(View.GONE);
+            DrawableCompat.setTint(myViewHolder.im_isadmin.getDrawable(), ContextCompat.getColor(mtcx, R.color.colorAccent));
+//          myViewHolder.im_isadmin.setBackgroundColor(R.color.colorAccent);
 
     }
 

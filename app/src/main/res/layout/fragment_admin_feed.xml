@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".news.feedandclubfeed.view.NewsList">
 
     <!-- TODO: Update blank fragment layout -->
@@ -13,19 +14,25 @@
 
     </android.support.v7.widget.RecyclerView>
 
-    <ImageView
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_smlarge"
+        android:layout_marginLeft="@dimen/spacing_smlarge"
+        android:layout_marginRight="@dimen/spacing_smlarge"
+        android:layout_marginTop="@dimen/spacing_middle"
+        android:clickable="true"
+        android:tint="@android:color/white"
+        app:fabSize="normal"
         android:src="@drawable/add"
-        android:id="@+id/iv_add_news"
+        android:id="@+id/fab_add_news"
         android:visibility="gone"
-        android:layout_gravity="end|bottom"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"/>
+        app:rippleColor="@android:color/white"
+        android:layout_gravity="bottom|end|right"
+        android:focusable="true" />
     <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:id="@+id/pb_admin_newslist"
         android:layout_gravity="center"
         android:visibility="gone"/>

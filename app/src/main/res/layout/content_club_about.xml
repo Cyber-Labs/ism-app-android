@@ -13,7 +13,7 @@
             android:orientation="vertical">
             <ImageView
                 android:id="@+id/club_image"
-                android:layout_height="160dp"
+                android:layout_height="200dp"
                 android:scaleType="fitXY"
                 android:layout_width="match_parent"
                 android:contentDescription="@string/todo" />

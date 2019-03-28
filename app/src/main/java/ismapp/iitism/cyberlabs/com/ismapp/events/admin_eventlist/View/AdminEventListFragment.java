@@ -37,7 +37,7 @@ public class AdminEventListFragment extends Fragment implements AdminEventListFr
     private AdminEventListAdapter adminEventListAdapter;
     private Bundle bundle;
     private int club_id;
-    @BindView(R.id.iv_add_event)
+    @BindView(R.id.fab_add_event)
     ImageView  addEvent;
 
     @Override

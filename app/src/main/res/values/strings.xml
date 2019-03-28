@@ -80,4 +80,6 @@
     <string name="feedback">Feedback</string>
     <string name="give_your_valueable_feedback_at">Give your valuable feedback at</string>
     <string name="https_cyberlabs_netlify_com">https://cyberlabs.netlify.com</string>
+    <string name="short_lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</string>
+    <string name="middle_lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam efficitur ipsum in placerat molestie.  Fusce quis mauris a enim sollicitudin</string>
 </resources>

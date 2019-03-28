@@ -1,133 +1,208 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <android.support.v7.widget.CardView
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="@dimen/spacing_medium"
+    android:layout_marginLeft="@dimen/spacing_middle"
+    android:layout_marginRight="@dimen/spacing_middle"
+    android:layout_marginTop="@dimen/spacing_medium"
+    android:id="@+id/card_view_news"
+    android:visibility="visible">
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="2dp"
-        android:padding="6dp"
-        android:background="@color/white">
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:padding="@dimen/spacing_large">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="50dp"
+                android:id="@+id/iv_event_fd_clubimg"
+                android:layout_height="50dp"
+                android:src="@drawable/cyberlabs"
+                app:civ_border_color="#FF000000"
+                app:civ_border_width="2dp" />
+
+            <View
+                android:layout_width="@dimen/spacing_large"
+                android:layout_height="0dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:id="@+id/id.tv_event_fd_club"
+                    android:text="@string/cyberlabs"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                    android:textColor="@android:color/black" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_small"
+                        android:layout_weight="1"
+                        android:id="@+id/item_eventlist_title"
+                        android:gravity="center_vertical"
+                        android:text="@string/event_title"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                        android:textColor="@color/grey_60" />
+                </LinearLayout>
+
+            </LinearLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:gravity="end"
+                android:id="@+id/iv_event_fd_menu"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                android:src="@drawable/menu_drawable"/>
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+            <ImageView
+                android:id="@+id/item_eventlist_img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/cyberlabs" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/overlay_dark_50" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="10"
-                android:orientation="horizontal">
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/iv_event_clublogo"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/ic_launcher_background"
-                    android:layout_width="40dp" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_alignParentBottom="true"
+                android:paddingLeft="@dimen/spacing_large"
+                android:paddingRight="@dimen/spacing_large"
+                android:paddingBottom="@dimen/spacing_large">
 
 
-                <TextView
-                    android:id="@+id/tv_event_clubname"
-                    android:layout_width="345dp"
+                <LinearLayout
+                    android:id="@+id/item_event_ll_sdate"
+                    android:layout_width="match_parent"
+                    android:layout_margin="@dimen/spacing_large"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="23dp"
-                    android:layout_marginLeft="23dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginRight="5dp"
-                    android:fontFamily="@font/lato"
-                    android:text="@string/feed_item_name"
-                    android:textSize="@dimen/title_head"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Start Date"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/tv_event_fd_start_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:gravity="center_vertical"
+                        android:text="6 pm, 22 Mar 2019"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/item_event_ll_edate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/spacing_large"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="End Date"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/tv_event_fd_end_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:gravity="center_vertical"
+                        android:text="6 pm, 22 Mar 2019"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/item_event_ll_venue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/spacing_large"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="Venue"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:id="@+id/item_eventlist_venue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:gravity="center_vertical"
+                        android:text="SAC 305 NLHC"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
 
             </LinearLayout>
 
-            <View
-                android:id="@+id/divider"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/viewBgColor" />
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:textAppearance="@style/TextAppearance.AppCompat.Headline"-->
+            <!--android:textColor="@android:color/white"-->
+            <!--android:layout_margin="@dimen/spacing_large"-->
+            <!--android:text="Aliquet Et Ante"-->
+            <!--/>-->
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:padding="@dimen/layout_padding">
-
-                <LinearLayout
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"
-                    android:paddingTop="10dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tv_event_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/lato"
-                        android:padding="@dimen/tv_padding"
-                        android:layout_weight="1"
-                        android:text="@string/event_name"
-                        android:textColor="@android:color/background_dark"
-                        android:textSize="@dimen/title_text_size"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tv_event_short_desc"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="20"
-                        android:fontFamily="@font/lato"
-                        android:padding="@dimen/tv_padding"
-                        android:text="@string/feed_item_desc"
-                        android:textSize="@dimen/title_12sp"/>
-                    <TextView
-                        android:id="@+id/tv_event_venue"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/lato"
-                        android:padding="@dimen/tv_padding"
-                        android:layout_weight="1"
-                        android:text="@string/event_venue"
-                        android:textColor="@android:color/background_dark"
-                        android:textSize="@dimen/title_12sp"
-                        />
-                    <TextView
-                    android:id="@+id/tv_event_startdate"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/lato"
-                    android:padding="@dimen/tv_padding"
-                    android:layout_weight="1"
-                    android:text="@string/event_start_date"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="@dimen/title_12sp"
-                    />
-                    <TextView
-                        android:id="@+id/tv_event_enddate"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/lato"
-                        android:padding="@dimen/tv_padding"
-                        android:layout_weight="1"
-                        android:text="@string/event_end_date"
-                        android:textColor="@android:color/background_dark"
-                        android:textSize="@dimen/title_12sp"
-                         />
+        </RelativeLayout>
 
 
-                </LinearLayout>
+    </LinearLayout>
 
-                <ImageView
-                    android:layout_height="160dp"
-                    android:id="@+id/iv_event_pic"
-                    android:layout_weight="1.5"
-                    android:padding="@dimen/iv_padding_small"
-                    android:src="@color/colorAccent"
-                    android:contentDescription="@string/todo" />
-
-            </TableRow>
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
-
-</LinearLayout>
+</android.support.v7.widget.CardView>

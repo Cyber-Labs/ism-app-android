@@ -20,7 +20,6 @@ import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.ViewUtils;
-import ismapp.iitism.cyberlabs.com.ismapp.news.createandeditnews.view.CreateNews;
 import ismapp.iitism.cyberlabs.com.ismapp.news.createandeditnews.view.CreateNewsFragment;
 import ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.model.News;
 import ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.model.NewsListModel;
@@ -69,8 +68,8 @@ public class NewsList extends android.support.v4.app.Fragment implements NewsLis
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_news_list, container, false);
-        iv_add_news=view.findViewById(R.id.iv_add_news);
+        View view = inflater.inflate(R.layout.fragment_admin_feed, container, false);
+        iv_add_news=view.findViewById(R.id.fab_add_news);
         if(club_admin)
             iv_add_news.setVisibility(View.VISIBLE);
             iv_add_news.setOnClickListener(new View.OnClickListener() {

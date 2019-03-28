@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginBottom="@dimen/spacing_medium"
     android:layout_marginLeft="@dimen/spacing_middle"
     android:layout_marginRight="@dimen/spacing_middle"
@@ -15,37 +15,72 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:id="@+id/newsList_image"
-            android:scaleType="fitXY"
-            android:src="@drawable/cyberlabs" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_margin="@dimen/spacing_large"
-            >
-            <TextView
-                android:layout_width="0dp"
+            android:padding="@dimen/spacing_large">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:src="@drawable/cyberlabs"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:civ_border_width="2dp"
+                app:civ_border_color="#FF000000"/>
+
+            <View
+                android:layout_width="@dimen/spacing_large"
+                android:layout_height="0dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="11"
-                android:layout_margin="@dimen/spacing_large"
-                android:text="Clubname"
-                android:id="@+id/tv_newsList_club_name"
-                android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="@string/cyberlabs"
+                    android:id="@+id/tv_newsList_club_name"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                    android:textColor="@android:color/black" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_small"
+                        android:gravity="center_vertical"
+                        android:id="@+id/news_details_created_time"
+                        android:text="6 pm, "
+                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                        android:textColor="@color/grey_60" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:id="@+id/newsList_date"
+                    android:text="June 1, 2015"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                    android:textColor="@color/grey_60" />
+                </LinearLayout>
+
+            </LinearLayout>
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="end"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
                 android:visibility="gone"
                 android:id="@+id/iv_newsList_menu"
-                android:src="@drawable/menu_drawable"/>
-
+                android:src="@drawable/menu_drawable"
+                android:contentDescription="@string/todo" />
         </LinearLayout>
-
-
 
         <TextView
             android:layout_width="wrap_content"
@@ -53,42 +88,23 @@
             android:layout_marginBottom="@dimen/spacing_large"
             android:layout_marginLeft="@dimen/spacing_large"
             android:layout_marginRight="@dimen/spacing_large"
-            android:text="@string/long_lorem_ipsum"
+            android:text="@string/short_lorem_ipsum"
             android:id="@+id/tv_news_list_short_desc"
             android:maxLength="100"
             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
             android:textColor="@color/grey_60" />
 
-        <LinearLayout
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/spacing_large"
-            android:layout_marginLeft="@dimen/spacing_large"
-            android:layout_marginRight="@dimen/spacing_large"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/news_details_created_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:gravity="center"
-                android:text="6 pm   "
-                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                android:textSize="@dimen/title_12sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                android:id="@+id/newsList_date"
-                android:textSize="@dimen/title_12sp"
-                android:text="22 May 2019 " />
+            android:scaleType="fitXY"
+            android:maxHeight="200dp"
+            android:id="@+id/newsList_image"
+             />
 
 
 
-        </LinearLayout>
 
     </LinearLayout>
-</android.support.v7.widget.CardView>
+
+    </android.support.v7.widget.CardView>

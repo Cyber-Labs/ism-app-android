@@ -36,7 +36,7 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
     @NonNull
     @Override
     public EventListViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_rv_eventlist, viewGroup,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_rv_event, viewGroup,false);
         return new EventListViewHolder(view);
     }
 
@@ -44,9 +44,10 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
     public void onBindViewHolder(@NonNull EventListViewHolder eventListViewHolder, int i) {
         final EventListModel eventListModel = eventListModels.get(i);
         eventListViewHolder.tv_title.setText(eventListModel.getTitle());
-        eventListViewHolder.tv_venue.setText(eventListModel.getEvent_start_date()+" | "+eventListModel.getEvent_end_date()+" | "+eventListModel.getVenue());
-
-        Picasso.get().load(eventListModel.getEvent_pic_url()).into(eventListViewHolder.clubimage);
+        eventListViewHolder.tv_venue.setText(eventListModel.getVenue());
+        eventListViewHolder.tv_sdate.setText(eventListModel.getEvent_start_date());
+        eventListViewHolder.tv_edate.setText(eventListModel.getEvent_end_date());
+        Picasso.get().load(eventListModel.getEvent_pic_url()).error(R.drawable.spinkit).into(eventListViewHolder.clubimage);
 
     }
 
@@ -55,10 +56,12 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
         return eventListModels.size();
     }
 
-    class EventListViewHolder extends RecyclerView.ViewHolder {
+    class EventListViewHolder extends RecyclerView.ViewHolder { //tv_event_fd_end_date
         final ImageView clubimage;
         final TextView tv_title;
         final TextView tv_venue;
+        final TextView tv_sdate;
+        final TextView tv_edate;
 
 
         EventListViewHolder(@NonNull View itemView) {
@@ -66,6 +69,8 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
             clubimage = itemView.findViewById(R.id.item_eventlist_img);
             tv_title = itemView.findViewById(R.id.item_eventlist_title);
             tv_venue = itemView.findViewById(R.id.item_eventlist_venue);
+            tv_sdate = itemView.findViewById(R.id.tv_event_fd_start_date);
+            tv_edate = itemView.findViewById(R.id.tv_event_fd_end_date);
               itemView.setOnClickListener(v -> {
                       SingleEventDetailFragment fragment=new SingleEventDetailFragment();
                       Bundle args=new Bundle();

@@ -160,7 +160,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio2/plugins/android/lib/android.jar!/images/material_design_icons/content/ic_remove_circle_outline_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio2/plugins/android/lib/android.jar!/images/material_design_icons/social/ic_person_add_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -170,7 +170,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_remove" />
+                            <entry key="outputName" value="ic_person_add" />
                             <entry key="sourceFile" value="C:\Users\TAZ" />
                           </map>
                         </option>

@@ -85,7 +85,7 @@ public class ManageMemberFragment extends android.support.v4.app.Fragment implem
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_manage_member, container, false);
         context = getContext();
-        FloatingActionButton addmember = (FloatingActionButton)view.findViewById(R.id.fab);
+        FloatingActionButton addmember = (FloatingActionButton)view.findViewById(R.id.fab_add_member);
         addmember.setOnClickListener(v -> ((MainActivity)getActivity()).addFragment(new AddMember()));
         SharedPrefs sharedPrefs = new SharedPrefs(getContext());
          recyclerView = (RecyclerView)view.findViewById(R.id.rv_member_list);

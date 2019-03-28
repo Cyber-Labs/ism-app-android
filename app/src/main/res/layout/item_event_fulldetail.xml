@@ -23,16 +23,13 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="150dp"
                 android:fitsSystemWindows="true"
                 android:scaleType="centerCrop"
-                android:id="@+id/iv_event_fd_img"/>
-            android:src="@color/colorAccent"
-            app:layout_collapseMode="parallax" />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/overlay_dark_40" />
+                android:id="@+id/iv_event_fd_img"
+                android:src="@color/colorAccent"
+                app:layout_collapseMode="parallax" />
+
 
 
             <FrameLayout
@@ -135,67 +132,65 @@
                 app:cardElevation="2dp">
 
                 <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/spacing_large"
+                android:paddingLeft="@dimen/spacing_large"
+                android:paddingRight="@dimen/spacing_large">
+
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingBottom="@dimen/spacing_large"
-                    android:paddingLeft="@dimen/spacing_large"
-                    android:paddingRight="@dimen/spacing_large">
-
-
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/card_detail_header_size"
+                        android:gravity="center_vertical"
+                        android:text="Start Date"
+                        android:layout_weight="1"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                        android:textColor="@color/grey_80" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/card_detail_header_size"
+                        android:gravity="center_vertical"
+                        android:layout_weight="1.5"
+                        android:text="6 pm, 22 Mar 2019"
+                        android:id="@+id/tv_event_fd_start_date"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                        android:textColor="@color/grey_40" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/card_detail_header_size"
+                        android:gravity="center_vertical"
+                        android:text="End Date"
+                        android:layout_weight="1"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                        android:textColor="@color/grey_80" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/card_detail_header_size"
+                        android:gravity="center_vertical"
+                        android:layout_weight="1.5"
+                        android:text="6 pm, 22 Mar 2019"
+                        android:id="@+id/tv_event_fd_end_date"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                        android:textColor="@color/grey_40" />
+                </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_height="?attr/actionBarSize"
-                            android:gravity="center_vertical"
-                            android:text="Start Date"
-                            android:layout_weight="1"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                            android:textColor="@color/grey_80" />
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="left"
-                            android:layout_gravity="center_vertical"
-                            android:layout_weight="1.5"
-                            android:text="6 pm, 22 Mar 2019"
-                            android:id="@+id/tv_event_fd_start_date"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                            android:textColor="@color/grey_40" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="?attr/actionBarSize"
-                            android:gravity="center_vertical"
-                            android:text="End Date"
-                            android:layout_weight="1"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                            android:textColor="@color/grey_80" />
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="left"
-                            android:layout_gravity="center_vertical"
-                            android:layout_weight="1.5"
-                            android:text="6 pm, 22 Mar 2019"
-                            android:id="@+id/tv_event_fd_end_date"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                            android:textColor="@color/grey_40" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="?attr/actionBarSize"
+                            android:layout_height="@dimen/card_detail_header_size"
                             android:gravity="center_vertical"
                             android:text="Venue"
                             android:layout_weight="1"
@@ -203,9 +198,8 @@
                             android:textColor="@color/grey_80" />
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="left"
-                            android:layout_gravity="center_vertical"
+                            android:layout_height="@dimen/card_detail_header_size"
+                            android:gravity="center_vertical"
                             android:layout_weight="1.5"
                             android:text="SAC 305 NLHC"
                             android:id="@+id/tv_event_fd_venue"

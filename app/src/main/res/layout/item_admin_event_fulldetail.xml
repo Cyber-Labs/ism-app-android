@@ -35,7 +35,7 @@
                 <ImageView
                     android:layout_width="0dp"
                     android:layout_weight="0.5"
-                    android:visibility="gone"
+
                     android:id="@+id/iv_event_fd_menu"
                     android:layout_height="match_parent"
                     android:src="@drawable/menu_drawable"/>
