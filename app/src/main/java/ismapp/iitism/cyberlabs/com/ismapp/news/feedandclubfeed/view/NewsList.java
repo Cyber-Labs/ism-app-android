@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -85,20 +86,20 @@ public class NewsList extends android.support.v4.app.Fragment implements NewsLis
         recyclerView = (RecyclerView)view.findViewById(R.id.rv_news_list);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        if(newsArrayList!=null) newsArrayList.clear();
         if(club_id!=0){
-            //club news list
-            if (newsArrayList == null) {
+
                 SharedPrefs sharedPrefs = new SharedPrefs(getContext());
                 newsListPresenterInterface = new NewsListPresenterImplementation(this, new NewsListProviderImplementation());
                 newsListPresenterInterface.getClubNewsListResponse(sharedPrefs.getAccessToken(),club_id);
-            }
+
         }
         else {
-            if (newsArrayList == null) {
+
                 SharedPrefs sharedPrefs = new SharedPrefs(getContext());
                 newsListPresenterInterface = new NewsListPresenterImplementation(this, new NewsListProviderImplementation());
                 newsListPresenterInterface.getNewsListResponse(sharedPrefs.getAccessToken());
-            }
+
         }
         return view;
     }
@@ -114,7 +115,7 @@ public class NewsList extends android.support.v4.app.Fragment implements NewsLis
 
     @Override
     public void getResponseNewsList(NewsListModel newsListModel) {
-        NewsListAdapter newsListAdapter = new NewsListAdapter(getContext(),getActivity(),club_admin);
+        NewsListAdapter newsListAdapter = new NewsListAdapter(getContext(),getActivity(),club_admin,this);
         newsArrayList = newsListModel.getNews_list();
         newsListAdapter.setData(newsArrayList);
         recyclerView.setAdapter(newsListAdapter);

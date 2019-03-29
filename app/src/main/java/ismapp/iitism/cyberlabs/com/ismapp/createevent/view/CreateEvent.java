@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,12 +24,14 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
 import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.single.DialogOnDeniedPermissionListener;
 import com.karumi.dexter.listener.single.PermissionListener;
 import com.squareup.picasso.Picasso;
 
@@ -47,6 +50,7 @@ import ismapp.iitism.cyberlabs.com.ismapp.createevent.provider.CreateEventProvid
 import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.UriUtils;
 
+import ismapp.iitism.cyberlabs.com.ismapp.helper.Utils;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.ViewUtils;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -140,22 +144,8 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
         pb_add_event=view.findViewById(R.id.pb_add_event);
 
 
-        Dexter.withActivity(getActivity()).withPermission(Manifest.permission.READ_EXTERNAL_STORAGE).withListener(new PermissionListener() {
-            @Override
-            public void onPermissionGranted(PermissionGrantedResponse response) {
 
-            }
 
-            @Override
-            public void onPermissionDenied(PermissionDeniedResponse response) {
-                ((MainActivity) Objects.requireNonNull(getActivity())).onBackPressed();
-            }
-
-            @Override
-            public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
-
-            }
-        }).check();
         if(event_id!=0)
         {
             Picasso.get().load(bundle.getString("event_pic")).into(selectImage);
@@ -210,10 +200,31 @@ public class CreateEvent extends Fragment implements CreateEventFragmentInterfac
 
     private void selectimage() {
         selectImage.setOnClickListener(v -> {
-            Intent intent = new Intent();
-            intent.setType("image/*");
-            intent.setAction(Intent.ACTION_GET_CONTENT);
-            startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+            Dexter.withActivity(getActivity()).withPermission(Manifest.permission.READ_EXTERNAL_STORAGE).withListener(new PermissionListener() {
+                @Override
+                public void onPermissionGranted(PermissionGrantedResponse response) {
+                    Intent intent = new Intent();
+                    intent.setType("image/*");
+                    intent.setAction(Intent.ACTION_GET_CONTENT);
+                    startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+
+                }
+
+                @Override
+                public void onPermissionDenied(PermissionDeniedResponse response) {
+
+                    if(response.isPermanentlyDenied()){
+                        ViewUtils.showToast(getContext(),"Give Storage Permission");
+                        Utils.goToSettings(getActivity());
+                    }
+                }
+
+                @Override
+                public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
+                    token.continuePermissionRequest();
+                }
+            }).check();
+
         });
     }
     @RequiresApi(api = Build.VERSION_CODES.M)

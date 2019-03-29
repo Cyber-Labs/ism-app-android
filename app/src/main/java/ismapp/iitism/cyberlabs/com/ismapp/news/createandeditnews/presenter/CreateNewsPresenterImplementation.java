@@ -22,7 +22,7 @@ public class CreateNewsPresenterImplementation implements CreateNewsPresenterInt
         createNewsProviderImplementation.getCreateNewsResponse(accessToken,clubid,description,image, new PresenterCallback() {
             @Override
             public void onSuccess(Object o) {
-             createNews.getCreateNews((CreateNewsResponseModel)o);
+             createNews.showMessage("News");
              createNews.showProgressBar(false);
             }
 

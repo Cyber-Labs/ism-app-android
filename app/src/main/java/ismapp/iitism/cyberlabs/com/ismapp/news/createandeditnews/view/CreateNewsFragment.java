@@ -1,5 +1,6 @@
 package ismapp.iitism.cyberlabs.com.ismapp.news.createandeditnews.view;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,12 +13,22 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.single.PermissionListener;
+import com.squareup.picasso.Picasso;
+
 import java.io.File;
 import java.util.Objects;
 
+import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.UriUtils;
+import ismapp.iitism.cyberlabs.com.ismapp.helper.Utils;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.ViewUtils;
 import ismapp.iitism.cyberlabs.com.ismapp.news.createandeditnews.model.CreateNewsResponseModel;
 import ismapp.iitism.cyberlabs.com.ismapp.news.createandeditnews.presenter.CreateNewsPresenterImplementation;
@@ -32,7 +43,7 @@ import static android.app.Activity.RESULT_OK;
 
 
 public class CreateNewsFragment extends Fragment implements CreateNews {
-    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM1 = "news_id";
     private  ProgressDialog progressDialog;
     private CreateNewsPresenterInterface createNewsPresenterInterface;
     private EditText createNewsDescription;
@@ -41,7 +52,8 @@ public class CreateNewsFragment extends Fragment implements CreateNews {
     private static final int PICK_IMAGE = 1;
     private int news_id = 0;
     private MultipartBody.Part image;
-
+    private  String description;
+    private String news_image_url;
     public CreateNewsFragment() {
         // Required empty public constructor
     }
@@ -60,6 +72,8 @@ public class CreateNewsFragment extends Fragment implements CreateNews {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             news_id = getArguments().getInt(ARG_PARAM1);
+            description=getArguments().getString("description","");
+             news_image_url= getArguments().getString("news_url","");
 
         }
     }
@@ -76,6 +90,9 @@ public class CreateNewsFragment extends Fragment implements CreateNews {
         createNewsDescription = (EditText)view.findViewById(R.id.create_news_description);
         createNewsButton = (Button)view.findViewById(R.id.create_news_button);
         createNewsButton.setEnabled(true);
+        createNewsDescription.setText(description);
+        if(!news_image_url.isEmpty())
+          Picasso.get().load(news_image_url).into(createNewsImage);
         createNewsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,12 +100,35 @@ public class CreateNewsFragment extends Fragment implements CreateNews {
             }
         });
         createNewsImage.setOnClickListener(v -> {
-            Intent intent = new Intent();
-            intent.setType("image/*");
-            intent.setAction(Intent.ACTION_GET_CONTENT);
-            startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+
+            Dexter.withActivity(getActivity()).withPermission(Manifest.permission.READ_EXTERNAL_STORAGE).withListener(new PermissionListener() {
+                @Override
+                public void onPermissionGranted(PermissionGrantedResponse response) {
+                    Intent intent = new Intent();
+                    intent.setType("image/*");
+                    intent.setAction(Intent.ACTION_GET_CONTENT);
+                    startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+
+                }
+
+                @Override
+                public void onPermissionDenied(PermissionDeniedResponse response) {
+
+                    if(response.isPermanentlyDenied()){
+                        ViewUtils.showToast(getContext(),"Give Storage Permission");
+                        Utils.goToSettings(getActivity());
+                    }
+                }
+
+                @Override
+                public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
+                    token.continuePermissionRequest();
+                }
+            }).check();
 
         });
+
+
 
         return view;
     }
@@ -154,13 +194,12 @@ public class CreateNewsFragment extends Fragment implements CreateNews {
     @Override
     public void showMessage(String message) {
         ViewUtils.showToast(getContext(),message);
+        ((MainActivity)(getActivity())).onBackPressed();
     }
     @Override
     public void getCreateNews(CreateNewsResponseModel createNewsResponseModel) {
-    if(!createNewsResponseModel.isSuccess()){
-        ViewUtils.showToast(getContext(),createNewsResponseModel.getMessage());
     }
-    }
+
 
     @Override
     public void buttonClickable(boolean show) {

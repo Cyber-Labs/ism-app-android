@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity
             getSupportFragmentManager().beginTransaction()
                     .addToBackStack(null)
                     .replace(R.id.main_contaner, fragment)
-                    .commit();
+                    .commitAllowingStateLoss();
 
     }
 

@@ -1,8 +1,11 @@
 package ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.view;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.CardView;
@@ -22,8 +25,12 @@ import java.util.List;
 
 import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
+import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
 import ismapp.iitism.cyberlabs.com.ismapp.news.createandeditnews.view.CreateNewsFragment;
 import ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.model.News;
+import ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.presenter.NewsListPresenterImplementation;
+import ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.presenter.NewsListPresenterInterface;
+import ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.provider.NewsListProviderImplementation;
 
 public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsListViewHolder> {
     private List<News> newsList;
@@ -31,11 +38,15 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsLi
     private final FragmentActivity fragmentActivity;
     private final boolean is_admin;
     private final static int maxHeight = 450;
+    private  NewsListInterface newsListInterface;
+    private final SharedPrefs sharedPrefs;
 
-    NewsListAdapter(Context context, FragmentActivity fragmentActivity, boolean is_admin) {
+    NewsListAdapter(Context context, FragmentActivity fragmentActivity, boolean is_admin,NewsListInterface newsListInterface) {
         this.context = context;
         this.fragmentActivity = fragmentActivity;
         this.is_admin = is_admin;
+        this.newsListInterface = newsListInterface;
+        this.sharedPrefs=new SharedPrefs(context);
     }
 
     void setData(List<News> newsList){
@@ -110,10 +121,33 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsLi
                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                    @Override
                    public boolean onMenuItemClick(MenuItem item) {
-                       if(item.getItemId()==R.id.event_edit)
-                           ((MainActivity)fragmentActivity).addFragment(
-                                   CreateNewsFragment.newInstance(newsList.get(getAdapterPosition()).getNews_id())
-                           );
+                       if(item.getItemId()==R.id.event_edit){
+                           Bundle bundle=new Bundle();
+                           bundle.putString("description",newsList.get(getAdapterPosition()).getDescription());
+                           bundle.putString("news_url",newsList.get(getAdapterPosition()).getNews_pic_url());
+                           bundle.putInt("news_id",newsList.get(getAdapterPosition()).getNews_id());
+                           CreateNewsFragment createNewsFragment=new CreateNewsFragment();
+                           createNewsFragment.setArguments(bundle);
+                           ((MainActivity)fragmentActivity).addFragment(createNewsFragment );}
+                      else {
+                           AlertDialog alertDialog = new AlertDialog.Builder(context)
+                                   .setTitle("Are you sure you want to remove this Feed?")
+                                   .setCancelable(false)
+                                   .setPositiveButton("Remove", (dialog, which) -> {
+                                       NewsListPresenterInterface newsListPresenterInterface = new NewsListPresenterImplementation(newsListInterface, new NewsListProviderImplementation());
+                                       newsListPresenterInterface.getRemoveEventResponse(sharedPrefs.getAccessToken(),newsList.get(getAdapterPosition()).getNews_id());
+                                       newsList.remove(getAdapterPosition());
+                                       notifyDataSetChanged();
+
+                                   })
+                                   .setNegativeButton("Cancel", (dialog, which) -> {
+
+
+                                   })
+
+                                   .create();
+                           alertDialog.show();
+                       }
 
                        return true;
                    }
