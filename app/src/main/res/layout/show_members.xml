@@ -15,7 +15,7 @@
         android:layout_height="40dp"
         android:layout_gravity="center_vertical"
         android:padding="@dimen/layout_margin"
-        android:background="@drawable/bgpolygongradient"
+        android:background="@drawable/toolbarheaderpolygonbg"
         android:orientation="horizontal">
 
         <TextView

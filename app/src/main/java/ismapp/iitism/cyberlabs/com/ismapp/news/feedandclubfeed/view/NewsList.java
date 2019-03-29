@@ -5,11 +5,12 @@ import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +43,8 @@ public class NewsList extends android.support.v4.app.Fragment implements NewsLis
     private int club_id = 0;
     private ImageView iv_add_news;
     private boolean club_admin = false;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
+    private SharedPrefs sharedPrefs;
     public NewsList() {
         // Required empty public constructor
     }
@@ -63,6 +66,28 @@ public class NewsList extends android.support.v4.app.Fragment implements NewsLis
             club_admin = getArguments().getBoolean(ARG_PARAM2);
 
         }
+
+
+    }
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                if(club_id!=0)
+                        newsListPresenterInterface.getClubNewsListResponse(sharedPrefs.getAccessToken(),club_id);
+
+                else
+                        newsListPresenterInterface.getNewsListResponse(sharedPrefs.getAccessToken());
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
+        });
+        mSwipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
     }
 
     @Override
@@ -70,6 +95,7 @@ public class NewsList extends android.support.v4.app.Fragment implements NewsLis
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_admin_feed, container, false);
+        mSwipeRefreshLayout = view.findViewById(R.id.swipeToRefresh);
         iv_add_news=view.findViewById(R.id.fab_add_news);
         if(club_admin)
             iv_add_news.setVisibility(View.VISIBLE);
@@ -92,16 +118,21 @@ public class NewsList extends android.support.v4.app.Fragment implements NewsLis
                 SharedPrefs sharedPrefs = new SharedPrefs(getContext());
                 newsListPresenterInterface = new NewsListPresenterImplementation(this, new NewsListProviderImplementation());
                 newsListPresenterInterface.getClubNewsListResponse(sharedPrefs.getAccessToken(),club_id);
+                this.sharedPrefs = sharedPrefs;
+            }
 
-        }
+
         else {
 
                 SharedPrefs sharedPrefs = new SharedPrefs(getContext());
                 newsListPresenterInterface = new NewsListPresenterImplementation(this, new NewsListProviderImplementation());
                 newsListPresenterInterface.getNewsListResponse(sharedPrefs.getAccessToken());
+                this.sharedPrefs = sharedPrefs;
+            }
 
-        }
+
         return view;
+
     }
 
     @Override

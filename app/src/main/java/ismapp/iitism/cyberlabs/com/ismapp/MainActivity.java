@@ -19,7 +19,6 @@ import ismapp.iitism.cyberlabs.com.ismapp.about.AboutFragment;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.login.view.LoginViewImp;
 import ismapp.iitism.cyberlabs.com.ismapp.club.clublist.view.ClubListListFragment;
 import ismapp.iitism.cyberlabs.com.ismapp.events.eventlist.view.EventListFragment;
-import ismapp.iitism.cyberlabs.com.ismapp.feed.view.FeedFrag;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
 import ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.view.NewsList;
 
@@ -94,9 +93,6 @@ public class MainActivity extends AppCompatActivity
             setFragment(new ClubListListFragment(),false);addActionBar(); addTitletoBar("Clubs");
         } else if (id == R.id.events) {
             setFragment(new EventListFragment(),false);addActionBar(); addTitletoBar("Events");
-        }
-        else if (id == R.id.shared_cal) {
-            setFragment(new EventListFragment(),false);addActionBar(); addTitletoBar("Shared Calendar");
         }
         else if (id == R.id.nav_about) {
             setFragment(new AboutFragment(),false); addActionBar(); addTitletoBar("About");

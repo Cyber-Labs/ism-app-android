@@ -16,9 +16,6 @@
             android:id="@+id/clubs"
             android:icon="@drawable/club"
             android:title="Clubs" />
-        <item android:id="@+id/shared_cal"
-            android:icon="@drawable/ic_calendar"
-            android:title="Shared Calendar"/>
         <item
             android:id="@+id/nav_about"
             android:icon="@drawable/ic_about"

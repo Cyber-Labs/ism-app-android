@@ -10,6 +10,7 @@
         android:layout_margin="@dimen/layout_margin"
         android:id="@+id/card_view_club"
         android:layout_width="match_parent"
+
         android:layout_height="@dimen/card_height"
         android:clickable="true"
         android:focusable="true"
@@ -22,6 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
+            android:background="@drawable/geometricbannersheaderspink"
             android:padding="@dimen/layout_padding">
 
             <LinearLayout

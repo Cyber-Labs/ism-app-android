@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="45dp"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingBottom="45dp">
 
 
 
@@ -53,15 +53,17 @@
 
                 </LinearLayout>
                 <android.support.design.widget.FloatingActionButton
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
                     android:id="@+id/fab_fb_link"
-                    android:layout_height="match_parent"
-                    android:visibility="visible"
                     android:src="@drawable/fb_icon_png_480760"
-
-                   />
-
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:tint="@android:color/white"
+                    app:fabSize="normal"
+                    android:layout_marginEnd="@dimen/iv_padding_small"
+                    app:rippleColor="@android:color/white"
+                    android:focusable="true"
+                    android:layout_marginRight="@dimen/iv_padding_small" />
 
             </LinearLayout>
             <TextView
