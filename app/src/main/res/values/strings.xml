@@ -42,7 +42,7 @@
     <string name="feed_name">Feed Name</string>
     <string name="feed_item_name">Name</string>
     <string name="event_name">Android Workshop</string>
-    <string name="event_venue">Venue(eg SAC 101)</string>
+    <string name="event_venue">Venue</string>
     <string name="event_start_date">6 pm 12 Mar 2019</string>
     <string name="event_end_date">6 pm 15 Mar 2019</string>
     <string name="add_member">Add Member</string>
@@ -82,4 +82,7 @@
     <string name="https_cyberlabs_netlify_com">https://cyberlabs.netlify.com</string>
     <string name="short_lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</string>
     <string name="middle_lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam efficitur ipsum in placerat molestie.  Fusce quis mauris a enim sollicitudin</string>
+    <string name="example_venue">SAC 301</string>
+    <string name="example_date_and_time">10/20/222 10:00 AM</string>
+    <string name="end_date">End Date</string>
 </resources>

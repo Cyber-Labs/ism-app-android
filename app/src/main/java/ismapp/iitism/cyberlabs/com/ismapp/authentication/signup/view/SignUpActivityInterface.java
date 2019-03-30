@@ -1,4 +1,4 @@
-package ismapp.iitism.cyberlabs.com.ismapp.authentication.signup.View;
+package ismapp.iitism.cyberlabs.com.ismapp.authentication.signup.view;
 
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.signup.Model.SignUpResponseModel;
 

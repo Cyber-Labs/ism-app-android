@@ -101,6 +101,8 @@ public class MainActivity extends AppCompatActivity
             SharedPrefs sharedPrefs = new SharedPrefs(getApplicationContext());
             sharedPrefs.clear();
             startActivity(new Intent(getApplicationContext(), LoginViewImp.class));
+            finish();
+
 
         }
 

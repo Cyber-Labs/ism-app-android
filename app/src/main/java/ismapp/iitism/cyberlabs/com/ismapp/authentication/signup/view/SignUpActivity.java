@@ -1,4 +1,4 @@
-package ismapp.iitism.cyberlabs.com.ismapp.authentication.signup.View;
+package ismapp.iitism.cyberlabs.com.ismapp.authentication.signup.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +9,6 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -19,7 +18,7 @@ import ismapp.iitism.cyberlabs.com.ismapp.authentication.signup.Model.SignUpResp
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.signup.Presenter.SignUpPresenter;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.signup.Presenter.SignUpPresenterImp;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.signup.Provider.SignUpProviderImp;
-import ismapp.iitism.cyberlabs.com.ismapp.authentication.verifyotp.View.VerifyOtpActivity;
+import ismapp.iitism.cyberlabs.com.ismapp.authentication.verifyotp.view.VerifyOtpActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.ViewUtils;
 

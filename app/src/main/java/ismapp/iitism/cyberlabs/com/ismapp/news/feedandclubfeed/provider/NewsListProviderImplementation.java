@@ -1,12 +1,13 @@
 package ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.provider;
 
-import android.util.Log;
+import android.content.Context;
 
 import ismapp.iitism.cyberlabs.com.ismapp.helper.ApiClient;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
 import ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.api.ClubNewsApi;
 import ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.model.NewsListModel;
 import ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.model.NewsRemoveResponse;
+import okhttp3.Cache;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -16,8 +17,11 @@ public class NewsListProviderImplementation implements NewsListProviderInterface
     private Call<NewsRemoveResponse> newsRemoveResponseCall;
 
     @Override
-    public void newsListResponse(String accessToken, PresenterCallback presenterCallback) {
-        ClubNewsApi clubNewsApi = ApiClient.getRetrofit().create(ClubNewsApi.class);
+    public void newsListResponse(Context mcontext, String accessToken, PresenterCallback presenterCallback) {
+        int cacheSize = 10 * 1024 * 1024;
+        Cache cache = new Cache(mcontext.getCacheDir(), cacheSize);
+        ClubNewsApi  clubNewsApi = ApiClient.getRetrofitWithCache(cache).create(ClubNewsApi.class);
+//        ClubNewsApi clubNewsApi = ApiClient.getRetrofit().create(ClubNewsApi.class);
         newsListApiCall = clubNewsApi.getNewsList(accessToken);
         newsListApiCall.enqueue(new Callback<NewsListModel>() {
             @Override
@@ -40,7 +44,7 @@ public class NewsListProviderImplementation implements NewsListProviderInterface
         clubNewsListModelCall.enqueue(new Callback<NewsListModel>() {
             @Override
             public void onResponse(Call<NewsListModel> call, Response<NewsListModel> response) {
-                presenterCallback.onSuccess((NewsListModel)response.body());
+                presenterCallback.onSuccess(response.body());
             }
 
             @Override
@@ -57,7 +61,7 @@ public class NewsListProviderImplementation implements NewsListProviderInterface
         newsRemoveResponseCall.enqueue(new Callback<NewsRemoveResponse>() {
             @Override
             public void onResponse(Call<NewsRemoveResponse> call, Response<NewsRemoveResponse> response) {
-                presenterCallback.onSuccess(((NewsRemoveResponse)response.body()));
+                presenterCallback.onSuccess(response.body());
             }
 
             @Override

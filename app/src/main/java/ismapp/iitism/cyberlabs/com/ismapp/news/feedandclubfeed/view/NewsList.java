@@ -99,24 +99,19 @@ public class NewsList extends android.support.v4.app.Fragment implements NewsLis
         iv_add_news=view.findViewById(R.id.fab_add_news);
         if(club_admin)
             iv_add_news.setVisibility(View.VISIBLE);
-            iv_add_news.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ((MainActivity)getActivity()).addFragment(CreateNewsFragment.newInstance(0));
-                }
-            });
+            iv_add_news.setOnClickListener(v -> ((MainActivity)getActivity()).addFragment(CreateNewsFragment.newInstance(0)));
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Wait");
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setIndeterminate(true);
-        recyclerView = (RecyclerView)view.findViewById(R.id.rv_news_list);
+        recyclerView = view.findViewById(R.id.rv_news_list);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         if(newsArrayList!=null) newsArrayList.clear();
         if(club_id!=0){
 
                 SharedPrefs sharedPrefs = new SharedPrefs(getContext());
-                newsListPresenterInterface = new NewsListPresenterImplementation(this, new NewsListProviderImplementation());
+                newsListPresenterInterface = new NewsListPresenterImplementation(getActivity(),this, new NewsListProviderImplementation());
                 newsListPresenterInterface.getClubNewsListResponse(sharedPrefs.getAccessToken(),club_id);
                 this.sharedPrefs = sharedPrefs;
             }
@@ -125,7 +120,7 @@ public class NewsList extends android.support.v4.app.Fragment implements NewsLis
         else {
 
                 SharedPrefs sharedPrefs = new SharedPrefs(getContext());
-                newsListPresenterInterface = new NewsListPresenterImplementation(this, new NewsListProviderImplementation());
+                newsListPresenterInterface = new NewsListPresenterImplementation(getActivity(),this, new NewsListProviderImplementation());
                 newsListPresenterInterface.getNewsListResponse(sharedPrefs.getAccessToken());
                 this.sharedPrefs = sharedPrefs;
             }

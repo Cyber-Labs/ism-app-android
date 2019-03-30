@@ -1,4 +1,4 @@
-package ismapp.iitism.cyberlabs.com.ismapp.authentication.verifyotp.View;
+package ismapp.iitism.cyberlabs.com.ismapp.authentication.verifyotp.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,7 +7,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -16,7 +15,7 @@ import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.login.view.LoginViewImp;
-import ismapp.iitism.cyberlabs.com.ismapp.authentication.signup.View.SignUpActivity;
+import ismapp.iitism.cyberlabs.com.ismapp.authentication.signup.view.SignUpActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.verifyotp.Model.VerifyOtpModel;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.verifyotp.Presenter.VerifyOtpPresenter;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.verifyotp.Presenter.VerifyOtpPresenterImp;

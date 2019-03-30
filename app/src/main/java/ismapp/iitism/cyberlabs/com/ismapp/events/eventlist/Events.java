@@ -27,7 +27,7 @@ public class Events implements DayViewDecorator {
 
     @Override
     public void decorate(DayViewFacade view) {
-        view.addSpan(new DotSpan(25, color));
+        view.addSpan(new DotSpan(10, color));
     }
 
 

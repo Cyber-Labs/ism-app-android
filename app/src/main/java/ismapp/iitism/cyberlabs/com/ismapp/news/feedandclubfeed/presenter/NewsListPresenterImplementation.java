@@ -1,5 +1,7 @@
 package ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.presenter;
 
+import android.content.Context;
+
 import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
 import ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.model.NewsListModel;
 import ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.model.NewsRemoveResponse;
@@ -9,16 +11,18 @@ import ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.view.NewsListInte
 public class NewsListPresenterImplementation implements NewsListPresenterInterface {
    private final NewsListInterface newsListInterface;
    private final NewsListProviderImplementation newsListProviderImplementation;
+   Context context;
 
-    public NewsListPresenterImplementation(NewsListInterface newsListInterface, NewsListProviderImplementation newsListProviderImplementation) {
+    public NewsListPresenterImplementation(Context context,NewsListInterface newsListInterface, NewsListProviderImplementation newsListProviderImplementation) {
         this.newsListInterface = newsListInterface;
         this.newsListProviderImplementation = newsListProviderImplementation;
+        this.context = context;
     }
 
     @Override
     public void getNewsListResponse(String accessToken) {
         newsListInterface.showProgressBar(true);
-        newsListProviderImplementation.newsListResponse(accessToken, new PresenterCallback() {
+        newsListProviderImplementation.newsListResponse(context,accessToken, new PresenterCallback() {
             @Override
             public void onSuccess(Object o) {
                 newsListInterface.showProgressBar(false);

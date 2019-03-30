@@ -2,7 +2,7 @@ package ismapp.iitism.cyberlabs.com.ismapp.authentication.verifyotp.Presenter;
 
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.verifyotp.Model.VerifyOtpModel;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.verifyotp.Provider.VerifyOtpProvider;
-import ismapp.iitism.cyberlabs.com.ismapp.authentication.verifyotp.View.VerifyOtpActivityInterface;
+import ismapp.iitism.cyberlabs.com.ismapp.authentication.verifyotp.view.VerifyOtpActivityInterface;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
 
 public class VerifyOtpPresenterImp implements VerifyOtpPresenter {

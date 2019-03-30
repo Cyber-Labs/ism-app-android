@@ -2,7 +2,6 @@ package ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.view;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -69,7 +68,7 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsLi
 
                 float targetWidth = newsListViewHolder.iv_newsListImage.getWidth();
                 float ratio = (float) bitmap.getHeight()/(float) bitmap.getWidth();
-                float heightFloat = ((float) targetWidth) * ratio;
+                float heightFloat = targetWidth * ratio;
                 final android.view.ViewGroup.MarginLayoutParams layoutParams =
                         (ViewGroup.MarginLayoutParams) newsListViewHolder.iv_newsListImage.getLayoutParams();
                 layoutParams.height = (int) heightFloat;
@@ -134,7 +133,7 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsLi
                                    .setTitle("Are you sure you want to remove this Feed?")
                                    .setCancelable(false)
                                    .setPositiveButton("Remove", (dialog, which) -> {
-                                       NewsListPresenterInterface newsListPresenterInterface = new NewsListPresenterImplementation(newsListInterface, new NewsListProviderImplementation());
+                                       NewsListPresenterInterface newsListPresenterInterface = new NewsListPresenterImplementation(context,newsListInterface, new NewsListProviderImplementation());
                                        newsListPresenterInterface.getRemoveEventResponse(sharedPrefs.getAccessToken(),newsList.get(getAdapterPosition()).getNews_id());
                                        newsList.remove(getAdapterPosition());
                                        notifyDataSetChanged();

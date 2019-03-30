@@ -1,14 +1,12 @@
 package ismapp.iitism.cyberlabs.com.ismapp.events.eventlist.view;
 
 import android.app.ProgressDialog;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,7 +60,7 @@ public class EventListFragment extends Fragment implements EventListFragmentInte
         calendarDay=CalendarDay.from(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH)+1,calendar.get(Calendar.DATE));
         materialCalendarView.state().edit().setMinimumDate(calendarDay)
                 .commit();
-        recyclerView = (RecyclerView)view.findViewById(R.id.rv_eventlist);
+        recyclerView = view.findViewById(R.id.rv_eventlist);
         sharedPrefs = new SharedPrefs(getContext());
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -88,9 +86,7 @@ public class EventListFragment extends Fragment implements EventListFragmentInte
 
     @Override
     public void getList(List<EventListModel> eventListModels) {
-
         this.eventListModelList = eventListModels;
-
         eventListAdapter = new EventListAdapter(eventListModelList,getContext(),getActivity());
         recyclerView.setAdapter(eventListAdapter);
        for(EventListModel e:eventListModels) {
@@ -98,25 +94,27 @@ public class EventListFragment extends Fragment implements EventListFragmentInte
            int y = Integer.parseInt(e.getEvent_start_date().substring(0, 4));
            int m = Integer.parseInt(e.getEvent_start_date().substring(5, 7));
            int d = Integer.parseInt(e.getEvent_start_date().substring(8, 10));
-           materialCalendarView.addDecorator(new Events(Color.rgb(128, 0, 128), Collections.singleton(CalendarDay.from(y, m, d))));
+           if(y>=calendarDay.getYear()&&m>=calendarDay.getMonth()&&d>=calendarDay.getDay())
+           materialCalendarView.addDecorator(new Events(R.color.colorPrimary, Collections.singleton(CalendarDay.from(y, m, d))));
            materialCalendarView.setOnDateChangedListener(new OnDateSelectedListener() {
                @Override
                public void onDateSelected(@NonNull MaterialCalendarView materialCalendarView, @NonNull CalendarDay calendarDay, boolean b) {
-                  if(b)
-                   {    eventListModelList.clear();
+                   eventListModelList.clear();
+                   if(b)
+                   {
                     ArrayList<EventListModel> eventListModels1=new ArrayList<>();
                     for(EventListModel e:eventListModelCompleteList)
                     {
                         int y = Integer.parseInt(e.getEvent_start_date().substring(0, 4));
                         int m = Integer.parseInt(e.getEvent_start_date().substring(5, 7));
                         int d = Integer.parseInt(e.getEvent_start_date().substring(8, 10));
-                        if(y>=calendarDay.getYear())
-                            if (m>=calendarDay.getMonth())
-                                if (d>=calendarDay.getDay()){eventListModels1.add(e);}
+                        if(y==calendarDay.getYear()&&m==calendarDay.getMonth()&&d==calendarDay.getDay()){
+                                    eventListModels1.add(e);}
                     }
                    //Log.e("aman", "onDateSelected: "+eventListModels1.size() );
                     eventListModelList.addAll(eventListModels1);
-                    eventListAdapter.notifyDataSetChanged();}
+                    }
+                   eventListAdapter.notifyDataSetChanged();
 
 
                }

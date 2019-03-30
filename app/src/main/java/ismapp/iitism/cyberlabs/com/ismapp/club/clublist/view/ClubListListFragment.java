@@ -43,14 +43,14 @@ public class ClubListListFragment extends Fragment implements ClubListFragmentIn
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_club_list,container,false);
         ButterKnife.bind(this, view);
-        recyclerView = (RecyclerView)view.findViewById(R.id.clubrecycler);
+        recyclerView = view.findViewById(R.id.clubrecycler);
         clubListAdapter = new ClubListAdapter(getContext(),getFragmentManager(),getActivity());
         sharedPrefs = new SharedPrefs(getContext());
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         if(clubDetailsArrayList ==null)
         {
-            clubListPresenterInterface = new ClubListPresenterImpl(ClubListListFragment.this,new ClubListProviderImp());
+            clubListPresenterInterface = new ClubListPresenterImpl(getActivity(),ClubListListFragment.this,new ClubListProviderImp());
             clubListPresenterInterface.requestClubList(sharedPrefs.getAccessToken());}
         else
         {

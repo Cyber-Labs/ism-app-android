@@ -2,7 +2,7 @@ package ismapp.iitism.cyberlabs.com.ismapp.authentication.signup.Presenter;
 
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.signup.Model.SignUpResponseModel;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.signup.Provider.SignUpProvider;
-import ismapp.iitism.cyberlabs.com.ismapp.authentication.signup.View.SignUpActivityInterface;
+import ismapp.iitism.cyberlabs.com.ismapp.authentication.signup.view.SignUpActivityInterface;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
 
 public class SignUpPresenterImp implements SignUpPresenter{

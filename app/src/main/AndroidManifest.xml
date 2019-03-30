@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:allowBackup="true"
@@ -27,11 +28,11 @@
 
         </activity>
         <activity
-            android:name=".authentication.signup.View.SignUpActivity"
+            android:name=".authentication.signup.view.SignUpActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeHome" />
         <activity
-            android:name=".authentication.verifyotp.View.VerifyOtpActivity"
+            android:name=".authentication.verifyotp.view.VerifyOtpActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".authentication.login.view.LoginViewImp"
@@ -39,8 +40,8 @@
             android:theme="@style/AppThemeHome">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
         <activity
@@ -54,6 +55,7 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
     </application>
 
 </manifest>

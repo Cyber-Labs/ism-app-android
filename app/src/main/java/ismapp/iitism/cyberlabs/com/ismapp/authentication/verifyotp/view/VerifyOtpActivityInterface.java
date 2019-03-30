@@ -1,4 +1,4 @@
-package ismapp.iitism.cyberlabs.com.ismapp.authentication.verifyotp.View;
+package ismapp.iitism.cyberlabs.com.ismapp.authentication.verifyotp.view;
 
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.verifyotp.Model.VerifyOtpModel;
 
