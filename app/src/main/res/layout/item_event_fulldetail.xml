@@ -149,7 +149,7 @@
                         android:layout_width="0dp"
                         android:layout_height="@dimen/card_detail_header_size"
                         android:gravity="center_vertical"
-                        android:text="@string/example_date_and_time"
+                        android:text="@string/start_date"
                         android:layout_weight="1"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title"
                         android:textColor="@color/grey_80" />
