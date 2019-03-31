@@ -14,12 +14,13 @@ import android.widget.EditText;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import ismapp.iitism.cyberlabs.com.ismapp.R;
+import ismapp.iitism.cyberlabs.com.ismapp.authentication.login.view.LoginViewImp;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.signup.Model.SignUpResponseModel;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.signup.Presenter.SignUpPresenter;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.signup.Presenter.SignUpPresenterImp;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.signup.Provider.SignUpProviderImp;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.verifyotp.view.VerifyOtpActivity;
-import ismapp.iitism.cyberlabs.com.ismapp.R;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.ViewUtils;
 
 public class SignUpActivity extends AppCompatActivity implements SignUpActivityInterface {
@@ -32,7 +33,8 @@ public class SignUpActivity extends AppCompatActivity implements SignUpActivityI
     @BindView(R.id.btn_signup_next)
     Button next;
     private String e;
-
+    @BindView(R.id.signup_signin)
+    Button signIn;
     @BindView(R.id.signup_coordlay)
     CoordinatorLayout clayout;
     @BindView(R.id.signup_name_lay)
@@ -71,6 +73,11 @@ public class SignUpActivity extends AppCompatActivity implements SignUpActivityI
                 signUpPresenter.getSignUpResponse();
 
             }
+        });
+        signIn.setOnClickListener(v -> {
+            Intent i = new Intent(this, LoginViewImp.class);
+            startActivity(i);
+            finish();
         });
 
     }

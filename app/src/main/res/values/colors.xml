@@ -4,7 +4,7 @@
     <!--#008577 , #00574B , #D81B60-->
     <color name="colorPrimaryDark">#25239E</color>
     <!--P A D #A936B9 #C42A98 || #52C7B8 #52C7B8 #00675B-->
-    <color name="colorAccent">#C42A98 </color>
+    <color name="colorAccent">#C42A98</color>
     <color name="white">#FFFFFF</color>
     <color name="titleColor">#4c4c4c</color>
     <color name="titleColorLight">#35A7CE</color>
@@ -15,4 +15,6 @@
     <color name="grey_10">#e6e6e6</color>
     <color name="grey_60">#666666</color>
     <color name="grey_90">#263238</color>
+
+    <color name="black_overlay">#66000000</color>
 </resources>

@@ -24,7 +24,7 @@
                 android:layout_gravity="center"
                 android:contentDescription="@string/todo"
                 android:padding="@dimen/iv_padding"
-                android:src="@drawable/logo" />
+                android:src="@drawable/institutelogo" />
 
             <LinearLayout
                 android:layout_width="match_parent"

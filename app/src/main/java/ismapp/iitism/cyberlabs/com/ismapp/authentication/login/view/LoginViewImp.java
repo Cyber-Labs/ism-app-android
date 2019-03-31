@@ -2,6 +2,7 @@ package ismapp.iitism.cyberlabs.com.ismapp.authentication.login.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -11,18 +12,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.appus.splash.Splash;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
+import ismapp.iitism.cyberlabs.com.ismapp.R;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotPassword.view.ForgotPasswordActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.login.model.LoginModel;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.login.presenter.LoginPresenter;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.login.presenter.LoginPresenterImp;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.login.provider.LoginProviderImp;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.signup.view.SignUpActivity;
-import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
-import ismapp.iitism.cyberlabs.com.ismapp.R;
+import ismapp.iitism.cyberlabs.com.ismapp.helper.Guest;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
 
 public class LoginViewImp extends AppCompatActivity implements LoginView {
@@ -37,16 +37,19 @@ public class LoginViewImp extends AppCompatActivity implements LoginView {
     Button signUp;
     @BindView(R.id.btn_login_forgot_pass)
     TextView forgot;
+    @BindView(R.id.btn_login_guest)
+    TextView guestLogin;
     private AlertDialog alertDialog;
+    private Boolean exit = false;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
         ButterKnife.bind(this);
-        Splash.Builder splash = new Splash.Builder(this, getSupportActionBar());
-        splash.setBackgroundImage(getResources().getDrawable(R.drawable.splash));
-        splash.setSplashImage(getResources().getDrawable(R.drawable.logo));
-       splash.perform();
+//        Splash.Builder splash = new Splash.Builder(this, getSupportActionBar());
+//        splash.setBackgroundImage(getResources().getDrawable(R.drawable.splash));
+//        splash.setSplashImage(getResources().getDrawable(R.drawable.institutelogo));
+//        splash.perform();
          sharedPrefs  = new SharedPrefs(this);
          if(sharedPrefs.getLogin())
          {
@@ -67,6 +70,11 @@ public class LoginViewImp extends AppCompatActivity implements LoginView {
              else
                  loginPresenter.getLoginResponse(e,p);
         });
+        guestLogin.setOnClickListener(v -> {
+            String e= Guest.guestEmail;
+            String p=Guest.guestPassword;
+            loginPresenter.getLoginResponse(e,p);
+        });
     }
 
     @Override
@@ -75,6 +83,24 @@ public class LoginViewImp extends AppCompatActivity implements LoginView {
             alertDialog.show();
         else alertDialog.dismiss();
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (exit) {
+            finish(); // finish activity
+        } else {
+            Toast.makeText(this, "Press Back again to Exit.",
+                    Toast.LENGTH_SHORT).show();
+            exit = true;
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    exit = false;
+                }
+            }, 3 * 1000);
+
+        }
     }
 
     @Override

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bgpolygongradient"
+    tools:context=".splashactivity.SplashActivity">
+
+    <!-- The primary full-screen view. This can be replaced with whatever view
+         is needed to present your content, e.g. VideoView, SurfaceView,
+         TextureView, etc. -->
+
+
+    <LinearLayout
+        android:id="@+id/fullscreen_content_controls"
+        style="?metaButtonBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <ImageView
+            android:id="@+id/iv_splash_logo"
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:keepScreenOn="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/institutelogo"
+            android:contentDescription="@string/todo"
+            />
+
+
+        <TextView
+            android:id="@+id/tv_splash_text"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="Welcome To ISM APP"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/title_bar_text_size"
+            android:fontFamily="@font/lato"/>
+        <Button
+            android:background="@drawable/btn_bg_color"
+            style="?metaButtonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:textColor="@color/white"
+            android:text="Update" />
+
+    </LinearLayout>
+</FrameLayout>
