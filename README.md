@@ -14,7 +14,7 @@ This android app is one stop solution for viewing events and news of different c
 To build:
 
 ```bash
-$ git clone git@github.com:yber-Labs/ism-app-android.git
+$ git clone git@github.com:Cyber-Labs/ism-app-android.git
 $ cd ism-app-android/
 $ ./gradlew build
 ```
