@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/bottom_sheet_members"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:background="#fff"
     android:orientation="vertical"
     app:behavior_hideable="false"
@@ -14,17 +14,17 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_gravity="center_vertical"
-        android:padding="@dimen/layout_margin"
         android:background="@drawable/toolbarheaderpolygonbg"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="@dimen/layout_margin">
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="3"
+            android:fontFamily="@font/lato"
             android:gravity="center_vertical"
             android:padding="@dimen/tv_padding"
-            android:fontFamily="@font/lato"
             android:text="@string/members"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_20sp"
@@ -38,15 +38,17 @@
             android:gravity="end"
             android:src="@drawable/club" />
     </LinearLayout>
-    <android.support.v4.widget.NestedScrollView
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollingCache="true"
-        android:id="@+id/rv_show_members"/>
-    </android.support.v4.widget.NestedScrollView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_show_members"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollingCache="true" />
+    </androidx.core.widget.NestedScrollView>
 
 
 </LinearLayout>

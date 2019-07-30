@@ -8,8 +8,8 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class NewsDetailsModel {
-   private boolean success;
-   private String message;
+    private boolean success;
+    private String message;
     private String club_name;
     private String description;
     private String news_pic_url;

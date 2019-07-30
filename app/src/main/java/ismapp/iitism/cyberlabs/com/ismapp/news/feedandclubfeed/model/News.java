@@ -2,13 +2,9 @@ package ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.model;
 
 import com.google.gson.annotations.SerializedName;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.Data;
 
-@Getter
-@AllArgsConstructor
-@ToString
+@Data
 public class News {
     @SerializedName("id")
     private int news_id;

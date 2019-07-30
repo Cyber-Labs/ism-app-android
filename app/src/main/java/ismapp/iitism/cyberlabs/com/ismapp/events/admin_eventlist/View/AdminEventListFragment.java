@@ -1,11 +1,11 @@
 package ismapp.iitism.cyberlabs.com.ismapp.events.admin_eventlist.View;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,13 +16,13 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
+import ismapp.iitism.cyberlabs.com.ismapp.activities.MainActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
-import ismapp.iitism.cyberlabs.com.ismapp.createevent.view.CreateEvent;
+import ismapp.iitism.cyberlabs.com.ismapp.events.createevent.view.CreateEvent;
 import ismapp.iitism.cyberlabs.com.ismapp.events.admin_eventlist.Presenter.AdmintEventListPresenterImp;
 import ismapp.iitism.cyberlabs.com.ismapp.events.admin_eventlist.Presenter.AdmintEventListPresenterInterface;
 import ismapp.iitism.cyberlabs.com.ismapp.events.admin_eventlist.Provider.AdmintEventListProviderImp;
-import ismapp.iitism.cyberlabs.com.ismapp.events.eventlist.EventListModel;
+import ismapp.iitism.cyberlabs.com.ismapp.events.eventlist.model.EventListModel;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.ViewUtils;
 

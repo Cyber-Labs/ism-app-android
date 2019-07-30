@@ -20,14 +20,14 @@ public class NewsDetailsPresenterImplementation implements NewsDetailsPresenterI
         newsDetailsProviderImplementation.getNewsResponse(accessToken, newsId, new PresenterCallback() {
             @Override
             public void onSuccess(Object o) {
-                newsDetailsInterface.getResponse((NewsDetailsModel)o);
+                newsDetailsInterface.getResponse((NewsDetailsModel) o);
                 newsDetailsInterface.showProgressBar(false);
             }
 
             @Override
             public void OnFailure(String msg) {
-                    newsDetailsInterface.showMessage(msg);
-                    newsDetailsInterface.showProgressBar(false);
+                newsDetailsInterface.showMessage(msg);
+                newsDetailsInterface.showProgressBar(false);
             }
         });
     }
@@ -38,12 +38,12 @@ public class NewsDetailsPresenterImplementation implements NewsDetailsPresenterI
         newsDetailsProviderImplementation.getDeleteNewsResponse(accessToken, newsId, new PresenterCallback() {
             @Override
             public void onSuccess(Object o) {
-                newsDetailsInterface.getDeleteResponse((DeleteNewsResponseModel)o);
+                newsDetailsInterface.getDeleteResponse((DeleteNewsResponseModel) o);
             }
 
             @Override
             public void OnFailure(String msg) {
-              newsDetailsInterface.showMessage(msg);
+                newsDetailsInterface.showMessage(msg);
             }
         });
     }

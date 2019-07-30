@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/verify_otp_cLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/verify_otp_cLayout">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -10,97 +11,50 @@
         android:orientation="vertical"
         android:padding="5dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="3" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@drawable/accntverifyy"
-            android:fontFamily="@font/lato"
-            android:gravity="center"
-            android:padding="@dimen/tv_padding"
-            android:text="@string/account_verification"
-            android:textColor="@color/default_splash_image_color"
-            android:textSize="@dimen/title_bar_text_size" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:gravity="center_vertical"
-            android:padding="@dimen/tv_padding"
-            android:text="@string/create_your_account"
-            android:textColor="@android:color/background_dark"
-            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/verify_otp_email"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/pandey_aman812_gmail_com"
-            android:textColor="@color/colorAccent"
-            android:textSize="18sp" />
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            android:textColor="@color/colorAccent" />
 
 
-        <TextView
-            android:id="@+id/textView3"
+        <com.google.android.material.textview.MaterialTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
             android:gravity="center_vertical"
-            android:padding="@dimen/tv_padding"
-            android:text="@string/enter_otp_recieved_via_email" />
+            android:text="@string/enter_otp_recieved_via_email"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
 
-        <EditText
-            android:id="@+id/verify_otp_otp"
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:fontFamily="@font/lato"
-            android:imeOptions="actionDone"
-            android:inputType="number"
-            android:padding="@dimen/layout_padding"
-            android:text="@string/random_otp"
-            android:textSize="@dimen/title_bar_text_size"
-            android:textStyle="bold"
-            android:layout_height="0dp" />
-        <LinearLayout
+            android:layout_height="wrap_content"
+            android:hint="@string/otp"
+            app:startIconDrawable="@drawable/ic_otp">
+
+            <EditText
+                android:id="@+id/verify_otp_otp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:maxLines="1"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_verify_otp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end">
-
-            <Button
-                android:id="@+id/btn_verify_otp_negative"
-                style="@style/Widget.AppCompat.Button.Borderless.Colored"
-                android:layout_width="@dimen/btn_hori_width"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:text="@string/cancel"
-                android:textColor="@color/titleColorLight" />
-
-            <Button
-                android:id="@+id/btn_verify_otp"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="@dimen/btn_hori_width"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:text="@string/verify"
-                android:textColor="@color/colorPrimaryDark" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="4" />
+            android:layout_gravity="end"
+            android:layout_margin="10dp"
+            android:text="@string/verify" />
 
     </LinearLayout>
-    </android.support.design.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

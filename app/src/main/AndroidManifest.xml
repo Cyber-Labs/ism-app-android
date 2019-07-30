@@ -15,9 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".splashactivity.SplashActivity"
+            android:name=".activities.SplashActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppThemeHome">
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,34 +27,21 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".homeactivity.HomeActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeHome" />
-        <activity
-            android:name=".authentication.signup.view.SignUpActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeHome" />
-        <activity
-            android:name=".authentication.verifyotp.view.VerifyOtpActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".authentication.signup.view.SignUpActivity" />
+        <activity android:name=".authentication.verifyotp.view.VerifyOtpActivity" />
         <activity
             android:name=".authentication.login.view.LoginViewImp"
             android:screenOrientation="portrait"
-            android:theme="@style/AppThemeHome">
+            android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
-        <activity
-            android:name=".authentication.forgotPassword.view.ForgotPasswordActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeHome" />
-        <activity
-            android:name=".authentication.resetpassword.view.ResetPasswordActivity"
-            android:screenOrientation="portrait" />
+        <activity android:name=".authentication.forgotPassword.view.ForgotPasswordActivity"
+
+            />
+        <activity android:name=".authentication.resetpassword.view.ResetPasswordActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

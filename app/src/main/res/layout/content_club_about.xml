@@ -1,95 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingBottom="45dp">
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/club_image"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:contentDescription="@string/todo"
+            android:scaleType="fitXY" />
 
         <LinearLayout
+            android:id="@+id/club_lay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <ImageView
-                android:id="@+id/club_image"
-                android:layout_height="200dp"
-                android:scaleType="fitXY"
-                android:layout_width="match_parent"
-                android:contentDescription="@string/todo" />
+            android:orientation="horizontal">
+
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:id="@+id/club_lay"
-                >
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="5"
-                    android:layout_height="match_parent"
-                    android:layout_margin="@dimen/iv_padding_small"
-                    android:orientation="vertical">
-                    <TextView
-                        android:id="@+id/club_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="@dimen/text_size_20sp"
-                        android:padding="@dimen/tv_padding"
-                        android:fontFamily="@font/lato"
-                        android:textStyle="bold"
-                        android:textColor="#fff"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/iv_padding_small"
+                android:layout_weight="5"
+                android:orientation="vertical">
 
-                        />
-                    <TextView
-                        android:id="@+id/club_tag"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/tv_padding"
-                        android:textSize="@dimen/title_text_size"
-                        android:fontFamily="@font/lato"
-                        android:textColor="#fff"
-
-                        />
-
-                </LinearLayout>
-                <android.support.design.widget.FloatingActionButton
-                    android:layout_width="wrap_content"
-                    android:id="@+id/fab_fb_link"
-                    android:src="@drawable/fb_icon_png_480760"
+                <TextView
+                    android:id="@+id/club_name"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:tint="@android:color/white"
-                    app:fabSize="normal"
-                    android:layout_marginEnd="@dimen/iv_padding_small"
-                    app:rippleColor="@android:color/white"
-                    android:focusable="true"
-                    android:layout_marginRight="@dimen/iv_padding_small" />
+                    android:fontFamily="@font/lato"
+                    android:padding="@dimen/tv_padding"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/text_size_20sp"
+                    android:textStyle="bold"
+
+                    />
+
+                <TextView
+                    android:id="@+id/club_tag"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lato"
+                    android:padding="@dimen/tv_padding"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/title_text_size"
+
+                    />
 
             </LinearLayout>
-            <TextView
-                android:id="@+id/club_description"
-                android:layout_width="match_parent"
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab_fb_link"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/layout_padding"
-                android:textStyle="bold"
-                android:textSize="@dimen/title_head"
-                android:layout_marginTop="@dimen/margin_hori"
-                android:fontFamily="@font/lato"
-
-                />
-
-            <!--<ImageView-->
-            <!--android:id="@+id/browser_icon"-->
-            <!--android:layout_width="69dp"-->
-            <!--android:layout_height="50dp"-->
-            <!--android:layout_marginStart="152dp"-->
-            <!--android:layout_marginLeft="152dp"-->
-            <!--android:layout_marginTop="96dp"-->
-            <!--android:src="@drawable/ic_email_black_24dp"-->
-            <!--app:layout_constraintStart_toStartOf="parent"-->
-            <!--app:layout_constraintTop_toBottomOf="@+id/club_description" />-->
-
+                android:layout_marginEnd="@dimen/iv_padding_small"
+                android:layout_marginRight="@dimen/iv_padding_small"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/fb_icon_png_480760"
+                android:tint="@android:color/white"
+                app:fabSize="normal"
+                app:rippleColor="@android:color/white" />
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/club_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_hori"
+            android:fontFamily="@font/lato"
+            android:padding="@dimen/layout_padding"
+            android:textSize="@dimen/title_head"
+            android:textStyle="bold"
+
+            />
+
+        <!--<ImageView-->
+        <!--android:id="@+id/browser_icon"-->
+        <!--android:layout_width="69dp"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:layout_marginStart="152dp"-->
+        <!--android:layout_marginLeft="152dp"-->
+        <!--android:layout_marginTop="96dp"-->
+        <!--android:src="@drawable/ic_email"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/club_description" />-->
+
+
+    </LinearLayout>
 </ScrollView>
 

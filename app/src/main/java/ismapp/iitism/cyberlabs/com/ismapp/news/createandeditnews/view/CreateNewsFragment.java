@@ -4,8 +4,8 @@ import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +24,7 @@ import com.squareup.picasso.Picasso;
 import java.io.File;
 import java.util.Objects;
 
-import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
+import ismapp.iitism.cyberlabs.com.ismapp.activities.MainActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.UriUtils;
@@ -34,7 +34,6 @@ import ismapp.iitism.cyberlabs.com.ismapp.news.createandeditnews.model.CreateNew
 import ismapp.iitism.cyberlabs.com.ismapp.news.createandeditnews.presenter.CreateNewsPresenterImplementation;
 import ismapp.iitism.cyberlabs.com.ismapp.news.createandeditnews.presenter.CreateNewsPresenterInterface;
 import ismapp.iitism.cyberlabs.com.ismapp.news.createandeditnews.provider.CreateNewsProviderImplementation;
-import ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.view.NewsList;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -44,16 +43,17 @@ import static android.app.Activity.RESULT_OK;
 
 public class CreateNewsFragment extends Fragment implements CreateNews {
     private static final String ARG_PARAM1 = "news_id";
-    private  ProgressDialog progressDialog;
+    private static final int PICK_IMAGE = 1;
+    private ProgressDialog progressDialog;
     private CreateNewsPresenterInterface createNewsPresenterInterface;
     private EditText createNewsDescription;
     private ImageView createNewsImage;
     private Button createNewsButton;
-    private static final int PICK_IMAGE = 1;
     private int news_id = 0;
     private MultipartBody.Part image;
-    private  String description;
+    private String description;
     private String news_image_url;
+
     public CreateNewsFragment() {
         // Required empty public constructor
     }
@@ -72,27 +72,28 @@ public class CreateNewsFragment extends Fragment implements CreateNews {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             news_id = getArguments().getInt(ARG_PARAM1);
-            description=getArguments().getString("description","");
-             news_image_url= getArguments().getString("news_url","");
+            description = getArguments().getString("description", "");
+            news_image_url = getArguments().getString("news_url", "");
 
         }
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.fragment_add_news, container, false);
+        View view = inflater.inflate(R.layout.fragment_add_news, container, false);
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Wait");
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setIndeterminate(true);
-        createNewsPresenterInterface = new CreateNewsPresenterImplementation(this,new CreateNewsProviderImplementation());
-        createNewsImage = (ImageView)view.findViewById(R.id.create_news_pic);
-        createNewsDescription = (EditText)view.findViewById(R.id.create_news_description);
-        createNewsButton = (Button)view.findViewById(R.id.create_news_button);
+        createNewsPresenterInterface = new CreateNewsPresenterImplementation(this, new CreateNewsProviderImplementation());
+        createNewsImage = (ImageView) view.findViewById(R.id.create_news_pic);
+        createNewsDescription = (EditText) view.findViewById(R.id.create_news_description);
+        createNewsButton = (Button) view.findViewById(R.id.create_news_button);
         createNewsButton.setEnabled(true);
         createNewsDescription.setText(description);
-        if(!news_image_url.isEmpty())
-          Picasso.get().load(news_image_url).into(createNewsImage);
+        if (!news_image_url.isEmpty())
+            Picasso.get().load(news_image_url).into(createNewsImage);
         createNewsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,8 +115,8 @@ public class CreateNewsFragment extends Fragment implements CreateNews {
                 @Override
                 public void onPermissionDenied(PermissionDeniedResponse response) {
 
-                    if(response.isPermanentlyDenied()){
-                        ViewUtils.showToast(getContext(),"Give Storage Permission");
+                    if (response.isPermanentlyDenied()) {
+                        ViewUtils.showToast(getContext(), "Give Storage Permission");
                         Utils.goToSettings(getActivity());
                     }
                 }
@@ -129,28 +130,28 @@ public class CreateNewsFragment extends Fragment implements CreateNews {
         });
 
 
-
         return view;
     }
 
 
     private void getResponseFromUser() {
         String description = createNewsDescription.getText().toString().trim();
-        if(description.isEmpty() || createNewsImage.getDrawable()==null)
-        { ViewUtils.showToast(getContext(),"All Fields are Required"); return;}
+        if (description.isEmpty() || createNewsImage.getDrawable() == null) {
+            ViewUtils.showToast(getContext(), "All Fields are Required");
+            return;
+        }
         SharedPrefs sharedPrefs = new SharedPrefs(getContext());
-        if(news_id!=0){
-            if(!description.isEmpty()){
+        if (news_id != 0) {
+            if (!description.isEmpty()) {
                 buttonClickable(true);
-                createNewsButton.setOnClickListener(v -> createNewsPresenterInterface.getEditNewsResponsePresenter(sharedPrefs.getAccessToken(),news_id,sharedPrefs.getClubId(),description,image));
+                createNewsButton.setOnClickListener(v -> createNewsPresenterInterface.getEditNewsResponsePresenter(sharedPrefs.getAccessToken(), news_id, sharedPrefs.getClubId(), description, image));
 
             }
 
-        }else{
+        } else {
 
 
-                createNewsPresenterInterface.getCreateNewsResponsePresenter(sharedPrefs.getAccessToken(),sharedPrefs.getClubId(),description,image);
-
+            createNewsPresenterInterface.getCreateNewsResponsePresenter(sharedPrefs.getAccessToken(), sharedPrefs.getClubId(), description, image);
 
 
         }
@@ -158,13 +159,10 @@ public class CreateNewsFragment extends Fragment implements CreateNews {
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-        if (requestCode == PICK_IMAGE  && resultCode == RESULT_OK) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == PICK_IMAGE && resultCode == RESULT_OK) {
             // Bitmap photo = (Bitmap) data.getExtras().get("data");
             createNewsImage.setImageURI(data.getData());
-
-
 
 
             File finalFile = new File(Objects.requireNonNull(UriUtils.uriToFilePathConverter(getContext(), data.getData())));
@@ -182,10 +180,10 @@ public class CreateNewsFragment extends Fragment implements CreateNews {
 
     @Override
     public void showProgressBar(boolean show) {
-        if(show){
+        if (show) {
             progressDialog.show();
 
-        }else {
+        } else {
             progressDialog.dismiss();
         }
     }
@@ -193,9 +191,10 @@ public class CreateNewsFragment extends Fragment implements CreateNews {
 
     @Override
     public void showMessage(String message) {
-        ViewUtils.showToast(getContext(),message);
-        ((MainActivity)(getActivity())).onBackPressed();
+        ViewUtils.showToast(getContext(), message);
+        ((MainActivity) (getActivity())).onBackPressed();
     }
+
     @Override
     public void getCreateNews(CreateNewsResponseModel createNewsResponseModel) {
     }
@@ -203,18 +202,14 @@ public class CreateNewsFragment extends Fragment implements CreateNews {
 
     @Override
     public void buttonClickable(boolean show) {
-        if(show){
-           createNewsButton.setEnabled(true);
-        }else{
+        if (show) {
+            createNewsButton.setEnabled(true);
+        } else {
             createNewsButton.setEnabled(false);
         }
     }
 
     // TODO: Rename method, update argument and hook method into UI event
-
-
-
-
 
 
 }

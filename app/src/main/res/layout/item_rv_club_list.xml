@@ -1,113 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/viewBgColor">
-    <android.support.v7.widget.CardView
-        android:layout_margin="@dimen/layout_margin"
+
+    <androidx.cardview.widget.CardView
         android:id="@+id/card_view_club"
         android:layout_width="match_parent"
-        app:rippleColor="@android:color/holo_blue_dark"
         android:layout_height="@dimen/card_height"
+        android:layout_margin="@dimen/layout_margin"
         android:clickable="true"
         android:focusable="true"
         app:cardElevation="@dimen/card_elevation"
-        >
+        app:rippleColor="@android:color/holo_blue_dark">
 
 
         <LinearLayout
             android:id="@+id/card_club"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-
             android:background="@drawable/geometricbannersheaderspink"
-            android:padding="@dimen/layout_padding"
-            android:baselineAligned="false">
+
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:padding="@dimen/layout_padding">
 
             <LinearLayout
-                android:layout_weight="3"
                 android:layout_width="0dp"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_weight="3">
+
                 <ImageView
                     android:id="@+id/iv_clubimage"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:contentDescription="@string/todo"
                     android:padding="@dimen/layout_padding"
-                    tools:srcCompat="@drawable/cyberlabs"
-                    android:contentDescription="@string/todo" />
+                    tools:srcCompat="@drawable/cyberlabs" />
             </LinearLayout>
+
             <LinearLayout
-                android:layout_weight="7"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="@dimen/layout_margin_horizontal"
                 android:layout_marginRight="@dimen/layout_margin_horizontal"
+                android:layout_weight="7"
                 android:orientation="vertical"
                 android:padding="@dimen/layout_padding">
 
                 <TextView
                     android:id="@+id/tv_clubname"
                     android:layout_width="match_parent"
-                    android:background="@drawable/text_capsule"
                     android:layout_height="40dp"
-                    android:textAllCaps="true"
-                    android:textStyle="bold"
+                    android:background="@drawable/text_capsule"
+                    android:gravity="center_vertical"
                     android:padding="@dimen/tv_padding"
                     android:text="@string/cyberlabs"
+                    android:textAllCaps="true"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                     android:textColor="@color/white"
-                    android:gravity="center_vertical"
-                    android:textSize="@dimen/title_text_size" />
+                    android:textSize="@dimen/title_text_size"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tv_clubtagline"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="3"
+                    android:gravity="center_vertical"
                     android:padding="2dp"
                     android:text="@string/technical_club"
-                    android:gravity="center_vertical"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                     android:textColor="@color/titleColor"
                     android:textSize="@dimen/tagline_text_size" />
+
                 <LinearLayout
+                    android:id="@+id/lay_eventlist_venue_and_date"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:id="@+id/lay_eventlist_venue_and_date"
                     android:layout_weight="1"
-                    android:visibility="gone"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
                     <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:id="@+id/tv_eventlist_venue"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/lato"
-                        android:text="@string/example_venue"
-                        android:maxLines="1"
-                        android:gravity="bottom"
-                        android:layout_height="match_parent" />
-                    <TextView
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:id="@+id/tv_eventlist_date"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
                         android:fontFamily="@font/lato"
-                        android:text="@string/example_date_and_time"
                         android:gravity="bottom"
-                        android:layout_height="match_parent" />
+                        android:maxLines="1"
+                        android:text="@string/example_venue"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_eventlist_date"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/lato"
+                        android:gravity="bottom"
+                        android:text="@string/example_date_and_time"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
             </LinearLayout>
         </LinearLayout>
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
 
 </RelativeLayout>

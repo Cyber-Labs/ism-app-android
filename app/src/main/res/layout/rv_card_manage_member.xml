@@ -1,29 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
+
         <TextView
+            android:id="@+id/member_name"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:gravity="center_vertical"
-            android:padding="@dimen/tv_padding"
             android:layout_weight="6"
             android:fontFamily="@font/lato"
+            android:gravity="center_vertical"
+            android:padding="@dimen/tv_padding"
             android:text="@string/member_name"
-            android:textSize="@dimen/title_text_size"
-            android:id="@+id/member_name"/>
+            android:textSize="@dimen/title_text_size" />
 
         <ImageView
             android:id="@+id/member_delete"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_weight="1"
-            android:src="@drawable/remove_member"
-            android:contentDescription="@string/todo" />
+            android:contentDescription="@string/todo"
+            android:src="@drawable/remove_member" />
     </LinearLayout>
 
-</android.support.v7.widget.CardView>
+</androidx.cardview.widget.CardView>

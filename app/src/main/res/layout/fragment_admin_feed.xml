@@ -1,44 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".news.feedandclubfeed.view.NewsList">
 
     <!-- TODO: Update blank fragment layout -->
-    <android.support.v4.widget.SwipeRefreshLayout
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeToRefresh"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_news_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-    </android.support.v7.widget.RecyclerView>
-    </android.support.v4.widget.SwipeRefreshLayout>
-    <android.support.design.widget.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/spacing_smlarge"
-        android:layout_marginLeft="@dimen/spacing_smlarge"
-        android:layout_marginRight="@dimen/spacing_smlarge"
-        android:layout_marginTop="@dimen/spacing_middle"
-        android:clickable="true"
-        android:tint="@android:color/white"
-        app:fabSize="normal"
-        android:src="@drawable/add"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_news_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </androidx.recyclerview.widget.RecyclerView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_add_news"
-        android:visibility="gone"
-        app:rippleColor="@android:color/white"
-        android:layout_gravity="bottom|end|right"
-        android:focusable="true" />
-    <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end|right"
+        android:layout_marginLeft="@dimen/spacing_smlarge"
+        android:layout_marginTop="@dimen/spacing_middle"
+        android:layout_marginRight="@dimen/spacing_smlarge"
+        android:layout_marginBottom="@dimen/spacing_smlarge"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/add"
+        android:tint="@android:color/white"
+        android:visibility="gone"
+        app:fabSize="normal"
+        app:rippleColor="@android:color/white" />
+
+    <ProgressBar
         android:id="@+id/pb_admin_newslist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
 </FrameLayout>

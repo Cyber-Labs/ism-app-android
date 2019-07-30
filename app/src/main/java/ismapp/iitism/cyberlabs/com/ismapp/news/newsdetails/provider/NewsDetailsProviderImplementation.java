@@ -9,38 +9,40 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class NewsDetailsProviderImplementation implements NewsDetailsProviderInterface{
-    private Call<NewsDetailsModel>newsDetailsModelCall;
+public class NewsDetailsProviderImplementation implements NewsDetailsProviderInterface {
+    private Call<NewsDetailsModel> newsDetailsModelCall;
+    private Call<DeleteNewsResponseModel> deleteNewsResponseModelCall;
+
     @Override
     public void getNewsResponse(String accessToken, int newsId, PresenterCallback presenterCallback) {
         NewsDetailsApi newsDetailsApi = ApiClient.getRetrofit().create(NewsDetailsApi.class);
-        newsDetailsModelCall = newsDetailsApi.getNewsDetails(accessToken,newsId);
+        newsDetailsModelCall = newsDetailsApi.getNewsDetails(newsId);
         newsDetailsModelCall.enqueue(new Callback<NewsDetailsModel>() {
             @Override
             public void onResponse(Call<NewsDetailsModel> call, Response<NewsDetailsModel> response) {
-                presenterCallback.onSuccess((NewsDetailsModel)response.body());
+                presenterCallback.onSuccess((NewsDetailsModel) response.body());
             }
 
             @Override
             public void onFailure(Call<NewsDetailsModel> call, Throwable t) {
-             presenterCallback.OnFailure(t.getMessage());
+                presenterCallback.OnFailure(t.getMessage());
             }
         });
     }
-  private Call<DeleteNewsResponseModel>deleteNewsResponseModelCall;
+
     @Override
     public void getDeleteNewsResponse(String accessToken, int newsId, PresenterCallback presenterCallback) {
         NewsDetailsApi newsDetailsApi = ApiClient.getRetrofit().create(NewsDetailsApi.class);
-        deleteNewsResponseModelCall = newsDetailsApi.getDeleteNewsResponse(accessToken,newsId);
+        deleteNewsResponseModelCall = newsDetailsApi.getDeleteNewsResponse(newsId);
         deleteNewsResponseModelCall.enqueue(new Callback<DeleteNewsResponseModel>() {
             @Override
             public void onResponse(Call<DeleteNewsResponseModel> call, Response<DeleteNewsResponseModel> response) {
-                presenterCallback.onSuccess((DeleteNewsResponseModel)response.body());
+                presenterCallback.onSuccess((DeleteNewsResponseModel) response.body());
             }
 
             @Override
             public void onFailure(Call<DeleteNewsResponseModel> call, Throwable t) {
-             presenterCallback.OnFailure(t.getMessage());
+                presenterCallback.OnFailure(t.getMessage());
             }
         });
     }

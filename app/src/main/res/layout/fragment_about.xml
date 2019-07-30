@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white"
@@ -36,8 +36,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/spacing_large"
-                android:layout_marginRight="@dimen/spacing_large"
                 android:layout_marginTop="@dimen/spacing_large"
+                android:layout_marginRight="@dimen/spacing_large"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal">
 
@@ -49,11 +49,11 @@
                     android:orientation="vertical">
 
                     <de.hdodenhof.circleimageview.CircleImageView
-                        android:src="@drawable/cyberlabs"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        app:civ_border_width="2dp"
-                        app:civ_border_color="#FF000000"/>
+                        android:src="@drawable/cyberlabs"
+                        app:civ_border_color="#FF000000"
+                        app:civ_border_width="2dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -85,8 +85,8 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:src="@drawable/cyberlabs"
-                        app:civ_border_width="2dp"
-                        app:civ_border_color="#FF000000"/>
+                        app:civ_border_color="#FF000000"
+                        app:civ_border_width="2dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -118,8 +118,8 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:src="@drawable/cyberlabs"
-                        app:civ_border_width="2dp"
-                        app:civ_border_color="#FF000000"/>
+                        app:civ_border_color="#FF000000"
+                        app:civ_border_width="2dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -146,8 +146,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/spacing_large"
-                android:layout_marginRight="@dimen/spacing_large"
                 android:layout_marginTop="@dimen/spacing_mlarge"
+                android:layout_marginRight="@dimen/spacing_large"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal">
 
@@ -162,8 +162,8 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:src="@drawable/cyberlabs"
-                        app:civ_border_width="2dp"
-                        app:civ_border_color="#FF000000" />
+                        app:civ_border_color="#FF000000"
+                        app:civ_border_width="2dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -195,8 +195,8 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:src="@drawable/cyberlabs"
-                        app:civ_border_width="2dp"
-                        app:civ_border_color="#FF000000" />
+                        app:civ_border_color="#FF000000"
+                        app:civ_border_width="2dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -224,10 +224,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_large"
                 android:orientation="vertical"
-                android:paddingBottom="@dimen/spacing_large"
                 android:paddingLeft="@dimen/spacing_mlarge"
+                android:paddingTop="@dimen/spacing_large"
                 android:paddingRight="@dimen/spacing_mlarge"
-                android:paddingTop="@dimen/spacing_large">
+                android:paddingBottom="@dimen/spacing_large">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -254,10 +254,10 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/white"
                 android:orientation="vertical"
-                android:paddingBottom="30dp"
                 android:paddingLeft="@dimen/spacing_mlarge"
+                android:paddingTop="@dimen/spacing_large"
                 android:paddingRight="@dimen/spacing_mlarge"
-                android:paddingTop="@dimen/spacing_large">
+                android:paddingBottom="30dp">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -269,7 +269,6 @@
                     app:fontFamily="sans-serif-medium" />
 
 
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -279,20 +278,18 @@
                     android:textColor="@color/grey_60" />
 
                 <TextView
+                    android:id="@+id/tv_feedback_link"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/tv_feedback_link"
                     android:text="@string/https_cyberlabs_netlify_com"
-                    android:textColor="@color/colorAccent"
                     android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                    />
-
+                    android:textColor="@color/colorAccent" />
 
 
             </LinearLayout>
 
         </LinearLayout>
 
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

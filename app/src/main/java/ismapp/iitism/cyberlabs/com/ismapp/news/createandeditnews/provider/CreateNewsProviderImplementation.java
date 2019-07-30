@@ -1,7 +1,5 @@
 package ismapp.iitism.cyberlabs.com.ismapp.news.createandeditnews.provider;
 
-import android.util.Log;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,37 +14,38 @@ import retrofit2.Response;
 
 public class CreateNewsProviderImplementation implements CreateNewsProviderInterface {
     private Call<CreateNewsResponseModel> createNewsApiCall;
+    private Call<CreateNewsResponseModel> editNewsApiCall;
+
     @Override
-    public void getCreateNewsResponse(String access_token,int clubid, String description, MultipartBody.Part image, PresenterCallback presenterCallback) {
+    public void getCreateNewsResponse(String access_token, int clubid, String description, MultipartBody.Part image, PresenterCallback presenterCallback) {
         CreateNewsApi createNewsApi = ApiClient.getRetrofit().create(CreateNewsApi.class);
         Map<String, String> token = new HashMap<>();
         token.put("Authorization", access_token);
-        createNewsApiCall = createNewsApi.getCreateNewsResponse(token,clubid,description,image);
+        createNewsApiCall = createNewsApi.getCreateNewsResponse(token, clubid, description, image);
         createNewsApiCall.enqueue(new Callback<CreateNewsResponseModel>() {
             @Override
             public void onResponse(Call<CreateNewsResponseModel> call, Response<CreateNewsResponseModel> response) {
-                presenterCallback.onSuccess((CreateNewsResponseModel)response.body());
+                presenterCallback.onSuccess((CreateNewsResponseModel) response.body());
             }
 
             @Override
             public void onFailure(Call<CreateNewsResponseModel> call, Throwable t) {
-                 presenterCallback.OnFailure(t.getMessage());
+                presenterCallback.OnFailure(t.getMessage());
             }
         });
     }
-    private Call<CreateNewsResponseModel> editNewsApiCall;
 
     @Override
     public void getEditNewsResponse(String accessToken, int newsId, int clubId, String description, MultipartBody.Part image, PresenterCallback presenterCallback) {
         CreateNewsApi editNewsApi = ApiClient.getRetrofit().create(CreateNewsApi.class);
         Map<String, String> token = new HashMap<>();
         token.put("Authorization", accessToken);
-        editNewsApiCall = editNewsApi.getEditNewsResponse(token,newsId,clubId,description,image);
+        editNewsApiCall = editNewsApi.getEditNewsResponse(token, newsId, clubId, description, image);
 
         editNewsApiCall.enqueue(new Callback<CreateNewsResponseModel>() {
             @Override
             public void onResponse(Call<CreateNewsResponseModel> call, Response<CreateNewsResponseModel> response) {
-                presenterCallback.onSuccess((CreateNewsResponseModel)response.body());
+                presenterCallback.onSuccess((CreateNewsResponseModel) response.body());
             }
 
             @Override

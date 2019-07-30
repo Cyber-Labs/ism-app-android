@@ -2,14 +2,14 @@ package ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotPassword.present
 
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotPassword.model.ForgotPasswordResponse;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotPassword.provider.ForgotPasswordProvider;
-import ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotPassword.view.ForgotPasswordView;
+import ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotPassword.view.ForgotPasswordActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
 
 public class ForgotPasswordPresenterImpl implements ForgotPasswordPresenter {
 private final ForgotPasswordProvider forgotPasswordProvider_;
-private final ForgotPasswordView forgotPasswordView_;
+private final ForgotPasswordActivity forgotPasswordView_;
 
-    public ForgotPasswordPresenterImpl(ForgotPasswordProvider forgotPasswordProvider_, ForgotPasswordView forgotPasswordView_) {
+    public ForgotPasswordPresenterImpl(ForgotPasswordProvider forgotPasswordProvider_, ForgotPasswordActivity forgotPasswordView_) {
         this.forgotPasswordProvider_ = forgotPasswordProvider_;
         this.forgotPasswordView_ = forgotPasswordView_;
     }
@@ -28,7 +28,8 @@ private final ForgotPasswordView forgotPasswordView_;
               public void OnFailure(String msg) {
                   forgotPasswordView_.showError(msg);
                   forgotPasswordView_.showProgressBar(false);
-                  forgotPasswordView_.checkConnection();
+                  if(!forgotPasswordView_.isConnected())
+                  forgotPasswordView_.showConnectionFailureDialog();
               }
           }
 

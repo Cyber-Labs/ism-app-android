@@ -1,6 +1,6 @@
 package ismapp.iitism.cyberlabs.com.ismapp.events.eventlist.presenter;
 
-import ismapp.iitism.cyberlabs.com.ismapp.events.eventlist.EventListResponse;
+import ismapp.iitism.cyberlabs.com.ismapp.events.eventlist.model.EventListResponse;
 import ismapp.iitism.cyberlabs.com.ismapp.events.eventlist.provider.EventListProviderInterface;
 import ismapp.iitism.cyberlabs.com.ismapp.events.eventlist.view.EventListFragmentInterface;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;

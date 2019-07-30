@@ -3,19 +3,19 @@ package ismapp.iitism.cyberlabs.com.ismapp.authentication.login.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
+import ismapp.iitism.cyberlabs.com.ismapp.activities.MainActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotPassword.view.ForgotPasswordActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.login.model.LoginModel;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.login.presenter.LoginPresenter;
@@ -44,7 +44,7 @@ public class LoginViewImp extends AppCompatActivity implements LoginView {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login);
+        setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 //        Splash.Builder splash = new Splash.Builder(this, getSupportActionBar());
 //        splash.setBackgroundImage(getResources().getDrawable(R.drawable.splash));

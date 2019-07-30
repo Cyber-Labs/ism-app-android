@@ -1,7 +1,7 @@
 package ismapp.iitism.cyberlabs.com.ismapp.events.admin_eventlist.api;
 
-import ismapp.iitism.cyberlabs.com.ismapp.events.admin_eventlist.DeleteEventResponse;
-import ismapp.iitism.cyberlabs.com.ismapp.events.eventlist.EventListResponse;
+import ismapp.iitism.cyberlabs.com.ismapp.events.admin_eventlist.model.DeleteEventResponse;
+import ismapp.iitism.cyberlabs.com.ismapp.events.eventlist.model.EventListResponse;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Header;

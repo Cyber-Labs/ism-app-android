@@ -7,8 +7,8 @@ import ismapp.iitism.cyberlabs.com.ismapp.news.createandeditnews.view.CreateNews
 import okhttp3.MultipartBody;
 
 public class CreateNewsPresenterImplementation implements CreateNewsPresenterInterface {
-   private final CreateNews createNews;
-  private final CreateNewsProviderImplementation createNewsProviderImplementation;
+    private final CreateNews createNews;
+    private final CreateNewsProviderImplementation createNewsProviderImplementation;
 
 
     public CreateNewsPresenterImplementation(CreateNews createNews, CreateNewsProviderImplementation createNewsProviderImplementation) {
@@ -19,16 +19,16 @@ public class CreateNewsPresenterImplementation implements CreateNewsPresenterInt
     @Override
     public void getCreateNewsResponsePresenter(String accessToken, int clubid, String description, MultipartBody.Part image) {
         createNews.showProgressBar(true);
-        createNewsProviderImplementation.getCreateNewsResponse(accessToken,clubid,description,image, new PresenterCallback() {
+        createNewsProviderImplementation.getCreateNewsResponse(accessToken, clubid, description, image, new PresenterCallback() {
             @Override
             public void onSuccess(Object o) {
-             createNews.showMessage("News");
-             createNews.showProgressBar(false);
+                createNews.showMessage("News");
+                createNews.showProgressBar(false);
             }
 
             @Override
             public void OnFailure(String msg) {
-             createNews.showMessage(msg);
+                createNews.showMessage(msg);
             }
         });
     }
@@ -39,7 +39,7 @@ public class CreateNewsPresenterImplementation implements CreateNewsPresenterInt
         createNewsProviderImplementation.getEditNewsResponse(accessToken, newsId, clubid, description, image, new PresenterCallback() {
             @Override
             public void onSuccess(Object o) {
-                createNews.getCreateNews((CreateNewsResponseModel)o);
+                createNews.getCreateNews((CreateNewsResponseModel) o);
             }
 
             @Override

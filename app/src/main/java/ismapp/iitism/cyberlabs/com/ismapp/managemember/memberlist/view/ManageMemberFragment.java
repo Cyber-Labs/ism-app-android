@@ -5,17 +5,17 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.RequiresApi;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
+import ismapp.iitism.cyberlabs.com.ismapp.activities.MainActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
-import ismapp.iitism.cyberlabs.com.ismapp.addclubmember.view.AddMember;
+import ismapp.iitism.cyberlabs.com.ismapp.club.addclubmember.view.AddMember;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
 import ismapp.iitism.cyberlabs.com.ismapp.managemember.memberlist.model.MemberListResponse;
 import ismapp.iitism.cyberlabs.com.ismapp.managemember.memberlist.model.RemoveMember;
@@ -31,7 +31,7 @@ import ismapp.iitism.cyberlabs.com.ismapp.managemember.memberlist.provider.Manag
  * Use the {@link ManageMemberFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ManageMemberFragment extends android.support.v4.app.Fragment implements ManageMemberViewInterface {
+public class ManageMemberFragment extends androidx.fragment.app.Fragment implements ManageMemberViewInterface {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";

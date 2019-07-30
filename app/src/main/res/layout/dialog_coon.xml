@@ -1,43 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-  <ScrollView
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content">
-    <LinearLayout
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:paddingTop="16dp"
-        android:orientation="vertical"
-        android:paddingBottom="16dp"
-        >
-        <TextView
+        android:layout_height="wrap_content">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:id="@+id/rules5"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-            />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/rules5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
 
-            style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
-            android:id="@+id/dialog_button"
-            />
-    </LinearLayout>
-  </ScrollView>
+                />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/dialog_button"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                tools:text="@string/done" />
+        </LinearLayout>
+    </ScrollView>
 
     <ProgressBar
+        android:id="@+id/progress_bar_dialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/progress_bar_dialog"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="75dp"
-        android:visibility="gone"
-        />
+        android:visibility="gone" />
 </RelativeLayout>

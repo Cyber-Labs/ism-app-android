@@ -1,42 +1,23 @@
 package ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotPassword.view;
 
-import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import java.util.Objects;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import ismapp.iitism.cyberlabs.com.ismapp.authentication.resetpassword.view.ResetPasswordActivity;
+import androidx.annotation.Nullable;
+import ismapp.iitism.cyberlabs.com.ismapp.R;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotPassword.model.ForgotPasswordResponse;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotPassword.presenter.ForgotPasswordPresenter;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotPassword.presenter.ForgotPasswordPresenterImpl;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.forgotPassword.provider.RetrofitForgotPasswordProvider;
-import ismapp.iitism.cyberlabs.com.ismapp.R;
+import ismapp.iitism.cyberlabs.com.ismapp.authentication.resetpassword.view.ResetPasswordActivity;
+import ismapp.iitism.cyberlabs.com.ismapp.mvp.BaseActivity;
 
-public class ForgotPasswordActivity extends AppCompatActivity implements ForgotPasswordView {
-     private EditText et_email;
-     private Button bt_send;
-     ImageView imageView;
-    // ProgressBar progressBar;
-    private Dialog dialog;
-     private boolean connected;
-     private String email;
-     private ForgotPasswordPresenter forgotPasswordPresenter_;
-
+public class ForgotPasswordActivity extends BaseActivity implements ForgotPasswordView {
+    private EditText et_email;
+    private String email;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,107 +25,48 @@ public class ForgotPasswordActivity extends AppCompatActivity implements ForgotP
         setContentView(R.layout.forgot_password);
         initialise();
 
-
-
     }
 
     private void initialise() {
-//        imageView = (ImageView)findViewById(R.id.img_reset);
-        et_email = (EditText)findViewById(R.id.et_email);
-        bt_send = (Button) findViewById(R.id.forgot_submit);
-      //  progressBar = (ProgressBar)findViewById(R.id.progressBar);
-        dialog = new Dialog(this);
-        ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-        if(Objects.requireNonNull(connectivityManager).getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
-                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
-            //we are connected to a network
-            connected = true;
-        }
-        else
-            connected = false;
+        setTitle("Forgot Password");
+        et_email = findViewById(R.id.et_email);
+        Button bt_send = findViewById(R.id.forgot_submit);
+        bt_send.setOnClickListener(this::submitEmail);
     }
 
     @Override
-    public void showProgressBar(boolean check) {
-        if(check == true){
-           // progressBar.setVisibility(View.GONE);
+    protected void callPresenter() {
+        if(isConnected())
+        {
+            ForgotPasswordPresenter forgotPasswordPresenter_ = new ForgotPasswordPresenterImpl(new RetrofitForgotPasswordProvider(), ForgotPasswordActivity.this);
+            forgotPasswordPresenter_.getResponse(email);
         }
-         else{
-           // progressBar.setVisibility(View.VISIBLE);
+        else{
+            showConnectionFailureDialog();
         }
     }
 
     @Override
     public void showOtpResponse(ForgotPasswordResponse forgotPasswordResponse) {
-        if(forgotPasswordResponse.isSuccess()){
-            //intent to reset page
-            startActivity(new Intent(getBaseContext(), ResetPasswordActivity.class));
-        }else{
-            Toast.makeText(ForgotPasswordActivity.this, forgotPasswordResponse.getMessage(),Toast.LENGTH_LONG).show();
+        if (forgotPasswordResponse.isSuccess()) {
+            Intent intent = new Intent(getBaseContext(), ResetPasswordActivity.class);
+            intent.putExtra("email", email);
+            startActivity(intent);
+            finish();
         }
+        else
+            showError(forgotPasswordResponse.getMessage());
+
     }
-    public void proceed(View v) {
-         email = et_email.getText().toString().trim();
-       if(emailInvalid(email)){
-            Toast.makeText(this, "ENTER CORRECT EMAIL ID!",
-                    Toast.LENGTH_LONG).show();
-        }
-        else {
-              forgotPasswordPresenter_ = new ForgotPasswordPresenterImpl(new RetrofitForgotPasswordProvider(), ForgotPasswordActivity.this);
-              forgotPasswordPresenter_.getResponse(email);
 
-
+    public void submitEmail(View v) {
+        email = et_email.getText().toString().trim();
+        if (emailInvalid(email)) {
+            showError("ENTER CORRECT EMAIL ID!");
+        } else {
+            callPresenter();
             hideKeyboard();
         }
-            }
-
-    @Override
-    public void checkConnection() {
-        //check internet connection
-        if(connected == false){
-            //show dialog box;
-            dialog = new Dialog(this);
-            dialog.setContentView(R.layout.dialog_coon);
-            Button btn = (Button) dialog.findViewById(R.id.dialog_button);
-            TextView rules5 = (TextView) dialog.findViewById(R.id.rules5);
-            btn.setText("Retry");
-            rules5.setText("No internet connection.Please try again.");
-            dialog.setTitle("Connectivity Failed");
-            dialog.setCancelable(false);
-            dialog.show();
-            btn.setOnClickListener(v -> {
-
-                forgotPasswordPresenter_ = new ForgotPasswordPresenterImpl(new RetrofitForgotPasswordProvider(), ForgotPasswordActivity.this);
-                forgotPasswordPresenter_.getResponse(email);
-
-                dialog.dismiss();
-            });
-        }
-
-
     }
 
-    @Override
-    public void showError(String message) {
-             Toast.makeText(this, message,Toast.LENGTH_SHORT);
-    }
-    private void hideKeyboard() {
-        View view = this.getCurrentFocus();
-        if (view != null) {
-            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-            Objects.requireNonNull(imm).hideSoftInputFromWindow(view.getWindowToken(), 0);
-        }
-    }
-    private boolean emailInvalid(String email) {
-        Pattern pattern;
-        Matcher matcher;
-
-        final String EMAIL_PATTERN =
-                "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-        pattern = Pattern.compile(EMAIL_PATTERN);
-        matcher = pattern.matcher(email);
-        boolean a = matcher.matches();
-        return !a;
-    }
 }

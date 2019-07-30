@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".managemember.memberlist.view.ManageMemberFragment">
 
 
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add_member"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/spacing_smlarge"
+        android:layout_gravity="bottom|end|right"
         android:layout_marginLeft="@dimen/spacing_smlarge"
-        android:layout_marginRight="@dimen/spacing_smlarge"
         android:layout_marginTop="@dimen/spacing_middle"
+        android:layout_marginRight="@dimen/spacing_smlarge"
+        android:layout_marginBottom="@dimen/spacing_smlarge"
         android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/ic_person_add"
         android:tint="@android:color/white"
         app:fabSize="normal"
-        android:src="@drawable/ic_person_add"
-        android:id="@+id/fab_add_member"
-        app:rippleColor="@android:color/white"
-        android:layout_gravity="bottom|end|right"
-        android:focusable="true" />
+        app:rippleColor="@android:color/white" />
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_member_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    </android.support.v7.widget.RecyclerView>
+    </androidx.recyclerview.widget.RecyclerView>
 
 </FrameLayout>

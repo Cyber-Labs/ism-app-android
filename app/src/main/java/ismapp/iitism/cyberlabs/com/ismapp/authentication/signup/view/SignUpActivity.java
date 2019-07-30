@@ -2,20 +2,20 @@ package ismapp.iitism.cyberlabs.com.ismapp.authentication.signup.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.Snackbar;
-import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputLayout;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
-import ismapp.iitism.cyberlabs.com.ismapp.authentication.login.view.LoginViewImp;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.signup.Model.SignUpResponseModel;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.signup.Presenter.SignUpPresenter;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.signup.Presenter.SignUpPresenterImp;
@@ -31,10 +31,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpActivityI
     @BindView(R.id.et_signup_pass)
     EditText pass;
     @BindView(R.id.btn_signup_next)
-    Button next;
-    private String e;
-    @BindView(R.id.signup_signin)
-    Button signIn;
+    Button signUpBtn;
     @BindView(R.id.signup_coordlay)
     CoordinatorLayout clayout;
     @BindView(R.id.signup_name_lay)
@@ -43,6 +40,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpActivityI
     TextInputLayout emailLay;
     @BindView(R.id.signup_pass_lay)
     TextInputLayout passLay;
+    private String e;
     private AlertDialog alertDialog;
 
     @Override
@@ -50,12 +48,14 @@ public class SignUpActivity extends AppCompatActivity implements SignUpActivityI
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         ButterKnife.bind(this);
+        setTitle("Create an Account");
         // nameLay.setErrorEnabled(true);
         //  emailLay.setErrorEnabled(true);
         //  passLay.setErrorEnabled(true);
-        alertDialog= new AlertDialog.Builder(this).setView(LayoutInflater.from(this).inflate(R.layout.progress_bar,null)).setCancelable(false).create();
+        alertDialog = new AlertDialog.Builder(this).setView(LayoutInflater.from(this).inflate(R.layout.progress_bar, null)).setCancelable(false).create();
 
-        next.setOnClickListener(v -> {
+        signUpBtn.setOnClickListener(v -> {
+
             if (email.getText().toString().trim().isEmpty() || pass.getText().toString().trim().isEmpty() || name.getText().toString().trim().isEmpty()) {
                 ViewUtils.showToast(getApplicationContext(), "All Fields Are required");
             } else if (pass.getText().toString().trim().length() < 6) {
@@ -67,24 +67,15 @@ public class SignUpActivity extends AppCompatActivity implements SignUpActivityI
                         pass.getText().toString());
 
 
-                name.setText("");
-                email.setText("");
-                pass.setText("");
                 signUpPresenter.getSignUpResponse();
 
             }
         });
-        signIn.setOnClickListener(v -> {
-            Intent i = new Intent(this, LoginViewImp.class);
-            startActivity(i);
-            finish();
-        });
-
     }
 
     @Override
     public void showProgressBar(boolean show) {
-        if(show)
+        if (show)
             alertDialog.show();
         else
             alertDialog.dismiss();
@@ -93,13 +84,12 @@ public class SignUpActivity extends AppCompatActivity implements SignUpActivityI
 
     @Override
     public void setIntent(SignUpResponseModel signUpResponseModel) {
-        if(!signUpResponseModel.getSuccess())
-            Snackbar.make(clayout,signUpResponseModel.getMessage(),Snackbar.LENGTH_LONG).setAction("Ok",null)
+        if (!signUpResponseModel.getSuccess())
+            Snackbar.make(clayout, signUpResponseModel.getMessage(), Snackbar.LENGTH_LONG).setAction("Ok", null)
                     .show();
-        else
-        {
-            Intent i=new Intent(this, VerifyOtpActivity.class);
-            i.putExtra("email",e);
+        else {
+            Intent i = new Intent(this, VerifyOtpActivity.class);
+            i.putExtra("email", e);
             startActivity(i);
         }
 

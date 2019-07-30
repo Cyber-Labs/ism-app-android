@@ -3,9 +3,9 @@ package ismapp.iitism.cyberlabs.com.ismapp.events.admin_eventlist.View;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,13 +17,13 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
+import ismapp.iitism.cyberlabs.com.ismapp.activities.MainActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
-import ismapp.iitism.cyberlabs.com.ismapp.createevent.view.CreateEvent;
+import ismapp.iitism.cyberlabs.com.ismapp.events.createevent.view.CreateEvent;
 import ismapp.iitism.cyberlabs.com.ismapp.events.admin_eventlist.Presenter.AdmintEventListPresenterImp;
 import ismapp.iitism.cyberlabs.com.ismapp.events.admin_eventlist.Presenter.AdmintEventListPresenterInterface;
 import ismapp.iitism.cyberlabs.com.ismapp.events.admin_eventlist.Provider.AdmintEventListProviderImp;
-import ismapp.iitism.cyberlabs.com.ismapp.events.eventlist.EventListModel;
+import ismapp.iitism.cyberlabs.com.ismapp.events.eventlist.model.EventListModel;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
 
 public class AdminEventListAdapter extends RecyclerView.Adapter<AdminEventListAdapter.AdminEventListHolder> {

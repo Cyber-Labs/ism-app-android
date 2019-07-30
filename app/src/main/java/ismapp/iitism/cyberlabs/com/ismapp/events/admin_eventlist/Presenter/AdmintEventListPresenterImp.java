@@ -1,9 +1,9 @@
 package ismapp.iitism.cyberlabs.com.ismapp.events.admin_eventlist.Presenter;
 
-import ismapp.iitism.cyberlabs.com.ismapp.events.admin_eventlist.DeleteEventResponse;
+import ismapp.iitism.cyberlabs.com.ismapp.events.admin_eventlist.model.DeleteEventResponse;
 import ismapp.iitism.cyberlabs.com.ismapp.events.admin_eventlist.Provider.AdmintEventListProviderInterface;
 import ismapp.iitism.cyberlabs.com.ismapp.events.admin_eventlist.View.AdminEventListFragmentInterface;
-import ismapp.iitism.cyberlabs.com.ismapp.events.eventlist.EventListResponse;
+import ismapp.iitism.cyberlabs.com.ismapp.events.eventlist.model.EventListResponse;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.PresenterCallback;
 
 public class AdmintEventListPresenterImp  implements AdmintEventListPresenterInterface{

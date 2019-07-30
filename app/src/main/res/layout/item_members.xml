@@ -1,37 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="40dp"
-    android:padding="@dimen/layout_padding"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="@dimen/layout_padding">
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:background="@color/grey_80" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
         <ImageView
-            android:layout_height="match_parent"
-            android:layout_width="wrap_content"
             android:id="@+id/iv_isadmin"
-            android:src="@drawable/ic_person"
-            android:padding="@dimen/mtf_cardHeight_initial"
-            android:layout_marginStart="@dimen/margin_hori"
-            android:layout_marginLeft="@dimen/margin_hori" />
-        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_width="0dp"
-            android:layout_weight="3"
+            android:layout_marginStart="@dimen/margin_hori"
+            android:layout_marginLeft="@dimen/margin_hori"
+            android:padding="@dimen/mtf_cardHeight_initial"
+            android:src="@drawable/ic_person" />
+
+        <TextView
             android:id="@+id/tv_memb"
-            android:text="@string/member_name"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:fontFamily="@font/lato"
             android:gravity="center_vertical"
-            android:textSize="@dimen/title_head"
             android:padding="@dimen/tv_padding"
+            android:text="@string/member_name"
             android:textColor="@color/grey_90"
-            android:fontFamily="@font/lato"/>
+            android:textSize="@dimen/title_head" />
     </LinearLayout>
 
 

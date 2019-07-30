@@ -5,10 +5,10 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,7 +22,7 @@ import com.squareup.picasso.Target;
 
 import java.util.List;
 
-import ismapp.iitism.cyberlabs.com.ismapp.MainActivity;
+import ismapp.iitism.cyberlabs.com.ismapp.activities.MainActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.SharedPrefs;
 import ismapp.iitism.cyberlabs.com.ismapp.news.createandeditnews.view.CreateNewsFragment;
@@ -32,29 +32,30 @@ import ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.presenter.NewsLis
 import ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.provider.NewsListProviderImplementation;
 
 public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsListViewHolder> {
-    private List<News> newsList;
+    private final static int maxHeight = 450;
     private final Context context;
     private final FragmentActivity fragmentActivity;
     private final boolean is_admin;
-    private final static int maxHeight = 450;
-    private  NewsListInterface newsListInterface;
     private final SharedPrefs sharedPrefs;
+    private List<News> newsList;
+    private NewsListInterface newsListInterface;
 
-    NewsListAdapter(Context context, FragmentActivity fragmentActivity, boolean is_admin,NewsListInterface newsListInterface) {
+    NewsListAdapter(Context context, FragmentActivity fragmentActivity, boolean is_admin, NewsListInterface newsListInterface) {
         this.context = context;
         this.fragmentActivity = fragmentActivity;
         this.is_admin = is_admin;
         this.newsListInterface = newsListInterface;
-        this.sharedPrefs=new SharedPrefs(context);
+        this.sharedPrefs = new SharedPrefs(context);
     }
 
-    void setData(List<News> newsList){
+    void setData(List<News> newsList) {
         this.newsList = newsList;
     }
+
     @NonNull
     @Override
     public NewsListViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_rv_feed,viewGroup,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_rv_feed, viewGroup, false);
         return new NewsListViewHolder(view);
     }
 
@@ -67,7 +68,7 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsLi
             public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
 
                 float targetWidth = newsListViewHolder.iv_newsListImage.getWidth();
-                float ratio = (float) bitmap.getHeight()/(float) bitmap.getWidth();
+                float ratio = (float) bitmap.getHeight() / (float) bitmap.getWidth();
                 float heightFloat = targetWidth * ratio;
                 final android.view.ViewGroup.MarginLayoutParams layoutParams =
                         (ViewGroup.MarginLayoutParams) newsListViewHolder.iv_newsListImage.getLayoutParams();
@@ -97,64 +98,64 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsLi
         return newsList.size();
     }
 
-    class NewsListViewHolder extends RecyclerView.ViewHolder{
+    class NewsListViewHolder extends RecyclerView.ViewHolder {
         final TextView tv_newsList_clubName;
         final TextView tv_newsList_date_time;
         final TextView tv_newsList_shortDescription;
-      final ImageView iv_newsListImage;
-      final CardView NewsCard;
-      ImageView menu;
-       NewsListViewHolder(@NonNull View itemView) {
-           super(itemView);
-           tv_newsList_clubName = itemView.findViewById(R.id.tv_newsList_club_name);
-           tv_newsList_date_time = itemView.findViewById(R.id.newsList_date);
-           tv_newsList_shortDescription = itemView.findViewById(R.id.tv_news_list_short_desc);
-           iv_newsListImage = itemView.findViewById(R.id.newsList_image);
-           NewsCard = itemView.findViewById(R.id.card_view_news);
-           if (is_admin)
-           {
-               menu=itemView.findViewById(R.id.iv_newsList_menu);
-               menu.setVisibility(View.VISIBLE);
-               PopupMenu popupMenu=new PopupMenu(fragmentActivity,menu);
-               popupMenu.getMenuInflater().inflate(R.menu.event_menu,popupMenu.getMenu());
-               popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                   @Override
-                   public boolean onMenuItemClick(MenuItem item) {
-                       if(item.getItemId()==R.id.event_edit){
-                           Bundle bundle=new Bundle();
-                           bundle.putString("description",newsList.get(getAdapterPosition()).getDescription());
-                           bundle.putString("news_url",newsList.get(getAdapterPosition()).getNews_pic_url());
-                           bundle.putInt("news_id",newsList.get(getAdapterPosition()).getNews_id());
-                           CreateNewsFragment createNewsFragment=new CreateNewsFragment();
-                           createNewsFragment.setArguments(bundle);
-                           ((MainActivity)fragmentActivity).addFragment(createNewsFragment );}
-                      else {
-                           AlertDialog alertDialog = new AlertDialog.Builder(context)
-                                   .setTitle("Are you sure you want to remove this Feed?")
-                                   .setCancelable(false)
-                                   .setPositiveButton("Remove", (dialog, which) -> {
-                                       NewsListPresenterInterface newsListPresenterInterface = new NewsListPresenterImplementation(context,newsListInterface, new NewsListProviderImplementation());
-                                       newsListPresenterInterface.getRemoveEventResponse(sharedPrefs.getAccessToken(),newsList.get(getAdapterPosition()).getNews_id());
-                                       newsList.remove(getAdapterPosition());
-                                       notifyDataSetChanged();
+        final ImageView iv_newsListImage;
+        final CardView NewsCard;
+        ImageView menu;
 
-                                   })
-                                   .setNegativeButton("Cancel", (dialog, which) -> {
+        NewsListViewHolder(@NonNull View itemView) {
+            super(itemView);
+            tv_newsList_clubName = itemView.findViewById(R.id.tv_newsList_club_name);
+            tv_newsList_date_time = itemView.findViewById(R.id.newsList_date);
+            tv_newsList_shortDescription = itemView.findViewById(R.id.tv_news_list_short_desc);
+            iv_newsListImage = itemView.findViewById(R.id.newsList_image);
+            NewsCard = itemView.findViewById(R.id.card_view_news);
+            if (is_admin) {
+                menu = itemView.findViewById(R.id.iv_newsList_menu);
+                menu.setVisibility(View.VISIBLE);
+                PopupMenu popupMenu = new PopupMenu(fragmentActivity, menu);
+                popupMenu.getMenuInflater().inflate(R.menu.event_menu, popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        if (item.getItemId() == R.id.event_edit) {
+                            Bundle bundle = new Bundle();
+                            bundle.putString("description", newsList.get(getAdapterPosition()).getDescription());
+                            bundle.putString("news_url", newsList.get(getAdapterPosition()).getNews_pic_url());
+                            bundle.putInt("news_id", newsList.get(getAdapterPosition()).getNews_id());
+                            CreateNewsFragment createNewsFragment = new CreateNewsFragment();
+                            createNewsFragment.setArguments(bundle);
+                            ((MainActivity) fragmentActivity).addFragment(createNewsFragment);
+                        } else {
+                            AlertDialog alertDialog = new AlertDialog.Builder(context)
+                                    .setTitle("Are you sure you want to remove this Feed?")
+                                    .setCancelable(false)
+                                    .setPositiveButton("Remove", (dialog, which) -> {
+                                        NewsListPresenterInterface newsListPresenterInterface = new NewsListPresenterImplementation(newsListInterface, new NewsListProviderImplementation());
+                                        newsListPresenterInterface.getRemoveEventResponse(sharedPrefs.getAccessToken(), newsList.get(getAdapterPosition()).getNews_id());
+                                        newsList.remove(getAdapterPosition());
+                                        notifyDataSetChanged();
+
+                                    })
+                                    .setNegativeButton("Cancel", (dialog, which) -> {
 
 
-                                   })
+                                    })
 
-                                   .create();
-                           alertDialog.show();
-                       }
+                                    .create();
+                            alertDialog.show();
+                        }
 
-                       return true;
-                   }
-               });
-               menu.setOnClickListener(v -> popupMenu.show());
+                        return true;
+                    }
+                });
+                menu.setOnClickListener(v -> popupMenu.show());
 
-           }
+            }
 
-       }
-   }
+        }
+    }
 }

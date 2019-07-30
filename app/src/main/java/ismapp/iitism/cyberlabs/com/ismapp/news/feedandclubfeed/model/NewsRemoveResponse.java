@@ -1,12 +1,8 @@
 package ismapp.iitism.cyberlabs.com.ismapp.news.feedandclubfeed.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.Data;
 
-@Getter
-@ToString
-@AllArgsConstructor
+@Data
 public class NewsRemoveResponse {
     private boolean success;
     private String message;

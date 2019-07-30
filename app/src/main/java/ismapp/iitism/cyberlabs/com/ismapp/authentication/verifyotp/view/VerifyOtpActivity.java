@@ -2,9 +2,6 @@ package ismapp.iitism.cyberlabs.com.ismapp.authentication.verifyotp.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.Button;
@@ -12,15 +9,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import ismapp.iitism.cyberlabs.com.ismapp.R;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.login.view.LoginViewImp;
-import ismapp.iitism.cyberlabs.com.ismapp.authentication.signup.view.SignUpActivity;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.verifyotp.Model.VerifyOtpModel;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.verifyotp.Presenter.VerifyOtpPresenter;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.verifyotp.Presenter.VerifyOtpPresenterImp;
 import ismapp.iitism.cyberlabs.com.ismapp.authentication.verifyotp.Provider.VerifyOtpProviderImp;
-import ismapp.iitism.cyberlabs.com.ismapp.R;
 
 public class VerifyOtpActivity extends AppCompatActivity implements VerifyOtpActivityInterface {
     private String email;
@@ -30,8 +29,6 @@ public class VerifyOtpActivity extends AppCompatActivity implements VerifyOtpAct
     EditText otp;
     @BindView(R.id.btn_verify_otp)
     Button button;
-    @BindView(R.id.btn_verify_otp_negative)
-    Button buttonnegative;
     private AlertDialog alertDialog;
 
 
@@ -40,6 +37,7 @@ public class VerifyOtpActivity extends AppCompatActivity implements VerifyOtpAct
         super.onCreate(savedInstanceState);
         setContentView(R.layout.verify_otp);
         ButterKnife.bind(this);
+        setTitle("Verify OTP");
         Intent i=getIntent();
         email=i.getStringExtra("email");
         Log.e("email", email );
@@ -57,13 +55,6 @@ public class VerifyOtpActivity extends AppCompatActivity implements VerifyOtpAct
             }
 
         });
-        buttonnegative.setOnClickListener(view -> {
-            Intent i1 = new Intent(getApplicationContext(), SignUpActivity.class);
-            startActivity(i1);
-            finish();
-
-        });
-
     }
 
     @Override
@@ -79,7 +70,7 @@ public class VerifyOtpActivity extends AppCompatActivity implements VerifyOtpAct
     public void setIntent(VerifyOtpModel verifyOtpModel) {
         if( verifyOtpModel.getSuccess()) {
             Intent i = new Intent(this, LoginViewImp.class);
-            Toast.makeText(this, "Your account is Created, login to continue", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Your account is Created, activity_login to continue", Toast.LENGTH_SHORT).show();
             startActivity(i);
             finish();
         }

@@ -4,53 +4,56 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".addclubmember.view.AddMember">
+    tools:context=".club.addclubmember.view.AddMember">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:fontFamily="@font/lato"
+        android:gravity="center"
         android:text="@string/add_member"
         android:textSize="@dimen/head_size"
-        android:textStyle="bold"
-        android:gravity="center"/>
+        android:textStyle="bold" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="15"
         android:layout_margin="@dimen/layout_margin"
+        android:layout_weight="15"
         android:orientation="vertical">
-        <android.support.design.widget.TextInputLayout
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/lay_add_member_email_id"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:id="@+id/lay_add_member_email_id"
-            android:layout_weight="1"
-            >
-            <android.support.design.widget.TextInputEditText
+            android:layout_weight="1">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/add_member_email_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/add_member_email_id"
+                android:fontFamily="@font/lato"
                 android:hint="@string/hint_add_member"
-                android:textSize="@dimen/edit_text"
-                android:text="@string/name_add_member"
                 android:imeOptions="actionDone"
                 android:maxLines="1"
-                android:fontFamily="@font/lato"/>
-        </android.support.design.widget.TextInputLayout>
+                android:text="@string/name_add_member"
+                android:textSize="@dimen/edit_text" />
+        </com.google.android.material.textfield.TextInputLayout>
 
 
         <CheckBox
             android:id="@+id/is_member_admin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/admin"
-            android:checked="false"/>
+            android:checked="false"
+            android:text="@string/admin" />
+
         <Button
             android:id="@+id/add_member_sumbit"
             android:layout_width="wrap_content"
-            android:layout_gravity="center"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="@string/submit" />
 
 

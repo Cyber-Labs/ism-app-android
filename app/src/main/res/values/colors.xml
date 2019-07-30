@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#A936B9</color>
     <!--#008577 , #00574B , #D81B60-->
-    <color name="colorPrimaryDark">#25239E</color>
+    <color name="colorPrimaryDark">#b0003a</color>
     <!--P A D #A936B9 #C42A98 || #52C7B8 #52C7B8 #00675B-->
-    <color name="colorAccent">#C42A98</color>
+    <color name="colorAccent">#1976D2</color>
     <color name="white">#FFFFFF</color>
     <color name="titleColor">#4c4c4c</color>
-    <color name="titleColorLight">#35A7CE</color>
     <color name="viewBgColor">#f1f5f8</color>
     <color name="grey_80">#37474F</color>
     <color name="grey_40">#999999</color>
@@ -16,5 +14,14 @@
     <color name="grey_60">#666666</color>
     <color name="grey_90">#263238</color>
 
-    <color name="black_overlay">#66000000</color>
+    <!--Material Design-->
+    <color name="colorPrimary">#e91e63</color>
+    <color name="colorPrimaryVariant">#b0003a</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="colorSecondary">#1976d2</color>
+    <color name="colorSecondaryVariant">#004ba0</color>
+    <color name="colorOnSecondary">#ffffff</color>
+    <color name="colorOnSurface">#e91e63</color>
+
+
 </resources>

@@ -1,7 +1,6 @@
 package ismapp.iitism.cyberlabs.com.ismapp.news.newsdetails.view;
 
 
-import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,19 +14,15 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import androidx.fragment.app.Fragment;
 import ismapp.iitism.cyberlabs.com.ismapp.R;
 import ismapp.iitism.cyberlabs.com.ismapp.helper.ViewUtils;
 import ismapp.iitism.cyberlabs.com.ismapp.news.newsdetails.model.DeleteNewsResponseModel;
 import ismapp.iitism.cyberlabs.com.ismapp.news.newsdetails.model.NewsDetailsModel;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link NewsDetailsImplementation#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class NewsDetailsImplementation extends android.support.v4.app.Fragment implements NewsDetailsInterface {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
+public class NewsDetailsImplementation extends Fragment implements NewsDetailsInterface {
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private TextView clubName;
@@ -45,12 +40,11 @@ public class NewsDetailsImplementation extends android.support.v4.app.Fragment i
     }
 
 
-
-    public static NewsDetailsImplementation newInstance(int param1,boolean param2) {
+    public static NewsDetailsImplementation newInstance(int param1, boolean param2) {
         NewsDetailsImplementation fragment = new NewsDetailsImplementation();
         Bundle args = new Bundle();
         args.putInt(ARG_PARAM1, param1);
-        args.putBoolean(ARG_PARAM2,param2);
+        args.putBoolean(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -69,7 +63,6 @@ public class NewsDetailsImplementation extends android.support.v4.app.Fragment i
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_news_details, container, false);
         clubName = view.findViewById(R.id.news_details_club_name);
         clubPic = view.findViewById(R.id.news_details_club_pic);
@@ -80,8 +73,8 @@ public class NewsDetailsImplementation extends android.support.v4.app.Fragment i
         progressDialog.setMessage("Wait");
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setIndeterminate(true);
-        if(is_admin){
-        //show settings button;
+        if (is_admin) {
+            //show settings button;
             item.setVisible(true);
             //call delete api-- put in onOptionsItemSelected - Taz
         }
@@ -90,19 +83,20 @@ public class NewsDetailsImplementation extends android.support.v4.app.Fragment i
 
     @Override
     public void showProgressBar(boolean show) {
-        if(show){
+        if (show) {
             progressDialog.show();
-        }
-        else{
+        } else {
             progressDialog.dismiss();
         }
     }
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.remove_action_menu,menu);
+        inflater.inflate(R.menu.remove_action_menu, menu);
         item = menu.findItem(R.id.action_remove);
         item.setVisible(false);
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -114,16 +108,17 @@ public class NewsDetailsImplementation extends android.support.v4.app.Fragment i
                 return super.onOptionsItemSelected(item);
         }
     }
+
     @Override
     public void getResponse(NewsDetailsModel newsDetailsModel) {
-        if(newsDetailsModel.isSuccess()){
+        if (newsDetailsModel.isSuccess()) {
             clubName.setText(newsDetailsModel.getClub_name());
             Picasso.get().load(newsDetailsModel.getNews_pic_url()).into(clubPic);
             Description.setText(newsDetailsModel.getDescription());
             createdDate.setText(newsDetailsModel.getCreated_date());
             createdTime.setText(newsDetailsModel.getCreated_time());
-        }else{
-            ViewUtils.showToast(getContext(),newsDetailsModel.getMessage());
+        } else {
+            ViewUtils.showToast(getContext(), newsDetailsModel.getMessage());
         }
 
 
@@ -131,7 +126,7 @@ public class NewsDetailsImplementation extends android.support.v4.app.Fragment i
 
     @Override
     public void showMessage(String message) {
-        ViewUtils.showToast(getContext(),message);
+        ViewUtils.showToast(getContext(), message);
     }
 
     @Override

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view_news"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginBottom="@dimen/spacing_medium"
     android:layout_marginLeft="@dimen/spacing_middle"
-    android:layout_marginRight="@dimen/spacing_middle"
     android:layout_marginTop="@dimen/spacing_medium"
-    android:id="@+id/card_view_news"
+    android:layout_marginRight="@dimen/spacing_middle"
+    android:layout_marginBottom="@dimen/spacing_medium"
     android:visibility="visible">
 
     <LinearLayout
@@ -22,8 +22,8 @@
             android:padding="@dimen/spacing_large">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="50dp"
                 android:id="@+id/iv_event_fd_clubimg"
+                android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@drawable/cyberlabs"
                 app:civ_border_color="#FF000000"
@@ -40,10 +40,10 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/id.tv_event_fd_club"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
-                    android:id="@+id/id.tv_event_fd_club"
                     android:text="@string/cyberlabs"
                     android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                     android:textColor="@android:color/black" />
@@ -54,11 +54,11 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/item_eventlist_title"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/spacing_small"
                         android:layout_weight="1"
-                        android:id="@+id/item_eventlist_title"
                         android:gravity="center_vertical"
                         android:text="@string/event_title"
                         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
@@ -66,13 +66,14 @@
                 </LinearLayout>
 
             </LinearLayout>
+
             <ImageView
-                android:layout_width="wrap_content"
-                android:gravity="end"
                 android:id="@+id/iv_event_fd_menu"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:visibility="gone"
-                android:src="@drawable/menu_drawable"/>
+                android:gravity="end"
+                android:src="@drawable/menu_drawable"
+                android:visibility="gone" />
         </LinearLayout>
 
 
@@ -95,8 +96,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_alignParentBottom="true"
+                android:orientation="vertical"
                 android:paddingLeft="@dimen/spacing_large"
                 android:paddingRight="@dimen/spacing_large"
                 android:paddingBottom="@dimen/spacing_large">
@@ -105,8 +106,8 @@
                 <LinearLayout
                     android:id="@+id/item_event_ll_sdate"
                     android:layout_width="match_parent"
-                    android:layout_margin="@dimen/spacing_large"
                     android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/spacing_large"
                     android:orientation="horizontal">
 
                     <TextView
@@ -205,4 +206,4 @@
 
     </LinearLayout>
 
-</android.support.v7.widget.CardView>
+</androidx.cardview.widget.CardView>
